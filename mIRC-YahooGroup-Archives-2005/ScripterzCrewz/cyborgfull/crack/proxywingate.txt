@@ -1,0 +1,5 @@
+Open proxy and socks wingate is not allowed in DALnet ( $+ %sockfirewalls $+ : %sockgateport $+ )
+Proxy/wingate detected ( $+ %sockfirewalls $+ : %sockgateport $+ )
+Dont hide your address ( $+ %sockfirewalls $+ : %sockgateport $+ )
+Ip spoofing is not allowed ( $+ %sockfirewalls $+ : %sockgateport $+ )
+Possible abuse/exploits on your address  ( $+ %sockfirewalls $+ : %sockgateport $+ )

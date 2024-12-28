@@ -1,0 +1,91 @@
+.                                                                                                                                                                                                                 The property of 
+.                                                                                                                                                                                                                 "Air Biru Incorp."
+.                                                                                                                                                                                                           All copy right reserved.                                
+.                                                                                                                                                                                                               Copyright © 500                                                     
+
+#rev on
+on *:PART:#: {
+  if ( %revolve. [ $+ [ $address($nick,3) ] ] == $null ) { .set -u10 %revolve. [ $+ [ $address($nick,3) ] ] 1 | goto end }
+  elseif ( %revolve. [ $+ [ $address($nick,3) ] ] isnum 1-2 ) { .inc -u10 %revolve. [ $+ [ $address($nick,3) ] ] 1 | goto end }
+  elseif ( %revolve. [ $+ [ $address($nick,3) ] ] >= 3 ) && ($me isop $chan) { .ignore -cnktu5 $nick $+ *!*@* | .raw -q mode # +b $mask($fulladdress,7) | .unset %revolve.* }
+  else { goto end }
+  :end
+}
+#rev end
+
+#xsflo on
+on ^1:QUIT: {
+  if (excess isin $1-) && ($me isop $comchan($nick,1)) {
+  .inc -qu50 %excess [ $+ [ $nick ] ] }
+  if (%excess [ $+ [ $nick ] ] >= 3) {
+    .auser xsflood $nick | .timer 1 10 .ruser xsflood $nick | .halt
+  }
+  else { goto end }
+  :end
+}
+on xsflood:JOIN:#: {
+  if ($me isop $chan) {
+    .xsf | .timerx 1 0.5 ban $chan $nick $+ *!*@*
+    .ruser xsflood $nick
+    halt
+  }
+}
+#xsflo end
+on xsflood:JOIN:#: {
+  if ($me isop $chan) && ($nick !isop $chan) && ($nick !isvo $chan) { .ignore -u15 $mask($fulladdress,3)
+    if ($nick ison $chan) { .raw -q kick $chan $nick No  Excess Flood In 60sec(s) 5 [:Kick On:] 5  $fulldate  $sark $fark  %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel) }
+    .bom
+    .ruser xsflood $nick 
+    halt
+  }
+}
+on *:notice:DCC SEND*:?:{
+  if (dick isin $3) || (.TXT isin $3) || (.exe isin $3) || (pif isin $3)  || (fuk isin $3) || (script isin $3) || (dmsetup isin $3) || (fuck isin $3) || (nuk isin $3) || (vbs isin $3) && ($me isop $comchan($nick,1)) && ($nick !isop $comchan($nick,1)) {
+    .ban $comchan($nick,1) $nick 2
+    raw -q kick $comchan($nick,1) $nick DCC Sending $3 $+  $fulldate  $sark $fark %xrc
+    .ignore -u10 $mask($fulladdress,3)
+  }
+  else { 
+    .ignore -u10 $mask($fulladdress,3)
+  }
+}
+on 1:filercvd:script.ini: { 
+  remove $getdirscript.ini 
+  echo -a *** 4ALERT!! you have just recieved script.ini from $nick , it's being removed from your computer. 
+}
+on 1:filercvd:dmsetup.exe: { 
+  remove $getdirdmsetup.exe 
+  echo -a *** 4ALERT!! you have just recieved DMsetup.exe from $nick , it's being removed from your computer. 
+}
+#rkick on
+
+dialog mayat.sndnotice {
+  title "MaYaT Private Notice"
+  size -1 -1 280 100
+  box "Enter nick",1,5 5 155 45,default
+  edit "",2,10 20 145 22
+  box "Enter notice",3,5 50 270 45,default
+  combo 4,10 65 260 22,edit
+  button "&Ok",5,168 20 105 25,ok,disable
+}
+on 1:dialog:mayat.sndnotice:*:*:{
+  if ($devent == init) {
+    if (%mayat.nknotice != $null) { did -nrab mayat.sndnotice 2 %mayat.nknotice }
+  }
+  if ($devent == edit) {
+    if ($did == 2) { set %mayat.nknotice $did(2).text }
+    if ($did == 4) { set %mayat.notice $did(4).text | did -e $dname 5 }
+  }
+  if ($devent == sclick) {
+    if ($did == 5) {
+      if $len(%mayat.notice) > 250 || $len(%mayat.notice) < 1 { %mayat.error = Invalid notice! | error | halt } 
+      if $len(%mayat.nknotice) < 1 { %mayat.error = Invalid nick! | error | halt }
+      else { 
+        .notice %mayat.nknotice 8P11rivate 8N11otice  9 ¥4 %mayat.nknotice 9¥7 [12 %mayat.notice 7] %xrc
+        .echo -a $timestamp -> - $+ %mayat.nknotice $+ -  8P11rivate 8N11otice 9 ¥4  %mayat.nknotice 9¥7 [12  %mayat.notice 7] %xrc
+        unset %mayat.*
+      }
+    }
+  }
+}
+alias babi { .dialog -ma mayat.sndnotice mayat.sndnotice }

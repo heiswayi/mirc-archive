@@ -1,0 +1,131 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                                            Cyborg Full-Script Edition off the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                              E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;dialog mover by [|Red-X|]
+dmove {
+  set %dmove2 off 
+  set %dmove3 off
+  set %dmove4 off
+  .timerdmove -m 0 200 /dmove2
+  .timerdmove2 -m 0 400 /dmove3
+  .timerdmove3 -m 0 600 /dmove4
+}
+dmove2 {
+  if ($dialog(abouts) == $null) { .timerdmove* off | halt }
+  if (%dmove2 == off) { 
+    did -v abouts 3 
+    set %dmove2 on
+    halt
+  }
+  if (%dmove2 == on) {
+    did -h abouts 3
+    set %dmove2 off
+  }
+}
+dmove3 {
+  if ($dialog(abouts) == $null) { halt }
+  if (%dmove3 == off) { 
+    did -v abouts 4 
+    set %dmove3 on
+    halt 
+  }
+  if (%dmove3 == on) {
+    did -h abouts 4
+    set %dmove3 off
+  }
+}
+dmove4 {
+  if ($dialog(abouts) == $null) { halt }
+  if (%dmove4 == off) { 
+    did -v abouts 5 
+    set %dmove4 on
+    halt 
+  }
+  if (%dmove4 == on) {
+    did -h abouts 5
+    set %dmove4 off
+  }
+}
+topicmove {
+  var %topicmove = $1-
+  var %topiclen = $len($1-)
+  var %topic.use = 0
+  .timermov2 -m 1 $calc(%topiclen * 60) /topicmove4 %topicmove  
+  :start
+  inc %topic.use
+  if (%topic.use > %topiclen) { halt }
+  .timer $+ %topic.use -m 1 $calc(%topic.use * 50) /titlebar $left(%topicmove,%topic.use)
+  goto start
+}
+topicmove2 {
+  var %topicmove2 = $1-
+  var %topiclen2 = $len($1-)
+  var %topic2.use = 0
+  :start
+  inc %topic2.use  
+  if (%topic2.use > %topiclen2) { halt }
+  .timer $+ %topic2.use -m 1 $calc(50 * %topic2.use) /titlebar $right(%topicmove2,%topic2.use)
+  goto start
+}
+topicmove3 {
+  var %topicmove3 = $1-
+  var %topiclen3 = $len($1-)
+  var %topicuse3 = %topiclen3  
+  %topiclen3 = %topiclen3
+  :start 
+  dec %topiclen3 
+  if (%topiclen3 < 0) { halt }
+  .timertopic3 $+ %topiclen3 -m 1 $calc(50 * (%topicuse3 - %topiclen3) ) /titlebar $right(%topicmove3,%topiclen3)   
+  goto start
+}  
+topicmove4 { 
+  var %topicmove3 = $1-
+  var %topiclen3 = $len($1-)
+  var %topicuse3 = %topiclen3  
+  %topiclen3 = %topiclen3
+  :start 
+  dec %topiclen3 
+  if (%topiclen3 < 0) { halt }
+  .timertopic3 $+ %topiclen3 -m 1 $calc(50 * (%topicuse3 - %topiclen3) ) /titlebar $left(%topicmove3,%topiclen3)   
+  goto start
+}
+jscriptscroller {
+  set %jscript.dlog $1
+  set %jscript.id $2
+  set %jscript.txt $3-
+  set %jscript.len $len(%jscript.txt)
+  set %jscript.u 1
+  scroll 
+}
+scroll {
+  if ($dialog(%jscript.dlog) == $null) { halt }
+  inc %jscript.u 
+  if (%jscript.u > %jscript.len) { .timerscroll* off | jscriptscroller | halt }
+  .timerscroll $+ %jscript.u -m 1 20 scrollit 
+  .timerscroll2 $+ %jscript.u -m 1 20 scroll  
+}
+scrollit {
+  if ($left(%jscript.txt,%jscript.u) == $null) { halt }  
+  if ($dialog(%jscript.dlog) == $null) { halt }
+  did -ra %jscript.dlog %jscript.id $left(%jscript.txt,%jscript.u)
+}
+;title
+titleanim {
+  .timertitlemove 2 10 topicmove - $logo Welcome You, congratulation you are using one of the best scripts!
+  .timertitlemove2 1 30 topicmove2 - $logo Script by Aditya aka  [|Red-X|] - Find him in #tequilla [DALnet]
+  .timertitlemove3 0 60 topicmove - $logo Script - at: $+ $team:web 
+}
+titleinfo {
+  .timertitlemove* off
+  var %titleinfo < $+ $me $+ > < $+ $fulldate $+ > <Idle time: $duration($idle) $+ >
+  if ($server == $null) { %titleinfo = %titleinfo [Not connected to a server] }
+  else { %titleinfo = %titleinfo [Connected to : $server $+ ] }
+  if ($away == $true) { %titleinfo = %titleinfo [Away] }
+  titlebar %titleinfo
+  .timertitleinfo $+ $time 1 1 titleinfo
+}
+;eof

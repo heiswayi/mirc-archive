@@ -1,0 +1,22 @@
+system\images\on.ico©Connect©rc
+system\images\off.ico©Disconnect©disconnect
+Break
+system\images\cpanel.ico©Control Panel©cpanel
+Break
+system\images\main.ico©Main Options©main
+system\images\profile.ico©Profiles Manager©profiles
+system\images\themes.ico©Themes Manager©themes
+Break
+system\images\addon.ico©Addon Manager©addons
+system\images\prot.ico©Protection©prot
+system\images\fs.ico©FileServers©fs
+Break
+system\images\update.ico©Update Manager©update
+system\images\stats.ico©Statistics©stats
+system\images\notify.ico©Notify List©nlist
+system\images\toolbar.ico©Toolbar Manager©tbe
+Break
+system\images\mp3.ico©Jukebox©jukebox
+system\images\Away.ico©Away System Configuration©awaysetup
+Break
+system\images\help.ico©Help/Commands/About©help2

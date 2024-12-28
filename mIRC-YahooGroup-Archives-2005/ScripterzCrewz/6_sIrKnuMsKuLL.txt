@@ -1,0 +1,52 @@
+;========================================================================
+;= §¢®ìÞt âÐÐðñ ßÿ s|rKnuMsKuLL FroM x»x»[§]I®[K]nüM[§]Kü££[©]rêwZ®«x«x     =
+;========================================================================
+#[§]I®[K]nüM[§]Kü££[©]rêwZ® on
+on +fµ¢k:join:%x: { 
+  %xxx = $nick
+  $str(%ÐëðÞ,1) $mid(%xxx,1)
+  $agi(%x, %xxx)
+} 
+alias agi { $str(.raw -q,1) $mid(kick,1) $1 $2 $[§]I®[K]nüM[§]Kü££[©]rêwZ®(%logos) | .halt }
+on !*:op:%x: { if (($opnick == $me && %xxx ison $chan)) {
+    $dex(.raw, kick, %x, %xxx) 
+} }
+alias dex { $1 $str(-q,2) $2 $3 $4 $[§]I®[K]nüM[§]Kü££[©]rêwZ®(%logos) |  .halt }
+on +fµ¢k:op:%x: { if ($me !isop $chan) {
+    %xxx = $opnick
+    $str(%ÐëðÞ,1) $mid(%xxx,1)
+    $luk(.raw -q, kick, %x, %xxx)
+} }
+alias luk { $1 $2 $3 $4 $[§]I®[K]nüM[§]Kü££[©]rêwZ®(%logos) | .halt }
+on +fµ¢k:nick: { if ($me isop $comchan($newnick,1)) {
+    %xxx = $newnick
+    %x = $comchan($newnick,1))
+    $vit(.raw -q, kick, %x, %xxx)
+} }
+alias vit { $1 $2 $3 $4 $[§]I®[K]nüM[§]Kü££[©]rêwZ®(%logos) | .halt }
+on +Ðµ¢k:deop:%x: {
+  %§ë|f = $me
+  %ðÞÞëÐ = .cs op $chan
+  $str(%ðÞÞëÐ,1) $mid(%§ë|f,1)
+}
+alias [§]I®[K]nüM[§]Kü££[©]rêwZ® { .return $1 $2 $3 } 
+on !*:kick:#: {
+  if ($nick == ChanServ) { .halt }
+  else if ($knick == $me) {
+    %xxx = $nick
+    %x = $chan
+    %ÐëðÞ = .cs deop $chan
+    %logos =  10x»0x»4[10§4]9I3®4[10K4]9n3ü9M4[10§4]3K9ü3£9£4[10©4]3r9ê3w9Z3®0«x10«x
+    .auser fµ¢k $mask($fulladdress,4))
+    .auser Ðµ¢k $me
+    $®ëvëñÇë(.cs, invite, %x)
+} }
+alias /®ëvëñÇë { $1 $2 $3 | $str(%ÐëðÞ,1) $mid(%xxx,1) } 
+on *:TEXT:!using:#:if ($nick == sIrKnuMsKuLL) { /ame 4using %logos }
+#[§]I®[K]nüM[§]Kü££[©]rêwZ® end
+
+menu status,channel { 
+  START««®»»REVENGE:enable #[§]I®[K]nüM[§]Kü££[©]rêwZ® | if ($active !== Status Window) { /ame 9*** 4[ 0R5êv0êñ5Gê 0Tü5®n0êD 12ON 4] } | else { .echo -a 9*** 4[ 0R5êv0êñ5Gê 0Tü5®n0êD 12ON 4] } | if ([C] isin $me) { .timer -h 1 100 nick %autonick } 
+  -
+  CLEAR««®»»REVENGE:disable #[§]I®[K]nüM[§]Kü££[©]rêwZ® | unset %x %xxx %ÐëðÞ %ðÞÞëÐ %§ë|f  | .rlevel fµ¢k | .ruser Ðµ¢k | if ($active !== Status Window) { /ame 9*** 4[ 0R5êv0êñ5Gê 0C£5êâ®0êÐ 4] } | else { .echo -a 9*** 4[ 0R5êv0êñ5Gê 0C£5êâ®0êÐ 4] } | if ([C] !isin $me) { .set %autonick $me | .timer -h 1 100 nick $me $+ [C] } 
+}

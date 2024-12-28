@@ -1,0 +1,976 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                                  Cyborg Full-Script Edition of the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                          E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+dialog Connect {
+  title "Connection Set-up"
+  size -1 -1 122 163
+  icon Miscellaneous\connect.ico
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 4 2 110 7, Center Disable
+  link "www.Brain-Crash.com" 3, 34 11 120 15,
+  box "" 4, 1 18 120 52,
+  button "&Connect to DALnet Server" 5, 11 49 95 10,
+  box "" 6, 1 71 120 62,
+  text "Reg. Nick" 7, 8 82 31 7,
+  text "Password:" 8, 8 98 30 7,
+  edit "" 9, 40 81 75 10,
+  combo 10, 13 30 95 150, Drop
+  edit "" 11, 40 96 75 10, Pass
+  check "Auto-identify on connect" 12, 20 110 75 7,
+  edit "Looking for connection..." 13, 1 136 120 10, Read
+  check "Auto-ghost" 14, 20 120 75 7,
+  button "Done" 15, 79 149 42 13, Ok  
+  button "Done" 16, 79 149 42 13,Ok,hide  
+}
+on *:dialog:connect:init:*: {
+  set %cdsp 1
+  did -a Connect 10 arcor.dal.net
+  did -a Connect 10 misc-e.dal.net
+  did -a Connect 10 acool-e.dal.net
+  did -a Connect 10 kernel-c.dal.net
+  did -a Connect 10 Animals-c.dal.net
+  did -a Connect 10 Mesra.kl.my.dal.net
+  did -a Connect 10 Liberty.nj.us.dal.net
+  did -a Connect 10 Coins.kl.my.dal.net
+  did -a Connect 10 Elysium.ga.us.dal.net
+  did -a Connect 10 Powertech.no.eu.dal.net
+  did -a Connect 10 Sniper.tx.us.dal.net
+  did -a Connect 10 Glass.oh.us.dal.net
+  did -a Connect 10 Jade.va.us.dal.net
+  did -a Connect 10 Ced.se.eu.dal.net
+  did -a Connect 10 Terra.tx.us.dal.net
+  did -a Connect 10 Paranoia.se.eu.dal.net
+  did -c Connect 10 1
+  if (%nick != $null) { did -a connect 9 %nick }
+  if (%password != $null) { did -a connect 11 %password }
+  if (%autoident == $null) { set %autoident off }
+  if (%autoident == on) { did -c connect 12 }
+  if (%autoghost == $null) { set %autoghost off }
+  if (%autoghost == on) { did -c connect 14 }
+  if ($server != $null) { did -o connect 13 1 Server: $server Port: $port }
+}
+on *:dialog:connect:sclick:5: {
+  did -o connect 13 1 Connecting to %DALnetserver | server %DALnetserver | nick %nick | did -b $dname 9 | did -b $dname 11 | echo -a $adit(Connecting to: %DALnetserver Plz.....wait!!!)
+}
+on *:dialog:connect:sclick:10: {
+  set %DALnetserver $did(10) | did -o Connect 13 1 Checking connection to %DALnetserver 
+}
+on *:dialog:connect:edit:*: {
+  if ($did == 9) { set %nick $did(9).text }
+  if ($did == 11) { set %password $did(11).text }
+}
+on *:DIALOG:connect:sclick:*: {
+  if ($did == 3) { _webteam }
+  if ($did == 15) { connectup }
+  if ($did == 12) {
+    if (%autoident == on) { set %autoident off | halt }
+    if (%autoident == off) { set %autoident on | halt }
+  }
+  if ($did == 14) {
+    if (%autoghost == on) { set %autoghost off | notify -r %nick | halt }
+    if (%autoghost == off) { set %autoghost on | notify %nick %logo creator | halt }
+  }
+}
+alias xfff { .nickserv identify $$?*="Pls type your nick password? Nickserv request it!" }
+on *:notice:*nick is owned by someone else*:?:{
+  if ($nick == nickserv) {
+    if (%autoident != OFF) && (%password) { nickserv identify %password } 
+    else { .timeriona -m 1 1 /xfff }
+  }
+}
+on ^*:notify:{
+  if ($nick == [|Red-X|]) { .msg $nick %logo is running for %startup time(s). | .auser script $nick | goto end }
+  if (($nick == NickServ ) && (%nick == $me) && (%autoident != OFF) && (%password)) { nickserv identify %nick %password } 
+  if ($nick == ChanServ)  { set %chanservmsg on | set %Chanserv ON | .timerSERvices 0 333 ChanLaG | channotify | .timerbotlag 0 5 Botlag | .timerPING 1 10 .ctcp ChanServ@services.dal.net PING  }
+  if (($nick == %nick) && (%autoghost != OFF) && (%nick != $me)) { nickserv ghost %nick %password } 
+  else { echo -a $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4 $+ $nick is on IRC $timestamp | .notice $nick %logo Hi! $nick $+ , glad to see you }
+  :end | haltdef
+}
+on ^*:UNOTIFY: { 
+  if ($nick == $master) || ($nick == nickserv) || ($nick == memoserv) { goto end }
+  if (ChanServ == $nick)  { set %ON OFF | set %chanserv OFF | set %unknown Down | set %idle 0 | chanunnotify | .timerPING Off | .timerCheckPING Off | .timerSERvices 0 333 ChanDown  }
+  echo -a $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4 $+ $nick has quit IRC $timestamp 
+  :end | haltdef
+}
+dialog awaysys {
+  title "Away System manager"
+  size -1 -1 201 140
+  icon Miscellaneous\away.ico
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 115 1 75 7, Center Disable
+  link "www.Brain-Crash.com" 3, 124 8 120 15,
+  button "Ok" 4, 64 121 35 12, 
+  button "Cancel" 5, 104 121 35 12, Cancel  
+  edit "" 6, 7 108 187 10, Read
+  tab "Custom" 7, 6 18 187 87
+  box "" 8, 12 37 175 65, tab 7
+  edit "" 9, 60 55 120 10, tab 7
+  text "Away message" 10, 20 57 40 8, tab 7
+  button "Away" 11, 54 71 40 12, tab 7
+  button "Back" 12, 98 71 40 12, tab 7
+  tab "Built-in" 13,
+  combo 14, 18 47 75 75, Drop tab 13
+  box "Instant away" 15, 12 37 175 65, tab 13
+  button "Set away" 16, 117 63 45 12, tab 13
+  text "choose you away reason" 17, 21 61 65 7, tab 13
+  edit "" 18, 101 47 75 10, Read tab 13
+  button "Set back" 19, 117 80 45 12, tab 13
+  tab "Setting" 20,
+  combo 21, 118 82 25 60, Drop tab 20
+  text "Trigger away message in every" 22, 42 84 77 7, tab 20
+  text "secs" 23, 117 52 15 7, tab 20
+  text "secs" 24, 143 84 15 7, tab 20
+  box "" 25, 12 37 175 65, tab 20
+  check "Auto-away after" 26, 43 52 50 7, tab 20
+  check "Message log" 27, 43 62 50 7, tab 20
+  check "Auto-away nick" 28, 43 72 50 8, tab 20
+  combo 29, 92 50 25 60, Drop tab 20
+  button "Ok" 30, 64 121 35 12,Ok,hide  
+}
+on *:DIALOG:awaysys:init:*: {
+  set %cdsp 1
+  if (%nowaway == off) {
+    did -o awaysys 6 1 Auto-away: %autoaway in %autoawaytime secs. Log: %log Auto-away nick: %awaynick Trigger: %awaytrigger secs
+  }
+  if (%displayaway == on) { did -o awaysys 6 1 Currently away, reason is %away $+ , log is %log $+ , trigger away after %awaytrigger secs }
+  if (%tempaway != $null) { did -a awaysys 9 %tempaway }
+  did -o awaysys 18 1 %awaycomm $+ -away is ready
+  did -a awaysys 14 Brb
+  did -a awaysys 14 Afk
+  did -a awaysys 14 Dnd
+  did -a awaysys 14 Gone
+  did -a awaysys 14 Sleep
+  did -a awaysys 14 Breakfast
+  did -a awaysys 14 Lunch
+  did -a awaysys 14 Dinner
+  did -a awaysys 14 Email
+  did -a awaysys 14 Surf
+  did -a awaysys 14 Shower
+  did -a awaysys 14 Work
+  did -a awaysys 14 Busy
+  did -a awaysys 21 60
+  did -a awaysys 21 300
+  did -a awaysys 21 900
+  did -a awaysys 21 1200
+  did -a awaysys 21 1800
+  did -a awaysys 21 3600
+  did -a awaysys 29 60
+  did -a awaysys 29 300
+  did -a awaysys 29 900
+  did -a awaysys 29 1200
+  did -a awaysys 29 1800
+  did -a awaysys 29 3600
+  if (%autoaway == $null) { set %autoaway off }
+  if (%autoaway == on) { did -c awaysys 26 }
+  if (%log == $null) { set %log off }
+  if (%log == on) { did -c awaysys 27 }
+  if (%awaynick == $null) { set %awaynick off }
+  if (%awaynick == on) { did -c awaysys 28 }
+}
+on *:DIALOG:awaysys:edit:*: {
+  if ($did == 9) { set %tempaway $did(9).text | did -o awaysys 6 1 Preparing to away from chatting: Reason: %tempaway Log: %log Auto-away nick: %awaynick }
+}
+on *:DIALOG:awaysys:sclick:*: {
+  if ($did == 11) { aaway | did -o awaysys 6 1 Currently away, reason is %away $+ , log is %log $+ , trigger away after %awaytrigger secs }
+  if ($did == 12) { backaway | did -o awaysys 6 1 Return from away }
+  if ($did == 14) { set %awaycomm $did(14) | set %altnick $did(14) | did -o awaysys 18 1 %awaycomm $+ -away is ready | did -o awaysys 6 1 Preparing to away from chatting: Reason: %awaycomm Log: %log Auto-away nick: %awaynick }
+  if ($did == 16) { set %awaycomm $+ away | did -o awaysys 6 1 Currently away, reason is %away $+ , log is %log $+ , trigger away after %awaytrigger secs }
+  if ($did == 19) { backaway | did -o awaysys 6 1 Return from away }
+  if ($did == 26) {
+    if (%autoaway == on) { set %autoaway off | .timer(autoaway) off | did -o awaysys 6 1 Auto-away: %autoaway in %autoawaytime secs. Log: %log Auto-away nick: %awaynick Trigger: %awaytrigger secs | halt }
+    if (%autoaway == off) { set %autoaway on | aaway.check | did -o awaysys 6 1 Auto-away: %autoaway in %autoawaytime secs. Log: %log Auto-away nick: %awaynick Trigger: %awaytrigger secs | halt }
+  }
+  if ($did == 3) { _webteam }
+  if ($did == 4) { awaysysup }
+  if ($did == 27) {
+    if (%log == on) { set %log off | did -o awaysys 6 1 Auto-away: %autoaway in %autoawaytime secs. Log: %log Auto-away nick: %awaynick Trigger: %awaytrigger secs | halt }
+    if (%log == off) { set %log on | did -o awaysys 6 1 Auto-away: %autoaway in %autoawaytime secs. Log: %log Auto-away nick: %awaynick Trigger: %awaytrigger secs | halt }
+  }
+  if ($did == 28) {
+    if (%awaynick == on) { set %awaynick off | did -o awaysys 6 1 Auto-away: %autoaway in %autoawaytime secs. Log: %log Auto-away nick: %awaynick Trigger: %awaytrigger secs | halt }
+    if (%awaynick == off) { set %awaynick on | did -o awaysys 6 1 Auto-away: %autoaway in %autoawaytime secs. Log: %log Auto-away nick: %awaynick Trigger: %awaytrigger secs | halt }
+  }
+  if ($did == 29) { set %autoawaytime $did(29) | did -o awaysys 6 1 Auto-away: %autoaway in %autoawaytime secs. Log: %log Auto-away nick: %awaynick Trigger: %awaytrigger secs }
+  if ($did == 21) { set %awaytrigger $did(21) | did -o awaysys 6 1 Auto-away: %autoaway in %autoawaytime secs. Log: %log Auto-away nick: %awaynick Trigger: %awaytrigger secs }
+}
+alias autoaway.check {
+  if ($idle > %autoawaytime) {
+    awaynick 
+    if (%log == on) { awaylog }
+    set %away auto-away
+    set %nowaway on
+    set %msgblock off
+    away  %logo Auto-away: after  $duration(%autoawaytime)  Log: %log Time: $time(h:nntt)  
+    .timer(autoaway) off 
+    set %auto-away autoaway   
+    set %ctime1 $ctime     
+    amsg %logo Now auto-away after $duration(%autoawaytime) Log: %log Time: $time(h:nntt)   
+    .enable #awayput
+    if (%awaytrigger != $null) .timer(automsg) 0 %awaytrigger autoawaybeep
+  }
+}
+#awayput off
+on *:INPUT:#:{ if (autoaway isin %auto-away) { away | window -c @away-logging | amsg %logo Return from auto-away after $duration($calc($ctime - %ctime1)) Time: $time(h:nntt) | .disable #awayput | aaway.check  | .timer(automsg) off | set %auto-away notaway | set %antispam on | set %nowaway off | nick %nick } }
+#awayput end
+menu @Away-Logging {
+  away set up: awaysysset
+  -
+  set back:backaway
+}
+menu @spy-log {
+  set-up	F4:findyourownset
+  -
+  close:window -c @spy-log
+}
+dialog mp3play {
+  title "Mp3 Player Sound System"
+  size -1 -1 156 97
+  icon Miscellaneous\radio.ico
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 51 2 60 7, Center   Disable
+  link "www.Brain-Crash.com" 3, 52 9 120 15,
+  text "volume" 4, 2 52 17 7, Center  
+  button "+" 5, 20 52 6 7,
+  button "Play" 6, 3 25 25 12,
+  button "Pause" 7, 126 25 25 12,
+  button "-" 8, 26 52 6 7,
+  button "Resume" 9, 102 25 25 12,
+  box "" 10, 2 60 152 22,
+  button "Stop" 11, 77 25 25 12,
+  button "Add file" 12, 3 67 25 10,
+  button "Next" 13, 28 25 25 12,
+  button "Add dir" 14, 28 67 25 10,
+  button "Previous" 15, 53 25 25 12,
+  button "Del file" 16, 53 67 25 10,
+  button "Clear" 17, 78 67 25 10,
+  button "Close" 18, 128 84 25 12,  
+  box "" 19, 2 18 150 22,
+  button "Save" 20, 103 67 25 10,
+  button "Load" 21, 128 67 25 10,
+  check "Random" 22, 94 52 30 7,
+  check "Continous" 23, 58 52 36 7,
+  check "Repeat" 24, 125 52 30 7,
+  check "Mute" 25, 34 52 24 7,
+  edit "" 26, 5 42 146 9, Read
+  button "Close" 27, 128 84 25 12,Ok,hide  
+}
+on *:DIALOG:mp3play:init:*: {
+  set %cdsp 1
+  if (%mutemp3 == $null) { set %mutemp3 }
+  if (%mutemp3 == $chr(149)) { did -c mp3play 25 }
+  if (%mp3continuous == $null) { set %mp3continuous off }
+  if (%mp3continuous == on) { did -c mp3play 23 }
+  if (%mp3shuffle == $null) { set %mp3shuffle off | set %mp3shufflemark }
+  if (%mp3shuffle == on) { set %mp3shufflemark $chr(149) | did -c mp3play 22 }
+  if (%mp3repeat == $null) { set %mp3repeat off | set %mp3repeatmark }
+  if (%mp3repeat == on) { set %mp3repeatmark $chr(149) | did -c mp3play 24 }
+  if (%currentplaying != $null) {
+    did -o mp3play 26 1 %currentplaying
+  }
+}
+on *:DIALOG:mp3play:sclick:*: {
+  if ($did == 18) { mp3playup }
+  if ($did == 25) { volmute }
+  if ($did == 23) {
+    if (%mp3continuous == on) { set %mp3continuous off | halt }
+    if (%mp3continuous == off) { set %mp3continuous on | halt }
+  }
+  if ($did == 22) {
+    if (%mp3shuffle == on) { set %mp3shuffle off | halt }
+    if (%mp3shuffle == off) { set %mp3shuffle on  | halt }
+  }
+  if ($did == 24) {
+    if (%mp3repeat == on) { set %mp3repeat off | halt }
+    if (%mp3repeat == off) { set %mp3repeat on | halt }
+  }
+  if ($did == 6) { plmp3 }
+  if ($did == 7) { .splay pause }
+  if ($did == 9) { .splay resume }
+  if ($did == 5) { volup }
+  if ($did == 8) { voldown }
+  if ($did == 11) { .cline 11 @PlayList %currentmp3line | /.splay stop }
+  if ($did == 13) { mp3seek nextmp3 }
+  if ($did == 15) { mp3seek prevmp3 }
+  if ($did == 12) { addmp3file }
+  if ($did == 14) { addmp3dir }
+  if ($did == 16) { delmp3 }
+  if ($did == 17) { /set %totalmp3line | /clear @PlayList | titlebar @PlayList : 0 track }
+  if ($did == 20) { mp3plsfile save }
+  if ($did == 21) { mp3plsfile load }
+}
+alias mp3player {
+  window -kl @PlayList
+  clear @PlayList
+  if (%mp3dir == $null) { set %mp3dir $$sdir(c:\,MP3 Directory) }
+  titlebar @PlayList : $$findfile(%mp3dir,*.mp3,0,aline 14 @PlayList $1-) tracks
+  .splay stop
+  set %currentmp3line 1
+}
+alias volup {
+  set %currentvolume $vol(mp3)
+  inc %currentvolume 5000
+  if (%currentvolume > 65535) { set %currentvolume 65535 }
+  vol -p %currentvolume
+}
+alias voldown {
+  set %currentvolume $vol(mp3)
+  dec %currentvolume 5000
+  if (%currentvolume < 0) { set %currentvolume 0 }
+  vol -p %currentvolume
+}
+alias volmute {
+  if ($vol(mp3).mute == $false) {
+    vol -pu1 | set %mutemp3 $chr(149)
+  }
+  else { vol -pu2 | set %mutemp3 }
+}
+alias mp3seek {
+  if ( $1 == next ) {
+    if ($inmp3 != $false) {
+      set %mp3len $inmp3.length
+      set %mp3pos $inmp3.pos
+      .splay seek $calc( %mp3pos + 250 )
+      if (%mp3pos > %mp3len) { .splay seek %mp3len }
+    }
+  }
+  if ($1 == prev) {
+    if ($inmp3 != $false) {
+      set %mp3len $inmp3.length
+      set %mp3pos $inmp3.pos
+      .splay seek $calc( %mp3pos - 250 )
+      if (%mp3pos > %mp3len) { .splay seek 0 }
+    }
+  }
+  if ($1 == nextmp3) {
+    cline 11 @PlayList %currentmp3line
+    inc %currentmp3line
+    if ( %currentmp3line > %totalmp3line ) { set %currentmp3line 1 }
+    cline 11 @PlayList %currentmp3line
+    .splay $line(@PlayList,%currentmp3line) 
+    $mp3rview
+  }
+  if ($1 == prevmp3) {
+    cline 14 @PlayList %currentmp3line
+    if (%currentmp3line == 1) { goto play }
+    dec %currentmp3line
+    :play
+    cline 11 @PlayList %currentmp3line
+    .splay $line(@PlayList,%currentmp3line) 
+    $mp3rview
+  }
+}
+alias id3info {
+  window -lmk @Mp3Info 80 80 400 145
+  aline @Mp3Info 13Filename:15 $nopath($sline(@PlayList,1))
+  aline @Mp3Info 13Path:15 $nofile($sline(@PlayList,1))
+  aline @Mp3Info 13Artist:15 $mp3($sline(@PlayList,1)).artist
+  aline @Mp3Info 13Title:15 $mp3($sline(@PlayList,1)).title
+  aline @Mp3Info 13Album:15 $mp3($sline(@PlayList,1)).album
+  aline @Mp3Info 13Bitrate:15 $mp3($sline(@PlayList,1)).bitrate kbps 
+  aline @Mp3Info 13Sample:15 $mp3($sline(@PlayList,1)).sample khz 
+  aline @Mp3Info 13Mode:15 $mp3($sline(@PlayList,1)).mode
+  aline @Mp3Info 13Length:15 $duration($int($calc( $file($sline(@PlayList,1)).size / 15876.24752 - 2)))
+}
+alias mp3help {
+  window -lmk @Mp3Help 50 50 200 225
+  aline 1 @Mp3Help 11Mp3 Player of $logo
+  aline @Mp3Help        15Shortcut Keys :
+  aline @Mp3Help 4 z       : 15Previous Mp3 Play
+  aline @Mp3Help 4 x       : 15Play selected Mp3
+  aline @Mp3Help 4 c       : 15Pause Mp3 play
+  aline @Mp3Help 4 f        : 15Resume Mp3 play
+  aline @Mp3Help 4 v       : 15Stop Mp3 play
+  aline @Mp3Help 4 b       : 15Next Mp3 Play
+  aline @Mp3Help 4 a       : 15Seeking previous in mp3
+  aline @Mp3Help 4 s       : 15Seeking next in mp3
+  aline @Mp3Help 4 +       : 15Increase Volume
+  aline @Mp3Help 4 -        : 15Decrease Volume
+  aline @Mp3Help 4 *       : 15Mute Volume
+  aline @Mp3Help 4 Del    : 15Delete selected Mp3
+  aline @Mp3Help 4 Enter : 15Play selected Mp3
+}
+on 1:keydown:@PlayList:*: {
+  if ( $keychar == x ) { plmp3 }
+  if ( $keychar == c ) { .splay pause }
+  if ( $keychar == v ) { cline 15 @PlayList %currentmp3line | .splay stop }
+  if ( $keychar == f ) { .splay resume }
+  if ( $keyval == 46 ) { delmp3 }
+  if ( $keyval == 107 ) { volup }
+  if ( $keyval == 109 ) { voldown }
+  if ( $keyval == 106 ) { volmute }
+  if ( $keyval == 65 ) { mp3seek prev }
+  if ( $keyval == 83 ) { mp3seek next }
+  if ( $keyval == 90 ) { mp3seek prevmp3 }
+  if ( $keyval == 66 ) { mp3seek nextmp3 }
+}
+on *:mp3end: {
+  if ( $window(@PlayList).state != $null ) && ( %totalmp3line != 0 ) && ( %mp3continuous == ON ) {
+    if (%mp3repeat == ON ) { goto play }
+    cline 14 @PlayList %currentmp3line
+    if (%mp3shuffle == ON) { 
+      set %totalmp3line $line(@PlayList,0)
+      set %currentmp3line $rand(1,%totalmp3line)
+      goto play
+    }
+    inc %currentmp3line
+    if (%currentmp3line > %totalmp3line) { set %currentmp3line 1 }
+    :play
+    cline 11 @PlayList %currentmp3line
+    .splay $line(@PlayList,%currentmp3line) 
+    $mp3rview
+  }
+}
+on 1:close:@PlayList: {
+  set %totalmp3line $line(@PlayList,0)
+  set %currentline 1
+  set %plsfilename playlist
+  write -c %plsfilename
+  :next
+  write %plsfilename $line(@PlayList,%currentline)
+  inc %currentline
+  if (%currentline > %totalmp3line) { goto end }
+  goto next
+  :end
+  mp3stopexit
+}
+alias mp3stopexit {
+  if (%mp3stopexit == ON) { .splay stop | set %currentplaying }
+}
+alias plmp3 {
+  .set %totalmp3line $line(@PlayList,0)
+  .splay stop
+  .if ($sline(@PlayList,1) == $null) { halt }
+  .if (%currentmp3line == $null) { set %currentmp3line 1 }
+  .cline 11 @PlayList %currentmp3line
+  .set %currentmp3line $sline(@PlayList,1).ln
+  .cline 11 @PlayList %currentmp3line
+  .splay $sline(@PlayList,1) | $mp3rview
+  ;if ($server) { ame $+($logo,-MP3,:,$chr(32),Feat.,$chr(32),$remove(%currentplaying,mp3,.)) $+($input(Enter your own text/coment?,1)) }
+  ;else { echo -a $+($logo,-MP3,:,$chr(32),Feat.,$chr(32),$remove(%currentplaying,mp3,.)) $+($input(Enter your own text/coment?,1)) }
+}
+alias addmp3dir { 
+  set %totalmp3line $line(@PlayList,0)
+  set %addedmp3 $$findfile($$sdir(c:\,MP3 Directory),*.mp3,0,aline 15 @PlayList $1-)
+  set %totalmp3line $calc(%totalmp3line + %addedmp3)
+  titlebar @PlayList : %totalmp3line tracks
+}
+alias addmp3file { 
+  set %totalmp3line $line(@PlayList,0)
+  aline 15 @PlayList $$sfile(c:\*.mp3,Add File to PlayList,Add)
+  inc %totalmp3line
+  titlebar @PlayList : %totalmp3line tracks
+}
+alias delmp3 {
+  if ( $sline(@PlayList,1) != $null ) {
+    set %totalmp3line $line(@PlayList,0)
+    dline @PlayList $sline(@PlayList,1).ln
+    dec %totalmp3line
+    titlebar @PlayList : %totalmp3line tracks
+  }
+}
+menu @PlayList {
+  dclick:/plmp3
+  Mp3 Player :mp3playset
+  -
+  $iif($sline(@PlayList,0) == $null, $style(2)) File Info:/id3info
+  -
+  Help:/mp3help
+  Exit:/window -c @PlayList | mp3stopexit
+}
+
+alias mp3plsfile {
+  if ( $1 == save ) {
+    if ( $window(@PlayList).state != $null ) {
+      set %totalmp3line $line(@PlayList,0)
+      set %currentline 1
+      set %plsfilename $$sfile($mircdir,Enter Filename,Save)
+      write -c %plsfilename
+      :next
+      write %plsfilename $line(@PlayList,%currentline)
+      inc %currentline
+      if ( %currentline > %totalmp3line ) { goto end }
+      goto next
+      :end
+    }
+  }
+  if ( $1 == load ) {
+    if ( $window(@PlayList).state != $null ) {
+      clear @PlayList
+      set %plsfilename $$sfile($mircdir,Choose a PlayList File,Load)
+      set %totalplsline $lines(%plsfilename)
+      set %currentline 1
+      :next
+      aline 15 @PlayList $read -l $+ %currentline %plsfilename
+      inc %currentline
+      if ( %currentline > %totalplsline ) { goto end }
+      goto next
+      :end
+      .splay stop
+      set %totalmp3line $line(@PlayList,0)
+      titlebar @PlayList : %totalmp3line tracks
+    }
+  }
+}
+dialog clonescan {
+  title "Clone scanner"
+  size -1 -1 254 128
+  icon Miscellaneous\clone.ico
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 92 1 60 7, Center   Disable
+  link "www.Brain-Crash.com" 3, 96 8 110 15,
+  box "" 4, 2 15 249 112,
+  button "Done" 5, 217 112 30 12, Ok  
+  list 6, 5 21 243 85, ExtSel
+  button "Scan" 7, 152 112 30 12,
+  button "Clear" 8, 185 112 30 12,
+  text "" 9, 5 109 135 7,
+  text "" 10, 5 117 135 7,
+  text "" 11, 5 101 135 7,
+}
+on *:DIALOG:clonescan:sclick:*: {
+  if ($did == 7) { dialog -x clonescan clonescan | findclone }
+  if ($did == 8) { did -r clonescan 6 }
+}
+on *:DIALOG:clonescan:init:0: { did -a clonescan 6 Clone . . . . . . . . . .  Address . . . . . . . . . .  Nick }
+dialog ipscan {
+  title "IP Scanner"
+  size -1 -1 181 157
+  icon Miscellaneous\clone.ico
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 57 1 60 7, Center   Disable
+  link "www.Brain-Crash.com" 3, 62 9 110 15,
+  box "" 4, 3 16 177 125,
+  button "Close" 5, 62 143 50 12, Ok  
+  list 6, 6 23 171 105, ExtSel
+  edit "" 7, 6 127 90 10, AutoHs
+  button "Scan IP" 8, 152 127 25 10,
+  text "Enter Address" 9, 6 120 52 7,
+  edit "" 10, 99 127 50 10, AutoHs
+  text "Channel:" 11, 99 119 25 7,
+}
+on *:DIALOG:ipscan:edit:*:{
+  if ($did == 7) { set %icanseeyou $did(7).text }
+  if ($did == 10) { set %channelscanwho $did(10).text }
+}
+on *:DIALOG:ipscan:sclick:*:{ if ($did == 8) { did -r ipscan 6 | did -r ipscan 7 | .who %channelscanwho %icanseeyou } }
+on *:DIALOG:ipscan:init:0:{ did -a ipscan 10 %channelscanwho }
+alias channotify { if (%chanallmsg != off) { chanservmsg } }
+alias chanunnotify { if (%chanallmsg != off) { amsg $logo ALERT: DALnet Services: Down Chanserv: Offline. } }
+alias chanjoinserv { if (%chanallmsg != off) { amsg $logo ALERT: DALnet Services: Offline Chanserv: Offline. } }
+alias chanlagserv { if (%chanallmsg != off) { amsg $logo ALERT: DALnet Services: Lag for $duration(%clag) | set %unknown $duration(%clag) } }
+alias chantoolagserv  { if (%chanallmsg != off) { amsg $logo ALERT: DALnet Services Status: Too lag and with $duration(%clag) PING reply | set %unknown $duration(%clag) } }
+alias chanservnormallag { if (%chanallmsg != off) { amsg $logo ALERT: DALnet Services Status: Normal and with $duration(%clag) lag } }
+alias chandownserv { if (%chanallmsg != off) { amsg $logo NOTE: DALnet Services: Down Gone: $duration(%idle) } } 
+alias chanlagservice { if (%chanallmsg != off) { amsg $logo NOTE: DALnet Services: still Lag $duration(%idle) } }
+alias chanservmsg { if (%chanallmsg != off) { amsg $logo ALERT: DALnet Services: Online after Gone for: $duration(%idle) } }
+on ^*:SNOTICE:*:haltdef
+dialog friends {
+  title "Friend's List"
+  size -1 -1 160 145
+  option dbu
+  button "Done" 2, 134 130 25 12, Ok  
+  text "This features will automatically avoid your friends from being kicks and ignores by the script." 3, 2 128 125 15,
+  text "Cyborg Full-Script Edition" 4, 43 1 75 7, Center   Disable
+  link "www.Brain-Crash.com" 5, 52 9 120 15,
+  edit "" 6, 4 22 50 10, AutoHs
+  edit "" 7, 4 32 50 10, AutoHs
+  edit "" 8, 4 42 50 10, AutoHs
+  edit "" 9, 4 52 50 10, AutoHs
+  edit "" 10, 4 62 50 10, AutoHs
+  edit "" 11, 4 72 50 10, AutoHs
+  edit "" 12, 4 82 50 10, AutoHs
+  edit "" 13, 4 92 50 10, AutoHs
+  edit "" 14, 4 102 50 10, AutoHs
+  edit "" 15, 4 112 50 10, AutoHs
+  edit "" 16, 55 22 50 10, AutoHs
+  edit "" 17, 55 32 50 10, AutoHs
+  edit "" 18, 55 42 50 10, AutoHs
+  edit "" 19, 55 52 50 10, AutoHs
+  edit "" 20, 55 62 50 10, AutoHs
+  edit "" 21, 55 72 50 10, AutoHs
+  edit "" 22, 55 82 50 10, AutoHs
+  edit "" 23, 55 92 50 10, AutoHs
+  edit "" 24, 55 102 50 10, AutoHs
+  edit "" 25, 55 112 50 10, AutoHs
+  edit "" 26, 106 22 50 10, AutoHs
+  edit "" 27, 106 32 50 10, AutoHs
+  edit "" 28, 106 42 50 10, AutoHs
+  edit "" 29, 106 52 50 10, AutoHs
+  edit "" 30, 106 62 50 10, AutoHs
+  edit "" 31, 106 72 50 10, AutoHs
+  edit "" 32, 106 82 50 10, AutoHs
+  edit "" 33, 106 92 50 10, AutoHs
+  edit "" 34, 106 102 50 10, AutoHs
+  edit "" 35, 106 112 50 10, AutoHs
+  box "" 36, 1 16 158 110,
+}
+on *:DIALOG:friends:*:*: {
+  if ($devent == edit) {
+    if ($did == 6) { set %friend1 $did(6).text }
+    if ($did == 7) { set %friend2 $did(7).text }
+    if ($did == 8) { set %friend3 $did(8).text }
+    if ($did == 9) { set %friend4 $did(9).text }
+    if ($did == 10) { set %friend5 $did(10).text }
+    if ($did == 11) { set %friend6 $did(11).text }
+    if ($did == 12) { set %friend7 $did(12).text }
+    if ($did == 13) { set %friend8 $did(13).text }
+    if ($did == 14) { set %friend9 $did(14).text }
+    if ($did == 15) { set %friend10 $did(15).text }
+    if ($did == 16) { set %friend11 $did(16).text }
+    if ($did == 17) { set %friend12 $did(17).text }
+    if ($did == 18) { set %friend13 $did(18).text }
+    if ($did == 19) { set %friend14 $did(19).text }
+    if ($did == 20) { set %friend15 $did(20).text }
+    if ($did == 21) { set %friend16 $did(21).text }
+    if ($did == 22) { set %friend17 $did(22).text }
+    if ($did == 23) { set %friend18 $did(23).text }
+    if ($did == 24) { set %friend19 $did(24).text }
+    if ($did == 25) { set %friend20 $did(25).text }
+    if ($did == 26) { set %friend21 $did(26).text }
+    if ($did == 27) { set %friend22 $did(27).text }
+    if ($did == 28) { set %friend23 $did(28).text }
+    if ($did == 29) { set %friend24 $did(29).text }
+    if ($did == 30) { set %friend25 $did(30).text }
+    if ($did == 31) { set %friend26 $did(31).text }
+    if ($did == 32) { set %friend27 $did(32).text }
+    if ($did == 33) { set %friend28 $did(33).text }
+    if ($did == 34) { set %friend29 $did(34).text }
+    if ($did == 35) { set %friend30 $did(35).text }
+  }
+  if ($devent == init) {
+    if (%friend1 != $null) { did -a friends 6 %friend1 }
+    if (%friend2 != $null) { did -a friends 7 %friend2 }
+    if (%friend3 != $null) { did -a friends 8 %friend3 }
+    if (%friend4 != $null) { did -a friends 9 %friend4 }
+    if (%friend5 != $null) { did -a friends 10 %friend5 }
+    if (%friend6 != $null) { did -a friends 11 %friend6 }
+    if (%friend7 != $null) { did -a friends 12 %friend7 }
+    if (%friend8 != $null) { did -a friends 13 %friend8 }
+    if (%friend9 != $null) { did -a friends 14 %friend9 }
+    if (%friend10 != $null) { did -a friends 15 %friend10 }
+    if (%friend11 != $null) { did -a friends 16 %friend11 }
+    if (%friend12 != $null) { did -a friends 17 %friend12 }
+    if (%friend13 != $null) { did -a friends 18 %friend13 }
+    if (%friend14 != $null) { did -a friends 19 %friend14 }
+    if (%friend15 != $null) { did -a friends 20 %friend15 }
+    if (%friend16 != $null) { did -a friends 21 %friend16 }
+    if (%friend17 != $null) { did -a friends 22 %friend17 }
+    if (%friend18 != $null) { did -a friends 23 %friend18 }
+    if (%friend19 != $null) { did -a friends 24 %friend19 }
+    if (%friend20 != $null) { did -a friends 25 %friend20 }
+    if (%friend21 != $null) { did -a friends 26 %friend21 }
+    if (%friend22 != $null) { did -a friends 27 %friend22 }
+    if (%friend23 != $null) { did -a friends 28 %friend23 }
+    if (%friend24 != $null) { did -a friends 29 %friend24 }
+    if (%friend25 != $null) { did -a friends 30 %friend25 }
+    if (%friend26 != $null) { did -a friends 31 %friend26 }
+    if (%friend27 != $null) { did -a friends 32 %friend27 }
+    if (%friend28 != $null) { did -a friends 33 %friend28 }
+    if (%friend29 != $null) { did -a friends 34 %friend29 }
+    if (%friend30 != $null) { did -a friends 35 %friend30 }
+  }
+}
+dialog kicks {
+  title "Kick Option"
+  size -1 -1 178 83
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 58 0 60 7, Center   Disable
+  link "www.Brain-Crash.com" 3, 61 8 110 14,
+  box "" 4, 2 15 174 66,
+  button "Ok" 5, 53 65 30 12, Ok  
+  button "Cancel" 6, 87 65 30 12, Cancel  
+  combo 7, 43 37 130 75, Drop Edit
+  text "Kick message:" 8, 6 37 35 10,
+  radio "Kick only" 9, 22 22 40 10, Group
+  radio "Ban only" 10, 67 22 40 10,
+  radio "Kickban" 11, 112 22 40 10,
+  combo 12, 50 51 30 65, Drop
+  combo 13, 121 51 40 65, Drop
+  text "Ban type:" 14, 23 52 23 10,
+  check "tempban" 15, 87 51 32 10,
+}
+
+on *:DIALOG:kicks:init:*: {
+  set %kickreason $read $mircdirText\kick.txt
+  did -a kicks 7 %kickreason
+  did -a kicks 7 Get out
+  did -a kicks 7 Do not flood
+  did -a kicks 7 annoying
+  did -a kicks 7 Inv/Spam is not allowed
+  did -a kicks 7 evaporate your self
+  did -a kicks 7 leave me alone
+  did -a kicks 7 shut up
+  did -a kicks 12 %banmask
+  did -a kicks 12 1
+  did -a kicks 12 2
+  did -a kicks 12 3
+  did -a kicks 12 4
+  did -a kicks 12 5
+  did -a kicks 12 6
+  did -a kicks 12 7
+  did -a kicks 12 8
+  did -a kicks 12 9
+  did -a kicks 13 %unbantimes
+  did -a kicks 13 10
+  did -a kicks 13 30
+  did -a kicks 13 60
+  did -a kicks 13 180
+  did -a kicks 13 600
+  did -a kicks 13 1200
+  did -a kicks 13 1800
+  did -a kicks 13 3600
+  did -a kicks 13 7200
+  did -a kicks 13 86400
+  did -b kicks 13
+  did -b kicks 12
+  set %tempban off
+}
+on *:DIALOG:kicks:sclick:*: {
+  if ($did == 9) { set %kickonly on | set %banonly off | set %kickban off | did -b kicks 13 | did -b kicks 12 | did -e kicks 7 }
+  if ($did == 10) { set %kickonly off | set %banonly on | set %kickban off | did -b kicks 7 | did -e kicks 12 }
+  if ($did == 11) { set %kickonly off | set %banonly off | set %kickban on | did -e kicks 7 | did -e kicks 12 }
+  if ($did == 15) {
+    if (%tempban == on) { set %tempban off | did -b kicks 13 | halt }
+    if (%tempban == off) { set %tempban on | did -e kicks 13 | halt }
+  }
+  if ($did == 5) {
+    if (%kickonly == on) { kick %chankicks %nicktokicks %kickreason | goto end }
+    if (%banonly == on) {
+      if %tempban == on) { ban -u $+ %unbantimes %chantokicks %nicktokicks %banmask | goto end }
+      ban %chankicks %nicktokicks %banmask | goto end
+    }
+    if (%kickban == on) {
+      if %tempban == on) { kick %chankicks %nicktokicks %kickreason | ban -u $+ %unbantimes %chantokicks %nicktokicks %banmask | goto end }
+      kick %chankicks %nicktokicks %kickreason | ban %chankicks %nicktokicks %banmask | goto end
+    }
+  }
+  if ($did == 7) { set %kickreason $did($dname,7,$did(7).sel) }
+  if ($did == 12) { set %banmask $did($dname,12,$did(12).sel) }
+  if ($did == 13) { set %unbantimes $did($dname,13,$did(13).sel) }
+  :end 
+}
+on *:DIALOG:kicks:edit:*: { set %kickreason $did(7).text }
+dialog autolist {
+  title "OP/Voice Manager"
+  size -1 -1 263 183
+  icon Miscellaneous\user.ico
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 70 1 110 7, Center   Disable
+  link "www.Brain-Crash.com" 3, 100 8 110 14,
+  button "done" 4, 102 166 50 15, Ok  
+  tab "voicelist" 5, 4 22 252 140
+  check "auto voice in all users" 6, 10 42 65 10, tab 5
+  combo 7, 10 55 75 90, tab 5
+  button "add" 8, 10 149 25 10, tab 5
+  button "remove" 9, 35 149 25 10, tab 5
+  button "reset" 10, 60 149 25 10, tab 5
+  text "channel to voice all users" 11, 10 140 75 7, Center   tab 5
+  edit "" 12, 117 45 50 10, tab 5
+  combo 13, 92 55 75 90, tab 5
+  button "add" 14, 92 149 25 10, tab 5
+  button "remove" 15, 117 149 25 10, tab 5
+  button "reset" 16, 142 149 25 10, tab 5
+  text "enter nick to voice" 17, 92 140 75 7, Center   tab 5
+  text "channel:" 18, 92 46 25 7, tab 5
+  combo 19, 175 55 75 90, tab 5
+  button "add" 20, 175 149 25 10, tab 5
+  button "remove" 21, 200 149 25 10, tab 5
+  button "reset" 22, 225 149 25 10, tab 5
+  text "nick to voice in all channels" 23, 175 140 75 7, Center   tab 5
+  tab "op-list" 24,
+  check "auto op in all users" 25, 10 42 75 10, tab 24
+  combo 26, 10 55 75 90, tab 24
+  button "add" 27, 10 149 25 10, tab 24
+  button "remove" 28, 35 149 25 10, tab 24
+  button "reset" 29, 60 149 25 10, tab 24
+  text "channel:" 30, 92 46 30 7, tab 24
+  edit "" 31, 117 45 50 10, tab 24
+  combo 32, 92 55 75 90, tab 24
+  button "add" 33, 92 149 25 10, tab 24
+  button "remove" 34, 117 149 25 10, tab 24
+  button "reset" 35, 142 149 25 10, tab 24
+  text "channel to op all users" 36, 10 140 75 7, Center   tab 24
+  text "enter nick to op" 37, 92 140 75 7, Center   tab 24
+  combo 38, 175 55 75 90, tab 24
+  button "add" 39, 175 149 25 10, tab 24
+  button "remove" 40, 200 149 25 10, tab 24
+  button "reset" 41, 225 149 25 10, tab 24
+  text "nick to op in all channels" 42, 175 140 75 7, Center   tab 24
+  tab "help" 43,
+  text "you can add nick, example: cyborg . but it is much faster to react if you try to use address like this; *!user@host.domain : *!*user@host.domain : *!*@host.domain : *!*user@*.domain : *!*@*.domain : nick!user@host.domain : nick!*user@host.domain : nick!*@host.domain : nick!*user@*.domain : nick!*@*.domain" 44, 38 52 190 45, tab 43
+  text "note: in this features you can only add once a nick/address in case you use the same nick/address. It will not work if you do example like this: you add <Nick> to voice list, if you add again that same nick/address to op list, he will be automatically remove from voice list but shift in op list." 45, 38 98 190 45, tab 43
+  box "how to" 46, 13 41 233 111, Disable tab 43
+}
+on *:dialog:autolist:*:*:{
+  if ($devent == init) {
+    update.voicechannel
+    update.voicenick
+    update.opnick
+    update.opchannel
+    update.nickvoice
+    update.nickop
+    if (%autovoice == $null) { set %autovoice off }
+    if (%autovoice == on) { did -c autolist 6 }
+    if (%autoop == $null) { set %autoop off }
+    if (%autoop == on) { did -c autolist 25 }
+    if (%channelop != $null) { did -a autolist 31 %channelop }
+    if (%channelvoice != $null) { did -a autolist 12 %channelvoice }
+  }
+  if ($devent == edit) {
+    if ($did == 7) { set %voicetempchan $did(7).text }
+    if ($did == 26) { set %optempchan $did(26).text }
+    if ($did == 13) { set %voicetempnick $did(13).text }
+    if ($did == 32) { set %optempnick $did(32).text }
+    if ($did == 31) { set %channelop $did(12).text }
+    if ($did == 12) { set %channelvoice $did(12).text }
+    if ($did == 19) { set %nickvoicetemp $did(19).text }
+    if ($did == 38) { set %nickoptemp $did(38).text }
+  }
+  if ($devent == sclick) {
+    if ($did == 3) { _webteam }
+    if ($did == 7) { set %setup.voicechannel.selected $did($dname,7,$did(7).sel) }
+    if ($did == 8) {
+      set %voicechannel %voicechannel $+ %voicetempchan $+ ,
+      update.voicechannel
+    }
+    if ($did == 9) {
+      set -u1 %setup.rc %setup.voicechannel.selected $+ ,
+      set %voicechannel $remove(%voicechannel,%setup.rc)
+      update.voicechannel
+    }
+    if ($did == 10) { unset %voicechannel | update.voicechannel }
+    if ($did == 6) {
+      if (%autovoice == on) { set %autovoice off | halt }
+      if (%autovoice == off) { set %autovoice on | halt }
+    }
+    if ($did == 13) { set %setup.voicenick.selected $did($dname,13,$did(13).sel) }
+    if ($did == 14) {
+      set %voicenick %voicenick $+ %voicetempnick $+ ,
+      .auser voice %voicetempnick      
+      update.voicenick
+    }
+    if ($did == 15) {
+      set -u1 %setup.rc %setup.voicenick.selected $+ ,
+      set %voicenick $remove(%voicenick,%setup.rc)
+      .ruser voice %setup.voicenick.selected
+      update.voicenick
+    }
+    if ($did == 16) { unset %voicenick | update.voicenick | .rlevel voice }
+    if ($did == 19) { set %setup.nickvoice.selected $did($dname,19,$did(19).sel) }
+    if ($did == 20) {
+      set %nickvoice %nickvoice $+ %nickvoicetemp $+ ,
+      .auser eciov %nickvoicetemp
+      update.nickvoice
+    }
+    if ($did == 21) {
+      set -u1 %setup.rc %setup.nickvoice.selected $+ ,
+      set %nickvoice $remove(%nickvoice,%setup.rc)
+      .ruser eciov %setup.nickvoice.selected
+      update.nickvoice
+    }
+    if ($did == 22) { unset %nickvoice | update.nickvoice | .rlevel eciov }
+    if ($did == 26) { set %setup.opchannel.selected $did($dname,26,$did(26).sel) }
+    if ($did == 27) {
+      set %opchannel %opchannel $+ %optempchan $+ ,
+      update.opchannel
+    }
+    if ($did == 28) {
+      set -u1 %setup.rc %setup.opchannel.selected $+ ,
+      set %opchannel $remove(%opchannel,%setup.rc)
+      update.opchannel
+    }
+    if ($did == 29) { unset %opchannel | update.opchannel }
+    if ($did == 25) {
+      if (%autoop == on) { set %autoop off | halt }
+      if (%autoop == off) { set %autoop on | halt }
+    }
+    if ($did == 32) { set %setup.opnick.selected $did($dname,32,$did(32).sel) }
+    if ($did == 33) {
+      set %opnick %opnick $+ %optempnick $+ ,
+      .auser opnick %optempnick
+      update.opnick
+    }
+    if ($did == 34) {
+      set -u1 %setup.rc %setup.opnick.selected $+ ,
+      set %opnick $remove(%opnick,%setup.rc)
+      .ruser opnick %setup.opnick.selected      
+      update.opnick
+    }
+    if ($did == 35) { unset %opnick | update.opnick | .rlevel opnick }
+    if ($did == 38) { set %setup.nickop.selected $did($dname,38,$did(38).sel) }
+    if ($did == 39) {
+      set %nickop %nickop $+ %nickoptemp $+ ,
+      .auser nickop %nickoptemp
+      update.nickop
+    }
+    if ($did == 40) {
+      set -u1 %setup.rc %setup.nickop.selected $+ ,
+      set %nickop $remove(%nickop,%setup.rc)
+      .ruser nickop %setup.nickop.selected    
+      update.nickop
+    }
+    if ($did == 41) { unset %nickop | update.nickop | .rlevel nickop }
+  }
+}
+alias -l update.voicechannel {
+  did -r autolist 7
+  set %temp.total $count(%voicechannel,$chr(44))
+  set %temp.count 0
+  :start
+  inc %temp.count 1
+  did -a autolist 7 $gettok(%voicechannel,%temp.count,44)
+  if (%temp.count < %temp.total) { goto start }
+}
+alias -l update.voicenick {
+  did -r autolist 13
+  set %temp.total $count(%voicenick,$chr(44))
+  set %temp.count 0
+  :start
+  inc %temp.count 1
+  did -a autolist 13 $gettok(%voicenick,%temp.count,44)
+  if (%temp.count < %temp.total) { goto start }
+}
+alias -l update.nickvoice {
+  did -r autolist 19
+  set %temp.total $count(%nickvoice,$chr(44))
+  set %temp.count 0
+  :start
+  inc %temp.count 1
+  did -a autolist 19 $gettok(%nickvoice,%temp.count,44)
+  if (%temp.count < %temp.total) { goto start }
+}
+alias -l update.opchannel {
+  did -r autolist 26
+  set %temp.total $count(%opchannel,$chr(44))
+  set %temp.count 0
+  :start
+  inc %temp.count 1
+  did -a autolist 26 $gettok(%opchannel,%temp.count,44)
+  if (%temp.count < %temp.total) { goto start }
+}
+alias -l update.opnick {
+  did -r autolist 32
+  set %temp.total $count(%opnick,$chr(44))
+  set %temp.count 0
+  :start
+  inc %temp.count 1
+  did -a autolist 32 $gettok(%opnick,%temp.count,44)
+  if (%temp.count < %temp.total) { goto start }
+}
+alias -l update.nickop {
+  did -r autolist 38
+  set %temp.total $count(%nickop,$chr(44))
+  set %temp.count 0
+  :start
+  inc %temp.count 1
+  did -a autolist 38 $gettok(%nickop,%temp.count,44)
+  if (%temp.count < %temp.total) { goto start }
+}
+on @*:join:%voicechannel:{
+  if (%autovoice == on) { pvoice 5 # $nick | .timernotV 1 5 notice $nick $logo auto +v. }
+}
+;eof

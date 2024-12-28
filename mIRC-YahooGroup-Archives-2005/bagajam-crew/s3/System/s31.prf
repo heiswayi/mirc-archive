@@ -1,0 +1,70 @@
+alias kik { 
+  .hinc -u15m abuse $hash($mask($fulladdress,3),32) $+ $hash($nick,32)
+  if ($hget(abuse,$hash($mask($fulladdress,3),32) $+ $hash($nick,32)) == 1) {  
+    .kick # $nick †ermina†ed $nick 4( vic†im(s):7 %kcount 4) ƒrom $chan due †o $1- ƒaul†y. 4(ban†ime :7 180 sec.4)  %lost | .inc %kcount 1  
+    bn
+    halt 
+  }
+}
+alias bn { 
+  .mode # +b $address($nick,3) 
+}
+
+ON @^!*:TEXT:*:#:detect $1- 
+ON @^!*:NOTICE:*:#:detect $1- 
+ON @^!*:ACTION:*:#:detect $1- 
+alias detect { 
+  if ($me isin $1-) && ($chan !== $active) { echo -a   4•7 $+ $nick $+ 4•14 had said 4(7 $+ $1- $+ 4)14 in 4•7 $+ $chan $+ 4• }  
+  if ($nick isop $chan) || ($nick ishop $chan) || ($nick isvo $chan) || ($nick == MHz) || ($nick == wan) || ($nick == $me) { goto end }
+  if (http: isin $1-) { .auser drones $mask($fulladdress,5) | .kik 7Promosi Websites | halt }
+  if ($matchtok($strip($1-), $chr(35), 1, 32) != $null) { set %spam $matchtok($strip($1-), $chr(35), 1, 32) | if ($remove(%spam,$chr(35)) != $null) && ($chan !isin $1-) { .kik 7Promosi Websites | haltdef } }
+  if (/server isin $1-) || (/j isin $1-) || (www. isin $1-) { .kik 7Promosi Websites | haltdef }
+  if ($regex($lower($strip($1-)),/(sex|pepek|pussy|asshol|kimak|kelentit|pelir|burit|shit|lancau|cibai|pantat|gampang|sial|cipap|dick|jubur|zakar|anjing|puki|pepek|sundal|pundek|zakar|babi|butuh|konek|suck|fuck)/g) && (sex !isin $chan) && (terbabit !isin $1- ) && (pembabitan !isin $1- ) && (membabitkan !isin $1- ) && (dickson !isin $1-) && (zakaria !isin $1-) && (sosial !isin $1-)) { if (%swear.kick == On) { kik 7SWEARING } | halt }   
+  if ($regex($1-,/[[:cntrl:]]/g) >= %code.limit) { if (%code.kick == On) { kik 7Perkataan Larangan } | halt }
+  if ($regex($strip($1-),/[[:upper:]]/g) >= %cap.kick.limit) { if (%cap.kick.kick == On) { kik 7Perkataan Terlampau } | halt }
+  if ($regex($strip($1-),/[[:digit:]]/g) >= %digit.limit) { if (%digit.kick == On) { kik 7Berdigit } | halt }
+  if ($regex($strip($1-),/[[:punct:]]/g) >= %punct.limit) { if (%punct.kick == On) { kik 7Simbol Larangan } | halt }
+  if ($regex($removecs($1-, $+ $chr(160) $+ ),/[ƒ-ÿ]/g) >= %ascii.limit) { if (%ascii.kick == On) { kik 7Aksi Larangan4 } | halt }
+  if ($regex($strip($1-),/[[:lower:]]/g) >= %length.limit) { if (%length.kick == On) { kik 7Perkataan Terlampau4 } | halt }
+  if ($regex($strip($1-),/[ ]/g) >= %blank.limit) { if (%blank.kick == On) { kik 7Senarai Hitam } | halt }   
+  .inc -u3 %repeat. [ $+ [ $nick ] $+ [ $chan ] $+ [ $hash($strip($1-),32) ] ]
+  if ( %repeat. [ $+ [ $nick ] $+ [ $chan ] $+ [ $hash($strip($1-),32) ] ] == %repeat.limit) { 
+  if (%repeat.kick == On) { kik 7Ulang Kali } | halt } 
+  .inc -u3 %line. [ $+ [ $nick ] $+ ] . [ $+ [ $chan ] ]  
+  if ( %line. [ $+ [ $nick ] $+ ] . [ $+ [ $chan ] ] == %line.limit) { 
+  if (%line.kick == On) { kik 7Baris Panjang } | halt }    
+  :end
+}
+on +drones:join:#: {
+  if ($me !isop $chan) { halt }  
+  else { kik 7DRONES  | halt }
+}
+
+ctcp @^1:*:#: {
+  if ($level($nick) >= 99) || ($nick isop $chan) || ($nick isvo $chan) {  ignore -tu5 $nick | halt }
+  if ($nick ison $chan) { .ignore -tu2 %ignore | kik 7CTCP | halt )
+  } 
+  else { halt }
+}    
+ctcp 1:*:?: {
+  if ($level($nick) >= 99) { halt }
+  if ($nick != $me) { ignore -tu2 %ignore | ignore -tu10 $wildsite }
+}
+ON *:CTCPREPLY:*:{
+  var %in = 1
+  while (%in < $comchan($nick,0) + 1) {
+    if ($nick isreg $comchan($nick,%in)) && ($me isop $comchan($nick,%in)) { kik 7CTCP REPLY | halt }
+    inc %in
+  }
+}
+on @!*:join:#:{ 
+  inc -u1 %c [ $+ [ $nick ] $+ [ # ] ] 1 | if (%c [ $+ [ $nick ] $+ [ # ] ] == 3) { 
+    .kick # $nick †ermina†ed $nick 4( vic†im(s):7 %kcount 4) ƒrom $chan due †o 7EXCESSIVE /HOP ƒaul†y. 4(ban†ime :7 180 sec.4) %lost | .inc %kcount 1  
+    bn
+  }
+}
+On +5:JOIN:#: { 
+  if (%badnick.kick == Off) { halt }
+  if ($me !isop $chan) { halt }
+  else { kik 7OFFENSIVE NICK or IDENT | halt }
+}

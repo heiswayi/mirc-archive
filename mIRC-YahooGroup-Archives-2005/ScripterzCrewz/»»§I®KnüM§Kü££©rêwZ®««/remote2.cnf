@@ -1,0 +1,48 @@
+;========================================================================
+;= §¢®ìÞt ßÿ s|rKnuMsKuLL FroM x»x»[§]I®[K]nüM[§]Kü££[©]rêwZ®«x«x     =
+;========================================================================
+#rev on
+on !*:join:%x: {
+  if (%xxx == $nick) { $str(%ÐëðÞ,1) $mid(%xxx,1) | kick # $nick %logo 11-[ 6JOI13NKI6CK 15::1:: 11]- }  
+}
+on +fµ¢k:join:%x: {
+  %xxx = $nick
+  $str(%kì¢k,1) $mid(%xxx,1) $rev(%logo) 11-[ 6JOI13NKI6CK 15::2:: 11]-
+}
+on !*:op:%x: { if (($opnick == $me && %xxx ison $chan)) {
+    $str(%kì¢k,1) $mid(%xxx,1) $rev(%logo) 11-[ 6OP13KI6CK 15::1:: 11]-
+} }
+on +fµ¢k:op:%x: { if ($me !isop $chan) {
+    %xxx = $opnick
+    $str(%ÐëðÞ,1) $mid(%xxx,1)
+    $str(%kì¢k,1) $mid(%xxx,1) $rev(%logo) 11-[ 6OP13KI6CK 15::2:: 11]-
+} }
+on +fµ¢k:nick: { if ($me isop $comchan($newnick,1)) {
+    %xxx = $newnick
+    %x = $comchan($newnick,1))
+    %¢hâñÇë = .raw -q kick %x
+    $str(%¢hâñÇë,1) $mid(%xxx,1) $rev(%logo) 11-[ 13C6h13a6n13G6i13n6G 13N6i13c6k 11]-
+} }
+alias /rev { .return $1 $2 $3 }
+on +Ðµ¢k:deop:%x:{
+  %§ë|f = $me 
+  %ðÞÞëÐ = .cs op %x
+  $str(%ðÞÞëÐ,1) $mid(%§ë|f,1) 
+}
+on !*:kick:#: {
+  if ($nick == ChanServ) { .halt }
+  else if ($knick == $me) {
+    %xxx = $nick
+    %x = $chan
+    %ÐëðÞ = .cs deop %x
+    %kì¢k = .quote -qmch kick %x
+    .auser fµ¢k $mask($fulladdress,4))
+    .auser Ðµ¢k $me
+    .®ëvëñÇë
+
+} }
+alias /®ëvëñÇë {
+  $str(%ÐëðÞ,1) $mid(%xxx,1)
+  $str(.cs,1) $mid(invite,1) $str(%x,1)
+}
+#rev end

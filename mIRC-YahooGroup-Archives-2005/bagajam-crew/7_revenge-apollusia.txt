@@ -1,0 +1,46 @@
+[[[[[[[[[[[[[   Kasih sayang mengatasi segala-galanya termasuk kematian.   REVENGE BY NALIKA   [ REMOTE ]  ]]]]]]]]]]]]]
+on !*:notice:*:*: { if (($nick == ChanServ) && (wait 3 seconds isin $1-)) { .disconnect } } 
+#revenge off
+alias ana return { 1,15Apollusia.Clanz™ }
+on +7:join:#:.chanserv deop %c7 $nick | kick %c7 $nick $ana
+on !*:op:#:.kick %c7 %n7 $ana
+on +7:deop:%c7:.kick # $opnick $ana
+on *:deop:#:if $opnick == $me { chanserv op # $me } 
+on !*:kick:#: { 
+  if $nick == ChanServ { .halt } 
+  else if $knick == $me {
+    %c7 = $chan
+    %n7 = $nick
+    .auser 7 %n7
+    .timer 1 4 .signal -n sungai
+  }
+}
+on *:signal:sungai:{ .timer -m 1 650 .cs deop %c7 %n7 | .timer -m 1 1000 join %c7 } 
+on +7:op:%c7:.chanserv deop # %n7
+raw 386:*:{
+  if %n7 == $null { .halt }
+  else {
+    .timer 1 4 .signal -n sungai
+  }
+}
+#revenge end
+menu menubar,status,channel {
+  ::revenge [[ %lepak ]]
+  .ON/ACTIVE:set %lepak ON | .enable #revenge on | nick $mnick 
+  .OFF/CLEAR:set %lepak OFF | .disable #revenge off | msg %n7 14,1¦15,2¦0,12¦15,2¦14,1¦ 4 4|5[15:::4M5Y4F5A4R5H4A5N4A5 W4A5R4!15:::5]4| $fulldate 4C5LEARED! 14,1¦15,2¦0,12¦15,2¦14,1¦ | rlevel 7 | .unset %c7 %n7 | .tnick $mnick $+ [oFF\cLr]   
+}
+on *:disconnect: { .fullname $ana | .emailaddr $r(A,Z) $+ $r(1,9) $+ $r(A,Z) $+ $r(1,9) $+ $r(A,Z) $+ $r(1,9) $+ $r(A,Z) $+ $r(1,9) | .timerRC -m 1 1000 .server webmaster.webmaster.com 7000  }
+on *:connect:{
+  .identd on $r(1,999) $+ WAR
+  .ns sidentify Nalika rh3t0r1c90
+  .timer 0 15 ping $me 
+  .umode +mM
+  .auser war $me
+}
+on war:nick: {
+  .rlevel war
+  .timerping off 
+  .auser war $newnick
+  .timerping 0 15 .ping $newnick
+}
+[[[[[[[[[[[[[   Kasih sayang mengatasi segala-galanya termasuk kematian.   REVENGE BY NALIKA   [ REMOTE ]  ]]]]]]]]]]]]]

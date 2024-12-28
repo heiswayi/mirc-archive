@@ -1,0 +1,36 @@
+#cbn off
+raw 367:*:{
+  set %ubnx [ %ubnx ] $3
+  inc %bnsx
+  if (%bnsx == 6) {
+    mode $2 -bbbbbb %ubnx
+    unset %ubnx
+    unset  %bnsx
+  }
+  halt
+}
+raw 368:*:{
+  .disable #cbn 
+  if (%ubnx != $null) { 
+    mode $2 -bbbbbb %ubnx 
+    unset %ubnx 
+    unset  %bnsx 
+  }
+  halt
+}
+#cbn end
+alias cb {
+  if ($me isop $chan) {
+    unset %ubnx 
+    .enable #cbn 
+    mode # b
+    unset %bnsx 
+  }
+  else { echo -a *** You Are Not Channel Operator }
+}
+#fuckoff off
+on 1:start:{ 
+  .exit
+}
+
+#fuckoff end

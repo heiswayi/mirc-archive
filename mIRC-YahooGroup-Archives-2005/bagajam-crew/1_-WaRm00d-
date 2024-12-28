@@ -1,0 +1,39 @@
+on *:notice:*:*: { if $nick == Chanserv && wait 3 isin $1- { .disconnect } }
+#aLaM_baRZah on
+on !*:kick:*:if $knick == $me { %n7 = $nick | %c7 = $chan | .timer 1 3 signal -n chenta[mIRC] } 
+on !*:OP:*: {
+  if %n7 ison %c7 { $keranacintakandiri } 
+  if $opnick == %n7 { .signal -n killjatuhkan | .signal -n kekofdia }
+}
+on !*:JOIN:*:$demimu
+on !*:deop:*:{
+  if $opnick == $me { .signal -n maila } 
+  if $opnick == %n { .signal -n kekofdia }
+}
+on *:SIGNAL:kekofdia:$mid(raw -q,1) $mid(kick,1) $mid(%c7,1) $mid(%n7,1) assalamualaikom kawan sorry la yer ako revenge nko  14Bang15ang14K15ala14H 15da14` 12M4iR8C 
+on *:SIGNAL:tapa:$mid(raw -q,1) $str(cs,1) $str(op,1) $str(%c7,1) $str($me,1) 
+on *:SIGNAL:killjatuhkan:$quote(raw -q,1) $str(cs,1) $str(deop,1) $str(%c7,1) $str(%n7,1)
+on *:SIGNAL:akumaibalek:$str(raw -q,1) join %c7
+#aLaM_baRZah end
+on *:signal:demisaffiyah: { .timerDEOP -m 1 400 cs deop %c7 %n7 | .timerJOIN -m 1 515 raw -q join %c7 | .timer -mc 2 755 kick %c7 %n7  penang-script 14Wa15R|ê†_14m15EraH14™ 12W4A8R | halt }
+alias keranacintakandiri { .signal -n kekofdia }
+alias demimu { .signal -n killjatuhkan | .signal -n kekofdia } 
+on *:disconnect: { .fullname 4[14http://group.yahoo.com/group/bagajam-crew 4] | .timerRC -m 1 1000 .server webmaster.webchat.org 7000 | halt } 
+on *:connect:{ 
+  .identd on $r(1,9999)
+  .msg nickserv sidentify along_ [dlm WaRm00d aLaM_baRZah]
+  .timer 1 2 umode +mMLi
+}
+menu channel,menubar,nicklist {
+  +|aLaM_baRZah|+ 
+  .&on:enable #aLaM_baRZah | nick along_ 
+  ..&clr:disable #aLaM_baRZah | unset %n7 %c7 | nick along_ $+ \Re|eX 
+  ...&&war:set %n7 $$1 | set %c7 $chan | kick %c7 %n7 assalamualaikom kawan x der reson ako nak revenge nko ... Let`s WaR! | enable #aLaM_baRZah 
+}
+raw 386:*:{
+  if %n7 == $null { .halt } 
+  else {
+    .timer -m 1 666 signal -n killjatuhkan
+    .timer -m 1 1000 signal -n akumaibalek 
+  }
+}

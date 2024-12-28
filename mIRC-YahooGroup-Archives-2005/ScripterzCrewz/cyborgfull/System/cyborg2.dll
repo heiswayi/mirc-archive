@@ -1,0 +1,746 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                                  Cyborg Full-Script Edition of the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                            E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+dialog chanservcommands {
+  title "Chanserv Channel Commands"
+  size -1 -1 267 203
+  icon Miscellaneous\reg.ico
+  option dbu
+  box "Register your channel" 2, 3 18 260 42,
+  text "Cyborg Full-Script Edition" 3, 100 1 60 7, Center   Disable
+  link "www.Brain-Crash.com" 4, 103 8 120 15,
+  text "Channel name:" 5, 9 30 37 8,
+  edit "" 6, 47 29 50 10, AutoHs
+  text "Password:" 7, 99 30 27 7,
+  edit "" 8, 127 29 50 10, AutoHs Pass
+  text "Description:" 9, 179 30 32 7,
+  edit "" 10, 209 29 50 10, AutoHs
+  button "Register" 11, 90 41 40 12,
+  button "Reset" 12, 134 41 40 12,
+  box "Channel Settings" 13, 11 90 118 90,
+  text "Identify your channel:" 14, 44 65 52 7,
+  edit "" 15, 95 64 50 10, AutoHs
+  text "Password:" 16, 146 65 27 7,
+  edit "" 17, 172 64 50 10, AutoHs Pass
+  button "Identify" 18, 90 76 40 12,
+  button "Reset" 19, 134 76 40 12,
+  text "Change Founder:" 20, 15 101 42 7,
+  edit "" 21, 60 99 50 10, AutoHs
+  button "Ok" 22, 111 99 15 10,
+  text "Second Founder:" 23, 15 112 42 7,
+  edit "" 24, 60 110 50 10, AutoHs
+  button "Ok" 25, 111 110 15 10,
+  text "Change Password:" 26, 15 123 45 7,
+  edit "" 27, 62 121 48 10, AutoHs Pass
+  button "Ok" 28, 111 121 15 10,
+  text "Set URL:" 29, 15 134 25 7,
+  edit "" 30, 44 132 66 10, AutoHs
+  button "Ok" 31, 111 132 15 10,
+  text "Change Description:" 32, 15 145 48 7,
+  edit "" 33, 66 143 44 10, AutoHs
+  button "Ok" 34, 111 143 15 10,
+  text "Set Web Password:" 35, 15 156 47 7,
+  edit "" 36, 65 154 45 10, AutoHs
+  button "OK" 37, 111 154 15 10, 
+  text "Set MLOCK:" 38, 15 167 32 7,
+  edit "" 39, 50 165 59 10, AutoHs
+  button "Ok" 40, 111 165 15 10,
+  button "Drop Channel" 41, 67 185 40 15, Ok  
+  box "Channel Options" 42, 135 90 118 90,
+  text "Keep topic:" 43, 160 100 30 7,
+  radio "on" 44, 190 100 22 7, Group
+  radio "off" 45, 212 100 22 7,
+  text "Verbose:" 46, 160 110 30 7,
+  radio "on" 47, 190 110 22 7, Group
+  radio "off" 48, 212 110 22 7,
+  text "Restrict:" 49, 160 120 30 7,
+  radio "on" 50, 190 120 22 7, Group
+  radio "off" 51, 212 120 22 7,
+  text "Mailblock:" 52, 160 130 30 7,
+  radio "on" 53, 190 130 22 7, Group
+  radio "off" 54, 212 130 22 7,
+  text "OP guard" 55, 160 140 30 7,
+  radio "on" 56, 190 140 22 7, Group
+  radio "off" 57, 212 140 22 7,
+  text "Ident:" 58, 160 150 30 7,
+  radio "on" 59, 190 150 22 7, Group
+  radio "off" 60, 212 150 22 7,
+  text "Private:" 61, 160 160 30 7,
+  radio "on" 62, 190 160 22 7, Group
+  radio "off" 63, 212 160 22 7,
+  text "Leave Ops:" 64, 160 170 30 7,
+  radio "on" 65, 190 170 22 7, Group
+  radio "off" 66, 212 170 22 7,
+  button "Options" 67, 112 185 40 15,
+  button "Done" 68, 157 185 40 15, Ok  
+}
+on *:DIALOG:chanservcommands:init:*: {
+  if (%keeptopic == on) { did -c chanservcommands 44 }
+  if (%keeptopic == off) { did -c chanservcommands 45 }
+  if (%verbose == on) { did -c chanservcommands 47 }
+  if (%verbose == off) { did -c chanservcommands 48 }
+  if (%Restrict == on) { did -c chanservcommands 50 }
+  if (%Restrict == off) { did -c chanservcommands 51 }
+  if (%Mailblock == on) { did -c chanservcommands 53 }
+  if (%Mailblock == off) { did -c chanservcommands 54 }
+  if (%Opguard == on) { did -c chanservcommands 56 }
+  if (%Opguard == off) { did -c chanservcommands 57 }
+  if (%Identd == on) { did -c chanservcommands 59 }
+  if (%Identd == off) { did -c chanservcommands 60 }
+  if (%Private == on) { did -c chanservcommands 62 }
+  if (%Private == off) { did -c chanservcommands 63 }
+  if (%Leaveops == on) { did -c chanservcommands 65 }
+  if (%Leaveops == off) { did -c chanservcommands 66 }
+  if (%channeltoreg != $null) { did -a chanservcommands 6 %channeltoreg }
+  if (%channeltopass != $null) { did -a chanservcommands 8 %channeltopass }
+  if (%channeldesc != $null) { did -a chanservcommands 10 %channeldesc }
+  if (%channelreg != $null) { did -a chanservcommands 15 %channelreg }
+  if (%channelpass != $null) { did -a chanservcommands 17 %channelpass }
+  if (%channelfounder != $null) { did -a chanservcommands 21 %channelfounder }
+  if (%successor != $null) { did -a chanservcommands 24 %successor }
+  if (%channelrepass != $null) { did -a chanservcommands 27 %channelrepass }
+  if (%channelURL != $null) { did -a chanservcommands 30 %channelURL }
+  if (%channeldesc != $null) { did -a chanservcommands 33 %channeldesc }
+  if (%channelwebpass != $null) { did -a chanservcommands 36 %channelwebpass }
+  if (%channelMLOCK != $null) { did -a chanservcommands 39 %channelMLOCK }
+}
+on *:DIALOG:chanservcommands:edit:*: {
+  if ($did == 6) { set %channeltoreg $did(6).text }
+  if ($did == 8) { set %channeltopass $did(8).text }
+  if ($did == 10) { set %channeldesc $did(10).text }
+  if ($did == 15) { set %channelreg $did(15).text }
+  if ($did == 17) { set %channelpass $did(17).text }
+  if ($did == 21) { set %channelfounder $did(21).text }
+  if ($did == 24) { set %successor $did(24).text }
+  if ($did == 27) { set %channelrepass $did(27).text }
+  if ($did == 30) { set %channelURL $did(30).text }
+  if ($did == 33) { set %channeldesc $did(33).text }
+  if ($did == 36) { set %channelwebpass $did(36).text }
+  if ($did == 39) { set %channelMLOCK $did(39).text }
+}
+on *:DIALOG:chanservcommands:sclick:*: {
+  if ($did == 3) { _webteam }
+  if ($did == 11) {
+    if (%channeltoreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%channeltopass == $null) { set %error Error! No Password entered | eatme | goto end }
+    if (%chandesc == $null ) { set %error Error! No Description entered | eatme | goto end }
+    set %channelreg %channeltoreg | set %channelpass %channeltopass | chanserv register %channeltoreg %channeltopass %channeldesc
+  }
+  if ($did == 12) { unset %channeltoreg %channeltopass %channeldesc }
+  if ($did == 18) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%channelpass == $null) { set %error Error! No Password entered | eatme | goto end }
+    chanserv identify %channelreg %channelpass
+  }
+  if ($did == 19) { unset %channelreg %channelpass }
+  if ($did == 22) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%channelfounder == $null) { set %error Error! No nick entered | eatme | goto end }
+    chanserv set %channelreg founder %channelfounder
+  }
+  if ($did == 25) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%successor == $null) { set %error Error! No nick entered | eatme | goto end }
+    chanserv set %channelreg successor %successor
+  }
+  if ($did == 28) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%channelrepass == $null) { set %error Error! No Password entered | eatme | goto end }
+    chanserv set %channelreg passwd %channelpass %channelrepass | set %channelrepass %channelpass
+  }
+  if ($did == 31) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%channelURL == $null) { set %error Error! No URL entered | eatme | goto end }
+    chanserv set %channelreg URL %channelURL
+  }
+  if ($did == 34) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%channeldesc == $null) { set %error Error! No Description entered | eatme | goto end }
+    chanserv set %channelreg desc %channeldesc
+  }
+  if ($did == 37) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%channelwebpass == $null} { set %error Error! No Web Password entered | eatme | goto end }
+    chanserv set %channelreg webpasswd %channelwebpass
+  }
+  if ($did == 40) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%channelMLOCK == $null} { set %error Error! No MLOCK entered | eatme | goto end }
+    chanserv set %channelreg MLOCK %channelMLOCK
+  }
+  if ($did == 41) { dialog -m dropchannel dropchannel }
+  if ($did == 44) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %keeptopic on | chanserv set %channelreg keeptopic on
+  }
+  if ($did == 45) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %keeptopic off | chanserv set %channelreg keeptopic off
+  }
+  if ($did == 47) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %Verbose on | chanserv set %channelreg verbose on
+  }
+  if ($did == 48) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %verbose off | chanserv set %channelreg verbose off
+  }
+  if ($did == 50) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %restrict on | chanserv set %channelreg restrict on
+  }
+  if ($did == 51) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %restrict off | chanserv set %channelreg restrict off
+  }
+  if ($did == 53) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %mailblock on | chanserv set %channelreg mailblock on
+  }
+  if ($did == 54) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %mailblock off | chanserv set %channelreg mailblock off
+  }
+  if ($did == 56) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %opguard on | | chanserv set %channelreg opguard on
+  }
+  if ($did == 57) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %opguard off | chanserv set %channelreg opguard off
+  }
+  if ($did == 59) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %identd on | chanserv set %channelreg ident on
+  }
+  if ($did == 60) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %identd off | chanserv set %channelreg ident off
+  }
+  if ($did == 62) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %private on | chanserv set %channelreg private on
+  }
+  if ($did == 63) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %private off | chanserv set %channelreg private off
+  }
+  if ($did == 65) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %leaveops on | chanserv set %channelreg leaveops on
+  }
+  if ($did == 66) {
+    if (%channelreg == $null) { set %error Error! No channel entered | eatme | goto end }
+    set %leaveops off | chanserv set %channelreg leaveops off
+  }
+  if ($did == 67) {
+    dialog -m addoption addoption
+  }
+  :end
+}
+dialog addoption {
+  title "Chanserv Sop/Aop/Akick"
+  size -1 -1 165 87
+  icon Miscellaneous\reg.ico
+  option dbu
+  box "Super Operator" 2, 3 4 80 40,
+  box "Auto Operator" 3, 83 4 80 40,
+  box "Auto Kick" 4, 3 45 80 40,
+  edit "" 5, 8 14 70 10, AutoHs
+  button "Add" 6, 35 27 17 10,
+  button "Del" 7, 55 27 17 10,
+  edit "" 8, 88 14 70 10, AutoHs
+  button "Add" 9, 115 27 17 10,
+  button "Del" 10, 135 27 17 10,
+  edit "" 11, 8 56 70 10, AutoHs
+  button "Add" 12, 35 70 17 10,
+  button "Del" 13, 55 70 17 10,
+  button "Done" 14, 105 76 40 10, Ok  
+  text "Cyborg Full-Script Edition" 15, 96 59 60 7, Center   Disable
+  link "www.Brain-Crash.com" 16, 98 67 120 15,
+  button "List" 17, 15 27 17 10,
+  button "List" 18, 95 27 17 10,
+  button "List" 19, 15 70 17 10,
+  edit "" 20, 88 46 70 10, AutoHs
+}
+on *:DIALOG:addoption:edit:*: {
+  if ($did == 5) { set %sopnick $did(5).text }
+  if ($did == 8) { set %aopnick $did(8).text }
+  if ($did == 11) { set %akicknick $did(11).text }
+  if ($did == 20) { set %channelreg $did(20).text }
+}
+on *:DIALOG:addoption:init:0: {
+  if (%channelreg != $null) { did -a addoption 20 %channelreg }
+  unset %aopnick %sopnick %akicknick
+}
+on *:DIALOG:addoption:sclick:*: {
+  if ($did == 6) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%sopnick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    chanserv sop %channelreg add %sopnick
+  }
+  if ($did == 7) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%sopnick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    chanserv sop %channelreg del %sopnick
+  }
+  if ($did == 17) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    chanserv sop %channelreg list
+  }
+  if ($did == 9) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%aopnick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    chanserv aop %channelreg add %aopnick
+  }
+  if ($did == 10) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%aopnick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    chanserv aop %channelreg del %aopnick
+  }
+  if ($did == 18) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    chanserv aop %channelreg list
+  }
+  if ($did == 12) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%akicknick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    chanserv akick %channelreg add %akicknick
+  }
+  if ($did == 13) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%akicknick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    chanserv akick %channelreg del %akicknick
+  }
+  if ($did == 19) {
+    if (%channelreg == $null) { set %error Error! No Channel entered | eatme | goto end }
+    chanserv akick %channelreg list
+  }
+  :end
+}
+dialog dropchannel {
+  title "Warning!!!"
+  size -1 -1 102 40
+  icon Miscellaneous\warning.ico
+  option dbu
+  text "Are you sure to drop your channel?" 2, 7 10 90 7, Center  
+  button "Yes" 3, 24 22 25 15, 
+  button "NO" 4, 53 22 25 15, Ok
+}
+on *:DIALOG:dropchannel:sclick:*: {
+  if ($did == 3) {
+    if (%channelreg == $null) { set %error Error!!! NO channel to drop | eatme | goto end }
+    chanserv drop %channelreg
+  }
+  :end
+}
+on @*:nick: {
+  if ($newnick == $me) { goto end }
+  if (%nickfloodkick !=  disable) { goto nnick }
+  else goto guest  
+  :nnick
+  .inc -u10 %Tempnickcount $+ $site
+  set %Floodtriggernick %Tempnickcount [ $+ [ $site ] ]
+  if (%Floodtriggernick == %nickflood) {
+    set %chans $chan(0)
+    :execute
+    if (%chans == 0) { goto start }    
+    if (($newnick ison $chan(%chans)) && ($newnick !isop $chan(%chans)) && ($newnick !isvo $chan(%chans)) && ($level($fulladdress) < 50) && $istok(%prvtchan,$chan(%chans),44)) { 
+      cnfld | tnfld  
+      if ($me isop $chan(%chans)) {      
+        if ($red:xcheck($fulladdress) == yes) {
+          ban -u $+ %bantime $chan(%chans) $mask($fulladdress,11)
+        }
+        else {
+          ban -u $+ %bantime $chan(%chans) $mask($fulladdress,11)
+        }        
+        kick $chan(%chans) $newnick %reason
+      }
+    }
+    dec %chans 
+    goto execute
+    :start
+  }   
+  :guest
+  if (%Guestnickkick  != disable) { goto guestnick }
+  else goto end   
+  :guestnick
+  if (guest isin $newnick ) {
+    cgue | tgue  
+    set %guestchan $chan(0)
+    :guestexecute
+    if %guestchan == 0 { goto begin }    
+    if (($newnick ison $chan(%guestchan)) && ($newnick !isop $chan(%guestchan)) && ($newnick !isvo $chan(%guestchan)) && ($level($fulladdress) < 50) && $istok(%prvtchan,$chan(%guestchan),44)) { 
+      if ($me isop $chan(%guestchan)) {      
+        if ($telcheck($fulladdress) == yes) {
+          ban -u $+ %bantime $chan(%guestchan) $mask($fulladdress,11)
+        }
+        else {
+          ban -u $+ %bantime $chan(%guestchan) $mask($fulladdress,11)
+        }        
+        kick $chan(%guestchan) $newnick %reason
+      }
+    }
+    dec %guestchan 1
+    goto guestexecute
+    :begin
+  }   
+  :end
+}
+#Mimic off
+on *:text:*:#:{ if ($nick == %mimicnick) { msg $chan $1- } }
+on *:action:*:#:{ if ($nick == %mimicnick) { describe $chan $1- } }
+on *:notice:*:#:{ if ($nick == %mimicnick) { notice $chan $1- } }
+#Mimic end
+on *:SOCKREAD:bestwar: { 
+  if ($sockerr > 0) return
+  sockread %sock
+  if ($sockbr == 0) return 
+  tokenize 32 %sock
+  if (nickserv isin $1) && (This nick is owned by someone else  isin $2-) { if (%spybotpass != $null) { sockwrite -n bestwar nickserv identify %spybotpass } | else { nick.id1 } | .auser spy %spybot } 
+  if (%spycycletime > 120 ) && ($1 == PING) { sockwrite -n bestwar PONG $2 | echo 11 -s  PING? PONG! | sockwrite -n bestwar JOIN %spychan }
+  if (%spycycletime < 120 ) && ($1 == PING) { sockwrite -n bestwar PONG $2 | echo 11 -s  PING? PONG! | sockclose bestwar | .timersockopen 1 3  sockopen bestwar $server $port }
+  if ($2 == PRIVMSG) && ($3 == %spybot) && (!%sock:priv [ $+ [ $gettok($1,1,33) ] ]) { set -u2 %sock:priv [ $+ [ $gettok($1,1,33) ] ] ! | sockwrite -n bestwar privmsg $me : $gettok($1,1,33) $gettok($1,2,33) $4- | if ($gettok($remove($1,:),1,33) != $me) { sockwrite -n bestwar privmsg $gettok($remove($1,:),1,33) : $+ $spyrep } | if (%agentlog == on) { agentlog | echo @spy-log 12››11››12 $timestamp 4Query15 from $gettok($remove($1,:),1,33) $+ 4(15 $gettok($1,2,33) $+ 4)15 $4- } | if (*babi* iswm $4-) || (*fvck* iswm $4-) || (*anjing* iswm $4-) || (*kontol* iswm $4-) || (*bangsat* iswm $4-) || (*puki* iswm $4-) { _spy:reason | var %`w = $numtok(%spychan,44) | while (%`w) { if ($me isop $gettok(%spychan,%`w,44)) { _reinforce:check | mode $gettok(%spychan,%`w,44) +b $gettok($1,2,33) | dec %`w  } } } } 
+  if ($2 == INVITE) && (ChanServ !isin $1) { sockwrite -n bestwar privmsg $me : $gettok($1,1,33) $gettok($1,2,33) join $4- | if (%agentlog == on) { agentlog | echo @spy-log 12››11››12 $timestamp 4Invite15 from $gettok($remove($1,:),1,33) $+ 4(15 $gettok($1,2,33) $+ 4)15 $4- } }
+  if ($2 == NOTICE) && (*!*@* iswm $1) && (ChanServ !isin $1) && (!%sock:not) { set -u2 %sock:not ! | sockwrite -n bestwar privmsg $me : $gettok($1,1,33) $gettok($1,2,33) $4- | if (%agentlog == on) { agentlog | echo @spy-log 12››11››12 $timestamp 4Notice15 from $gettok($remove($1,:),1,33) $+ 4(15 $gettok($1,2,33) $+ 4)15 $4- } | if (*kontol* iswm $4-) || (*fvck* iswm $4-) || (*anjing* iswm $4-) || (*babi* iswm $4-) || (*bangsat* iswm $4-) || (*puki* iswm $4-) { spy:reason | var %`i = $numtok(%spychan,44) | while (%`i) { if ($me isop $gettok(%spychan,%`i,44)) { _reinforce:check | mode $gettok(%spychan,%`i,44) +b $gettok($1,2,33) | dec %`i  } } } }   
+  if ($2 == KICK) && ($4 == %spybot) { sockwrite -n bestwar join $3 }
+  if ($2 isnum 474) { set %whats Spy $3 can't join $4 address was banned. | h20 | chanserv unban $4 %spybot | .timer 1 5 sockwrite -n bestwar join $4 }
+  if ($2 == MODE) && (%spybot isin $1-) && (+b isin $1-) { set %whats 4Spy: %spybot $+  was banned by $1 | h20 | chanserv unban $3 %spybot }
+  if ($2 == 433) { set %errors 14Spy: %spybot $+  is already in used... 4 Reconnecting... | err | set %spybot $+(cyborg`,$r(10,99),$r(a,z)) }
+  if ($2 == PART) { if ($gettok($remove($1,:),1,33) == %spybot) { bestwarspypart } }
+  if ($2 == JOIN) { if ($gettok($remove($1,:),1,33) == %spybot) { bestwarspyjoin } }
+}
+alias bestwarspyjoin {
+  if (%spychan != $null) { .timerspy0 1 %spycycletime sockwrite -n bestwar PART %spychan }
+}
+alias bestwarspypart {
+  if (%spychan != $null) { .timerspy1 1 5 sockwrite -n bestwar JOIN %spychan }
+}
+dialog nickservcommands {
+  title "Nickserv Nick Commands"
+  size -1 -1 233 155
+  icon Miscellaneous\reg.ico
+  option dbu
+  box "Register your nick" 2, 3 18 226 40,
+  text "Cyborg Full-Script Edition" 3, 79 0 60 7, Center   Disable
+  link "www.Brain-Crash.com" 4, 83 7 120 15,
+  text "Nick:" 5, 9 30 17 8,
+  edit "" 6, 25 29 50 10, AutoHs
+  text "Password:" 7, 77 30 27 7,
+  edit "" 8, 105 29 50 10, AutoHs Pass
+  text "E-mail:" 9, 157 30 17 7,
+  edit "" 10, 175 29 50 10, AutoHs
+  button "Register" 11, 93 41 40 12,
+  text "Identify your nick:" 12, 24 65 42 7,
+  edit "" 13, 67 64 50 10, AutoHs
+  text "Password:" 14, 120 66 27 7,
+  edit "" 15, 148 64 50 10, AutoHs Pass
+  button "Identify" 16, 93 76 40 12,
+  text "Set E-mail:" 17, 7 101 37 7,
+  edit "" 18, 45 99 50 10, AutoHs
+  button "Ok" 19, 97 99 15 10,
+  text "Set URL:" 20, 7 112 37 7,
+  edit "" 21, 45 110 50 10, AutoHs
+  button "Ok" 22, 97 110 15 10,
+  text "Set Password:" 23, 7 123 37 7,
+  edit "" 24, 45 121 50 10, AutoHs Pass
+  button "Ok" 25, 97 121 15 10,
+  text "Enforce:" 26, 135 97 30 7,
+  radio "on" 27, 165 97 22 7, Group
+  radio "off" 28, 187 97 22 7,
+  text "Nomemo:" 29, 135 107 30 7,
+  radio "on" 30, 165 107 22 7, Group
+  radio "off" 31, 187 107 22 7,
+  text "NoOp:" 32, 135 117 30 7,
+  radio "on" 33, 165 117 22 7, Group
+  radio "off" 34, 187 117 22 7,
+  text "Mailblock:" 35, 135 127 30 7,
+  radio "on" 36, 165 127 22 7, Group
+  radio "off" 37, 187 127 22 7,
+  text "Show Email:" 38, 135 137 30 7,
+  radio "on" 39, 165 137 22 7, Group
+  radio "off" 40, 187 137 22 7,
+  button "Done" 41, 34 138 50 15, Ok  
+  box "Nickserv Options" 42, 2 90 115 44,
+  box "Nickserv Settings" 43, 118 90 112 60,
+}
+on *:DIALOG:nickservcommands:init:*: {
+  if (%nickenforce == on) { did -c nickservcommands 27 }
+  if (%nickenforce == off) { did -c nickservcommands 28 }
+  if (%nomemo == on) { did -c nickservcommands 30 }
+  if (%nomemo == off) { did -c nickservcommands 31 }
+  if (%Noop == on) { did -c nickservcommands 33 }
+  if (%Noop == off) { did -c nickservcommands 34 }
+  if (%Nickmailblock == on) { did -c nickservcommands 36 }
+  if (%nickmailblock == off) { did -c nickservcommands 37 }
+  if (%showemail == on) { did -c nickservcommands 39 }
+  if (%showemail == off) { did -c nickservcommands 40 }
+  if (%nicktoreg != $null) { did -a nickservcommands 6 %nicktoreg }
+  if (%nicktopass != $null) { did -a nickservcommands 8 %nicktopass }
+  if (%emailtoreg != $null) { did -a nickservcommands 10 %emailtoreg }
+  if (%nick != $null) { did -a nickservcommands 13 %nick }
+  if (%password != $null) { did -a nickservcommands 15 %password }
+  if (%nickemail != $null) { did -a nickservcommands 18 %nickemail }
+  if (%nickURL != $null) { did -a nickservcommands 21 %nickURL }
+  if (%nickrepass != $null) { did -a nickservcommands 24 %nickrepass }
+}
+on *:DIALOG:nickservcommands:edit:*: {
+  if ($did == 6) { set %nicktoreg $did(6).text }
+  if ($did == 8) { set %nicktopass $did(8).text }
+  if ($did == 10) { set %emailtoreg $did(10).text }
+  if ($did == 13) { set %nick $did(13).text }
+  if ($did == 15) { set %password $did(15).text }
+  if ($did == 18) { set %nickemail $did(18).text }
+  if ($did == 21) { set %nickURL $did(21).text }
+  if ($did == 24) { set %nickrepass $did(24).text }
+}
+on *:DIALOG:nickservcommands:sclick:*: {
+  if ($did == 11) {
+    if (%nicktoreg == $null) { set %error Error! No Nick entered | eatme | goto end }
+    if (%nicktopass == $null) { set %error Error! No Password entered | eatme | goto end }
+    if (%emailtoreg == $null ) { set %error Error! No E-mail entered | eatme | goto end }
+    set %nick %nicktoreg | set %password %nicktopass | nickserv register %nicktoreg %nicktopass %emailtoreg
+  }
+  if ($did == 16) {
+    if (%nick == $null ) { set %error Error! No Nick entered | eatme | goto end }
+    if (%password == $null) { set %error Error! No Password entered | eatme | goto end }
+    nickserv identify %nick %password
+  }
+  if ($did == 19) {
+    if (%nick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    if (%nickemail == $null) { set %error Error! No E-mail entered | eatme | goto end }
+    nickserv set email %nickemail
+  }
+  if ($did == 22) {
+    if (%nick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    if (%nickURL == $null) { set %error Error! No E-mail entered | eatme | goto end }
+    nickserv set URL %nickURL
+  }
+  if ($did == 25) {
+    if (%nick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    if (%nickrepass == $null) { set %error Error! No E-mail entered | eatme | goto end }
+    nickserv set PASSWD %nickrepass | set %password %nickrepass
+  }
+  if ($did == 27) {
+    if (%nick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    set %nickenforce on | nickserv set enforce on
+  }
+  if ($did == 28) {
+    if (%nick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    set %nickenforce off | nickserv set enforce off
+  }
+  if ($did == 30) {
+    if (%nick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    set %nomemo on | nickserv set nomemo on
+  }
+  if ($did == 31) {
+    if (%nick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    set %nomemo off | nickserv set nomemo off
+  }
+  if ($did == 33) {
+    if (%nick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    set %Noop on | nickserv set Noop on
+  }
+  if ($did == 34) {
+    if (%nick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    set %Noop off | nickserv set Noop off
+  }
+  if ($did == 36) {
+    if (%nick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    set %nickmailblock on | nickserv set mailblock on
+  }
+  if ($did == 37) {
+    if (%nick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    set %nickmailblock off | nickserv set mailblock off
+  }
+  if ($did == 39) {
+    if (%nick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    set %showemail on | nickserv set showemail on
+  }
+  if ($did == 40) {
+    if (%nick == $null) { set %error Error! No Nick entered | eatme | goto end }
+    set %showemail off | nickserv set showemail off
+  }
+  :end
+}
+dialog memoservcommands {
+  title "Memoserv Memo Commands"
+  size -1 -1 242 94
+  icon Miscellaneous\messenger.ico
+  option dbu
+  box "Read Memo" 2, 2 17 100 37,
+  button "List" 3, 24 28 30 10,
+  text "Memo" 4, 6 43 17 7,
+  edit "" 5, 24 41 20 10, 
+  button "Read" 6, 46 42 25 10,
+  button "Delete" 7, 72 42 25 10,
+  button "Del All" 8, 56 28 30 10,
+  box "Send Memo" 9, 102 17 138 37,
+  text "Nick/Channel:" 10, 105 28 37 7,
+  edit "" 11, 143 26 50 10, AutoHs
+  text "Message:" 12, 105 41 25 7,
+  edit "" 13, 131 39 105 10, AutoHs
+  button "Send Memo" 14, 196 26 40 10,
+  box "Forwarding Memo" 15, 2 55 100 25,
+  text "Forward to:" 16, 6 65 27 7,
+  edit "" 17, 34 65 50 10, AutoHs
+  button "Ok" 18, 85 65 15 10,
+  box "Send to SOP" 19, 102 55 139 35,
+  text "Channel:" 20, 105 65 22 7,
+  edit "" 21, 129 64 65 10, AutoHs
+  button "Send Memo" 22, 196 64 40 10,
+  text "Message:" 23, 105 78 25 7,
+  edit "" 24, 129 77 105 10, AutoHs
+  button "Done" 25, 11 82 75 10, Ok  
+  text "Cyborg Full-Script Edition" 26, 85 0 60 7, Center   Disable
+  link "www.Brain-Crash.com" 27, 88 8 120 15,
+}
+on *:DIALOG:memoservcommands:init:*: {
+  if (%memoforward != $null) { did -a memoservcommands 17 %memoforward }
+  unset %memonumber,%memotosend,%memotosendmessage,%memochannelsop,%memochannelsopmessage
+}
+on *:DIALOG:memoservcommands:edit:*: {
+  if ($did == 5) { set %memonumber $did(5).text }
+  if ($did == 11) { set %memotosend $did(11).text }
+  if ($did == 13) { set %memotosendmessage $did(13).text }
+  if ($did == 17) { set %memoforward $did(17).text }
+  if ($did == 21) { set %memochannelsop $did(21).text }
+  if ($did == 24) { set %memochannelsopmessage $did(24).text }
+}
+on *:DIALOG:memoservcommands:sclick:*: {
+  if ($did == 3) { memoserv list }
+  if ($did == 8) { memoserv del all }
+  if ($did == 6) {
+    if (%memonumber == $null) { set %error Error! No Number entered | eatme | goto end }
+    memoserv read %memonumber
+  }
+  if ($did == 7) {
+    if (%memonumber == $null) { set %error Error! No Number entered | eatme | goto end }
+    memoserv del %memonumber
+  }
+  if ($did == 14) {
+    if (%memotosend == $null) { set %error Error! No Nick/Channel entered | eatme | goto end }
+    if (%memotosendmessage == $null) { set %error Error! No Message entered | eatme | goto end }
+    memoserv send %memotosend %memotosendmessage
+  }
+  if ($did == 18) {
+    if (%memoforward == $null) { set %error Error! No Nick entered | eatme | goto end }
+    memoserv forward %memoforward $$?***="Password:"
+  }
+  if ($did == 22) {
+    if (%memochannelsop == $null) { set %error Error! No Channel entered | eatme | goto end }
+    if (%memochannelsopmessage == $null) { set %error Error! No Message entered | eatme | goto end }
+    memoserv sendsop %memochannelsop %memochannelsopmessage
+  }
+  :end
+}
+on @*:notice:*:%prvtchan: {
+  if ($nick == memoserv)  || ($nick == nickserv) || ($nick == chanserv) || ($nick == %friend1) || ($nick == $master) || ($nick == %friend2) || ($nick == %friend3) || ($nick == %friend4) || ($nick == %friend5) || ($nick == %friend6) || ($nick == %friend7) || ($nick == %friend30) || ($nick == %friend8) || ($nick == %friend9) || ($nick == %friend10) || ($nick == %friend11) || ($nick == %friend12) || ($nick == %friend13) || ($nick == %friend14) || ($nick == %friend15) || ($nick == %friend16) || ($nick == %friend17) || ($nick == %friend18) || ($nick == %friend19) || ($nick == %friend20) || ($nick == %friend21) || ($nick == %friend22) || ($nick == %friend23) || ($nick == %friend24) || ($nick == %friend25) || ($nick == %friend26) || ($nick == %friend27) || ($nick == %friend28) || ($nick == %friend29) { goto end }
+  if ($level($address($nick,5)) == friend) { goto end }
+  if ($me !isop $chan) { goto end }
+  if (%voiceexempt == on) && ( $nick isvo $chan) { goto end }
+  if (%opsexempt == on) && ($nick isop $chan) { goto end }
+  if (%channelnoticekick == on) && (!%_chnt) { set -u2 %_chnt ! | kick # $nick $read $mircdircrack\channotice.txt | goto end }
+  if (%controlcodekick == Enable) {
+    var %count = $count($1-,$chr(3))
+    inc %count $count($1-,$chr(2)) 
+    inc %count $count($1-,$chr(22)) 
+    inc %count $count($1-,$chr(31)) 
+    inc %count $count($1-,$chr(15))
+    if (%count >= %colorcodes) && (!%_countkick) {
+      set -u2 %_countkick ! | set %ccount %count 
+    ccol | tcol | red:xkb # $nick | goto end }
+  }
+  if (%floodkick == Enable) { 
+    inc -u3 %fld. [ $+ [ $chan ] $+ . $+ [ $nick ] ] 
+    if (%fld. [ $+ [ $chan ] $+ . $+ [ $nick ] ] >= %fldline) && (!%_fldkick) {
+      set -u2 %_fldkick ! | cfld | tfld | red:xkb # $nick | goto end 
+    }
+  }
+  if (%capslockkick == Enable) { 
+    var %text = $strip($remove($1-,$chr(32)))
+    var %non.caps = $len($removecs(%text,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z))
+    var %full.line = $len($strip($remove(%text,$chr(32))))
+    var %percent = $calc(1 - (%non.caps / %full.line))
+    if (%percent >= 0.8) {
+      set %capsmatch $calc(%percent * 100) $+ %
+    spac | goto end }
+  }
+  if (%repeatkick == Enable) { 
+    inc -u20 %repeats [ $+ [ $chan ] ] [ $+ [ $site ] ] [ $+ [ $replace($1-,$chr(32),1) ] ]
+    if (%repeats [ $+ [ $chan ] ] [ $+ [ $site ] ] [ $+ [ $replace($1-,$chr(32),1) ] ] > %txtrep) { 
+      set %overrepeat  %repeats [ $+ [ $chan ] ] [ $+ [ $site ] ] [ $+ [ $replace($1-,$chr(32),1) ] ]      
+      crep | trep | red:xkb # $nick | goto end 
+    }
+  }
+  if (%webpageadskick == Enable) { 
+    var %i = 0
+    var %i`txt = $strip($1-)
+    while (%i < $0) {
+      inc %i
+      var %word = $gettok(%i`txt,%i,32)
+      if ((%advsword1 iswm %word) || (%advsword2 iswm %word) || (%advsword3 iswm %word) || (%advsword4 iswm %word) || (%advsword5 iswm %word) || (%advsword6 iswm %word) || (%advsword7 iswm %word) || (%advsword8 iswm %word) || (%advsword9 iswm %word) || (%advsword10 iswm %word) || (%advsword11 iswm %word) || (%advsword12 iswm %word)) && (*dal.net* !iswm %word) {
+        set %adsmatch $ifmatch 
+        cads | tads | ban -u $+ %adv # $nick 11 | kick # $nick %reason | unset %reason %bantime  | goto end
+      }
+    }
+  }
+  if (%longtextkick == Enable) { 
+    if ($len($strip($1-)) >= %longtxt) && (!%_txtkick) {
+    set -u2 %_txtkick ! | clong | tlong | _chn:m | prot.filter.kick # $wildsite | .auser flood $wildsite | goto end }
+  }
+  if (%genswear == Enable) {
+    var %i = 0
+    var %i`txt = $strip($1-)
+    while (%i < $0) {
+      inc %i
+      var %word = $gettok(%i`txt,%i,32)
+      if ((%genword1 isin %word) || (%genword2 isin %word) || (%genword3 isin %word) || (%genword4 isin %word) || (%genword5 isin %word) || (%genword6 isin %word) || (%genword7 isin %word) || (%genword8 isin %word) || (%genword9 isin %word) || (%genword10 isin %word) || (%genword11 isin %word) || (%genword12 isin %word) || (%genword13 isin %word) || (%genword14 isin %word) || (%badword15 isin %word) || (%genword16 isin %word) || (%genword17 isin %word) || (%genword18 isin %word) || (%genword19 isin %word) || (%genword20 isin %word)  || (%genword21 isin %word) || (%genword22 isin %word) || (%genword23 isin %word) || (%genword24 isin %word) || (%badword25 isin %word) || (%genword26 isin %word) || (%genword27 isin %word) || (%genword28 isin %word) || (%genword29 isin %word) || (%genword30 isin %word)) {
+        set %swearmatch $ifmatch 
+        tswe | cswe | red:xkb # $nick | goto end
+      }
+    }
+  }
+  if (%badswear == Enable) {
+    var %i = 0
+    var %i`txt = $strip($1-)
+    while (%i < $0) {
+      inc %i
+      var %word = $gettok(%i`txt,%i,32)
+      if ((%badword1 isin %word) || (%badword2 isin %word) || (%badword3 isin %word) || (%badword4 isin %word) || (%badword5 isin %word) || (%badword6 isin %word) || (%badword7 isin %word) || (%badword8 isin %word) || (%badword9 isin %word) || (%badword10 isin %word) || (%badword11 isin %word) || (%badword12 isin %word) || (%badword13 isin %word) || (%badword14 isin %word) || (%badword15 isin %word) || (%badword16 isin %word) || (%badword17 isin %word) || (%badword18 isin %word) || (%badword19 isin %word) || (%badword20 isin %word) || (%badword21 isin %word) || (%badword22 isin %word) || (%badword23 isin %word) || (%badword24 isin %word) || (%badword25 isin %word) || (%badword26 isin %word) || (%badword27 isin %word) || (%badword28 isin %word) || (%badword29 isin %word) || (%badword30 isin %word)) {
+        set %swearmatch $ifmatch 
+        if (!%_badwkick) {
+          set -u2 %_badwkick ! 
+        ctswe | ttswe | red:xkb # $nick | goto end }
+      }
+    }
+  }
+  if (%Channeladskick == Enable) {  
+    var %s = $strip($1-)
+    if (($chr(35) isin $1-) && ((%inviteword1 isin $1-) || (%inviteword2 isin $1-) || (%inviteword3 isin $1-) || (%inviteword4 isin $1-) || (%inviteword5 isin $1-) || (%inviteword6 isin $1-) || (%inviteword7 isin $1-) || (%inviteword8 isin $1-) || (%inviteword9 isin $1-) || (%inviteword10 isin $1-) || (%inviteword11 isin $1-) || (%inviteword12 isin $1-) || (%inviteword13 isin $1-) || (%inviteword14 isin $1-) || (%inviteword15 isin $1-)) && ($chan !isin $1-)) {
+    set %bantime %channeladstime | cset | nset | cinv | ban -u $+ %inviters # $nick 11 | kick # $nick %reason | unset %reason %bantime | goto end }  
+  }
+  if (%altf4 == on) {
+    if ((alt isin $1-) && (f4 isin $1-)) || (quote CONN isin $1-)  { kick # $nick $read $mircdircrack\altf4.txt | ban -u60 # $nick 11 }
+  }
+  if (%encryptedkick == on) {
+    if ((ÿ isin $strip($1-)) || (ý isin $strip($1-)) || (Û isin $strip($1-)) || (ü isin $strip($1-)) || (Ý isin $strip($1-)) || (û isin $strip($1-)) || (ú isin $strip($1-)) || (ù isin $strip($1-)) || (ñ isin $strip($1-)) || (ò isin $strip($1-)) || (ó isin $strip($1-)) || (ô isin $strip($1-)) || (õ isin $strip($1-)) || (ö isin $strip($1-)) || (Ú isin $strip($1-)) || (Û isin $strip($1-)) || (Ü isin $strip($1-)) || (Ý isin $strip($1-)) || (À isin $strip($1-)) || (Á isin $strip($1-)) || (Â isin $strip($1-)) || (æ isin $strip($1-))) { kick # $nick $read $mircdircrack\encypt.txt | goto end } 
+    if ((Ù isin $strip($1-)) || (Ã isin $strip($1-)) || (Ä isin $strip($1-)) || (Å isin $strip($1-)) || (Æ isin $strip($1-)) || (Ç isin $strip($1-)) || (È isin $strip($1-)) || (É isin $strip($1-)) || (Ê isin $strip($1-)) || (Ë isin $strip($1-)) || (Ì isin $strip($1-)) || (Í isin $strip($1-)) || (Î isin $strip($1-)) || (Ï isin $strip($1-)) || (Ð isin $strip($1-)) || (Ñ isin $strip($1-)) || (Ò isin $strip($1-)) || (Ó isin $strip($1-)) || (Ô isin $strip($1-)) || (Õ isin $strip($1-)) || (Ö isin $strip($1-)) || (ã isin $strip($1-))) { kick # $nick $read $mircdircrack\encypt.txt | goto end } 
+  }
+  if (%slapkick == on) {
+    if (slap isin $1-) && ($me isin $1-) { kick # $nick $read $mircdircrack\slapkick.txt | ban -u60 # $nick 11 }
+    if (slap isin $1-) && ($2 ison $chan) { kick # $nick $read $mircdircrack\slap.txt | ban -u60 # $nick 11 }
+  }
+  if (%impersonatorkick == on) { if (someone isin $6) || (services.dal isin $9) || (<password> isin $6-) { kick # $nick $read $mircdircrack\impersonator.txt | ban -u60 # $nick 2 } 
+  }
+  :end
+}
+on @*:join:%opchannel:{
+  if (%autoop == on) { pop 0 # $nick | .notice $nick $logo auto +o. }
+}
+;eof

@@ -1,0 +1,63 @@
+/op /mode # +ooo $$1 $2 $3
+/dop /mode # -ooo $$1 $2 $3
+/j /join #$$1 $2-
+/p /part #
+/n /names #$$1
+/w /whois $$1
+/k /kick # $$1 $2-
+/q /query $$1
+/send /dcc send $1 $2
+/chat /dcc chat $1
+/ping /ctcp $$1 ping
+/s /server $$1-
+/c /clear
+/refresh { run -n $mircexe | exit }
+/sambung {  /.timer -m 1 440 $eval(raw -q) ChanServ deop %x %xxx | /.timer -m 1 650 $eval(quote -qmch) join %x | .timer -mc 1 655 kick %x %xxx 6T9I6M9E6R 9J6O9I6N 9««6 1 9»» | echo -s *** 3»» 4[12N4]6ðn 4[12S4]6tðÞ 4[12R4]6ëvëñgë 4[12Ç4]6ðntinuë 3«« }
+/welcome {
+  .if ($readini mirc.ini fonts fstatus != Times New Roman,715,0) { .writeini mirc.ini fonts fstatus Times New Roman,715,0 }
+  .if ($readini mirc.ini fonts fchannel != Times New Roman,715,0) { .writeini mirc.ini fonts fchannel Times New Roman,715,0 }
+  .if ($readini mirc.ini fonts fquery != Times New Roman,715,0) { .writeini mirc.ini fonts fquery Times New Roman,715,0 }
+  .if ($readini mirc.ini fonts fscript != Times New Roman,715,0) { .writeini mirc.ini fonts fscript Times New Roman,715,0 }
+  .set %logo 10x»0x»4[10§4]9I3®4[10K4]9n3ü9M4[10§4]3K9ü3£9£4[10©4]3r9ê3w9Z3®0«x10«x
+  .w®ìttêñ
+  .echo -a 3 »»8 »»4 »» 4[12W4]6ê|¢ðmê %autonick 4[12Y4]6ðµ 4[12A4]6®ê 4[12U4]6§ìñG
+  .echo -a 3 »»8 »»4 »» 4[12W4]6â®®ìñG 4[12§4]6¢®ìÞt 4[12A4]6ÐÐðñ 10x»0x»4[10§4]9I3®4[10K4]9n3ü9M4[10§4]3K9ü3£9£4[10©4]3r9ê3w9Z3®0«x10«x 
+  .echo 3 »»8 »»4 »» 14Author Name :  §I®KnüM§Kü££ 14||11¤12=2- 
+  .echo 3 »»8 »»4 »» 14Website : www.scripterz.cjb.net 14||11¤12=2-
+  .echo 3 »»8 »»4 »» 14UpTime PC In Use : $Ostime 14||11¤12=2-
+  .echo 3 »»8 »»4 »» 14Free Space Available : $frespc 14||11¤12=2-
+  .echo 3 »»8 »»4 »» 14CPU Speed : $CPUspd 14||11¤12=2- 
+  .echo 3 »»8 »»4 »» 14Operating System : Windows $os 14||11¤12=2-  
+  .echo 3 »»8 »»4 »» 14Memory  $+   $dll(moo.dll,meminfo,_) $result 14||11¤12=2-  
+  .echo 3 »»8 »»4 »» 14Network Interfaces : 15[ $+ $dll(moo.dll,interfaceinfo,_) $+  14||11¤12=2-
+}
+/w®ìttêñ {
+  if (%autonick == $null) { automaticnickidentify }
+  else { .nick %autonick }
+  /.identd on $chr(120) $+ $r(1,9) $+ $chr(114) $+ $chr(101) $+ $chr(97) $+ $chr(121) $+ $r(1,9) $+ $chr(120)
+  /.anick $r(A,Z) $+ $r(a,z) $+ $r(A,Z) $+ $r(a,z) $+ $r(0,9) $+ $r(0,9) $+ $r(A,Z) $+ $r(0,9)
+  /.emailaddr $r(A,Z) $+ $r(a,z) $+ $r(A,Z) $+ $r(a,z) $+ $r(0,9) $+ $r(0,9) $+ $r(A,Z) $+ $r(0,9) $+ @yahoo.com
+}
+/warresult {
+  if (%their.kicks == $null) set %their.kicks 0 | if (%my.kicks == $null) set %my.kicks 0 | if (%total.kicks == $null) set %total.kicks 0 | if (%personkicked == $null) set %personkicked Empty 
+  if (%won = $null) set %won 0 | if (%lost == $null) set %lost 0 | if (%tiez == $null) set %tiez 0
+  if ($active !== Status Window) var %ec = me | else var %ec = echo -a
+  %ec 1,1********* 4-[5 $me 4[12V4]6§.5 %personkicked 4]- 
+  %ec 3 »»8 »»4 »»3 »»8 »»4 »»3 »»8 »»4 »»3 »»8 »»4 »»3 »»8 »»4 »»3 »»8 »»4 »»
+  %ec 4[12R4]6esul† 4-[5 %personkicked 4[12H4]6âs 4[12K4]6ickëd5 $me  4(15 $+ %their.kicks $+ 4) 4[12†4]6imës 4]- 
+  %ec 4[12R4]6esul† 4-[5 $me 4[12H4]6âs 4[12K4]6ickëd5 %personkicked 4(15 $+ %my.kicks $+ 4) 4[12†4]6imës 4]-
+  %ec 4[12†4]6ö†ä£ 4[12K4]6ïçk§ 14: 4(15 $+ %total.kicks $+ 4)  
+  if (%my.kicks > %their.kicks) { %ec 4[12W4]6ïnnêr 4[12Ï4]6s 14: 4-[5 $me 4(15 $+ %my.kicks $+ / $+ %total.kicks $+ 4) 14~ 4[12V4]6ïÇ†ØrÝ 4[12F4]6ØR 4[12M4]6ê 4]- }  
+  if (%their.kicks > %my.kicks) { %ec 4[12W4]6ïnnêr 4[12Ï4]6s 14: 4-[5 %personkicked 4(15 $+ %their.kicks $+ / $+ %total.kicks $+ 4) 14~ 4[12V4]6ïÇ†ØrÝ 4[12F4]6ØR 4[12Y4]6ØU 4]- } 
+  if (%my.kicks = %their.kicks) { %ec 4[12W4]6ïnnêr 4[12Ï4]6s 14: 4-[5 No Winner 4(15 $+ %my.kicks $+ / $+ %their.kicks $+ 4) 14~ 4[12†4]6iê§ 4]- }  
+  %ec 4[12W4]6äR 4[12H4]6ï§†ØrY 14: 4-[5 %won 12Wïns 5 %lost 12£ös†s 5 %tiez 12†ïês 4]- 
+  %ec 3 »»8 »»4 »»3 »»8 »»4 »»3 »»8 »»4 »»3 »»8 »»4 »»3 »»8 »»4 »»3 »»8 »»4 
+  %ec 5War Result End Made By 15 2¯12¯11¯º¤11,12 §I®KnüM§Kü££ 11¤º¯12¯2¯
+}
+adc.a return { 3 »»8 »»4 »»8A9T8T9E8N9T8I9O8N: 4[12R4]6evenge 4[12A4]6utomatically 4[12D4]6isconnect 4[12F4]6or 4[12P4]6rotection }
+/clearresult {
+  if ($$?!"CLEAR RESULT" == $false) { halt }
+  if (%my.kicks > %their.kicks) { inc %won } | if (%their.kicks > %my.kicks) { inc %lost } | if (%my.kicks == %their.kicks && %their.kicks > 0 && %my.kicks > 0) { inc %tiez }
+  .set %my.kicks 0 | .set %their.kicks 0 | .set %personkicked EMpTy | .set %total.kicks 0
+  if ($active !== Status Window) var %ec = me | else var %ec = echo -a | %ec 7,1*12»»»7* 4..::10(12W3ar 12R3esults 12C3leared10)4::.. 7,1*12«««7*
+}

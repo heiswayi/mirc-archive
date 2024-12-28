@@ -1,0 +1,26 @@
+Berikut ialah singkatan bagi semua akill beserta reason. PASTIKAN akill anda bertepatan
+dengan reason akill di bawah : 
+
+Sekiranya user tersebut mass invite commandnya seperti berikut :-
+	
+	/ams ip.sebenar.user.tersebut
+
+
+/ac  <- akill untuk clones 
+/clones2 ident@host <- untuk scan clones dengan menggunakan ident/ip yang disertakan
+/ams <- akill untuk mass invites
+/afl <- akill untuk flood
+/ahs <- akill untuk harassment
+/asa <- akill untuk abusing services commands
+/ahp <- akill untuk trying to hack passwords 
+/amw <- akill untuk mass advertise
+/afs <- akill untuk "flooding services"
+/aps <- akill untuk ping flooding services
+/ahp2 <- akill untuk cuba hack passwords via email 
+/an <- notice kepada user yang dideny. (AbuseTeam sahaja)
+/ats <- akill untuk trojan sends
+/mw  <- untuk warn password crackers (AbuseTeam sahaja)
+/atssp <- akill untuk lamer di dalam bahasa Spanish 
+/asi <- akill untuk broken identify script flooders (war dengan menggunakan skrip.)
+	
+Jika mempunyai sebarang masalah, sila memo nick MHz di server MyICT..Enjoy my script ;)~

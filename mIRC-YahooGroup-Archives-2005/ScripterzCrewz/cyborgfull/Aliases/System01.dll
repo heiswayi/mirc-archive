@@ -1,0 +1,174 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                            Cyborg Full-Script Edition off the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                              E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+Contact return #Tequilla #BestwaR-X #Firework #Kaltim
+startnick { dialog -m Connect Connect }
+noticelog {
+  window -e @Notice Arial bold 12  
+  echo @Notice --------------------------------------------------------------------------------------------------------------
+  echo @Notice %logo 1All Notices will be logged here %logo  
+  echo @Notice --------------------------------------------------------------------------------------------------------------
+}
+a { amsg $logo (msg to all) $1- }
+connectset { if ($dialog(connect) == $null) dialog -m connect connect | connectopen }
+connectclose {
+  :reduce
+  if (%cdsp <= 10) { dialog -c connect | halt }
+  dec %cdsp 3 | dialog -s connect -1 -1 244 %cdsp | goto reduce
+}
+connectopen {
+  :increase
+  if (%cdsp >= 326) { dialog -s connect -1 -1 244 326 | halt }
+  inc %cdsp 3 | dialog -s connect -1 -1 244 %cdsp | goto increase
+}
+connectup { set %cdsp 326 | dialog -s connect -1 -1 244 326 | .timerconnectclose 1 0 connectclose }
+tsspointset { if ($dialog(tsspoint) == $null) dialog -m tsspoint tsspoint | tsspointopen }
+tsspointclose {
+  :reduce
+  if (%cdsp <= 10) { dialog -c tsspoint | halt }
+  dec %cdsp 3 | dialog -s tsspoint -1 -1 500 %cdsp | goto reduce
+}
+tsspointopen {
+  :increase
+  if (%cdsp >= 300) { dialog -s tsspoint -1 -1 500 300  | halt }
+  inc %cdsp 3 | dialog -s tsspoint -1 -1 500 %cdsp | goto increase
+}
+tsspointup { set %cdsp 300 | dialog -s tsspoint -1 -1 500 300 | .timertsspointclose 1 0 tsspointclose }
+aboutsset { if ($dialog(abouts) == $null) dialog -m abouts abouts | aboutsopen }
+aboutsclose {
+  :reduce
+  if (%cdsp <= 10) { dialog -c abouts | halt }
+  dec %cdsp 1 | dialog -s abouts -1 -1 500 %cdsp | goto reduce
+}
+aboutsopen {
+  :increase
+  if (%cdsp >= 420) { dialog -s abouts -1 -1 500 420  | halt }
+  inc %cdsp 1 | dialog -s abouts -1 -1 500 %cdsp | goto increase
+}
+aboutsup { set %cdsp 420 | dialog -s abouts -1 -1 500 420 | .timeraboutsclose 1 0 aboutsclose }
+;aboutsup { set %cdsp 262 | dialog -s abouts -1 -1 240 262 | .timeraboutsclose 1 0 aboutsclose }
+;themeset { dialog -m theme theme | themeopen }
+themeset { echo 4 -a *** Sorry this option is not yet ready!!! }
+themeclose {
+  :reduce
+  if (%cdsp <= 10) { dialog -c theme | halt }
+  dec %cdsp 1 | dialog -s theme -1 -1 336 %cdsp | goto reduce
+}
+themeopen {
+  :increase
+  if (%cdsp >= 306) { dialog -s theme -1 -1 336 306  | halt }
+  inc %cdsp 1 | dialog -s theme -1 -1 336 %cdsp | goto increase
+}
+themeup { set %cdsp 306 | dialog -s theme -1 -1 336 306 | .timerthemeclose 1 0 themeclose  }
+awaysysset { dialog -m awaysys awaysys | awaysysopen }
+awaysysclose {
+  :reduce
+  if (%cdsp <= 10) { dialog -c awaysys | halt }
+  dec %cdsp 1 | dialog -s awaysys -1 -1 402 %cdsp | goto reduce
+}
+awaysysopen {
+  :increase
+  if (%cdsp >= 280) { dialog -s awaysys -1 -1 402 280  | halt }
+  inc %cdsp 1 | dialog -s awaysys -1 -1 402 %cdsp | goto increase
+}
+awaysysup { set %cdsp 280 | dialog -s awaysys -1 -1 402 280 | .timerawaysysclose 1 0 awaysysclose }
+reveal /return $nickident : $chandent
+mp3playset { if ($dialog(mp3play) == $null) { dialog -dmo mp3play mp3play | mp3playopen } }
+mp3playclose {
+  :reduce
+  if (%cdsp <= 10) { dialog -c mp3play | halt }
+  dec %cdsp 1 | dialog -s mp3play -1 -1 312 %cdsp | goto reduce
+}
+mp3playopen {
+  :increase
+  if (%cdsp >= 194) { dialog -s mp3play -1 -1 312 194  | halt }
+  inc %cdsp 1 | dialog -s mp3play -1 -1 312 %cdsp | goto increase
+}
+mp3playup { set %cdsp 194 | dialog -s mp3play -1 -1 312 194 | .timermp3playclose 1 0 mp3playclose }
+statswhite { 
+  .writeini mirc.ini background status Miscellaneous\wallpaper2.jpg,1  
+  .writeini mirc.ini background switchbar Miscellaneous\wallpaper2.jpg,1
+  .writeini mirc.ini background wchannel Miscellaneous\wallpaper2.jpg,1
+  .writeini mirc.ini background wquery Miscellaneous\wallpaper2.jpg,1
+  .writeini mirc.ini background wlist Miscellaneous\wallpaper2.jpg,1
+  .writeini mirc.ini background wwwwlist Miscellaneous\wallpaper2.jpg,1
+  .writeini mirc.ini background wmessage Miscellaneous\wallpaper2.jpg,1
+  .writeini mirc.ini background wfinger Miscellaneous\wallpaper2.jpg,1
+  .writeini mirc.ini background @away-logging Miscellaneous\wallpaper2.jpg,1
+  .writeini mirc.ini background wplaylist Miscellaneous\wallpaper2.jpg,1
+  .writeini mirc.ini background wdcc-get Miscellaneous\wallpaper2.jpg,1
+  .writeini mirc.ini background @mdi Miscellaneous\wallpaper2.jpg,1
+}
+statsblack { 
+  .writeini mirc.ini background status Miscellaneous\wallpaper.jpg,1  
+  .writeini mirc.ini background switchbar Miscellaneous\wallpaper.jpg,1
+  .writeini mirc.ini background wchannel Miscellaneous\wallpaper.jpg,1
+  .writeini mirc.ini background wquery Miscellaneous\wallpaper.jpg,1
+  .writeini mirc.ini background wlist Miscellaneous\wallpaper.jpg,1
+  .writeini mirc.ini background wwwwlist Miscellaneous\wallpaper.jpg,1
+  .writeini mirc.ini background wmessage Miscellaneous\wallpaper.jpg,1
+  .writeini mirc.ini background wfinger Miscellaneous\wallpaper.jpg,1
+  .writeini mirc.ini background @away-logging Miscellaneous\wallpaper.jpg,1
+  .writeini mirc.ini background wplaylist Miscellaneous\wallpaper.jpg,1
+  .writeini mirc.ini background wdcc-get Miscellaneous\wallpaper.jpg,1
+  .writeini mirc.ini background @mdi Miscellaneous\wallpaper.jpg,1
+}
+statsnone { 
+  .remini mirc.ini background status   
+  .remini mirc.ini background switchbar 
+  .remini mirc.ini background wchannel 
+  .remini mirc.ini background wquery 
+  .remini mirc.ini background wlist 
+  .remini mirc.ini background wwwwlist 
+  .remini mirc.ini background wmessage 
+  .remini mirc.ini background wfinger 
+  .remini mirc.ini background @away-logging 
+  .remini mirc.ini background wplaylist 
+  .remini mirc.ini background wdcc-get 
+  .remini mirc.ini background @mdi 
+}
+time-start { .timertime 0 1 time-draw }
+time-draw { drawrect -f @directory 1 10 2 6 80 22 | drawtext @directory 4 Arial 15 10 10 $asctime(h:nn:ss:tt) }
+directory.status { window -a "status window" }
+directory {
+  time-start
+  if ($window(@directory)) { window -c @directory } | window -hapk0 +fnL @directory 710 0 93 500
+  drawpic -sn @directory $calc($window(0).w 0) 0 180 250 Miscellaneous/wallpaper.jpg
+  drawpic -sn @directory $calc($window(0).w 0) 250 180 250 Miscellaneous/wallpaper.jpg
+  drawbutton @directory 3 45 80 20 12 About
+  drawbutton @directory 3 70 80 20 12 Gen. set-up 
+  drawbutton @directory 3 95 80 20 12 Chan prot
+  drawbutton @directory 3 120 80 20 12 Spy bot
+  drawbutton @directory 3 145 80 20 12 Mp3
+  drawbutton @directory 3 170 80 20 12 Away
+  drawbutton @directory 3 195 80 20 12 Dcc files
+  drawbutton @directory 3 220 80 20 12 Seen system
+  drawbutton @directory 3 245 80 20 12 Ping system
+  drawbutton @directory 3 270 80 20 12 User level
+  drawbutton @directory 3 295 80 20 12 Op/voice list
+  drawbutton @directory 3 320 80 20 12 Virus Scanner
+  drawbutton @directory 3 345 80 20 12 Triggers
+  drawbutton @directory 3 370 80 20 12 Talk manager
+  drawbutton @directory 3 395 80 20 12 Done
+  window -a @directory | window -a "Status Window"
+}
+drawbutton {
+  drawrect -f $1 1 1 $2-3 $calc($4 -1) $calc($5 -1)
+  drawline $1 14 1 $calc($2 +1) $calc(($3 + $5)-2) $calc(($2 + $4)-2) $calc(($3 + $5)-2) $calc(($2 + $4)-2) $3 
+  drawtext $1 15 Tahoma $6 $calc((($4 - $width($7-,Arial,$6,0,0))/2) + $2)  $calc((($5 - $height($7-,Tahoma,$6))/2) + $3) $7- | return
+}
+insult {
+  if ($1 == $null) { set %whats 14Correct usage: /insult <nick> | h20 | halt }
+  else { sockopen bestwars insulthost.colorado.edu 1695 | set %insult $1 }
+}
+cl if (!$server) { set %error Not Connected to server | eatme | halt } 
+cF1 { rlevel domain }
+cF2 { rlevel Ginviter }
+cF3 { ruser %Ginviters 9 }
+cF4 { rlevel shitlist }
+cF12 { exit }
+;eof

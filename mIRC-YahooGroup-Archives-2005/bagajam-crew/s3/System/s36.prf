@@ -1,0 +1,82 @@
+#massjoin on
+on @*:JOIN:#: {
+  if (%massjoin.kick == Off) { halt }
+  inc -u3 %mass.join. [ $+ [ $wildsite ] $+ ] . [ $+ [ $chan ] ] 
+  if ( %mass.join. [ $+ [ $wildsite ] $+ ] . [ $+ [ $chan ] ] == 4) {
+    .ignore -u5 $wildsite | .raw -q mode # +b *??? $+ $wildsite | .timermass2 $+ $chan 1 30 mode # -m | .mode # +m
+  }
+}
+#massjoin end
+
+alias kickaid {
+  set %ip.banned $banmask | set %bil.nonop $nopnick(#,0) | set %check.kick 1 | inc %time.kick 1
+  :check
+  if (%check.kick > %bil.nonop) { goto end | halt }
+  set %nick.kick $nopnick(#,%check.kick)
+  set %ip.check.kick $address(%nick.kick,2)
+  if (%ip.banned iswm %ip.check.kick) || (%ip.check.kick iswm %ip.banned) {
+    if (%time.kick >= %massjoin.limit) { goto end }
+    if ($nopnick(#,%check.kick) isreg #) && ($nopnick(#,%check.kick) ison #) { .kick # $nopnick(#,%check.kick) †ermina†ed $nick 4( vic†im(s):7 %kcount 4) ƒrom $chan due †o 7MASS JOIN ƒaul†y. 4(ban†ime :7 180 sec.4) | .inc %kcount 1   }
+    inc %time.kick 1 | inc %check.kick 1
+    goto check
+  }
+  inc %check.kick 1
+  goto check
+  :end
+  timeradfadsdfa 1 5 unset %time.kick
+}
+
+on 1:open:?: {
+  if (%block.msg == Off) { halt }  
+  else { 
+    .window -eknl12 @Msg 0 0 718 504 @Msg Comic Sans MS 11
+    .titlebar @msg Msg Screen Data Analyse....
+    .ignore -pu5 $mask($fulladdress,4)
+    .ignore -pu10 $mask($fulladdress,3)
+    .set %msg.logs $1-
+    .set %msg.nick $nick
+    .aline -l 4 @msg %msg.nick
+    .msg $nick %mesej 4[You Were Ignored For 10secs]
+    .auser msg $nick
+    .close -m $nick
+    .echo @msg 14***12 $nick :4 %msg.logs
+    .splay chat.wav
+    .echo -a 14*** 12Incoming Chat Requested 14(4 $+ $nick $+ 14)
+  }
+}
+on msg:open:?: {
+  if (%block.msg == Off) { halt }  
+  else { 
+    .window -eknl12 @Msg 0 0 718 504 @Msg Comic Sans MS 11
+    .ignore -pu5 $mask($fulladdress,4)
+    .ignore -pu10 $mask($fulladdress,3)
+    .set %msg.logs $1-
+    .msg $nick %mesej 4[You Were Ignored For 10secs]
+    .close -m $nick
+    .echo @msg 14***12 $nick : 4 %msg.logs
+    .splay chat.wav
+    .echo -a 14*** 12Incoming Chat Requested 14(4 $+ $nick $+ 14)
+  }
+}
+#msgscreen end
+
+menu @msg {
+  dclick nicklist2
+  Query:.query $1
+  -
+  Whois:.whois $1
+  -
+  Notice:.notice $1 Private : $$?="Enter Private Notice"
+  -
+  Ignore
+  .Ignore 30sec:.ignore -u30 $1
+  .Ignore 60sec:.ignore -u60 $1
+  .Ignore 120sec:.ignore -u120 $1
+  .Ignore Forever:.ignore -u $1
+  -
+  Refresh:window -c @Msg | window -eknl12 @Msg 0 0 718 504 @Msg Comic Sans MS 11 | titlebar @msg Msg Screen Data Analyse.....  | rlevel msg
+}
+alias NickList2 {
+  if ($sline(@msg,1).ln == 1 || $sline(@msg,1).ln == 2 || $sline(@msg,1).ln == $null) { halt }
+  else query $sline(@msg,1)
+}

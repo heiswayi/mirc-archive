@@ -1,0 +1,110 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                                    Cyborg Full-Script Edition off the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                         E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+prot.filter.kick {
+  if ($me !isop $1) || ($2 == $null) { return }
+  set -u0 %tempcount $ialchan($2,$1,0)
+  while (%tempcount >= 1) {
+    inc %temp.clonelimit
+    if ($ialchan($2,$1,%tempcount).nick != $me) { %temp.nicks = $addtok(%temp.nicks,$ialchan($2,$1,%tempcount).nick,44) }
+    if (%temp.clonelimit == 4) { kick $1 %temp.nicks $3- | unset %temp.* }
+    dec %tempcount
+  }
+  if (%temp.nicks) { kick $1 %temp.nicks $3- | unset %temp* } 
+  if (!%_mode:chan) { set -u2 %_mode:chan | .timermodelock 1 0 raw -q mode $1 +mR | .timermsg 1 3 msg $1 %_msg | .timermodeunlock 1 30 mode $1 -mR }
+}
+kickall {
+  if ($me isop $1) {
+    var %x = $nick($1,0)
+    while (%x >= 1) {
+      if ($nick($1,%x) != $me) { set %mkicklist $addtok(%mkicklist,$nick($1,%x),44) }
+      inc %mkicklimit 
+      if (%mkicklimit == 4) { raw -q kick $1 %mkicklist All..out! | unset %mkick* }
+      dec %x 
+    }
+    if (%mkicklist != $null) { kick $1 %mkicklist All..out! | unset %mkick* }
+  }
+}
+; /mdeop to deop all users , /massop to op them all !
+deopall {
+  var %chan = $active
+  if ($me isop %chan) { 
+    set %i 1
+    set %Var.Index 1
+    set %Var.Num 5 
+    :start
+    set %Var.User $opnick(%chan,%i)
+    if (%Var.User == $null) { 
+      if ($me isop %chan) { raw -q mode %chan -ooooo %Var.Nick }
+      unset %Var.Nick %i %Var.Index %Var.Num 
+      halt 
+    }
+    if (%Var.User == $me) { inc %i 1 | goto start }
+    if (%Var.User != $me) {
+      set %Var.Nick %Var.User %Var.Nick
+      if (%Var.Index == %Var.Num) { 
+        if ( $me isop %chan ) { raw -q mode %chan -ooooo %Var.Nick }
+        unset %Var.Nick
+        set %Var.Index 1 
+        inc %i 1 
+        goto start
+      }
+      inc %Var.Index 1
+    }  
+    inc %i 1
+    goto start
+  }
+}
+opall {
+  var %chan = $active
+  if ($me isop %chan) {
+    set %i 1
+    set %Var.Index 1
+    set %Var.Num 6 
+    :start
+    set %Var.User $nopnick(%chan,%i)
+    if (%Var.User == $null) { 
+      if ( $me isop %chan ) { .raw -q mode %chan +oooooo %Var.Nick }
+      unset %Var.Nick %i %Var.Index %Var.Num
+      halt 
+    }
+    if (%Var.User == $me) { inc %i 1 | goto start }
+    if (%Var.User != $me) {
+      set %Var.Nick %Var.User %Var.Nick
+      if (%Var.Index == %Var.Num) { 
+        if ( $me isop %chan ) { .raw -q mode %chan +oooooo %Var.Nick }
+        unset %Var.Nick
+        set %Var.Index 1 
+        inc %i 1 
+        goto start
+      }
+      inc %Var.Index 1
+    }  
+    inc %i 1 
+    goto start
+  }
+}
+banall {
+  var %channel.b $1
+  var %i = $nick(%channel.b,0), %vs = "" 
+  while (%i) {
+    var %vs = %vs $nick(%channel.b,%i)
+    if (6 // $numtok(%vs,32)) { raw -q mode %channel.b +bbbbbb %vs | unset %vs }
+    dec %i
+  }
+  if ($numtok(%vs,32) < 6) { raw -q mode %channel.b + [ $+ [ $str(b,$numtok(%vs,32)) ] ] %vs | mode %channel.b -b $me }
+}
+rem_my_ban { 
+  if ($me !isop $1) return
+  var %i = $ibl($1,0) 
+  while (%i > 0) {
+    if ($ibl($1,%i) iswm $address($me,5)) var %iban_list = $addtok(%iban_list,$ibl($1,%i),32)
+    dec %i
+  }
+  mode $1 - [ $+ [ $str(b,$numtok(%iban_list,32)) ] ] %iban_list
+}
+;eof

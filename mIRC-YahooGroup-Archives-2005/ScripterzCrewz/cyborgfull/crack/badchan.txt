@@ -1,0 +1,8 @@
+Please leave the bad channel ( $+ %badchanmatch $+ ) to be in here
+Offensive channel ( $+ %badchanmatch $+ ) Due to pervert/invite
+Pervert/Invite channel ( $+ %badchanmatch $+ ) 
+We do not allow user from ( $+ %badchanmatch $+ ) 
+Please leave the lame channel ( $+ %badchanmatch $+ ) 
+User's from ( $+ %badchanmatch $+ ) is banned here (pervert/invite)
+Banned pervert/invite ( $+ %badchanmatch $+ ) detected
+You won't leave ( $+ %badchanmatch $+ ) so you might as well leave here

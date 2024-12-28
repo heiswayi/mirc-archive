@@ -1,0 +1,46 @@
+#input on
+on 1:input:*:{
+  if ($1- == as) || ($1- == a'kum) || ($1- == salam) { msg $active 8-12¤8- 14Ass15ala0mm14ua15lai0ku14m 8-12¤8- | halt }
+  if ($1- == ws) || ($1- == wasalam) || ($1- == w'kum) || ($1- == w'salam) { msg $active 8-12¤8- 14Waa15la0ik14um15mus0sa14la15m 8-12¤8- | halt }
+  if ($1- == hehe) { msg $active 8-12¤8- 14HeH15eH0eH14eHe15HeH0eH14eH15eHe0He 8-12¤8- | halt }
+  if ($1- == kahkah) { msg $active 8-12¤8- 14Kah 15Kah 0Kah 14Kah 15Kah 0Kah 14Kah 8-12¤8- | halt }
+  if ($1- == hihi) { msg $active 8-12¤8- 14Hih15ih0ih14ih15ihi0hi14hih15ih0ihi14hi15hi 8-12¤8- | halt }
+  if ($1- == hmm) { msg $active 8-12¤8- 14Hum15mm0mm14mmm15mm0mmm14mm15mz 8-12¤8- | halt }
+  if ($1- == laa) { msg $active 8-12¤8- 14Laa15aaa0aaa14aa15aaa0aa14aa15aa 8-12¤8- | halt }
+  if ($1- == brb) { msg $active 8-12¤8- 14Be 15Rig0ht 14Ba15ck 8-12¤8- | halt }
+  if ($1- == bbl) { msg $active 8-12¤8- 14Be 15Bac0k L14at15er 8-12¤8- | halt }
+  if ($1- == fuck) { msg $active 8-12¤8- 14Fu15ck 0You 8-12¤8- | halt }
+  if ($1- == hai) { msg $active 8-12¤8- 14Ha15ii0ii 8-12¤8- | halt }
+  if ($1- == keke) { msg $active 8-12¤8- 14EkE15kEk0EkE14kEk15EkE0kEk14EkE15kEk0EkE 8-12¤8- | halt }
+  if ($1- == kehkeh) { msg $active 8-12¤8- 14Keh 15Keh 0Keh 14Keh 15Keh 0Keh 14Keh 15Keh 8-12¤8- | halt }
+  if ($1- == wb) { msg $active 8-12¤8- 14We15lc0ome 14Ba15ck 8-12¤8- | halt }
+  if ($1- == oic) { msg $active 8-12¤8- 14OOo15o I 0See 8-12¤8- | halt }
+  if ($1- == tq) { msg $active 8-12¤8- 14Th15an0k Y14ou 8-12¤8- | halt }
+  if ($1- == bye) { msg $active 8-12¤8- 14By15e B0ye 8-12¤8- | halt }
+  if ($1- == o) { msg $active 8-12¤8- 14oOO15ooOOoOOOOoOOOOOOoo, 14gitu-12¤8- | halt }
+  if ($1- == ok) { msg $active 8-12¤8- 14Wokiesssssssss!!!!!! 12¤8- | halt }
+  if ($1- == ndes) { msg $active 8-12¤8- 14NdesSsS15ss14sSS15SssS 12¤8- | halt }
+  if ($1- == wow) { msg $active 8-12¤8- 14W15ow 14W15ow 14W15ow 12¤8- | halt }
+  if ($1- == yup) { msg $active 8-12¤8- 14Yu15psS!!! 12¤8- | halt }
+  if ($1- == wok) { msg $active 8-12¤8- 14W15okk 14A15hh 12¤8- | halt }
+  if ($1- == ya) { msg $active 8-12¤8- 14Y15a 14Y15a 14Y15a 14Y15a 12¤8- | halt }
+  if ($1- == kaka) { msg $active 8-12¤8- 14K15aH 14k15aH 14K15aH 14k15aH 14k15aH 14k15aH 14k15aH 12¤8- | halt }
+  if ($1- == lor) { msg $active 8-12¤8- 14LorR15rRR14RR15RRR 12¤8- | halt }
+  if ($1- == isk) { msg $active 8-12¤8-  14|15Sk 14|15Sk 14|15Sk 14|15Sk 14|15Sk 14|15Sk 12¤8- | halt }
+  if ($1- == ngok) { msg $active 8-12¤8- 14N15gok 14Se15nGok 14Ng15oK 14NY15OoO 12¤8- | halt }
+  if ($1- == ya) { msg $active 8-12¤8- 14Y15a 14A15pa 14D15ia 12¤8- | halt }
+  if ($1- == butuk) { msg $active 8-12¤8- 14p15alo 14B15utuk 14D15io 12¤8- | halt }
+  if ($1- == erm) { msg $active 8-12¤8- 14E15RmM14mmm15MMm 12¤8- | halt }
+  if ($1- == ntah) { msg $active 8-12¤8- 14H15tah 14A15pa-14A15pa 14N15tah 14D15io 12¤8- | halt }
+  if ($1- == ayak) { msg $active 8-12¤8- 14Ay15akkKK 12¤8- | halt }
+  if ($1- == muas) { msg $active 8-12¤8-  14M15uahsssss14sssssssssss15sssssssssssSSSS 12¤8- | halt }
+  if ($1- == n) { msg $active 8-12¤8- 14-15En14d- 12¤8- | halt }
+  if ($1- == gtg) { msg $active 8-12¤8- 14G15ot 14T15o 14G15o 12¤8- | halt }
+  if ($1- == np) { msg $active 8-12¤8- 14N15o 14P15roblem 12¤8- | halt }
+  if ($1- == wakaka) { msg $active 8-12¤8- 14W15akakaka14kakak15akakakakakaakak 12¤8- | halt }
+  if ($1- == nm) { msg $active 8-12¤8- 14N15ever 14M15ind 12¤8- | halt }
+  if ($1- == welcome) { msg $active 8-12¤8- 14W15elcomE 12¤8- | halt }
+  if ($1- == jap) { msg $active 8-12¤8- 14S15ekejap 14y15er 12¤8- | halt }
+  if ($1- == uwa) { msg $active 8-12¤8- 14Uwaaaa15aaaaaaaaa14aaaaaa15aaa14aaa15aaa14aaa15a....14..!!~ 12¤8- | halt }
+  if ($1- == haha) { msg $active 8-12¤8- 14HaHa15HaHa14HaHa15HaH14aHaH15aHaH14aHaH15aH14aa..8Cum15..!~. 12¤8- | halt } 
+  if ($1- == huhu ) { msg $active 8-12¤8- 14HuH15uHu14HuHu15HuHuH14uHuHuH15uHuHuHuHuHu14HuHuHuH15uHuH14uHuHu15HuH15uHu 12¤8- | halt }

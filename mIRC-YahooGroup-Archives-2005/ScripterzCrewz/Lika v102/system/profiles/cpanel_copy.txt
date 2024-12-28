@@ -1,0 +1,17 @@
+Addons Manager©system\images\addon.ico©addons©Manage the addons that you have downloaded
+Away Settings©system\images\away.ico©awaysetup©Configure your away settings
+DCC Transfers©system\images\dcc.ico©transfers©View your current DCC Sends and Gets
+FileServers©system\images\fs.ico©fs©Configure All your Fileservers
+Help©system\images\help.ico©help2©Get Help with most of the Features
+Jukebox©system\images\mp3.ico©jukebox©Listen to your favorite mp3's with hype Jukebox
+Log Viewer©system\images\logs.ico©logs©View your Logs
+Main©system\images\main.ico©main©Configure the Main Options
+Notify List©system\images\notify.ico©nlist©Configure your Notify List
+Profiles Manager©system\images\profile.ico©profiles©Manage your user accounts
+Protection©system\images\prot.ico©prot©Configure your Personal and Channel Protections
+Statistics©system\images\stats.ico©stats©View your [webirc] statistics
+Themes Manager©system\images\themes.ico©themes©Change your current theme
+Toolbar Editor©system\images\toolbar.ico©tbe©Configure your Toolbar
+Update Manager©system\images\update.ico©update©Check for Updates
+Userlist Manager©system\images\userlist.ico©userlist©Configure your userlist
+Word Replacer©system\images\word.ico©word©Replace any combination of letters into a word

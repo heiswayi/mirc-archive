@@ -1,0 +1,267 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                          Cyborg Full-Script Edition of the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                              E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+menu nicklist,query {
+  -
+  Fun Menu  II
+  .Jokes I
+  ..Yo Mama(random)
+  ...Yo Mama1:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\yomama2.txt
+  ...Yo Mama2:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\yomama3.txt
+  ...Yo Mama3:/me $c(1) says to $c(2) $$1 $c(1) $READ $mircdirText\yomama.txt 
+  ..PickUps
+  ...Pickups1:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\Pickups.txt
+  ...Pickups1:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\Pickups1.txt
+  ...Pick up Lines:/me $c(1) says to $c(2) $$1 $c(1) Another Pick Up Line: $READ $mircdirText\pick.txt
+  ..Redneck
+  ...Redneck1:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\red.txt
+  ...Redneck2:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\redneck.txt
+  ...Redneck3:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\redneck1.txt
+  ...Redneck Test:/me $c(1) says to $c(2) $$1 $c(1) You might be a redneck if $READ $mircdirText\redneck.txt 
+  ...RedNeck:/me $c(1) says to $c(2) $$1 $c(1) You might be a redneck if $READ $mircdirText\RedNeck.txt  
+  ..Blondes
+  ...Blondes1:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\blondes1.txt
+  ...Blondes2:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\blondes.txt
+  ..Condoms
+  ...Condoms1:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\condoms.txt
+  ...Condoms2:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\condoms.txt
+  ...Condoms3:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirText\Condoms.txt
+  .Jokes II
+  ..Beer better then women:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\beerwom.txt
+  ..Insults:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\insults.txt
+  ..Sex:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\sex.txt
+  ..Songs:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\songs.txt
+  ..Signs:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirtext\signs.txt
+  ..Annoy101:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirText\annoy.txt
+  ..AOL Disks:/me $c(1) says to $c(2) $$1 $c(1) $READ $mircdirText\aol.txt 
+  ..Bad Day:/me $c(1) says to $c(2) $$1 $c(1) Your having a bad day when $READ $mircdirText\badday.txt
+  ..Bad Quotes"":/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirText\badquote.txt
+  ..C0mp Addict:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirText\C0mp_addict.txt 
+  ..Clowns:/me $c(1) says to $c(2) $$1 $c(1) $READ $mircdirText\clowns.txt 
+  ..Elevator:/me $c(1) says to $c(2) $$1 $c(1) $READ $mircdirText\elevator.txt 
+  ..IRC addict:/me $c(1) says to $c(2) $$1 $c(1) signs your an IRC addict: $READ $mircdirText\addict.txt 
+  ..Offer beer:/me offers $$?2="Give Beer to who?" $1 $c(2) $READ $mircdirText\beer.txt
+  ..Questions:/me $c(1) asks $c(2) $$1 $c(1) $READ $mircdirText\things.txt 
+  ..Sex:/me $c(1) says to $c(2) $$1 $c(1) $READ $mircdirText\sex.txt 
+  ..Sing a song:/me $c(1) sings to $c(2) $$1 $c(1) $READ $mircdirText\sing.txt 
+  ..Stress:/me $c(1) says to $c(2) $$1 $c(1) $read $mircdirText\stress.txt 
+  ..Topinsults:/me $c(1) says to $c(2) $$1 $c(1) One of the many top insults: $read $mircdirText\insult.txt
+  ..Thoughts:/me $c(1) says to $c(2) $$1 $c(1) $READ $mircdirText\thoughts.txt 
+  ..Viruses:/me $c(1) says to $c(2) $$1 $c(1) $READ $mircdirText\virus.txt 
+  .Funny Stuff I 
+  ..Faces
+  ...Smile:/say 5∂1,8:)
+  ...Sad:/say 5∂1,8:(
+  ...Tongue:/say 5∂1,8:ﬁ
+  ...Dont Know:/say 5∂1,8:|
+  ...Questionative:/say 5∂1,8:/
+  ...Tear:/say 5∂1,8:~( 
+  ..Various
+  ...Push of building: { 
+    me 0***4Hehehe - $me 
+    me 0**************7@0*******4Aaargh! - $$1 
+    me 0****1_0********3()-0****6|7@6/ 
+    me 0****1|0********12||0*****6() 
+    me 14,14*****************0,0**12/|
+    me 14,14***11,11***14,14*****11,11***14,14***2        
+    me 14,14***11,11***14,14*****11,11***14,14***2                              
+    me 14,14*****************2                            
+    me 14,14***11,11***14,14*****11,11***14,14***  
+    me 14,14***11,11***14,14*****11,11***14,14***
+    me 14,14***************** 
+    me 14,14**1,1**14,14*************5,7_____________________________
+    me 14,14**1,1**14,14*************7,7*****************************
+  }
+  ...See you later:me 29gives everybody a 4big 29hug and says: see you 4all 29later...
+  ...Official notice:say 8,1A1,8L8,1E1,8R8,1T4,12 $$1 8 OFFICIAL IRC 4 $$1   8,1A1,8L8,1E1,8R8,1T | say 0,12 Please stay inside and bolt your doors! | say 0,12 Hide your children, and spay your pets! | say  8,1A1,8L8,1E1,8R8,1T0,12 MAYBE4 $$1 0won't see you!!  8,1A1,8L8,1E1,8R8,1T8,12
+  ...RedAlert:say  0,4R4,0E0,4D4,0 0,4A4,0L0,4E4,0R0,4T4,00,4 $$* IS NOW IN THE ROOM 4,00,4R4,0E0,4D4,0 0,4A4,0L0,4E4,0R0,4T
+  ...Caution: say 8,1C1,8a8,1U1,8t8,1I1,8o8,1N16,4 $$* 8,1C1,8a8,1U1,8t8,1I1,8o8,1N
+  ..Welcome1
+  ...Howdy:/me  6H4o12W7DY 4aLL......6H4o12W 4i7S 4eV4e13RY4o6N4e 12ø15?12ø15?
+  ...@:/me 0,41,14© 8© 9© 11© 12© 13© 8©,0,4 $$1 !!!! 1,1 4© 8© 9© 11© 12© 13©0: 
+  ...Colors:say 12,0(Ø`'∑.∏(Ø`'∑.∏ ______________ ∏.∑'¥Ø)∏.∑'¥Ø) | say 13,0(Ø`'∑.∏(Ø`'∑.∏ 1,0ü2,0ü3,0ü4,0ü5,0ü6,0ü7,0ü8,0ü9,0ü10,0ü11,0ü12,0ü13,0ü14,0ü13,
+  ...!:/me  !°!°!°!°!°!°!°!°!° $$1 !°!°!°!°!°!°!°!°!°
+  ...?:/me ?ø?ø?ø?ø?ø?ø?ø  $$1 ?ø?ø?ø?ø?ø?ø?ø?ø?ø
+  ...S:/me ßßßßßßßßß $$1 ßßßßßßßßßß
+  ...w3:/me 6(((4©©©©12(((13©©©6(((11§12 $$1 11§6)))13©©©12)))4©©©©6)))
+  ...fw:/me WELCOMES the channel's fw $$1..... welcome u fw ... ;)
+  ...color:/me 0,1ê1,1ê2,1ê3,1ê4,1ê5,1ê6,1ê7,1ê8,1ê9,1ê10,1ê8,1*** $$1 ***10,1ê9,1ê8,1ê7,1ê6,1ê5,1ê4,1ê3,1ê2,1ê1,1ê0,1ê
+  ...welcome1:/me ©€©€©€©€©€©€ $$1 ©€©€©€©€©€©€©
+  ...back:/me  ~*Ê~*Ê~*Ê~*Ê~*Ê WeLCoMe BaCK ~*Ê~*Ê~*Ê~*Ê~*Ê~*Ê~*Ê~*Ê~*Ê $$1 Ê*~Ê*~Ê  *~Ê*~Ê*~Ê*~Ê*~Ê*~ $$1 ~*Ê~*Ê~*Ê~*Ê~*Ê~*~*Ê~*Ê~* Ê $$1 Ê*~Ê*~Ê*~Ê*~Ê*~Ê*~Ê*~Ê* Ê~*Ê~*Ê~*Ê~*Ê~*Ê~*Ê ~*Ê~*Ê $$1 Ê*~Ê*~Ê*~Ê*~Ê*~Ê*~Ê*~Ê*~
+  ...hi:/me  4,4_124©4,4_ 13 $$1 4,4_124©4,4_ 13 $$1 4,4_124©4,4_4,4_124©4,4_ 13 $$1 4,4_124©4,4_
+  ...lol:/me  4 ¯(ÙøÙ)¯ 9 LOL 5 ¯(Ùø~)¯ 10 LOL 6 ¯(~ø~)¯ 11 LOL 7 ¯(~øÙ)¯ 12 LOL 8 ¯(ÙøÙ)¯
+  ..Welcome2
+  ...cat:/me {=^:^=}{=^:^=} $$1 {=^:^=}{=^:^=}
+  ...back2:/me  3 ~*Ê~*Ê~*Ê~*Ê~*Ê12 12W4eL6C4o4M4e 3B4a6C3K7 ~*Ê~*Ê~*Ê~*Ê~*Ê5~*Ê~*Ê~*Ê~*ÊÊ*~Ê*~Ê 14 *~Ê*~Ê*~Ê*~Ê*~Ê*~12 $$1 ~*Ê~*Ê~*Ê~*Ê~*Ê~*~*Ê3~*Ê~* ÊÊ*~Ê*~Ê*~Ê13*~Ê*~Ê*~Ê*~Ê* Ê~*Ê~*Ê~*Ê~*Ê4~*Ê~*Ê~*Ê~*ÊÊ*~Ê*~Ê*~Ê*~Ê*~Ê*~Ê*~Ê*~
+  ...2:/me  ∏,¯§∞`∞§¯,∏∏,¯§∞` $$1 `∞§¯,∏∏,¯§∞`∞§¯,∏
+  ...3:/me says 0(1(2(3(4(5(6(7(8(9(10(11(12(13(14(15( HELLO to $$1 15)14)13)12)10)9)8)7)6)5)4)3)2)1)0)
+  ...4:/me  0,4 ©©©© 1,4 0,4 $$1 !!!0,4 ©©©© 
+  ...5:/me  4,0 ©©©©  4 $$1 !!! 4,0 ©©©© 
+  ...6:/me 12,1{{8C4©8C12{{8C4©8C12{{8C4©8C12{{8C4©8C12{{ 4 $$1 12  }}8C4©8C12}}8C4©8C12}}8C4©8C12}}8C4©8C12}}-
+  ...7:/me 10 ªª---4(Ø`∞¥Ø)10---ªª6 $$1 10ªª--- 104(Ø`∞¥Ø)10---ªª
+  ...8:/me  1,1..2,2..3,3..4,4..5,5..6,6..7,7..8,8..9,9..10,10..11,11..12,12..13,13..14,14..15,15..8,1 ((: $$1 :)) 15,15..14,14..13,13..12,12..11,11..10,10..9,9..8,8..7,7..6,6..5,5..4,4..3,3..2,2..1,1..<$$1> 
+  ...9:/me  4  (Ø`'∑.∏(Ø`'∑. (Ø`'∑.∏ ^_^_^_^ ∏.∑'¥Ø)∏.∑'¥Ø)∏.∑'¥Ø) 12  <><><><><<<<<<<<<<<<<== $$1 ==>>>>>>>>>>>>><><><><> 4  (_∏.∑'¥(_∏.∑'¥(_∏.∑'¥ _^_^_^_ `'∑.∏_)`'∑.∏_)`'∑.∏_)
+  ...10:/me  3´∫4Ù3∫ª´∫8Ù3∫ª´∫13Ù3∫ª´∫12Ù3∫ª 6 $$1 3 ´∫4Ù3∫ª´∫8Ù3∫ª´∫13Ù3∫ª´∫12Ù3∫ª
+  ...11:/me  2©14€3©14€5©14€6©14€7©14€10©14€5 $$1 2©14€3©14€5©14€6©14€7©14€15©14€6©
+  ...12:/me   9,1 .,*'^'~*-,._.,-*~> 1,9 $$1 9,1 <~*-,._.,-*~'^'~*,.
+  ...bye:/me  3 ~*Ê~*Ê~*Ê~*Ê~*Ê 12G4O3O6D 4B14Y4E 7~*Ê~*Ê~*Ê~*Ê~*Ê5~*Ê~*Ê~*Ê~*ÊÊ*~Ê*~Ê 14 *~Ê*~Ê*~Ê*~Ê*~Ê*~12 $$1 ~*Ê~*Ê~*Ê~*Ê~*Ê~*~*Ê3~*Ê~* ÊÊ*~Ê*~Ê*~Ê13*~Ê*~Ê*~Ê*~Ê* Ê~*Ê~*Ê~*Ê~*Ê4~*Ê~*Ê ~*Ê~*ÊÊ*~Ê*~Ê*~Ê*~Ê*~Ê*~Ê*~Ê*~
+  ...13:/me ˆœˆœˆœˆœˆœ '' $$1 '' œˆœˆœˆœˆœˆ.
+  ...14:/me 2∏.∑¥||`∑.∏3∏.∑¥||`∑.∏12 $$1 4∏.∑¥||`∑.∏5∏.∑¥||`∑.∏
+  ..Welcome3
+  ...world:/me  1,8 1,4 1,8 1,7 1,8 1,9†1,8 1,10 1,8† $$1, You Brighten Up My World!! † 1,10†1,8 1,9†1,8 1,7 1,8 1,4 1,8 
+  ...msg:/me 1,1H2,2a3,3v4,4e5,5 6,6a7,7 8,8G9,9r10,10e11,11a12,12t13,13 14,14D15,15a8,8y8,4 $$1 8,8!15,15 14,14 13,13 12,12 11,11 10,10 9,9 8,8 7,7 6,6 5,5 4,4 3,3 2,2 1,1   hidden msg :))
+  ...hi:/me  12,3(((8,4(((2,13((( 12,3(((8,4(((2,13((( 12,3(((8,4(((2,13(((5,8 HI $$1 2,13)))8,4)))12,3))) 2,13)))8,4)))12,3))))))8,4)))12,3)))
+  ...hi2:/me 1,1.12,12.11,11.0,0.11,11.12,12.1,1...7,7.8,8.0,0.8,8.7,7.1,1...4,4.13,13.0,0.13,13.4,4.1,1...3,3.9,9.0,0.9,9.3,3.2,2.13,1 Hello $$1 2,2.3,3.9,9.0,0.9,9.3,3.1,1...4,4.13,13.0,0.13,13.4,4.11,1...7,7.8,8.0,0.8,8.7,7.1,1...12,12.11,11.0,0.11,11.12,12.1,1.
+  ...hi3:/me 0,40©4,04©0,40©4,04©0,40©4,04©0,40© 0,4 $$1 0,40©4,04©0,40©4,04©0,40©4,04©0,40©0,4
+  ...hi4:/me  8,2 H 9,3 E 0,4 L 11,10 L 13,6 O 2,0 *3*4*10*6*22,0 $$1 6*10*4*3*2* 13,6 H 11,10 E 0,4 L 9,3 L 8,2 O
+  ...post:/me 6slaps a 14Post-it-Note 14ô 6on $$1's chair. "This seat is taken!" 1,0 HOWEVER 7,0... it does seem as if $$1's chair is filling with paper
+  ...WBjump:/me 0,152jumps up 4and says 6to13 " $$1 " 2WB 4WB 6WB 12WB 13WB 2!!!!!!! 
+  ...bye:/me  ..Angel:say  13,1^9,1≈13,1^ 12,1x13,1 ^9,1≈13,1^ 12,1§13,1 ^9,1≈13,1^{{12,1 $$1 13,1}}^9,1≈13,1^ 12,1§13,1 ^9,1≈13,1^12,1 x13,1 ^9,1≈13,1^
+  ...New Hi:me  $+ $r(2,13) is glad to see *1 !  $+ $r(2,13) (((( *1 )))....  $+ $r(2,13) HI *1 Where ya been *1 ?  $+ $r(2,13) ...Nice to see you *1 !  $+ $r(2,13) Hope you'll stick around,  $+ $r(2,13) *1 *1 *1 *1
+  ...more:me 8,12 (Ø`'∑.∏(Ø`'∑.∏ $$1∏.∑'¥Ø)∏.∑'¥Ø) 13,12 (Ø`'∑.∏(Ø`'∑.∏  $$1 ∏.∑'¥Ø)∏.∑'¥Ø) 9,12 (_∏.∑'¥(_∏.∑'¥ $$1`'∑.∏_)`'∑.∏_) 4,12 (_∏.∑'¥(_∏.∑'¥ $$1`'∑.∏_)`'∑.∏_)
+  ...Greet3:me 9,1  ©∫∞®®∞∫©©∫∞®®∞∫©[  13,1 $$1  9,1 ]©∫∞®®∞∫©©∫∞®®∞∫©
+  ...Greet4:me 12 !4*12!4*12!4*12!4*12!4*12!4*12!9 $$1 12 !4*12!4*12!4*12!4*12!4*12!4*12!4*12!
+  ...—Èw—ÂmÈß:me  4,12 ""∞∫©o.,.o©∫∞®∞∫©. 12,4 $$1 4,12 ∞∫©o.,.o©∫∞®∞∫©""
+  ...wavy:me 11,1 ®®∞∫13,1©11,1o.,,.o13,1©11,1∫∞®®∞∫13,1©11,1 13,1 $$1 11,1 13,1©11,1∫∞®®∞∫13,1©11,1o.,,.o13,1©11,1∫∞®®
+  ..Actions
+  ...ToysRUsKid!:me $c(1) says $c(2) $$1 $c(1) is a Toys R Us kid!!! Don't wanna to grow up!
+  ...Fishies:me Tosses $$1 in the river12∏.∑¥Ø`∑.∏∏.∑¥Ø`9><((((∫>12∏.∑¥Ø`∑.∏9><((((∫>4 FISH BAIT9<∫))))><12.∑¥Ø`∑.∏∏.∑¥Ø`∑.∏∏.∑¥Ø`∑.∏∏.∑¥Ø`∑.∏.∑¥Ø`∑.∏9><((((∫>4HERE FISHIES9<∫))))><12.∑¥Ø`∑.∏∏.∑¥Ø`∑.∏∏.∑¥Ø`∑.∏.∑¥Ø`∑..∑¥Ø`∑.∏∏.∑¥Ø`∑.∏9><((((∫>4FISHIE BAIT9<∫))))><
+  ...FishBait:me  tosses $$1 in the river9,12 ∏.∑¥Ø`∑.∏.∑¥Ø`∑.∏∏.∑¥Ø`∑.∏ 12,9><((((∫>  4,12FISH BAIT 12,9<∫))))>< 9,12.∑¥Ø`∑.∏ ∏.∑¥Ø`∑.∏.∑¥Ø`∑.∏∏.∑¥Ø`∑.∏12,9 ><((((∫>  4,12HERE FISHES 12,9<∫))))>< 9,12.∑¥Ø`∑.∏ ∏.∑¥Ø`∑.∏.∑¥Ø`∑.∏∏.∑¥Ø`∑.∏ 12,9><((((∫> $c(2)2 fishie bait  12,9<∫))))><
+  ...pie:me throws 11,12 ----=======|} |} |} |}  ----=======|} |} |}13,12 Pie In Everyone's Faces!!!! 11,12----=======|} |} |} |}  ----=======|} |} |} |}
+  ...mice:me Screams WatCh Out!!! Mousey Attack!!!!!!! 9 <:3 )~~~~ 12 <:3 )~~~~ 8 <:3 )~~~~ 13 <:3 )~~~~ 11 <:3 )~~~~
+  ...micegreet:me  8,12 <:3 )~~~~  13,12 <:3 )~~~~ 9,12 <:3 )~~~~  4,12 $$1  11,12 <:3 )~~~~  9,12 <:3 )~~~~  13,12 <:3 )~~~~
+  ...Mad:me says well $$1 you know that every minute you are angry you waste 60 Happy Seconds :)
+  ...Brat!:me 11,12I am not a brat!13,12 am not... am not... am not 11,12ﬁ !
+  ...Rats:say  12"Rats! Rats! Rats"! 9,12(Translation for the reading impaired):  13,9~~(∏∏ ∏∏∫∫>  12,9~~(∏∏ ∏∏∫∫>  13,9~~(∏∏ ∏∏∫∫>
+  ...BIGConfetti:me  `*~`~`;;.~`;.*`;. `~`~`*~`;.~`;.*`;`~; ~`*~~`;.~`;.*`;.`~; ;.~`;.*`;. `~`~`*~`;.~`;.*`;.~;*`;.`~; ~`*~`~`;.~`;.*`;.`~; ;.~`;.*`;. `~`~`*~`;.~`;.*`;.~;*`;.`~; ~`*~`~` .~`;. *`;.`~; ;.~  $$1  `;.;.`~`~`*~`;.~ `;.*`;.~;*`;.`~; ~ `*,`~`;.~`;.*`;.`~; ;.~`;.*`;. `~`~,`*~`;.~`;.*`;.~;*`;.`~; ~`*~`~`;.~`;.*`;.`~; ;.~`;.*`;. `~`~`*~`;.~`;.*`;.~;*`;.`~; ~`*~`~`;.~`;.*`;.~;*`;.`~; ~`*~` Now get the broom and sweep it up!
+  ...Balloons:me throws 13,9CONFETTI & BALLOONS0,12 in the air for,13,12 $$1  `;~'O~~~*`;.'O~~~~*`;.'`~;`~`O~~~~*`;.'O~~~~*`;.'`~;`~`O~~~*`; .'O~~~~*`;.'`~;`~`O~~~~*`;.'O~~~~*`;.'`~;`~`O~~~*`;.'O~~~~*`;.' `~;`~`O~~~~*`;.'O~~~*`;.'`~;`~`O~~~~*`;.'O~~~~*`;.'`~;`~`O~~~~*`;.'O~~~~*`;.'`~;`~`O~~~~*`;.'`~O~~~~*`;.'`~;`~`O~~~~*`;.'`~O~~ ~~*`;.'`~;`~`O~~~~*`;.'`O~~~~*  13,9Now sweep it up!~!~!
+  ...Scream !:me 12,9Screams  $$1 $+ !!!!!!!!!!!!!13,9 ARGH!!!!!!!!!!!!!!!!!!!!!! 
+  ...Pßß:me touches $1 on the arm as a loud "PSSSSSSSssssss" is heard... Let's go cause some Trouble!!!!!!!!!!!!!!!!
+  ...She W‰ÓTS:me hears the Jeopardy theme in the background as she waits for $1 to respond...
+  ...He W‰ÓTS:me hears the Jeopardy theme in the background as he waits for $1 to respond...
+  ...innocent:me stares at the ceiling and whistles innocently....
+  ...BadDog:me slaps $$1 with a rolled up newspaper...bad Dog!!!!!
+  ...Fish:me Pushes $1 Into A Pool Of Piranas... 9 <')))))>< 12SPLaSH!!!!!!! 9 <')))))><
+  ...disease:me 12,1 injects $1 with a syrange filled with  MaD CoW DiSeAsE... 13,1 |==[)XXXX>--- 12,1<Moooooooo> 13,1 |==[)XXXX>---
+  ...hammer:me hits $1 over the head with a Big hammer 12 ====[]  4 Bang!!! 12 ====[]
+  ...mouse:me chases  a Mouse!!!!!! 9 <:3 )~~~~   12 Yummy!!!   9 <:3 )~~~~  
+  ...Wedgi:me looks at $1... | .timer 1 3 me decides that $1 just doesn't look right.... | .timer 1 7 me grabs $1 $+ 's pants and pulls them WAAAAY up and wraps them around his head... much better! 
+  ...GÆÓÒ:me grins at $$1 wickedly!
+  ..Nice
+  ...Kiss(Sexy):/me gives $1 a great big SuperTightAndReallySuperEroticGropingFondlingEarthShatteringSonicBoomOhGawdIfYouStopI'llKillYouABetterThanHeavenYetHotterThanHellWatchWhereYaStickYerHandsSuperHugeOhGawdOhGawdOhGawdDon'tYaDareStopTouchingMeHuggerooniesAndAKneesAreShakingEarthIsTremblingMyHeartHasStopBeatingMyKneesAreShakingLotsAGoosebumpsWasThatTheGroundMovingPassionateWetDeepLingering KISS.
+  ...Kiss(Sexier):/me lays $$1 on the ground, crawls on top of her and gives her a slow... long... deep... penetrating... sensual... tonsil tickling... orgasmic... hair straightening... toe curling... organ raising... nipple hardening... spine tingling... life-altering... fantasy causing... did i just see 12GOD??? I think my clothes are falling off! Why, aren't we in bed?? Kind of kiss.
+  ...Hug:/me hugs 3(6(9(13(15(12(3(6(10(11(3(2(5(3(12(4(13 $$1 7)11)8)7)10)5)11)12)9)13)15)13)7)9)10)3)8) 
+  ...Hugs:/me Hugs $$1 *Hug*
+  ...Hi5:/me slaps $$1 a Hi 5 
+  ...Wave:/me waves across # to $$1.
+  ...Joint:/me passes $$1 a nice Fat Joint </ / / / / / / / / / / / / / / / / /4#14~~~~~ ~~~~ ~~ ~~ ~
+  ...Bowl:/me packs a bowl and sends it across # to $$1 \    /====~~~ ~~
+  ...Beer:/me Gets up and gets a beer for $$1 and everyone in # 
+  ..Mean
+  ...Cussing
+  ....Insults
+  .....Ball:/say 4Ok gang sing along | /timer1 1 2 /say 4who can take $1 tie them in a ball dribble them around town till their balls go flat | /timer2 1 5 /say 4louder come on Till their head falls off till $1 head falls apart. | /timer3 1 8 /say 4ok now everybody 12 lets grab $1 by his balls and drag him down town till his eyes flow red till his eyes flow red  | /timer4 1 12 /say 12Gee wiz gang wasn't that fun :)
+  .....Icepick:/say 4Who can take $1 's mommy stick ice picks in her ears | /timer1 1 3 /say 4Ride her like a harley while he does her from the rear | /timer2 1 5 /say 4 $me  can do it right now 12 so do not fuck with me.
+  .....Annoying:/me thinks $$1 is an annoying piece of shit
+  .....Fuck Yourself:/me tells $$1 "Go Fuck Yourself |amer!!"
+  ....Actions
+  .....Tampon:/action takes $1 's moms bloody tampon and shoves it down $1 throat | /timer1 1 3 /say 4 good god look at $1 , what a fucken sicko.
+  .....Joke:/say 4Me play joke me go pee pee in $1 's throat. | /timer1 1 3 /action  is sad, $1 did not like my joke :)
+  .....Hole:/say 4Who can take $1 and throw them on a bed flip $1 upside down and fuck the soft spot in $1 's head? $me can 12 so do not fuck with me.
+  .....Belt:/me Gets out his belt and starts whacking $$1 across their naked ass.
+  .....Axe:/me gets out his axe and hacks away at $$1 's neck until his head falls off | /say 4Eeeewww, what a fuckin mess!
+  .....Honey:/me Smears honey all over $$1's 1-inch Dick and brings in hungry bears.  <<<<<<ARGH>>>>>>
+  .....Schlong:/me whips out his 2 Foot Schlong and presses it against $$1 $+ 's forehead 
+  .....Shotgun:/me Takes out his Shotgun.......and Blows $1's Fuckin Head Off!
+  .....Nut Kick:/me Puts on his Doc Martens and kicks $$1 in the balls!!
+  .....OJ:/me puts on his Ski mask and stalks $$1 for a while. One day $me sees $$1 walking with someone he doesn't like. $me becomes insanely jealous and slices $$1 's throat. When the IRCops ask who did it, $me blamed it on OJ Simpson!!
+  .....Hacksaw:/me pulls out his Hack Saw and cuts up $$1 into little pieces and feeds them to his dog.
+  .....Chainsaw:/me pulls out his chainsaw and Hacks $$1 apart from limb to limb.
+  ....Trouts
+  .....Ass Trout:/me sticks a large trout up $$1's ass!
+  .....Fish Stick Ass Trout:/me slaps $$1 around with a hairy, slimey, smelly, and contaminated trout, then sticks it up $$1's ass untill he spits Fish Sticks!
+  ....Webster Online Dictionary
+  .....Homosexual:/say [Webster Online Dictionary : Port 2251] | /say [Definition of "homosexual"] | /say   1. Ho-mo-sex-u-al (adjective) | /say      : Oriented towards one's own sex | /say   2. Ho-mo-sex-u-al (noun) | /say      : $1
+  .....Masturbate:/say [Webster Online Dictionary : port 2251] | /say [Definition of "masturbate"] | /say   1. Mas-tur-ba-tion (noun) | /say      : Stimulation of sex organs by hand | /say   2. Mas-tur-ba-tor (noun) | /say      : $1
+  .....Anal Sex:/say [Webster Online Dictionary : port 2251] | /say [Definition of "anal sex"] | /say   1. An-al Sex (noun) | /say      : Copulation involving the anus | /say      : How $1 was concieved
+  .....Oral Sex:/say [Webster Online Dictionary : port 2251] | /say [Definition of "oral sex"] | /say   1. Or-al Sex (noun) | /say      : Copulation involving the mouth | /say      : $$1's favorite sport at family picnics
+  .....AssHole:/say [ììN.R.Cìì Online Dictionary : Port 2251] | /say [Definition of "asshole"] | /say   1. Ass-hole (noun) | /say      : A sphincter used for excreeting waste | /say      : $$1 on a good day
+  .....Incest:/say [Webster Online Dictionary : Port 2251] | /say [Definition of "incest"] | /say   1. In-cest (noun) | /say      : One who is molested by one's own father | /say      : $$1's family tradition 
+  .....Lamer:/say [Webster Online Dictionary : Port 2251] | /say [Definition of "lamer"] | /say   1. Lam-er (noun) | /say      : A person who is lame | /say       : $$1
+  .....Newbie:/say [Webster Online Dictionary : Port 2251] | /say [Definition of "newbie"] | /say 1. New-bie (noun) | /say      : A person who is new. | /say      : 2. a person who pretends NOT to be new by being a moron | /say       : 3. see lamer for more details. | /say example of a Newbie: $$1
+  ...Non-Cussing
+  ....Insults
+  .....Ignorant:/me wonders how much more ignorant $$1 can get...
+  .....Blonde:/me can tell $$1 is a Blonde by the way they type...
+  .....PC:/me looks at $$1. Whatta lamer. Did your mommy get you a computer for your birthday?!
+  .....MrRogers:/me sings.... It's a beautiful day in the neighborhood a beautiful day to be neighbors, would you be mine, could you be mine. | /say Hello everyone, todays special word is 'lamer', can you say l-a-m-e-r? " $+ $1 $+ " good.... I am so proud of you... "won't you be, my lamer...."
+  .....Cousins:/say hey $$1 , if your parents got divorced, would they still be cousins?
+  ....Actions
+  .....Condom: /me slaps $1 with a used condom!! | /.timer1 1 3 /say eewwwwwwwwwwwwww it's not mine!!!
+  .....Kill:/say 4,4<<<<◊ø◊>>>>Shouldn't have Done that...Now I have to kiLL you....<<<<◊ø◊>>>> | /say 4 DO NOT HiGhLiGhT ThiS!!!!!!!!
+  .....Car:/me gets in his car and rams repeatedly into $$1 as his guts splatter all over the brick wall behind him.  
+  .....9 Iron:/me feels like golfing with $$1's head. $me pulls out his 9 Iron and bashes $$1's head!!
+  ....Trouts
+  .....Trout:/me slaps $$1 around a bit with a large trout
+  .....Back Trout:/me slaps a large trout around a bit with $$1
+  .....Rotten:/me slaps $1 around with a rotten trout! | /say rotten fish guts for everyone!!!! =ﬁ
+  .....Yuck:/me slaps $$1 around with a hairy, slimey, smelly, and contaminated trout! 
+  ..Bartender
+  ...Cold Drink
+  ....Single:/me hands $snicks a nice cold $?="Cold drink"
+  ....Room:/me hands a nice cold $?="cold drink" to everyone in $chan
+  ...HotDrink
+  ....Single:/me hands $snicks a nice hot $?="hot drink"
+  ....Room:/me hands a nice cold $?="hot drink" to everyone in $chan
+  ...Budweiser
+  ....Single:/me pours a nice, cold  0,14ï0,4-8,4BuD0,4-0,14ï 12 into a glass, and slides the 12~~~~5,8 [ll]12,0D12 to12 $snicks 
+  ....Room:/me hands a nice cold Budweiser to everyone in $chan
+  ...Miller
+  ....Single:/me hands $snicks a nice cold  0,14ï0,7-16,5Millers0,7-0,14ï 12 into a glass, and slides the 12~~~~5,8 [ll]1,0D12 to12 $snicks
+  ....Room:/me hands a nice cold Miller Genuine Draft to everyone in $chan
+  ...Coors
+  ....Single:/me hands $snicks a nice cold   0,14ï0,1-16,15coors0,1-0,14ï 12 into a glass, and slides the 12~~~~5,8 [ll]1,0D12 to12 $snicks
+  ....Room:/me hands a nice cold Coors to everyone in $chan
+  ...Fosters
+  ....single:/me hands $snicks a ice cold 4,2 Fosters 
+  ...Labatt
+  ....Single:/me hands $snicks a nice cold Labatt ICE...
+  ....Room:/me hands a nice cold Labatt ICE to everyone in $chan
+  ...Whiskey
+  ....Single:/me pours $snicks a big Bottle of Jack Daniels... mmmm...
+  ....Room:/me hands a Myers Rum with OJ & fresh Lime to everyone in $chan
+  ...Merlot
+  ....Single:/me hands $snicks a nice glass of Merlot
+  ....Multiple:/me hands $snicks a nice glass of Merlot
+  ....Room:/me hands a nice glass of Merlot to everyone in $chan
+  ...Coffee
+  ....Single:/me hands a fresh cup of coffee to $snicks : [__]D [__]D [__]D 
+  ....room:/me hands a fresh cup of coffee to everybody : [__]D [__]D [__]D  in $chan 
+  ..Fake
+  ...Ops:/me 3sets mode: +o $$1
+  ...Deop:/me 3sets mode: -o $$1
+  ...Voice:/me 3sets mode: +v $$1
+  ...Devoice:/me 3sets mode: -v $$1
+  ...Ban:/me 3sets mode: +b $$1 $+ !*@*!*
+  ...Kick:/me 3You were kicked by $me (Mass Kick) | /me 2*** Attempting to rejoin channel... | /me 3*** Rejoined channel #
+  ...Special Modes
+  ....War Modes
+  .....Mode +burn:/me 3sets mode: +burn $$1
+  .....Mode +die:/me 3sets mode: +die $$1
+  .....Mode -brain:/me 3sets mode: -brain $$1
+  .....Mode +punch:/me 3sets mode: +punch-to-the-face $$1
+  .....Mode +kickBalls:/me 3sets mode: +kick-to-the-balls $$1
+  .....Mode +ArseLicker:/me 3sets mode: +Great-Big-ArseLicker $$1
+  ....Love Modes
+  .....Mode -clothes:/me 3sets mode: -clothes $$1
+  .....Mode +love:/me 3sets mode: +love $$1
+  .....Mode +my-heart:/me 3sets mode: +my-heart $$1
+  .....Mode +kiss:/me 3sets mode: +kiss $$1
+  .....Mode +sexy:/me 3sets mode: +sexy $$1
+  .....Mode +deeplove:/me 3sets mode: +deeply-in-love-with- $+ $me  $$1
+  .....Mode +hugs:/me 3sets mode: +BiggestHugInTheWorld For $$1
+}

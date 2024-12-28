@@ -1,0 +1,204 @@
+#scan off
+raw 352:*: {
+  if (* isin $7) { inc -u30 %ircop 1 | writeini chanscan.ini Ircop $6 ( $+ $3 $+ @ $+ $4 $+ ) in $2 }
+  if (G isin $7) { inc -u30 %away 1 | writeini chanscan.ini Away $6 ( $+ $3 $+ @ $+ $4 $+ ) in $2 }
+  halt
+}
+raw 367:*: {
+  inc -u30 %banlist 1
+  writeini chanscan.ini BanList $3 $4 ( $+ $asctime($5) $+ ) in $2 
+  halt
+}
+raw 315:*: {
+  mode $2 +b
+  halt
+}
+raw 368:*:{
+  if %ircop == $null { set -u30 %ircop None }
+  if %away == $null { set -u30 %away None }
+  if %banlist == $null { set -u30 %banlist Empty }
+  if %$2 == echo {
+    echo $2 [Ircop: %ircop $+ ] - [Away: %away $+ ] - [Banlist: %banlist $+ ]
+    unset %ircop %away %banlist
+  }
+  if %$2 == msg {
+    msg $2 [Ircop: %ircop $+ ] - [Away: %away $+ ] - [Banlist: %banlist $+ ]
+    unset %ircop %away %banlist
+  }
+  .disable #scan off
+  halt
+}
+#scan end
+#dialog off
+raw 352:*: {
+  if (* isin $7) { inc -u30 %ircop 1 | did -a scanner 11 $6 ( $+ $3 $+ @ $+ $4 $+ ) | writeini chanscan.ini Ircop $6 ( $+ $3 $+ @ $+ $4 $+ ) in $2 }
+  if (G isin $7) { inc -u30 %away 1 | did -a scanner 9 $6 ( $+ $3 $+ @ $+ $4 $+ ) | writeini chanscan.ini Away $6 ( $+ $3 $+ @ $+ $4 $+ ) in $2 }
+  halt
+}
+raw 367:*: {
+  inc -u30 %banlist 1
+  did -a scanner 7 $3 by $4 ( $+ $asctime($5) $+ )
+  writeini chanscan.ini BanList $3 $4 ( $+ $asctime($5) $+ ) in $2 
+  halt
+}
+raw 315:*: {
+  mode $2 +b
+  halt
+}
+raw 368:*:{
+  if %banlist == $null { did -am scanner 7 No Ban List Found | writeini chanscan.ini BanList BanList Empty | set %banlist 0 }
+  if %ircop == $null { did -am scanner 11 No IRCop Found | writeini chanscan.ini Ircop IRCop None | set %ircop 0 }
+  if %away == $null { did -am scanner 9 No Away User Found | writeini chanscan.ini Away Away None | set %away 0 }
+  did -am scanner 23 %ircop
+  did -am scanner 25 %away
+  did -am scanner 27 %banlist
+  .disable #dialog off
+  halt
+}
+raw 332:*: { did -r scanner 3 | did -am scanner 3 $3- | halt }
+raw 333:*:halt
+raw 324:*: { did -r scanner 5 | did -am scanner 5 $3 | halt }
+raw 329:*:halt
+#dialog end
+alias chanscan {
+  .remove chanscan.ini
+  .disable #dialog off
+  .enable #scan on
+  unset %banlist %ircop %away
+  if ($2 == echo) {
+    set %$2 echo
+    echo $1 [Scanning $1 $+ ]
+    echo $1 [Total: $+ $nick($1,0) $+ ] - [Op: $+ $opnick($1,0) $+ ] - [Voice: $+ $vnick($1,0) $+ ] - [Regular: $+ $rnick($1,0) $+ ]
+    echo $1 [Gathering Additonal Data on $1 $+ ]
+    who $1
+  }
+  if ($2 == msg) {
+    set %$2 msg
+    msg $active [Scanning $1 $+ ]
+    msg $active [Total: $+ $nick($1,0) $+ ] - [Op: $+ $opnick($1,0) $+ ] - [Voice: $+ $vnick($1,0) $+ ] - [Regular: $+ $rnick($1,0) $+ ]
+    msg $active [Gathering Additonal Info on $1 $+ ]
+    who $1
+  }
+}
+menu channel,menubar {
+  -
+  -  
+  &PigScanner-Control
+  .Normal
+  ..Self:chanscan # echo
+  ..All:chanscan # msg
+  ..View Log:run notepad.exe chanscan.ini
+  .Dialog:dialog -m scanner scanner
+}
+dialog scanner {
+  title "Channel Scanner"
+  box "Channel Scanner",1, 7 4 486 350
+  size -1 -1 500 360
+  combo 29, 12 23 100 120 ,drop
+  text "Topic", 2, 120 26 30 20
+  edit "", 3, 150 23 250 20 ,autohs
+  text "Mode", 4, 405 26 30 20
+  edit "", 5, 435 23 50 20 , autohs
+  text "Ban List", 6, 14 53 60 13
+  list 7, 12 67 475 80, autohs
+  text "Away List", 8, 14 130 60 13
+  list 9, 12 145 475 80, autohs
+  text "IRCop List", 10, 14 207 60 13
+  list 11, 12 221 475 80, autohs
+  text "Oped",12, 14 287 40 18
+  edit "", 13, 44 283 40 20, autohs
+  text "Voiced", 14, 105 287 40 18
+  edit "", 15, 142 283 40 20, autohs
+  text "Regular", 16, 203 287 40 18
+  edit "", 17, 242 283 40 20, autohs
+  text "Total", 20, 313 287 40 18
+  edit "", 21, 342 283 40 20, autohs
+  text "IRCop",22, 100 325 40 18
+  edit "", 23, 132 322 40 20, autohs
+  text "Away", 24, 192 325 40 18
+  edit "", 25, 222 322 40 20, autohs
+  text "BanList", 26, 273 325 40 18
+  edit "", 27, 312 322 40 20, autohs
+  button "&View Log", 28, 425 285 60 25, ok
+  button "&Close", 18, 425 323 60 25, ok
+  button "&Scan", 19, 14 323 60 25, default
+}
+dialog error {
+  title "Error Message"
+  size -1 -1 150 100
+  text "You must select a channel", 1, 30 20 90 30 , center
+  button "&OK" , 2 , 50 60 60 25 , ok
+}
+dialog nolog {
+  title "Error Message"
+  size -1 -1 150 100
+  text "No Log File Found", 1, 30 20 100 30 , center
+  button "&OK" , 2 , 50 60 60 25 , ok
+}
+on *:dialog:nolog:sclick:2: { dialog -x nolog nolog }
+on *:dialog:error:sclick:2: { dialog -x error error }
+on *:dialog:scanner:sclick:18: {
+  unset %banlist %away %ircop %chans %selchan
+  .remove chanscan.ini
+  .disable #dialog off | .disable #scan off
+}
+on *:dialog:scanner:sclick:28: { 
+  if ($exists(chanscan.ini)) { run notepad.exe chanscan.ini }
+  else { dialog -om nolog nolog }
+}
+on *:dialog:scanner:sclick:19: {
+  if ($did(29).text == $null) { dialog -om error error }
+  else {
+    .enable #dialog on | .disable #scan off | .remove chanscan.ini
+    unset %banlist %away %ircop %mode %topic
+    .who %selchan
+    did -r scanner 13,15,17,21,23
+    did -am scanner 13 $opnick(%selchan,0) | writeini chanscan.ini %selchan Op $opnick(%selchan,0)
+    did -am scanner 15 $vnick(%selchan,0) | writeini chanscan.ini %selchan Voice $vnick(%selchan,0)
+    did -am scanner 17 $rnick(%selchan,0) | writeini chanscan.ini %selchan Regular $rnick(%selchan,0)
+    did -am scanner 21 $nick(%selchan,0) | writeini chanscan.ini %selchan Total $nick(%selchan,0)
+    did -r scanner 23,25,27,7,9,11
+  }
+}
+on *:dialog:scanner:*:*: {
+  if $devent == sclick {
+    if $did == 29 { 
+      .enable #dialog on
+      set %selchan $did(29).text
+      .topic %selchan
+      .mode %selchan
+      did -r scanner 13,15,17,21,23
+      did -am scanner 13 $opnick(%selchan,0)
+      did -am scanner 15 $vnick(%selchan,0)
+      did -am scanner 17 $rnick(%selchan,0)
+      did -am scanner 21 $nick(%selchan,0)
+    }
+  }
+  if $devent == init {
+    getchan
+  }
+}
+alias getchan {
+  set %chans 0
+  :scan
+  inc %chans
+  if ($comchan($me,%chans)) {
+    /did -a scanner 29 $comchan($me,%chans)
+    goto scan
+  }
+  unset %chans
+  if $comchan($me,0) == 0 { dialog -om error error }
+}
+
+#test off
+menu @raw {
+  -clear- : .clear
+}
+;raw 0:*:{ appears as Bleh?!@# | halt }
+raw 800:*:{ echo -s $2- | halt }
+raw 803:*:{ echo -a $2- | halt }
+raw 805:*:{ echo -a $2- | halt }
+raw prop:*:{ echo -a $2- ( $+ $nick - $address $+ ) | halt }
+raw data:*:{ }
+raw *:*:{ window -k @raw | aline -p @raw RAW $numeric $+ :*: $2- $nick $address $event | halt }
+#test end

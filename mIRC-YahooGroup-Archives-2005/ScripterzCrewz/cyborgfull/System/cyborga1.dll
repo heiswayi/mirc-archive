@@ -1,0 +1,958 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                          Cyborg Full-Script Edition of the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                              E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+dialog colora1 {
+  title "Color 1"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colora1:sclick:*: {
+  if ($did == 2) { set %colora1 0 | dialog -k $dname }
+  if ($did == 3) { set %colora1 1 | dialog -k $dname }
+  if ($did == 4) { set %colora1 2 | dialog -k $dname }
+  if ($did == 5) { set %colora1 3 | dialog -k $dname }
+  if ($did == 6) { set %colora1 4 | dialog -k $dname }
+  if ($did == 7) { set %colora1 5 | dialog -k $dname }
+  if ($did == 8) { set %colora1 6 | dialog -k $dname }
+  if ($did == 9) { set %colora1 7 | dialog -k $dname }
+  if ($did == 10) { set %colora1 8 | dialog -k $dname }
+  if ($did == 11) { set %colora1 9 | dialog -k $dname }
+  if ($did == 12) { set %colora1 10 | dialog -k $dname }
+  if ($did == 13) { set %colora1 11 | dialog -k $dname }
+  if ($did == 14) { set %colora1 12 | dialog -k $dname }
+  if ($did == 15) { set %colora1 13 | dialog -k $dname }
+  if ($did == 16) { set %colora1 14 | dialog -k $dname }
+  if ($did == 17) { set %colora1 15 | dialog -k $dname }
+}
+
+dialog colora2 {
+  title "Color 2"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colora2:sclick:*: {
+  if ($did == 2) { set %colora2 0 | dialog -k $dname }
+  if ($did == 3) { set %colora2 1 | dialog -k $dname }
+  if ($did == 4) { set %colora2 2 | dialog -k $dname }
+  if ($did == 5) { set %colora2 3 | dialog -k $dname }
+  if ($did == 6) { set %colora2 4 | dialog -k $dname }
+  if ($did == 7) { set %colora2 5 | dialog -k $dname }
+  if ($did == 8) { set %colora2 6 | dialog -k $dname }
+  if ($did == 9) { set %colora2 7 | dialog -k $dname }
+  if ($did == 10) { set %colora2 8 | dialog -k $dname }
+  if ($did == 11) { set %colora2 9 | dialog -k $dname }
+  if ($did == 12) { set %colora2 10 | dialog -k $dname }
+  if ($did == 13) { set %colora2 11 | dialog -k $dname }
+  if ($did == 14) { set %colora2 12 | dialog -k $dname }
+  if ($did == 15) { set %colora2 13 | dialog -k $dname }
+  if ($did == 16) { set %colora2 14 | dialog -k $dname }
+  if ($did == 17) { set %colora2 15 | dialog -k $dname }
+}
+dialog colora3 {
+  title "Color 3"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colora3:sclick:*: {
+  if ($did == 2) { set %colora3 0 | dialog -k $dname }
+  if ($did == 3) { set %colora3 1 | dialog -k $dname }
+  if ($did == 4) { set %colora3 2 | dialog -k $dname }
+  if ($did == 5) { set %colora3 3 | dialog -k $dname }
+  if ($did == 6) { set %colora3 4 | dialog -k $dname }
+  if ($did == 7) { set %colora3 5 | dialog -k $dname }
+  if ($did == 8) { set %colora3 6 | dialog -k $dname }
+  if ($did == 9) { set %colora3 7 | dialog -k $dname }
+  if ($did == 10) { set %colora3 8 | dialog -k $dname }
+  if ($did == 11) { set %colora3 9 | dialog -k $dname }
+  if ($did == 12) { set %colora3 10 | dialog -k $dname }
+  if ($did == 13) { set %colora3 11 | dialog -k $dname }
+  if ($did == 14) { set %colora3 12 | dialog -k $dname }
+  if ($did == 15) { set %colora3 13 | dialog -k $dname }
+  if ($did == 16) { set %colora3 14 | dialog -k $dname }
+  if ($did == 17) { set %colora3 15 | dialog -k $dname }
+}
+dialog input1 {
+  title "Text Completer 1"
+  size -1 -1 95 40
+  icon Miscellaneous\paint.ico
+  option dbu
+  box "Set your colors" 2, 3 1 89 37, Disable
+  button "Color 1" 3, 7 12 25 10,
+  button "Color 2" 4, 35 12 25 10,
+  button "Color 3" 5, 62 12 25 10,
+  button "Default" 6, 8 25 37 10,
+  button "Finish" 7, 49 25 37 10, Ok  
+}
+on *:DIALOG:input1:sclick:*: {
+  if ($did == 3) { dialog -m colora1 colora1 }
+  if ($did == 4) { dialog -m colora2 colora2 }
+  if ($did == 5) { dialog -m colora3 colora3 }
+  if ($did == 6) { set %colora1 14 | set %colora2 14 | set %colora3 15 }
+}
+dialog input2 {
+  title "Text Completer 2"
+  size -1 -1 72 42
+  icon Miscellaneous\paint.ico
+  option dbu
+  box "Option" 2, 1 0 70 41, Disable
+  radio "Plain only" 3, 10 9 50 10, Group
+  radio "Rainbow Color" 4, 10 19 50 10,
+  button "Done" 5, 24 29 25 10, Ok  
+}
+on *:DIALOG:input2:sclick:*: {
+  if ($did == 3) { set %input2 on | set %input1 off | set %input3 off | set %input4 off | set %input5 off | set %input6 off | set %input7 off | set %input8 off | set %input9 off | set %input10 off }
+  if ($did == 4) { set %input3 on | set %input2 off | set %input1 off | set %input4 off | set %input5 off | set %input6 off | set %input7 off | set %input8 off | set %input9 off | set %input10 off }
+}
+on *:DIALOG:input2:init:0: {
+  if (%input2 == on) { did -c input2 3 }
+  if (%input3 == on) { did -c input2 4 }
+}
+dialog color1s {
+  title "Color 1"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:color1s:sclick:*: {
+  if ($did == 2) { set %color1s 0 | dialog -k $dname }
+  if ($did == 3) { set %color1s 1 | dialog -k $dname }
+  if ($did == 4) { set %color1s 2 | dialog -k $dname }
+  if ($did == 5) { set %color1s 3 | dialog -k $dname }
+  if ($did == 6) { set %color1s 4 | dialog -k $dname }
+  if ($did == 7) { set %color1s 5 | dialog -k $dname }
+  if ($did == 8) { set %color1s 6 | dialog -k $dname }
+  if ($did == 9) { set %color1s 7 | dialog -k $dname }
+  if ($did == 10) { set %color1s 8 | dialog -k $dname }
+  if ($did == 11) { set %color1s 9 | dialog -k $dname }
+  if ($did == 12) { set %color1s 10 | dialog -k $dname }
+  if ($did == 13) { set %color1s 11 | dialog -k $dname }
+  if ($did == 14) { set %color1s 12 | dialog -k $dname }
+  if ($did == 15) { set %color1s 13 | dialog -k $dname }
+  if ($did == 16) { set %color1s 14 | dialog -k $dname }
+  if ($did == 17) { set %color1s 15 | dialog -k $dname }
+}
+dialog color2s {
+  title "Color 1"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:color2s:sclick:*: {
+  if ($did == 2) { set %color2s 0 | dialog -k $dname }
+  if ($did == 3) { set %color2s 1 | dialog -k $dname }
+  if ($did == 4) { set %color2s 2 | dialog -k $dname }
+  if ($did == 5) { set %color2s 3 | dialog -k $dname }
+  if ($did == 6) { set %color2s 4 | dialog -k $dname }
+  if ($did == 7) { set %color2s 5 | dialog -k $dname }
+  if ($did == 8) { set %color2s 6 | dialog -k $dname }
+  if ($did == 9) { set %color2s 7 | dialog -k $dname }
+  if ($did == 10) { set %color2s 8 | dialog -k $dname }
+  if ($did == 11) { set %color2s 9 | dialog -k $dname }
+  if ($did == 12) { set %color2s 10 | dialog -k $dname }
+  if ($did == 13) { set %color2s 11 | dialog -k $dname }
+  if ($did == 14) { set %color2s 12 | dialog -k $dname }
+  if ($did == 15) { set %color2s 13 | dialog -k $dname }
+  if ($did == 16) { set %color2s 14 | dialog -k $dname }
+  if ($did == 17) { set %color2s 15 | dialog -k $dname }
+}
+dialog input3 {
+  title "Word Completer 3"
+  size -1 -1 95 40
+  icon Miscellaneous\paint.ico
+  option dbu
+  box "Set your colors" 2, 3 1 89 37, Disable
+  button "Color 1" 3, 7 12 37 10,
+  button "Color 2" 4, 47 12 37 10,
+  button "Default" 5, 20 25 25 10,
+  button "Finish" 6, 47 25 25 10, Ok  
+}
+on *:DIALOG:input3:sclick:*: {
+  if ($did == 3) { dialog -m color1s color1s }
+  if ($did == 4) { dialog -m color2s color2s }
+  if ($did == 5) { set %color1s 14 | set %color2s 14 }
+}
+dialog colorb3 {
+  title "Background"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colorb3:sclick:*: {
+  if ($did == 2) { set %colorb3 0,0 | dialog -k $dname }
+  if ($did == 3) { set %colorb3 0,1 | dialog -k $dname }
+  if ($did == 4) { set %colorb3 0,2 | dialog -k $dname }
+  if ($did == 5) { set %colorb3 0,3 | dialog -k $dname }
+  if ($did == 6) { set %colorb3 0,4 | dialog -k $dname }
+  if ($did == 7) { set %colorb3 0,5 | dialog -k $dname }
+  if ($did == 8) { set %colorb3 0,6 | dialog -k $dname }
+  if ($did == 9) { set %colorb3 0,7 | dialog -k $dname }
+  if ($did == 10) { set %colorb3 0,8 | dialog -k $dname }
+  if ($did == 11) { set %colorb3 0,9 | dialog -k $dname }
+  if ($did == 12) { set %colorb3 0,10 | dialog -k $dname }
+  if ($did == 13) { set %colorb3 0,11 | dialog -k $dname }
+  if ($did == 14) { set %colorb3 0,12 | dialog -k $dname }
+  if ($did == 15) { set %colorb3 0,13 | dialog -k $dname }
+  if ($did == 16) { set %colorb3 0,14 | dialog -k $dname }
+  if ($did == 17) { set %colorb3 0,15 | dialog -k $dname }
+}
+dialog colorb2 {
+  title "Message Color"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colorb2:sclick:*: {
+  if ($did == 2) { set %colorb2 0 | dialog -k $dname }
+  if ($did == 3) { set %colorb2 1 | dialog -k $dname }
+  if ($did == 4) { set %colorb2 2 | dialog -k $dname }
+  if ($did == 5) { set %colorb2 3 | dialog -k $dname }
+  if ($did == 6) { set %colorb2 4 | dialog -k $dname }
+  if ($did == 7) { set %colorb2 5 | dialog -k $dname }
+  if ($did == 8) { set %colorb2 6 | dialog -k $dname }
+  if ($did == 9) { set %colorb2 7 | dialog -k $dname }
+  if ($did == 10) { set %colorb2 8 | dialog -k $dname }
+  if ($did == 11) { set %colorb2 9 | dialog -k $dname }
+  if ($did == 12) { set %colorb2 10 | dialog -k $dname }
+  if ($did == 13) { set %colorb2 11 | dialog -k $dname }
+  if ($did == 14) { set %colorb2 12 | dialog -k $dname }
+  if ($did == 15) { set %colorb2 13 | dialog -k $dname }
+  if ($did == 16) { set %colorb2 14 | dialog -k $dname }
+  if ($did == 17) { set %colorb2 15 | dialog -k $dname }
+}
+dialog colorb1 {
+  title "Design Color"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colorb1:sclick:*: {
+  if ($did == 2) { set %colorb1 0 | dialog -k $dname }
+  if ($did == 3) { set %colorb1 1 | dialog -k $dname }
+  if ($did == 4) { set %colorb1 2 | dialog -k $dname }
+  if ($did == 5) { set %colorb1 3 | dialog -k $dname }
+  if ($did == 6) { set %colorb1 4 | dialog -k $dname }
+  if ($did == 7) { set %colorb1 5 | dialog -k $dname }
+  if ($did == 8) { set %colorb1 6 | dialog -k $dname }
+  if ($did == 9) { set %colorb1 7 | dialog -k $dname }
+  if ($did == 10) { set %colorb1 8 | dialog -k $dname }
+  if ($did == 11) { set %colorb1 9 | dialog -k $dname }
+  if ($did == 12) { set %colorb1 10 | dialog -k $dname }
+  if ($did == 13) { set %colorb1 11 | dialog -k $dname }
+  if ($did == 14) { set %colorb1 12 | dialog -k $dname }
+  if ($did == 15) { set %colorb1 13 | dialog -k $dname }
+  if ($did == 16) { set %colorb1 14 | dialog -k $dname }
+  if ($did == 17) { set %colorb1 15 | dialog -k $dname }
+}
+dialog input4 {
+  title "Custom Text Completer"
+  size -1 -1 118 64
+  icon Miscellaneous\paint.ico
+  option dbu
+  box "Custom design" 2, 3 2 113 61, Disable
+  button "config" 3, 70 37 17 10,
+  button "Design Color" 4, 7 12 50 10,
+  button "Message Color" 5, 7 25 50 10,
+  text "Design 1:" 6, 60 12 25 10,
+  text "Design 2:" 7, 60 25 25 10,
+  edit "" 8, 87 12 25 10, AutoHs
+  edit "" 9, 87 25 25 10, AutoHs
+  button "Finish" 10, 58 50 25 10, Ok  
+  check "background color" 11, 7 38 55 8,
+  button "Default" 12, 30 50 25 10,
+}
+on *:DIALOG:input4:sclick:*: {
+  if ($did == 3) { dialog -m colorb3 colorb3 }
+  if ($did == 4) { dialog -m colorb1 colorb1 }
+  if ($did == 5) { dialog -m colorb2 colorb2 }
+  if ($did == 12) { dialog -m colorb2 colorb2 }
+  if ($did == 11) {
+    if (%colorback == on) { set %colorback off | halt }
+    if (%colorback == off) { set %colorback on | halt }
+  }
+}
+on *:DIALOG:input4:edit:*: {
+  if ($did == 8) { set %textdesign1 $did(8).text }
+  if ($did == 9) { set %textdesign2 $did(9).text }
+}
+on *:DIALOG:input4:init:0: {
+  if (%textdesign1 != $null) { did -a input4 8 %textdesign1 }
+  if (%textdesign2 != $null) { did -a input4 9 %textdesign2 }
+  if (%colorback == $null) { set %colorback off }
+  if (%colorback == on) { did -c input4 11 }
+}
+dialog pingsys {
+  title "Auto-Pingation System"
+  size -1 -1 134 119
+  icon Miscellaneous\ping.ico
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 35 1 60 7, Center   Disable
+  link "www.Brain-Crash.com" 3, 39 9 110 14,
+  box "auto ping set-up" 4, 2 17 130 100, Disable
+  check "enable auto ping" 5, 7 31 62 7,
+  text "ping trigger:" 6, 7 41 30 7,
+  edit "" 7, 37 40 40 10,
+  combo 8, 7 52 70 65,
+  button "add channel" 9, 82 50 45 10,
+  button "remove channel" 10, 82 60 45 10,
+  button "reset channels" 11, 82 70 45 10,
+  button "save" 12, 82 80 45 10, Ok  
+}
+on *:dialog:pingsys:*:*:{
+  if ($devent == init) {
+    update.pingchannel
+    if (%autoping == $null) { set %autoping off }
+    if (%autoping == on) { did -c pingsys 5 }
+    if (%pingtrigger != $null) { did -a pingsys 7 %pingtrigger }
+  }
+  if ($devent == edit) {
+    if ($did == 8) { set %pingtempchan $did(8).text }
+    if ($did == 7) { set %pingtrigger $did(7).text }
+  }
+  if ($devent == sclick) {
+    if ($did == 3) { _webteam }
+    if ($did == 8) { set %setup.pingchannel.selected $did($dname,8,$did(8).sel) }
+    if ($did == 9) {
+      set %pingchannel %pingchannel $+ %pingtempchan $+ ,
+      update.pingchannel
+    }
+    if ($did == 10) {
+      set -u1 %setup.rc %setup.pingchannel.selected $+ ,
+      set %pingchannel $remove(%pingchannel,%setup.rc)
+      update.pingchannel
+    }
+    if ($did == 11) { unset %pingchannel | update.pingchannel }
+    if ($did == 5) {
+      if (%autoping == on) { set %autoping off | halt }
+      if (%autoping == off) { set %autoping on | halt }
+    }
+  }
+}
+alias -l update.pingchannel {
+  did -r pingsys 8
+  set %temp.total $count(%pingchannel,$chr(44))
+  set %temp.count 0
+  :start
+  inc %temp.count 1
+  did -a pingsys 8 $gettok(%pingchannel,%temp.count,44)
+  if (%temp.count < %temp.total) { goto start }
+}
+on *:text:*:%pingchannel: {
+  if (%autoping == on) {
+    if (%pingflood- [ $+ [ $nick ] $+ [ $chan ] ] == 2) { .notice $nick Wait after 1 minute to perform my %pingtrigger command. | .ignore -u60  $wildsite | goto end  } 
+    if (%pingtrigger == $1) && ($2 == $null) { .notice $nick $logo $+ : correct usage: %pingtrigger <nick> ie. %pingtrigger $nick | inc -u30 %pingflood- [ $+ [ $nick ] $+ [ $chan ] ] | halt }
+    if (%pingtrigger == $1) && ($2 == $me) { ignore -u30 $nick | inc -u30 %pingflood- [ $+ [ $nick ] $+ [ $chan ] ] | halt }
+    if (%pingtrigger == $1) && ($2 == $nick) { pong | inc -u30 %pingflood- [ $+ [ $nick ] $+ [ $chan ] ] | halt }
+  }
+  :end
+}
+dialog colorc1 {
+  title "Color 1"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colorc1:sclick:*: {
+  if ($did == 2) { set %colorc1 0 | dialog -k $dname }
+  if ($did == 3) { set %colorc1 1 | dialog -k $dname }
+  if ($did == 4) { set %colorc1 2 | dialog -k $dname }
+  if ($did == 5) { set %colorc1 3 | dialog -k $dname }
+  if ($did == 6) { set %colorc1 4 | dialog -k $dname }
+  if ($did == 7) { set %colorc1 5 | dialog -k $dname }
+  if ($did == 8) { set %colorc1 6 | dialog -k $dname }
+  if ($did == 9) { set %colorc1 7 | dialog -k $dname }
+  if ($did == 10) { set %colorc1 8 | dialog -k $dname }
+  if ($did == 11) { set %colorc1 9 | dialog -k $dname }
+  if ($did == 12) { set %colorc1 10 | dialog -k $dname }
+  if ($did == 13) { set %colorc1 11 | dialog -k $dname }
+  if ($did == 14) { set %colorc1 12 | dialog -k $dname }
+  if ($did == 15) { set %colorc1 13 | dialog -k $dname }
+  if ($did == 16) { set %colorc1 14 | dialog -k $dname }
+  if ($did == 17) { set %colorc1 15 | dialog -k $dname }
+}
+dialog colorc2 {
+  title "Color 2"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colorc2:sclick:*: {
+  if ($did == 2) { set %colorc2 0 | dialog -k $dname }
+  if ($did == 3) { set %colorc2 1 | dialog -k $dname }
+  if ($did == 4) { set %colorc2 2 | dialog -k $dname }
+  if ($did == 5) { set %colorc2 3 | dialog -k $dname }
+  if ($did == 6) { set %colorc2 4 | dialog -k $dname }
+  if ($did == 7) { set %colorc2 5 | dialog -k $dname }
+  if ($did == 8) { set %colorc2 6 | dialog -k $dname }
+  if ($did == 9) { set %colorc2 7 | dialog -k $dname }
+  if ($did == 10) { set %colorc2 8 | dialog -k $dname }
+  if ($did == 11) { set %colorc2 9 | dialog -k $dname }
+  if ($did == 12) { set %colorc2 10 | dialog -k $dname }
+  if ($did == 13) { set %colorc2 11 | dialog -k $dname }
+  if ($did == 14) { set %colorc2 12 | dialog -k $dname }
+  if ($did == 15) { set %colorc2 13 | dialog -k $dname }
+  if ($did == 16) { set %colorc2 14 | dialog -k $dname }
+  if ($did == 17) { set %colorc2 15 | dialog -k $dname }
+}
+dialog colorc3 {
+  title "Color 3"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colorc3:sclick:*: {
+  if ($did == 2) { set %colorc3 0 | dialog -k $dname }
+  if ($did == 3) { set %colorc3 1 | dialog -k $dname }
+  if ($did == 4) { set %colorc3 2 | dialog -k $dname }
+  if ($did == 5) { set %colorc3 3 | dialog -k $dname }
+  if ($did == 6) { set %colorc3 4 | dialog -k $dname }
+  if ($did == 7) { set %colorc3 5 | dialog -k $dname }
+  if ($did == 8) { set %colorc3 6 | dialog -k $dname }
+  if ($did == 9) { set %colorc3 7 | dialog -k $dname }
+  if ($did == 10) { set %colorc3 8 | dialog -k $dname }
+  if ($did == 11) { set %colorc3 9 | dialog -k $dname }
+  if ($did == 12) { set %colorc3 10 | dialog -k $dname }
+  if ($did == 13) { set %colorc3 11 | dialog -k $dname }
+  if ($did == 14) { set %colorc3 12 | dialog -k $dname }
+  if ($did == 15) { set %colorc3 13 | dialog -k $dname }
+  if ($did == 16) { set %colorc3 14 | dialog -k $dname }
+  if ($did == 17) { set %colorc3 15 | dialog -k $dname }
+}
+dialog colorc4 {
+  title "Color 4"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colorc4:sclick:*: {
+  if ($did == 2) { set %colorc4 0 | dialog -k $dname }
+  if ($did == 3) { set %colorc4 1 | dialog -k $dname }
+  if ($did == 4) { set %colorc4 2 | dialog -k $dname }
+  if ($did == 5) { set %colorc4 3 | dialog -k $dname }
+  if ($did == 6) { set %colorc4 4 | dialog -k $dname }
+  if ($did == 7) { set %colorc4 5 | dialog -k $dname }
+  if ($did == 8) { set %colorc4 6 | dialog -k $dname }
+  if ($did == 9) { set %colorc4 7 | dialog -k $dname }
+  if ($did == 10) { set %colorc4 8 | dialog -k $dname }
+  if ($did == 11) { set %colorc4 9 | dialog -k $dname }
+  if ($did == 12) { set %colorc4 10 | dialog -k $dname }
+  if ($did == 13) { set %colorc4 11 | dialog -k $dname }
+  if ($did == 14) { set %colorc4 12 | dialog -k $dname }
+  if ($did == 15) { set %colorc4 13 | dialog -k $dname }
+  if ($did == 16) { set %colorc4 14 | dialog -k $dname }
+  if ($did == 17) { set %colorc4 15 | dialog -k $dname }
+}
+dialog input5 {
+  title "Nick Completer 1"
+  size -1 -1 89 53
+  icon Miscellaneous\paint.ico
+  option dbu
+  box "Set your color" 2, 2 0 85 51, Disable
+  button "Color 1" 3, 5 12 37 10,
+  button "Color 2" 4, 5 25 37 10,
+  button "Color 3" 5, 45 12 37 10,
+  button "Color 4" 6, 45 25 37 10,
+  button "Default" 7, 17 37 25 10,
+  button "Finish" 8, 45 37 25 10, Ok  
+}
+on *:DIALOG:input5:sclick:*: {
+  if ($did == 3) { dialog -m colorc1 colorc1 }
+  if ($did == 4) { dialog -m colorc2 colorc2 }
+  if ($did == 5) { dialog -m colorc3 colorc3 }
+  if ($did == 6) { dialog -m colorc4 colorc4 }
+  if ($did == 7) { set %colorc1 10 | set %colorc2 12 | set %colorc3 12 | set %colorc4 1 }
+}
+dialog colord1 {
+  title "Color 1"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colord1:sclick:*: {
+  if ($did == 2) { set %colord1 0 | dialog -k $dname }
+  if ($did == 3) { set %colord1 1 | dialog -k $dname }
+  if ($did == 4) { set %colord1 2 | dialog -k $dname }
+  if ($did == 5) { set %colord1 3 | dialog -k $dname }
+  if ($did == 6) { set %colord1 4 | dialog -k $dname }
+  if ($did == 7) { set %colord1 5 | dialog -k $dname }
+  if ($did == 8) { set %colord1 6 | dialog -k $dname }
+  if ($did == 9) { set %colord1 7 | dialog -k $dname }
+  if ($did == 10) { set %colord1 8 | dialog -k $dname }
+  if ($did == 11) { set %colord1 9 | dialog -k $dname }
+  if ($did == 12) { set %colord1 10 | dialog -k $dname }
+  if ($did == 13) { set %colord1 11 | dialog -k $dname }
+  if ($did == 14) { set %colord1 12 | dialog -k $dname }
+  if ($did == 15) { set %colord1 13 | dialog -k $dname }
+  if ($did == 16) { set %colord1 14 | dialog -k $dname }
+  if ($did == 17) { set %colord1 15 | dialog -k $dname }
+}
+dialog colord2 {
+  title "Color 2"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colord2:sclick:*: {
+  if ($did == 2) { set %colord2 0 | dialog -k $dname }
+  if ($did == 3) { set %colord2 1 | dialog -k $dname }
+  if ($did == 4) { set %colord2 2 | dialog -k $dname }
+  if ($did == 5) { set %colord2 3 | dialog -k $dname }
+  if ($did == 6) { set %colord2 4 | dialog -k $dname }
+  if ($did == 7) { set %colord2 5 | dialog -k $dname }
+  if ($did == 8) { set %colord2 6 | dialog -k $dname }
+  if ($did == 9) { set %colord2 7 | dialog -k $dname }
+  if ($did == 10) { set %colord2 8 | dialog -k $dname }
+  if ($did == 11) { set %colord2 9 | dialog -k $dname }
+  if ($did == 12) { set %colord2 10 | dialog -k $dname }
+  if ($did == 13) { set %colord2 11 | dialog -k $dname }
+  if ($did == 14) { set %colord2 12 | dialog -k $dname }
+  if ($did == 15) { set %colord2 13 | dialog -k $dname }
+  if ($did == 16) { set %colord2 14 | dialog -k $dname }
+  if ($did == 17) { set %colord2 15 | dialog -k $dname }
+}
+on *:TEXT:*:?:{
+  if (%querytalk == on) {
+    if (%prviword1 isin $1) { msg $nick %prviword12 }
+    if (%prviword2 isin $1) { msg $nick %prviword13 }
+    if (%prviword3 isin $1) { msg $nick %prviword14 }
+    if (%prviword4 isin $1) { msg $nick %prviword15 }
+    if (%prviword5 isin $1) { msg $nick %prviword16 }
+    if (%prviword6 isin $1) { msg $nick %prviword17 }
+    if (%prviword7 isin $1) { msg $nick %prviword18 }
+    if (%prviword8 isin $1) { msg $nick %prviword19 }
+    if (%prviword9 isin $1) { msg $nick %prviword20 }
+    if (%prviword10 isin $1) { msg $nick %prviword21 }
+    if (%prviword11 isin $1) { msg $nick %prviword2 }
+    if (%privreply1 isin $1-) { msg $nick %privreply12 }
+    if (%privreply2 isin $1-) { msg $nick %privreply13 }
+    if (%privreply3 isin $1-) { msg $nick %privreply14 }
+    if (%privreply4 isin $1-) { msg $nick %privreply15 }
+    if (%privreply5 isin $1-) { msg $nick %privreply16 }
+    if (%privreply6 isin $1-) { msg $nick %privreply17 }
+    if (%privreply7 isin $1-) { msg $nick %privreply18 }
+    if (%privreply8 isin $1-) { msg $nick %privreply19 }
+    if (%privreply9 isin $1-) { msg $nick %privreply20 }
+    if (%privreply10 isin $1-) { msg $nick %privreply21 }
+    if (%privreply11 isin $1-) { msg $nick %privreply22 }
+  } 
+}
+alias querytalkset { dialog -m querytalk querytalk | querytalkopen }
+alias querytalkclose {
+  :reduce
+  if (%cdsp <= 10) { dialog -c querytalk | halt }
+  dec %cdsp 3 | dialog -s querytalk -1 -1 476 %cdsp | goto reduce
+}
+alias querytalkopen {
+  :increase
+  if (%cdsp >= 358) { dialog -s querytalk -1 -1 476 358  | halt }
+  inc %cdsp 3 | dialog -s querytalk -1 -1 476 %cdsp | goto increase
+}
+alias querytalkup { set %cdsp 358 | dialog -s querytalk -1 -1 476 358 | .timerquerytalkclose 1 0 querytalkclose }
+dialog querytalk {
+  title "Auto-Talk in Query"
+  size -1 -1 238 179
+  option dbu
+  text "Cyborg Full-Script Edition off the Cyborg-Team" 2, 85 1 75 7, Center Disable
+  link "www.Brain-Crash.com" 3, 97 8 110 14,
+  button "done" 4, 100 163 50 15,
+  check "auto query talk" 5, 5 7 50 10,
+  tab "query1" 6, 3 19 232 140
+  box "word trigger" 7, 7 35 75 121, Disable tab 6
+  box "query reply" 8, 81 35 150 121, Disable tab 6
+  edit "" 9, 10 42 70 10, tab 6
+  edit "" 10, 10 52 70 10, tab 6
+  edit "" 11, 10 62 70 10, tab 6
+  edit "" 12, 10 72 70 10, tab 6
+  edit "" 13, 10 82 70 10, tab 6
+  edit "" 14, 10 92 70 10, tab 6
+  edit "" 15, 10 102 70 10, tab 6
+  edit "" 16, 10 112 70 10, tab 6
+  edit "" 17, 10 122 70 10, tab 6
+  edit "" 18, 10 132 70 10, tab 6
+  edit "" 19, 10 142 70 10, tab 6
+  edit "" 20, 84 42 145 10, tab 6
+  edit "" 21, 84 52 145 10, tab 6
+  edit "" 22, 84 62 145 10, tab 6
+  edit "" 23, 84 72 145 10, tab 6
+  edit "" 24, 84 82 145 10, tab 6
+  edit "" 25, 84 92 145 10, tab 6
+  edit "" 26, 84 102 145 10, tab 6
+  edit "" 27, 84 112 145 10, tab 6
+  edit "" 28, 84 122 145 10, tab 6
+  edit "" 29, 84 132 145 10, tab 6
+  edit "" 30, 84 142 145 10, tab 6
+  tab "query2" 31,
+  box "word trigger" 32, 7 35 75 121, Disable tab 31
+  box "query reply" 33, 81 35 150 121, Disable tab 31
+  edit "" 34, 10 42 70 10, tab 31
+  edit "" 35, 10 52 70 10, tab 31
+  edit "" 36, 10 62 70 10, tab 31
+  edit "" 37, 10 72 70 10, tab 31
+  edit "" 38, 10 82 70 10, tab 31
+  edit "" 39, 10 92 70 10, tab 31
+  edit "" 40, 10 102 70 10, tab 31
+  edit "" 41, 10 112 70 10, tab 31
+  edit "" 42, 10 122 70 10, tab 31
+  edit "" 43, 10 132 70 10, tab 31
+  edit "" 44, 10 142 70 10, tab 31
+  edit "" 45, 84 42 145 10, tab 31
+  edit "" 46, 84 52 145 10, tab 31
+  edit "" 47, 84 62 145 10, tab 31
+  edit "" 48, 84 72 145 10, tab 31
+  edit "" 49, 83 82 145 10, tab 31
+  edit "" 50, 84 92 145 10, tab 31
+  edit "" 51, 84 102 145 10, tab 31
+  edit "" 52, 84 112 145 10, tab 31
+  edit "" 53, 84 122 145 10, tab 31
+  edit "" 54, 84 132 145 10, tab 31
+  edit "" 55, 84 142 145 10, tab 31
+  button "done" 56, 100 163 50 15, Ok, hide  
+}
+on *:DIALOG:querytalk:*:*:{
+  if ($devent == init) {
+    set %cdsp 1
+    if (%querytalk == $null) { set %querytalk off }
+    if (%querytalk == on) { did -c querytalk 5 }
+    if (%prviword1 != $null) { did -a querytalk 9 %prviword1 }
+    if (%prviword2 != $null) { did -a querytalk 10 %prviword2 }
+    if (%prviword3 != $null) { did -a querytalk 11 %prviword3 }
+    if (%prviword4 != $null) { did -a querytalk 12 %prviword4 }
+    if (%prviword5 != $null) { did -a querytalk 13 %prviword5 }
+    if (%prviword6 != $null) { did -a querytalk 14 %prviword6 }
+    if (%prviword7 != $null) { did -a querytalk 15 %prviword7 }
+    if (%prviword8 != $null) { did -a querytalk 16 %prviword8 }
+    if (%prviword9 != $null) { did -a querytalk 17 %prviword9 }
+    if (%prviword10 != $null) { did -a querytalk 18 %prviword10 }
+    if (%prviword11 != $null) { did -a querytalk 19 %prviword11 }
+    if (%prviword12 != $null) { did -a querytalk 20 %prviword12 }
+    if (%prviword13 != $null) { did -a querytalk 21 %prviword13 }
+    if (%prviword14 != $null) { did -a querytalk 22 %prviword14 }
+    if (%prviword15 != $null) { did -a querytalk 23 %prviword15 }
+    if (%prviword16 != $null) { did -a querytalk 24 %prviword16 }
+    if (%prviword17 != $null) { did -a querytalk 25 %prviword17 }
+    if (%prviword18 != $null) { did -a querytalk 26 %prviword18 }
+    if (%prviword19 != $null) { did -a querytalk 27 %prviword19 }
+    if (%prviword20 != $null) { did -a querytalk 28 %prviword20 }
+    if (%prviword21 != $null) { did -a querytalk 29 %prviword21 }
+    if (%prviword22 != $null) { did -a querytalk 30 %prviword22 }
+    if (%privreply1 != $null) { did -a querytalk 34 %privreply1 }
+    if (%privreply2 != $null) { did -a querytalk 35 %privreply2 }
+    if (%privreply3 != $null) { did -a querytalk 36 %privreply3 }
+    if (%privreply4 != $null) { did -a querytalk 37 %privreply4 }
+    if (%privreply5 != $null) { did -a querytalk 38 %privreply5 }
+    if (%privreply6 != $null) { did -a querytalk 39 %privreply6 }
+    if (%privreply7 != $null) { did -a querytalk 40 %privreply7 }
+    if (%privreply8 != $null) { did -a querytalk 41 %privreply8 }
+    if (%privreply9 != $null) { did -a querytalk 42 %privreply9 }
+    if (%privreply10 != $null) { did -a querytalk 43 %privreply10 }
+    if (%privreply11 != $null) { did -a querytalk 44 %privreply11 }
+    if (%privreply12 != $null) { did -a querytalk 45 %privreply12 }
+    if (%privreply13 != $null) { did -a querytalk 46 %privreply13 }
+    if (%privreply14 != $null) { did -a querytalk 47 %privreply14 }
+    if (%privreply15 != $null) { did -a querytalk 48 %privreply15 }
+    if (%privreply16 != $null) { did -a querytalk 49 %privreply16 }
+    if (%privreply17 != $null) { did -a querytalk 50 %privreply17 }
+    if (%privreply18 != $null) { did -a querytalk 51 %privreply18 }
+    if (%privreply19 != $null) { did -a querytalk 52 %privreply19 }
+    if (%privreply20 != $null) { did -a querytalk 53 %privreply20 }
+    if (%privreply21 != $null) { did -a querytalk 54 %privreply21 }
+    if (%privreply22 != $null) { did -a querytalk 55 %privreply22 }
+  }
+  if ($devent == edit) {
+    if ($did == 9) { set %prviword1 $did(9).text }
+    if ($did == 10) { set %prviword2 $did(10).text }
+    if ($did == 11) { set %prviword3 $did(11).text }
+    if ($did == 12) { set %prviword4 $did(12).text }
+    if ($did == 13) { set %prviword5 $did(13).text }
+    if ($did == 14) { set %prviword6 $did(14).text }
+    if ($did == 15) { set %prviword7 $did(15).text }
+    if ($did == 16) { set %prviword8 $did(16).text }
+    if ($did == 17) { set %prviword9 $did(17).text }
+    if ($did == 18) { set %prviword10 $did(18).text }
+    if ($did == 19) { set %prviword11 $did(19).text }
+    if ($did == 20) { set %prviword12 $did(20).text }
+    if ($did == 21) { set %prviword13 $did(21).text }
+    if ($did == 22) { set %prviword14 $did(22).text }
+    if ($did == 23) { set %prviword15 $did(23).text }
+    if ($did == 24) { set %prviword16 $did(24).text }
+    if ($did == 25) { set %prviword17 $did(25).text }
+    if ($did == 26) { set %prviword18 $did(26).text }
+    if ($did == 27) { set %prviword19 $did(27).text }
+    if ($did == 28) { set %prviword20 $did(28).text }
+    if ($did == 29) { set %prviword21 $did(29).text }
+    if ($did == 30) { set %prviword22 $did(30).text }
+    if ($did == 34) { set %privreply1 $did(34).text }
+    if ($did == 35) { set %privreply2 $did(35).text }
+    if ($did == 36) { set %privreply3 $did(36).text }
+    if ($did == 37) { set %privreply4 $did(37).text }
+    if ($did == 38) { set %privreply5 $did(38).text }
+    if ($did == 39) { set %privreply6 $did(39).text }
+    if ($did == 40) { set %privreply7 $did(40).text }
+    if ($did == 41) { set %privreply8 $did(41).text }
+    if ($did == 42) { set %privreply9 $did(42).text }
+    if ($did == 43) { set %privreply10 $did(43).text }
+    if ($did == 44) { set %privreply11 $did(44).text }
+    if ($did == 45) { set %privreply12 $did(45).text }
+    if ($did == 46) { set %privreply13 $did(46).text }
+    if ($did == 47) { set %privreply14 $did(47).text }
+    if ($did == 48) { set %privreply15 $did(48).text }
+    if ($did == 49) { set %privreply16 $did(49).text }
+    if ($did == 50) { set %privreply17 $did(50).text }
+    if ($did == 51) { set %privreply18 $did(51).text }
+    if ($did == 52) { set %privreply19 $did(52).text }
+    if ($did == 53) { set %privreply20 $did(53).text }
+    if ($did == 54) { set %privreply21 $did(54).text }
+    if ($did == 55) { set %privreply22 $did(55).text }
+  }
+  if ($devent == sclick) {
+    if ($did == 3) { _webteam }
+    if ($did == 4) { querytalkup }
+    if ($did == 5) { set %querytalk $iif(%querytalk == on,off,on) }
+  }
+}
+;eof

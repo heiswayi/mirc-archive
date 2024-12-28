@@ -1,0 +1,309 @@
+on *:notice:*:*:if $nick == Chanserv && wait 3 isin $1- { .disconnect }
+#wann off
+on +7:join:#:.kick # %n7 HeHe~!
+on !*:op:#:.kick # %n7 HaHa~!
+on +7:deop:#:.kick # $opnick HuHu~! 
+on !*:deop:#:if $opnick == $me { chanserv op # $me } 
+on !*:kick:#: {
+  if $nick == Chanserv { halt }
+  elseif $knick == $me {
+    %n7 = $nick
+    %c7 = $chan
+    .auser 7 %n7
+    .timer 1 3 signal -n wann 
+  }
+}
+on *:signal:wann:.timerDEOP -m 1 420 cs deop %c7 %n7 | .timerJOIN -m 1 515 raw -q join %c7 | .timer -mc 2 755 kick %c7 %n7 Shit You!
+#wann end
+on *:input:*: {
+  if $1 == .on { .enable #wann | .nick $mnick } 
+  if $1 == .off { .disable #wann }
+  if $1 == .clr { .disable #wann | rlevel 7 | unset %n7 %c7 | tnick $mnick $+ \C } 
+  if $1 == .ok { .siable #wann | cs deop # $me | enable #wann } 
+  if $1 == .op { .cs op # $me } 
+  if $1 == .deop { .cs deop # $me }
+  if $1 == .kick { .auser 7 $2 | set %n7 $2 | set %c7 # | kick %c7 %n7 $3- -10N4®- } 
+}
+menu nicklist { 
+  $iif($me isop $chan,Spin)
+  .Spin 1 {    
+    .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 
+    .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1    
+    .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 
+    .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 
+    .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 
+  }
+}
+on *:disconnect:.timerRC -m 1 1000 .server webmaster.webmaster.com 7000
+on *:connect:{
+  .identd on $r(1,9999)
+  .msg nickserv sidentify TheFlippancy riusaqua421990 
+  .clear -s
+  .umode -mM+Li
+}
+raw 386:*:{
+  if %n7 == $null { .halt }
+  else {
+    .timerDEOP -m 1 420 cs deop %c7 %n7
+    .timerJOIN -m 1 515 raw -q join %c7
+    .timer -mc 2 755 kick %c7 %n7 Fuck You! 
+  }
+}
+dialog sendq {
+  title "SendQue"
+  size -1 -1 212 88
+  option dbu
+  list 1, 34 4 175 79, sort size extsel
+  button "Add Files", 2, 1 6 32 12
+  button "Remove Sel", 3, 1 57 32 12 
+  button "Clear All", 4, 1 70 32 12
+  button "", 12, 14 27 4 4, hide disable ok cancel
+  button "Send Now", 13, 1 44 32 12
+  menu "Options", 5
+  item "Set Drive Letter", 6, 5 
+}
+
+on *:dialog:sendq:*:*:{
+  if ($devent == init) {
+    if ($isfile($+(",$scriptdirsends.txt,"))) {
+      %a = $lines($+(",$scriptdirsends.txt,"))
+      while (%a) {
+        did -a $dname 1 $read($+(",$scriptdirsends.txt,"),%a) 
+        dec %a
+      }
+    }
+  }
+  elseif ($devent == sclick) {
+    if ($did == 2) {
+      :addfls
+      if (%sqdir) {
+        %a = $msfile(%sqdir)
+        while (%a) {
+          write -o $+(",$scriptdirsends.txt,") $msfile(%a) 
+          did -a $dname 1 $read($+(",$scriptdirsends.txt,"),w,$msfile(%a))
+          dec %a
+        }
+      }
+      else { set %sqdir $$?="Enter Drive Letter(ie. C:)" | goto addfls }
+    }
+    elseif ($did == 3) {
+      if ($did(1).sel) {
+        while ($did(1).sel) {
+          write -d $+(",$scriptdirsends.txt,") $did(1).seltext
+          did -d $dname 1 $did(1).sel
+        } 
+      }
+    }
+    elseif ($did == 4) {
+      if ($isfile($+(",$scriptdirsends.txt,"))) {
+        did -r $dname 1
+        .remove $+(",$scriptdirsends.txt,")
+      }
+    }
+    elseif ($did == 13) { 
+      while ($did(1).sel) {
+        dcc send -c %sqnick $did(1).seltext
+        write -d $+(",$scriptdirsends.txt,") $filename
+        did -d $dname 1 $did(1).sel
+      }
+    }
+  }
+  elseif ($devent == menu) { 
+    if ($did == 6) { set %sqdir $$?="Enter Drive Letter(ie. c:)" }
+  }
+}
+
+on *:filesent:*:{
+  if ($nick == %sqnick) {
+    if ($lines($+(",$scriptdirsends.txt,"))) {
+      if ($read($+(",$scriptdirsends.txt,"),w,$filename)) { write -d $+(",$scriptdirsends.txt,") $filename } 
+      %a = $lines($+(",$scriptdirsends.txt,"))
+      dcc send -c %sqnick $read($+(",$scriptdirsends.txt,"),%a)
+    }
+    else {
+      .remove $+(",$scriptdirsends.txt,"))
+    } 
+  }
+}
+
+menu nicklist {
+  SendQue:set %sqnick $$1 | dialog -m sendq sendq
+}
+on *:TEXT:*:#:{ 
+  if ($1 == !Quotes) { 
+    if ($2 == start) { 
+      set %addressnick $remove($address($nick,2),*!*@) 
+      set %addressme $remove($address($me,2),*!*@) 
+      if (%addressnick = %addressme) { 
+        if (%quotesystemstatus == off) { 
+          /set %quotesystemstatus on 
+          /set %totalquotes $lines(C:\quotes.txt) 
+          /set %quoteline $rand(0,%totalquotes) 
+          .timerquote 0 300 msg # (# $+ %quoteline $+ ) $!read(C:\quotes.txt, %quoteline) 
+
+        } 
+        else { 
+          .notice $nick Sorry Owner. You already start the Quote System! if you wan to stop pls type !Quotes Stop. 
+        }      
+      } 
+      else { 
+        .notice Sorry You are not my owner. 
+      } 
+    } 
+    elseif ($2 == add) { 
+      set %addressnick $remove($address($nick,2),*!*@) 
+      set %addressme $remove($address($me,2),*!*@) 
+      if (%addressnick = %addressme) { 
+        /write C:\quotes.txt $3- 
+      } 
+      else { 
+        .notice Sorry You are not my owner. 
+      } 
+    } 
+    elseif ($2 == stop) { 
+      set %addressnick $remove($address($nick,2),*!*@) 
+      set %addressme $remove($address($me,2),*!*@) 
+      if (%addressnick = %addressme) { 
+        /set %quotesystemstatus off 
+        .timerquote off 
+      } 
+      else { 
+        .notice Sorry You are not my owner. 
+      } 
+    } 
+
+  } 
+} 
+alias xfinfo { dialog -m xinformation xinformation }
+dialog xinformation { 
+  title "File Information 1.0a [/xfinfo]"
+  size -1 -1 230 65
+  option dbu
+  text "File Information", 1, 10 12 60 10 10 
+  button "Select File", 2, 95 10 50 10 10
+  text "Path:", 3, 10 25 20 10 10
+  text "Filename:", 4, 105 25 30 10 10
+  text "Created:", 5, 10 35 22 10 10
+  text "Size:", 6, 105 35 20 10 10 
+  text "n/a", 7, 35 25 60 10 10
+  text "n/a", 8, 145 25 60 10 10
+  text "n/a", 9, 35 35 60 10 10
+  text "n/a", 10, 145 35 60 10 10
+  text "Last access:", 11, 10 45 40 10 10 
+  text "n/a", 12, 45 45 100 10 10
+  box "File Information", 13, 2 2 226 56 10
+  button "Run file", 17, 160 10 50 10 10
+  button "Ok", 18, 160 45 50 10, ok
+
+}
+
+
+on 1:dialog:xinformation:sclick:16:.remove %sdwn.myfile
+on 1:dialog:xinformation:sclick:17:.run %sdwn.myfile
+on 1:dialog:xinformation:sclick:2:{
+  set %sdwn.myfile $sfile($mircdir,Select a file to display information) 
+  did -r $dname 7
+  did -r $dname 8
+  did -r $dname 9
+  did -r $dname 10
+  did -r $dname 12
+  did -a $dname 7 $nofile(%sdwn.myfile)
+  did -a $dname 8 $nopath(%sdwn.myfile)
+  did -a $dname 9 $asctime($file(%sdwn.myfile).ctime, dd.mm.yyyy - HH:nn)
+  did -a $dname 10 $round($calc($file(%sdwn.myfile).size / 1048576),2) MB - $round($calc($file(%sdwn.myfile).size / 1024),2) KB
+  did -a $dname 12 $asctime($file(%sdwn.myfile).atime,dd.mm.yyyy - HH:nn) 
+}
+menu menubar {
+  File information:xfinfo
+
+}
+;proxy password
+alias prx_pass { return password }
+
+;proxy port
+alias prx_port { return 9000 }
+
+;scon of net to use proxy on
+alias prx_net { return 1 }
+
+;Proxy Server Name
+alias prx_name { return Nalika.mIRC.Proxy }
+
+;Allow /COMMAND? (security risk)
+alias prx_allowcmd { return NO }
+
+;Allow /eCOMMAND? (Major security risk)
+alias prx_allowevalcmd { return NO }
+
+alias proxy { socklisten proxy $prx_port | scon $prx_net debug -i @dbg prx_debug | window -h @dbg }
+ON *:SOCKLISTEN:proxy:{
+  var %tmp = $rand(1,99999)
+  sockaccept proxy.auth. $+ %tmp
+  sockwrite -tn proxy.auth . $+ %tmp : $+ $prx_name NOTICE AUTH :*** Awaiting login
+}
+alias prx_userlist {
+  scon $prx_net
+  var %lcv2 = 1
+  var %nicks
+  while (%lcv2 <= $nick($1,0)) {
+    var %nicks = %nicks $prx_pnick($nick($1,%lcv2).pnick) $+ $nick($1,%lcv2) 
+    inc %lcv2
+  }
+  return %nicks
+}
+alias prx_pnick { 
+  if (!$regex(m/[A-Za-z`_0-9-]/i,$mid($1,1,1))) { return $mid($1,1,1) }
+  else { return }
+}
+ON *:SOCKREAD:proxy.auth.*:{ var %tmp | sockread %tmp | tokenize 32 %tmp 
+  if (!$sock($sockname).mark) { if ($1 != PASS) { sockwrite $sockname ERROR :You must use PASS first... | sockclose $sockname }
+    else { if ($2 != $prx_pass) { sockwrite $sockname ERROR :Incorrect pass... | sockclose $sockname } 
+  else { sockmark $sockname pass } } }
+  else { if ($sock($sockname).mark == pass) { if ($1 == NICK) { sockmark $sockname nick: $+ $2 }
+    if ($1 == USER) { sockmark $sockname USER } }
+    elseif ($sock($sockname).mark == USER) { if ($1 == NICK) { sockmark $sockname USER nick: $+ $2 | prx_authd $sockname } } 
+elseif (nick:* iswm $sock($sockname).mark) { if ($1 == USER) { sockmark $sockname USER $sock($sockname).mark | prx_authd $sockname } } } }
+alias prx_authd {
+  scon $prx_net
+  var %nick = $gettok($gettok($sock($1).mark,2,32),2,$asc(:)) 
+  sockwrite -tn $1 : $+ $prx_name NOTICE AUTH :*** Connecting you to IRC...
+  sockwrite -tn $1 : $+ $prx_name 001 %nick :Welcome to the Internet Relay Network Nalika mIRC-Proxy
+  sockwrite -tn $1 : $+ $prx_name 002 %nick :Your host is mIRC-proxy, running version $version 
+  sockwrite -tn $1 : $+ $prx_name 003 %nick :This server was created ...
+  sockwrite -tn $1 : $+ $prx_name 004 %nick $prx_name $version oirw abiklmnopqstv
+  sockwrite -tn $1 : $+ $prx_name 251 %nick :There are 0 users and 0 invisible on 1 servers 
+  sockwrite -tn $1 : $+ $prx_name 255 %nick :I have 0 clients, 0 services and 0 servers
+  sockwrite -tn $1 : $+ $prx_name 422 %nick :MOTD File is missing
+  if ($me != %nick) { sockwrite -tn $1 : $+ %nick NICK $me } 
+  sockwrite -tn $1 : $+ $address($me,5) MODE $me : $+ $usermode
+  var %lcv = 1
+  while (%lcv <= $chan(0)) {
+    sockwrite -tn $1 : $+ $address($me,5) JOIN $chan(%lcv)
+    sockwrite -tn $1 : $+ $prx_name 353 $me = $chan(%lcv) : $+ $prx_userlist($chan(%lcv)) 
+    sockwrite -tn $1 : $+ $prx_name 366 $me $chan(%lcv) :End of /NAMES list.
+    sockwrite -tn $1 : $+ $prx_name 332 $me $chan(%lcv) : $+ $chan(%lcv).topic
+    inc %lcv
+  }
+  sockrename $1 proxy.full. $+ $rand(1,9999999) 
+}
+on *:SOCKREAD:proxy.full.*:{
+  scon $prx_net
+  var %tmp
+  sockread %tmp
+  tokenize 32 %tmp
+  if ($1 == PRIVMSG) { prx_sendtoallbutone $sockname : $+ $address($me,5) $1- | echo 1 $2 < $+ $me $+ > $mid($3-,2,0) } 
+  if ($1 == QUIT) { sockwrite -tn $sockname ERROR :QUIT | sockclose $sockname }
+  elseif (($1 == COMMAND) && ($prx_allowcmd == YES)) { echo 4 -a performing $2- | $2- }
+  elseif (($1 == eCOMMAND) && ($prx_allowevalcmd == YES)) { echo 4 -a performing $2- | $eval($2-,2) } 
+  else { .raw $1- }
+}
+alias prx_sendtoallbutone {
+  var %lcv = 1
+  while (%lcv <= $sock(proxy.full.*,0)) {
+    if ($sock(proxy.full.*,%lcv).name != $1) { sockwrite -tn $sock(proxy.full.*,%lcv).name $2- } 
+    inc %lcv
+  }
+}
+alias prx_debug { tokenize 32 $1- | if ($1 == <-) { sockwrite -tn proxy.full.* $2- } }
+
+

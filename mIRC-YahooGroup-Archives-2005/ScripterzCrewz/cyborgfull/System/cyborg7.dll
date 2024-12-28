@@ -1,0 +1,873 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                          Cyborg Full-Script Edition of the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                              E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+dialog editor {
+  title "Script Triggers Editor"
+  size -1 -1 170 160
+  icon Miscellaneous\editor.ico
+  option dbu
+  button "Done" 2, 138 148 30 12, Ok  
+  text "Cyborg FullScript Edition" 3, 52 1 75 7, Center   Disable
+  link "www.Brain-Crash.com" 4, 61 8 120 15,
+  tab "friend" 5, 2 17 166 129
+  box "friends list editor" 6, 6 31 158 112, tab 5
+  edit "" 7, 9 40 50 10, AutoHs tab 5
+  edit "" 8, 9 50 50 10, AutoHs tab 5
+  edit "" 9, 9 60 50 10, AutoHs tab 5
+  edit "" 10, 9 70 50 10, AutoHs tab 5
+  edit "" 11, 9 80 50 10, AutoVs tab 5
+  edit "" 12, 9 90 50 10, AutoHs tab 5
+  edit "" 13, 9 100 50 10, AutoHs tab 5
+  edit "" 14, 9 110 50 10, AutoHs tab 5
+  edit "" 15, 9 120 50 10, AutoHs tab 5
+  edit "" 16, 9 130 50 10, AutoHs tab 5
+  edit "" 17, 60 40 50 10, AutoHs tab 5
+  edit "" 18, 60 50 50 10, AutoHs tab 5
+  edit "" 19, 60 60 50 10, AutoHs tab 5
+  edit "" 20, 60 70 50 10, AutoHs tab 5
+  edit "" 21, 60 80 50 10, AutoHs tab 5
+  edit "" 22, 60 90 50 10, AutoHs tab 5
+  edit "" 23, 60 100 50 10, AutoHs tab 5
+  edit "" 24, 60 110 50 10, AutoHs tab 5
+  edit "" 25, 60 120 50 10, AutoHs tab 5
+  edit "" 26, 60 130 50 10, AutoHs tab 5
+  edit "" 27, 111 40 50 10, AutoHs tab 5
+  edit "" 28, 111 50 50 10, AutoHs tab 5
+  edit "" 29, 111 60 50 10, AutoHs tab 5
+  edit "" 30, 111 70 50 10, AutoHs tab 5
+  edit "" 31, 111 80 50 10, AutoHs tab 5
+  edit "" 32, 111 90 50 10, AutoHs tab 5
+  edit "" 33, 111 100 50 10, AutoHs tab 5
+  edit "" 34, 111 110 50 10, AutoHs tab 5
+  edit "" 35, 111 120 50 10, AutoHs tab 5
+  edit "" 36, 111 130 50 10, AutoHs tab 5
+  tab "swear" 37,
+  edit "" 38, 9 40 50 10, AutoHs tab 37
+  edit "" 39, 9 50 50 10, AutoHs tab 37
+  edit "" 40, 9 60 50 10, AutoHs tab 37
+  edit "" 41, 9 70 50 10, AutoHs tab 37
+  edit "" 42, 9 80 50 10, AutoHs tab 37
+  edit "" 43, 9 90 50 10, AutoHs tab 37
+  edit "" 44, 9 100 50 10, AutoHs tab 37
+  edit "" 45, 9 110 50 10, AutoHs tab 37
+  edit "" 46, 9 120 50 10, AutoHs tab 37
+  edit "" 47, 9 130 50 10, AutoHs tab 37
+  edit "" 48, 60 40 50 10, AutoHs tab 37
+  edit "" 49, 60 50 50 10, AutoHs tab 37
+  edit "" 50, 60 60 50 10, AutoHs tab 37
+  edit "" 51, 60 70 50 10, AutoHs tab 37
+  edit "" 52, 60 80 50 10, AutoHs tab 37
+  edit "" 53, 60 90 50 10, AutoHs tab 37
+  edit "" 54, 60 100 50 10, AutoHs tab 37
+  edit "" 55, 60 110 50 10, AutoHs tab 37
+  edit "" 56, 60 120 50 10, AutoHs tab 37
+  edit "" 57, 60 130 50 10, AutoHs tab 37
+  edit "" 58, 111 40 50 10, AutoHs tab 37
+  edit "" 59, 111 50 50 10, AutoHs tab 37
+  edit "" 60, 111 60 50 10, AutoHs tab 37
+  edit "" 61, 111 70 50 10, AutoHs tab 37
+  edit "" 62, 111 80 50 10, AutoHs tab 37
+  edit "" 63, 111 90 50 10, AutoHs tab 37
+  edit "" 64, 111 100 50 10, AutoHs tab 37
+  edit "" 65, 111 110 50 10, AutoHs tab 37
+  edit "" 66, 111 120 50 10, AutoHs tab 37
+  edit "" 67, 111 130 50 10, AutoHs tab 37
+  box "swear word editor" 68, 6 31 158 112, tab 37
+  tab "words" 69,
+  edit "" 70, 9 40 50 10, AutoHs tab 69
+  edit "" 71, 9 50 50 10, AutoHs tab 69
+  edit "" 72, 9 60 50 10, AutoHs tab 69
+  edit "" 73, 9 70 50 10, AutoHs tab 69
+  edit "" 74, 9 80 50 10, AutoHs tab 69
+  edit "" 75, 9 90 50 10, AutoHs tab 69
+  edit "" 76, 9 100 50 10, AutoHs tab 69
+  edit "" 77, 9 110 50 10, AutoHs tab 69
+  edit "" 78, 9 120 50 10, AutoHs tab 69
+  edit "" 79, 9 130 50 10, AutoHs tab 69
+  edit "" 80, 60 40 50 10, AutoHs tab 69
+  edit "" 81, 60 50 50 10, AutoHs tab 69
+  edit "" 82, 60 60 50 10, AutoHs tab 69
+  edit "" 83, 60 70 50 10, AutoHs tab 69
+  edit "" 84, 60 80 50 10, AutoHs tab 69
+  edit "" 85, 60 90 50 10, AutoHs tab 69
+  edit "" 86, 60 100 50 10, AutoHs tab 69
+  edit "" 87, 60 110 50 10, AutoHs tab 69
+  edit "" 88, 60 120 50 10, AutoHs tab 69
+  edit "" 89, 60 130 50 10, AutoHs tab 69
+  edit "" 90, 111 40 50 10, AutoHs tab 69
+  edit "" 91, 111 50 50 10, AutoHs tab 69
+  edit "" 92, 111 60 50 10, AutoHs tab 69
+  edit "" 93, 111 70 50 10, AutoHs tab 69
+  edit "" 94, 111 80 50 10, AutoHs tab 69
+  edit "" 95, 111 90 50 10, AutoHs tab 69
+  edit "" 96, 111 100 50 10, AutoHs tab 69
+  edit "" 97, 111 110 50 10, AutoHs tab 69
+  edit "" 98, 111 120 50 10, AutoHs tab 69
+  edit "" 99, 111 130 50 10, AutoHs tab 69
+  box "bad word editor" 100, 6 31 158 112, tab 69
+  tab "channels" 101,
+  edit "" 102, 9 40 50 10, AutoHs tab 101
+  edit "" 103, 9 50 50 10, AutoHs tab 101
+  edit "" 104, 9 60 50 10, AutoHs tab 101
+  edit "" 105, 9 70 50 10, AutoHs tab 101
+  edit "" 106, 9 80 50 10, AutoHs tab 101
+  edit "" 107, 9 90 50 10, AutoHs tab 101
+  edit "" 108, 9 100 50 10, AutoHs tab 101
+  edit "" 109, 9 110 50 10, AutoHs tab 101
+  edit "" 110, 9 120 50 10, AutoHs tab 101
+  edit "" 111, 9 130 50 10, AutoHs tab 101
+  edit "" 112, 60 40 50 10, AutoHs tab 101
+  edit "" 113, 60 50 50 10, AutoHs tab 101
+  edit "" 114, 60 60 50 10, AutoHs tab 101
+  edit "" 115, 60 70 50 10, AutoHs tab 101
+  edit "" 116, 60 80 50 10, AutoHs tab 101
+  edit "" 117, 60 90 50 10, AutoHs tab 101
+  edit "" 118, 60 100 50 10, AutoHs tab 101
+  edit "" 119, 60 110 50 10, AutoHs tab 101
+  edit "" 120, 60 120 50 10, AutoHs tab 101
+  edit "" 121, 60 130 50 10, AutoHs tab 101
+  edit "" 122, 111 40 50 10, AutoHs tab 101
+  edit "" 123, 111 50 50 10, AutoHs tab 101
+  edit "" 124, 111 60 50 10, AutoHs tab 101
+  edit "" 125, 111 70 50 10, AutoHs tab 101
+  edit "" 126, 111 80 50 10, AutoHs tab 101
+  edit "" 127, 111 90 50 10, AutoHs tab 101
+  edit "" 128, 111 100 50 10, AutoHs tab 101
+  edit "" 129, 111 110 50 10, AutoHs tab 101
+  edit "" 130, 111 120 50 10, AutoHs tab 101
+  edit "" 131, 111 130 50 10, AutoHs tab 101
+  box "bad channels editor" 132, 6 31 158 112, tab 101
+  tab "nick" 133,
+  edit "" 134, 9 40 50 10, tab 133
+  edit "" 135, 9 50 50 10, tab 133
+  edit "" 136, 9 60 50 10, tab 133
+  edit "" 137, 9 70 50 10, tab 133
+  edit "" 138, 9 80 50 10, tab 133
+  edit "" 139, 9 90 50 10, tab 133
+  edit "" 140, 9 110 50 10, tab 133
+  edit "" 141, 9 100 50 10, tab 133
+  edit "" 142, 9 120 50 10, tab 133
+  edit "" 143, 9 130 50 10, tab 133
+  edit "" 144, 60 40 50 10, tab 133
+  edit "" 145, 60 50 50 10, tab 133
+  edit "" 146, 60 60 50 10, tab 133
+  edit "" 147, 60 70 50 10, tab 133
+  edit "" 148, 60 80 50 10, tab 133
+  edit "" 149, 60 90 50 10, tab 133
+  edit "" 150, 60 100 50 10, tab 133
+  edit "" 151, 60 110 50 10, tab 133
+  edit "" 152, 60 120 50 10, tab 133
+  edit "" 153, 60 130 50 10, tab 133
+  edit "" 154, 111 40 50 10, tab 133
+  edit "" 155, 111 50 50 10, tab 133
+  edit "" 156, 111 60 50 10, tab 133
+  edit "" 157, 111 70 50 10, tab 133
+  edit "" 158, 111 80 50 10, tab 133
+  edit "" 159, 111 90 50 10, tab 133
+  edit "" 160, 111 100 50 10, tab 133
+  edit "" 161, 111 110 50 10, tab 133
+  edit "" 162, 111 120 50 10, tab 133
+  edit "" 163, 111 130 50 10, tab 133
+  box "bad nick editor" 164, 6 31 158 112, tab 133
+  tab "spams" 165,
+  box "invite word editor" 166, 6 31 157 62, tab 165
+  edit "" 167, 9 40 50 10, tab 165
+  edit "" 168, 9 50 50 10, tab 165
+  edit "" 169, 9 60 50 10, tab 165
+  edit "" 170, 9 70 50 10, tab 165
+  edit "" 171, 9 80 50 10, tab 165
+  edit "" 172, 60 40 50 10, tab 165
+  edit "" 173, 60 50 50 10, tab 165
+  edit "" 174, 60 60 50 10, tab 165
+  edit "" 175, 60 70 50 10, tab 165
+  edit "" 176, 60 80 50 10, tab 165
+  edit "" 177, 111 40 50 10, tab 165
+  edit "" 178, 111 50 50 10, tab 165
+  edit "" 179, 111 60 50 10, tab 165
+  edit "" 180, 111 70 50 10, tab 165
+  edit "" 181, 111 80 50 10, tab 165
+  box "advertise word editor" 182, 6 92 158 50, tab 165
+  edit "" 183, 9 100 50 10, tab 165
+  edit "" 184, 9 110 50 10, tab 165
+  edit "" 185, 9 120 50 10, tab 165
+  edit "" 186, 9 130 50 10, tab 165
+  edit "" 187, 60 100 50 10, tab 165
+  edit "" 188, 60 110 50 10, tab 165
+  edit "" 189, 60 120 50 10, tab 165
+  edit "" 190, 60 130 50 10, tab 165
+  edit "" 191, 111 100 50 10, tab 165
+  edit "" 192, 111 110 50 10, tab 165
+  edit "" 193, 111 120 50 10, tab 165
+  edit "" 194, 111 130 50 10, tab 165
+}
+on *:DIALOG:editor:*:*:{
+  if ($devent == edit) {
+    if ($did == 7) { set %friend1 $did(7).text }
+    if ($did == 8) { set %friend2 $did(8).text }
+    if ($did == 9) { set %friend3 $did(9).text }
+    if ($did == 10) { set %friend4 $did(10).text }
+    if ($did == 11) { set %friend5 $did(11).text }
+    if ($did == 12) { set %friend6 $did(12).text }
+    if ($did == 13) { set %friend7 $did(13).text }
+    if ($did == 14) { set %friend8 $did(14).text }
+    if ($did == 15) { set %friend9 $did(15).text }
+    if ($did == 16) { set %friend10 $did(16).text }
+    if ($did == 17) { set %friend11 $did(17).text }
+    if ($did == 18) { set %friend12 $did(18).text }
+    if ($did == 19) { set %friend13 $did(19).text }
+    if ($did == 20) { set %friend14 $did(20).text }
+    if ($did == 21) { set %friend15 $did(21).text }
+    if ($did == 22) { set %friend16 $did(22).text }
+    if ($did == 23) { set %friend17 $did(23).text }
+    if ($did == 24) { set %friend18 $did(24).text }
+    if ($did == 25) { set %friend19 $did(25).text }
+    if ($did == 26) { set %friend20 $did(26).text }
+    if ($did == 27) { set %friend21 $did(27).text }
+    if ($did == 28) { set %friend22 $did(28).text }
+    if ($did == 29) { set %friend23 $did(29).text }
+    if ($did == 30) { set %friend24 $did(30).text }
+    if ($did == 31) { set %friend25 $did(31).text }
+    if ($did == 32) { set %friend26 $did(32).text }
+    if ($did == 33) { set %friend27 $did(33).text }
+    if ($did == 34) { set %friend28 $did(34).text }
+    if ($did == 35) { set %friend29 $did(35).text }
+    if ($did == 36) { set %friend30 $did(36).text }
+    if ($did == 38) { set %genword1 $did(38).text }
+    if ($did == 39) { set %genword2 $did(39).text }
+    if ($did == 40) { set %genword3 $did(40).text }
+    if ($did == 41) { set %genword4 $did(41).text }
+    if ($did == 42) { set %genword5 $did(42).text }
+    if ($did == 43) { set %genword6 $did(43).text }
+    if ($did == 44) { set %genword7 $did(44).text }
+    if ($did == 45) { set %genword8 $did(45).text }
+    if ($did == 46) { set %genword9 $did(46).text }
+    if ($did == 47) { set %genword10 $did(47).text }
+    if ($did == 48) { set %genword11 $did(48).text }
+    if ($did == 49) { set %genword12 $did(49).text }
+    if ($did == 50) { set %genword13 $did(50).text }
+    if ($did == 51) { set %genword14 $did(51).text }
+    if ($did == 52) { set %genword15 $did(52).text }
+    if ($did == 53) { set %genword16 $did(53).text }
+    if ($did == 54) { set %genword17 $did(54).text }
+    if ($did == 55) { set %genword18 $did(55).text }
+    if ($did == 56) { set %genword19 $did(56).text }
+    if ($did == 57) { set %genword20 $did(57).text }
+    if ($did == 58) { set %genword21 $did(58).text }
+    if ($did == 59) { set %genword22 $did(59).text }
+    if ($did == 60) { set %genword23 $did(60).text }
+    if ($did == 61) { set %genword24 $did(61).text }
+    if ($did == 62) { set %genword25 $did(62).text }
+    if ($did == 63) { set %genword26 $did(63).text }
+    if ($did == 64) { set %genword27 $did(64).text }
+    if ($did == 65) { set %genword28 $did(65).text }
+    if ($did == 66) { set %genword29 $did(66).text }
+    if ($did == 67) { set %genword30 $did(67).text }
+    if ($did == 70) { set %badword1 $did(70).text }
+    if ($did == 71) { set %badword2 $did(71).text }
+    if ($did == 72) { set %badword3 $did(72).text }
+    if ($did == 73) { set %badword4 $did(73).text }
+    if ($did == 74) { set %badword5 $did(74).text }
+    if ($did == 75) { set %badword6 $did(75).text }
+    if ($did == 76) { set %badword7 $did(76).text }
+    if ($did == 77) { set %badword8 $did(77).text }
+    if ($did == 78) { set %badword9 $did(78).text }
+    if ($did == 79) { set %badword10 $did(79).text }
+    if ($did == 80) { set %badword11 $did(80).text }
+    if ($did == 81) { set %badword12 $did(81).text }
+    if ($did == 82) { set %badword13 $did(82).text }
+    if ($did == 83) { set %badword14 $did(83).text }
+    if ($did == 84) { set %badword15 $did(84).text }
+    if ($did == 85) { set %badword16 $did(85).text }
+    if ($did == 86) { set %badword17 $did(86).text }
+    if ($did == 87) { set %badword18 $did(87).text }
+    if ($did == 88) { set %badword19 $did(88).text }
+    if ($did == 89) { set %badword20 $did(89).text }
+    if ($did == 90) { set %badword21 $did(90).text }
+    if ($did == 91) { set %badword22 $did(91).text }
+    if ($did == 92) { set %badword23 $did(92).text }
+    if ($did == 93) { set %badword24 $did(93).text }
+    if ($did == 94) { set %badword25 $did(94).text }
+    if ($did == 95) { set %badword26 $did(95).text }
+    if ($did == 96) { set %badword27 $did(96).text }
+    if ($did == 97) { set %badword28 $did(97).text }
+    if ($did == 98) { set %badword29 $did(98).text }
+    if ($did == 99) { set %badword30 $did(99).text }
+    if ($did == 102) { set %badchannel1 $did(102).text }
+    if ($did == 103) { set %badchannel2 $did(103).text }
+    if ($did == 104) { set %badchannel3 $did(104).text }
+    if ($did == 105) { set %badchannel4 $did(105).text }
+    if ($did == 106) { set %badchannel5 $did(106).text }
+    if ($did == 107) { set %badchannel6 $did(107).text }
+    if ($did == 108) { set %badchannel7 $did(108).text }
+    if ($did == 109) { set %badchannel8 $did(109).text }
+    if ($did == 110) { set %badchannel9 $did(110).text }
+    if ($did == 111) { set %badchannel10 $did(111).text }
+    if ($did == 112) { set %badchannel11 $did(112).text }
+    if ($did == 113) { set %badchannel12 $did(113).text }
+    if ($did == 114) { set %badchannel13 $did(114).text }
+    if ($did == 115) { set %badchannel14 $did(115).text }
+    if ($did == 116) { set %badchannel15 $did(116).text }
+    if ($did == 117) { set %badchannel16 $did(117).text }
+    if ($did == 118) { set %badchannel17 $did(118).text }
+    if ($did == 119) { set %badchannel18 $did(119).text }
+    if ($did == 120) { set %badchannel19 $did(120).text }
+    if ($did == 121) { set %badchannel20 $did(121).text }
+    if ($did == 122) { set %badchannel21 $did(122).text }
+    if ($did == 123) { set %badchannel22 $did(123).text }
+    if ($did == 124) { set %badchannel23 $did(124).text }
+    if ($did == 125) { set %badchannel24 $did(125).text }
+    if ($did == 126) { set %badchannel25 $did(126).text }
+    if ($did == 127) { set %badchannel26 $did(127).text }
+    if ($did == 128) { set %badchannel27 $did(128).text }
+    if ($did == 129) { set %badchannel28 $did(129).text }
+    if ($did == 130) { set %badchannel29 $did(130).text }
+    if ($did == 131) { set %badchannel30 $did(131).text }
+    if ($did == 134) { set %badnicklist1 $did(134).text }
+    if ($did == 135) { set %badnicklist2 $did(135).text }
+    if ($did == 136) { set %badnicklist3 $did(136).text }
+    if ($did == 137) { set %badnicklist4 $did(137).text }
+    if ($did == 138) { set %badnicklist5 $did(138).text }
+    if ($did == 139) { set %badnicklist6 $did(139).text }
+    if ($did == 140) { set %badnicklist7 $did(140).text }
+    if ($did == 141) { set %badnicklist8 $did(141).text }
+    if ($did == 142) { set %badnicklist9 $did(142).text }
+    if ($did == 143) { set %badnicklist10 $did(143).text }
+    if ($did == 144) { set %badnicklist11 $did(144).text }
+    if ($did == 145) { set %badnicklist12 $did(145).text }
+    if ($did == 146) { set %badnicklist13 $did(146).text }
+    if ($did == 147) { set %badnicklist14 $did(147).text }
+    if ($did == 148) { set %badnicklist15 $did(148).text }
+    if ($did == 149) { set %badnicklist16 $did(149).text }
+    if ($did == 150) { set %badnicklist17 $did(150).text }
+    if ($did == 151) { set %badnicklist18 $did(151).text }
+    if ($did == 152) { set %badnicklist19 $did(152).text }
+    if ($did == 153) { set %badnicklist20 $did(153).text }
+    if ($did == 154) { set %badnicklist21 $did(154).text }
+    if ($did == 155) { set %badnicklist22 $did(155).text }
+    if ($did == 156) { set %badnicklist23 $did(156).text }
+    if ($did == 157) { set %badnicklist24 $did(157).text }
+    if ($did == 158) { set %badnicklist25 $did(158).text }
+    if ($did == 159) { set %badnicklist26 $did(159).text }
+    if ($did == 160) { set %badnicklist27 $did(160).text }
+    if ($did == 161) { set %badnicklist28 $did(161).text }
+    if ($did == 162) { set %badnicklist29 $did(162).text }
+    if ($did == 163) { set %badnicklist30 $did(163).text }
+    if ($did == 167) { set %inviteword1 $did(167).text }
+    if ($did == 168) { set %inviteword2 $did(168).text }
+    if ($did == 169) { set %inviteword3 $did(169).text }
+    if ($did == 170) { set %inviteword4 $did(170).text }
+    if ($did == 171) { set %inviteword5 $did(171).text }
+    if ($did == 172) { set %inviteword6 $did(172).text }
+    if ($did == 173) { set %inviteword7 $did(173).text }
+    if ($did == 174) { set %inviteword8 $did(174).text }
+    if ($did == 175) { set %inviteword9 $did(175).text }
+    if ($did == 176) { set %inviteword10 $did(176).text }
+    if ($did == 177) { set %inviteword11 $did(177).text }
+    if ($did == 178) { set %inviteword12 $did(178).text }
+    if ($did == 179) { set %inviteword13 $did(179).text }
+    if ($did == 180) { set %inviteword14 $did(180).text }
+    if ($did == 181) { set %inviteword15 $did(181).text }
+    if ($did == 183) { set %advsword1 $did(183).text }
+    if ($did == 184) { set %advsword2 $did(184).text }
+    if ($did == 185) { set %advsword3 $did(185).text }
+    if ($did == 186) { set %advsword4 $did(186).text }
+    if ($did == 187) { set %advsword5 $did(187).text }
+    if ($did == 188) { set %advsword6 $did(188).text }
+    if ($did == 189) { set %advsword7 $did(189).text }
+    if ($did == 190) { set %advsword8 $did(190).text }
+    if ($did == 191) { set %advsword9 $did(191).text }
+    if ($did == 192) { set %advsword10 $did(192).text }
+    if ($did == 193) { set %advsword11 $did(193).text }
+    if ($did == 194) { set %advsword12 $did(194).text }
+  }
+  if ($devent == init) {
+    if (%friend1 != $null) { did -a editor 7 %friend1 }
+    if (%friend2 != $null) { did -a editor 8 %friend2 }
+    if (%friend3 != $null) { did -a editor 9 %friend3 }
+    if (%friend4 != $null) { did -a editor 10 %friend4 }
+    if (%friend5 != $null) { did -a editor 11 %friend5 }
+    if (%friend6 != $null) { did -a editor 12 %friend6 }
+    if (%friend7 != $null) { did -a editor 13 %friend7 }
+    if (%friend8 != $null) { did -a editor 14 %friend8 }
+    if (%friend9 != $null) { did -a editor 15 %friend9 }
+    if (%friend10 != $null) { did -a editor 16 %friend10 }
+    if (%friend11 != $null) { did -a editor 17 %friend11 }
+    if (%friend12 != $null) { did -a editor 18 %friend12 }
+    if (%friend13 != $null) { did -a editor 19 %friend13 }
+    if (%friend14 != $null) { did -a editor 20 %friend14 }
+    if (%friend15 != $null) { did -a editor 21 %friend15 }
+    if (%friend16 != $null) { did -a editor 22 %friend16 }
+    if (%friend17 != $null) { did -a editor 23 %friend17 }
+    if (%friend18 != $null) { did -a editor 24 %friend18 }
+    if (%friend19 != $null) { did -a editor 25 %friend19 }
+    if (%friend20 != $null) { did -a editor 26 %friend20 }
+    if (%friend21 != $null) { did -a editor 27 %friend21 }
+    if (%friend22 != $null) { did -a editor 28 %friend22 }
+    if (%friend23 != $null) { did -a editor 29 %friend23 }
+    if (%friend24 != $null) { did -a editor 30 %friend24 }
+    if (%friend25 != $null) { did -a editor 31 %friend25 }
+    if (%friend26 != $null) { did -a editor 32 %friend26 }
+    if (%friend27 != $null) { did -a editor 33 %friend27 }
+    if (%friend28 != $null) { did -a editor 34 %friend28 }
+    if (%friend29 != $null) { did -a editor 35 %friend29 }
+    if (%friend30 != $null) { did -a editor 36 %friend30 }
+    if (%genword1 != $null) { did -a editor 38 %genword1 }
+    if (%genword2 != $null) { did -a editor 39 %genword2 }
+    if (%genword3 != $null) { did -a editor 40 %genword3 }
+    if (%genword4 != $null) { did -a editor 41 %genword4 }
+    if (%genword5 != $null) { did -a editor 42 %genword5 }
+    if (%genword6 != $null) { did -a editor 43 %genword6 }
+    if (%genword7 != $null) { did -a editor 44 %genword7 }
+    if (%genword8 != $null) { did -a editor 45 %genword8 }
+    if (%genword9 != $null) { did -a editor 46 %genword9 }
+    if (%genword10 != $null) { did -a editor 47 %genword10 }
+    if (%genword11 != $null) { did -a editor 48 %genword11 }
+    if (%genword12 != $null) { did -a editor 49 %genword12 }
+    if (%genword13 != $null) { did -a editor 50 %genword13 }
+    if (%genword14 != $null) { did -a editor 51 %genword14 }
+    if (%genword15 != $null) { did -a editor 52 %genword15 }
+    if (%genword16 != $null) { did -a editor 53 %genword16 }
+    if (%genword17 != $null) { did -a editor 54 %genword17 }
+    if (%genword18 != $null) { did -a editor 55 %genword18 }
+    if (%genword19 != $null) { did -a editor 56 %genword19 }
+    if (%genword20 != $null) { did -a editor 57 %genword20 }
+    if (%genword21 != $null) { did -a editor 58 %genword21 }
+    if (%genword22 != $null) { did -a editor 59 %genword22 }
+    if (%genword23 != $null) { did -a editor 60 %genword23 }
+    if (%genword24 != $null) { did -a editor 61 %genword24 }
+    if (%genword25 != $null) { did -a editor 62 %genword25 }
+    if (%genword26 != $null) { did -a editor 63 %genword26 }
+    if (%genword27 != $null) { did -a editor 64 %genword27 }
+    if (%genword28 != $null) { did -a editor 65 %genword28 }
+    if (%genword29 != $null) { did -a editor 66 %genword29 }
+    if (%genword30 != $null) { did -a editor 67 %genword30 }
+    if (%badword1 != $null) { did -a editor 70 %badword1 }
+    if (%badword2 != $null) { did -a editor 71 %badword2 }
+    if (%badword3 != $null) { did -a editor 72 %badword3 }
+    if (%badword4 != $null) { did -a editor 73 %badword4 }
+    if (%badword5 != $null) { did -a editor 74 %badword5 }
+    if (%badword6 != $null) { did -a editor 75 %badword6 }
+    if (%badword7 != $null) { did -a editor 76 %badword7 }
+    if (%badword8 != $null) { did -a editor 77 %badword8 }
+    if (%badword9 != $null) { did -a editor 78 %badword9 }
+    if (%badword10 != $null) { did -a editor 79 %badword10 }
+    if (%badword11 != $null) { did -a editor 80 %badword11 }
+    if (%badword12 != $null) { did -a editor 81 %badword12 }
+    if (%badword13 != $null) { did -a editor 82 %badword13 }
+    if (%badword14 != $null) { did -a editor 83 %badword14 }
+    if (%badword15 != $null) { did -a editor 84 %badword15 }
+    if (%badword16 != $null) { did -a editor 85 %badword16 }
+    if (%badword17 != $null) { did -a editor 86 %badword17 }
+    if (%badword18 != $null) { did -a editor 87 %badword18 }
+    if (%badword19 != $null) { did -a editor 88 %badword19 }
+    if (%badword20 != $null) { did -a editor 89 %badword20 }
+    if (%badword21 != $null) { did -a editor 90 %badword21 }
+    if (%badword22 != $null) { did -a editor 91 %badword22 }
+    if (%badword23 != $null) { did -a editor 92 %badword23 }
+    if (%badword24 != $null) { did -a editor 93 %badword24 }
+    if (%badword25 != $null) { did -a editor 94 %badword25 }
+    if (%badword26 != $null) { did -a editor 95 %badword26 }
+    if (%badword27 != $null) { did -a editor 96 %badword27 }
+    if (%badword28 != $null) { did -a editor 97 %badword28 }
+    if (%badword29 != $null) { did -a editor 98 %badword29 }
+    if (%badword30 != $null) { did -a editor 99 %badword30 }
+    if (%badchannel1 != $null) { did -a editor 102 %badchannel1 }
+    if (%badchannel2 != $null) { did -a editor 103 %badchanne2l }
+    if (%badchannel3 != $null) { did -a editor 104 %badchannel3 }
+    if (%badchannel4 != $null) { did -a editor 105 %badchannel4 }
+    if (%badchannel5 != $null) { did -a editor 106 %badchannel5 }
+    if (%badchannel6 != $null) { did -a editor 107 %badchannel6 }
+    if (%badchannel7 != $null) { did -a editor 108 %badchannel7 }
+    if (%badchannel8 != $null) { did -a editor 109 %badchannel8 }
+    if (%badchannel9 != $null) { did -a editor 110 %badchannel9 }
+    if (%badchannel10 != $null) { did -a editor 111 %badchannel10 }
+    if (%badchannel11 != $null) { did -a editor 112 %badchannel11 }
+    if (%badchannel12 != $null) { did -a editor 113 %badchannel12 }
+    if (%badchannel13 != $null) { did -a editor 114 %badchannel13 }
+    if (%badchannel14 != $null) { did -a editor 115 %badchannel14 }
+    if (%badchannel15 != $null) { did -a editor 116 %badchannel15 }
+    if (%badchannel16 != $null) { did -a editor 117 %badchannel16 }
+    if (%badchannel17 != $null) { did -a editor 118 %badchannel17 }
+    if (%badchannel18 != $null) { did -a editor 119 %badchannel18 }
+    if (%badchannel19 != $null) { did -a editor 120 %badchannel19 }
+    if (%badchannel20 != $null) { did -a editor 121 %badchannel20 }
+    if (%badchannel21 != $null) { did -a editor 122 %badchannel21 }
+    if (%badchannel22 != $null) { did -a editor 123 %badchannel22 }
+    if (%badchannel23 != $null) { did -a editor 124 %badchannel23 }
+    if (%badchannel24 != $null) { did -a editor 125 %badchannel24 }
+    if (%badchannel25 != $null) { did -a editor 126 %badchannel25 }
+    if (%badchannel26 != $null) { did -a editor 127 %badchannel26 }
+    if (%badchannel27 != $null) { did -a editor 128 %badchannel27 }
+    if (%badchannel28 != $null) { did -a editor 129 %badchannel28 }
+    if (%badchannel29 != $null) { did -a editor 130 %badchannel29 }
+    if (%badchannel30 != $null) { did -a editor 131 %badchannel30 }
+    if (%badnicklist1 != $null) { did -a editor 134 %badnicklist1 }
+    if (%badnicklist2 != $null) { did -a editor 135 %badnicklist2 }
+    if (%badnicklist3 != $null) { did -a editor 136 %badnicklist3 }
+    if (%badnicklist4 != $null) { did -a editor 137 %badnicklist4 }
+    if (%badnicklist5 != $null) { did -a editor 138 %badnicklist5 }
+    if (%badnicklist6 != $null) { did -a editor 139 %badnicklist6 }
+    if (%badnicklist7 != $null) { did -a editor 140 %badnicklist7 }
+    if (%badnicklist8 != $null) { did -a editor 141 %badnicklist8 }
+    if (%badnicklist9 != $null) { did -a editor 142 %badnicklist9 }
+    if (%badnicklist10 != $null) { did -a editor 143 %badnicklist10 }
+    if (%badnicklist11 != $null) { did -a editor 144 %badnicklist11 }
+    if (%badnicklist12 != $null) { did -a editor 145 %badnicklist12 }
+    if (%badnicklist13 != $null) { did -a editor 146 %badnicklist13 }
+    if (%badnicklist14 != $null) { did -a editor 147 %badnicklist14 }
+    if (%badnicklist15 != $null) { did -a editor 148 %badnicklist15 }
+    if (%badnicklist16 != $null) { did -a editor 149 %badnicklist16 }
+    if (%badnicklist17 != $null) { did -a editor 150 %badnicklist17 }
+    if (%badnicklist18 != $null) { did -a editor 151 %badnicklist18 }
+    if (%badnicklist19 != $null) { did -a editor 152 %badnicklist19 }
+    if (%badnicklist20 != $null) { did -a editor 153 %badnicklist20 }
+    if (%badnicklist21 != $null) { did -a editor 154 %badnicklist21 }
+    if (%badnicklist22 != $null) { did -a editor 155 %badnicklist22 }
+    if (%badnicklist23 != $null) { did -a editor 156 %badnicklist23 }
+    if (%badnicklist24 != $null) { did -a editor 157 %badnicklist24 }
+    if (%badnicklist25 != $null) { did -a editor 158 %badnicklist25 }
+    if (%badnicklist26 != $null) { did -a editor 159 %badnicklist26 }
+    if (%badnicklist27 != $null) { did -a editor 160 %badnicklist27 }
+    if (%badnicklist28 != $null) { did -a editor 161 %badnicklist28 }
+    if (%badnicklist29 != $null) { did -a editor 162 %badnicklist29 }
+    if (%badnicklist30 != $null) { did -a editor 163 %badnicklist30 }
+    if (%inviteword1 != $null) { did -a editor 167 %inviteword1 }
+    if (%inviteword2 != $null) { did -a editor 168 %inviteword2 }
+    if (%inviteword3 != $null) { did -a editor 169 %inviteword3 }
+    if (%inviteword4 != $null) { did -a editor 170 %inviteword4 }
+    if (%inviteword5 != $null) { did -a editor 171 %inviteword5 }
+    if (%inviteword6 != $null) { did -a editor 172 %inviteword6 }
+    if (%inviteword7 != $null) { did -a editor 173 %inviteword7 }
+    if (%inviteword8 != $null) { did -a editor 174 %inviteword8 }
+    if (%inviteword9 != $null) { did -a editor 175 %inviteword9 }
+    if (%inviteword10 != $null) { did -a editor 176 %inviteword10 }
+    if (%inviteword11 != $null) { did -a editor 177 %inviteword11 }
+    if (%inviteword12 != $null) { did -a editor 178 %inviteword12 }
+    if (%inviteword13 != $null) { did -a editor 179 %inviteword13 }
+    if (%inviteword14 != $null) { did -a editor 180 %inviteword14 }
+    if (%inviteword15 != $null) { did -a editor 181 %inviteword15 }
+    if (%advsword1 != $null) { did -a editor 183 %advsword1 }
+    if (%advsword2 != $null) { did -a editor 184 %advsword2 }
+    if (%advsword3 != $null) { did -a editor 185 %advsword3 }
+    if (%advsword4 != $null) { did -a editor 186 %advsword4 }
+    if (%advsword5 != $null) { did -a editor 187 %advsword5 }
+    if (%advsword6 != $null) { did -a editor 188 %advsword6 }
+    if (%advsword7 != $null) { did -a editor 189 %advsword7 }
+    if (%advsword8 != $null) { did -a editor 190 %advsword8 }
+    if (%advsword9 != $null) { did -a editor 191 %advsword9 }
+    if (%advsword10 != $null) { did -a editor 192 %advsword10 }
+    if (%advsword11 != $null) { did -a editor 193 %advsword11 }
+    if (%advsword12 != $null) { did -a editor 194 %advsword12 }
+  }
+}
+alias findyourownset { if ($dialog(findyourown) == $null) dialog -m findyourown findyourown | findyourownopen }
+alias findyourownclose {
+  :reduce
+  if (%cdsp <= 10) { dialog -c findyourown | halt }
+  dec %cdsp 3 | dialog -s findyourown -1 -1 290 %cdsp | goto reduce
+}
+alias findyourownopen {
+  :increase
+  if (%cdsp >= 310) { dialog -s findyourown -1 -1 290 310 | halt }
+  inc %cdsp 3 | dialog -s findyourown -1 -1 290 %cdsp | goto increase
+}
+alias findyourownup { set %cdsp 310 | dialog -s findyourown -1 -1 290 310 | .timerfindyourownclose 1 0 findyourownclose }
+dialog findyourown {
+  title "Agent Spy Bot"
+  size -1 -1 145 155
+  icon Miscellaneous\spy.ico
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 14 1 110 7, Center Disable
+  link "www.Brain-Crash.com" 3, 42 8 110 15,
+  button "conect" 4, 25 139 30 12,
+  button "quit" 5, 55 139 30 12,
+  button "close" 6, 85 139 30 12, Ok  
+  box "" 7, 1 17 143 136,
+  text "spy nick:" 8, 20 26 30 10,
+  text "password:" 9, 20 36 30 10,
+  edit "" 10, 50 26 75 10, AutoHs
+  edit "" 11, 50 36 75 10, AutoHs Pass
+  tab "channels" 12, 4 55 136 82
+  combo 13, 9 73 72 61, tab 12
+  button "add" 14, 90 75 40 12, tab 12
+  button "delete" 15, 90 90 40 12, tab 12
+  button "reset" 16, 90 105 40 12, tab 12
+  tab "options" 17,
+  box "" 18, 6 67 131 67, tab 17
+  check "auto-connect" 19, 12 90 50 10, tab 17
+  check "spam listed after" 20, 12 80 50 10, tab 17
+  edit "" 21, 62 80 15 10, tab 17
+  text "consecutive kicks" 22, 78 81 50 7, tab 17
+  text "cycle time" 23, 62 91 25 10, tab 17
+  edit "" 24, 86 90 30 10, tab 17
+  text "secs" 25, 116 91 15 7, tab 17
+  check "spy logs" 26, 12 100 50 10, tab 17
+  button "reset spam listed" 27, 10 115 60 10, tab 17
+  button "reset join/part inviter" 28, 72 115 60 10, tab 17
+  button "close" 29, 85 139 30 12, Ok, hide
+}
+on *:DIALOG:findyourown:*:*:{
+  if ($devent == init) {
+    set %cdsp 1
+    update.spychan
+    if (%spybot != $null) { did -a findyourown 10 %spybot } 
+    if (%spybotpass != $null) { did -a findyourown 11 %spybotpass }
+    if (%spamrecordcount != $null) { did -a findyourown 21 %spamrecordcount }
+    if (%spamrecordcount == $null) { did -b findyourown 21 }
+    if (%spycycletime != $null) { did -a findyourown 24 %spycycletime }
+    if (%setspyconnect == $null) { set %setspyconnect off }
+    if (%setspyconnect == on) { did -c findyourown 19 }
+    if (%inviteshit == $null) { set %inviteshit off }
+    if (%inviteshit == on) { did -c findyourown 20 }
+    if (%agentlog == $null) { set %agentlog off }
+    if (%agentlog == on) { did -c findyourown 26 }
+  }
+  if ($devent == edit) {
+    if ($did == 10) { set %spybot $did(10).text }
+    if ($did == 11) { set %spybotpass $did(11).text }
+    if ($did == 13) { set %spytempchan $did(13).text }
+    if ($did == 21) { set %spamrecordcount $did(21).text }
+    if ($did == 24) { set %spycycletime $did(24).text }
+  }
+  if ($devent == sclick) {
+    if ($did == 3) { _webteam }
+    if ($did == 4) { ifelsenext | launchbestwar }
+    if ($did == 5) { offred:x | timerspy }
+    if ($did == 6) { findyourownup }
+    if ($did == 13) { set %setup.spychan.selected $did($dname,13,$did(13).sel) }
+    if ($did == 14) {
+      set %spychan %spychan $+ %spytempchan $+ ,
+      update.spychan
+    }
+    if ($did == 15) {
+      set -u1 %setup.rc %setup.spychan.selected $+ ,
+      set %spychan $remove(%spychan,%setup.rc)
+      update.spychan
+    }
+    if ($did == 16) { unset %spychan | update.spychan }
+    if ($did == 19) {
+      if (%setspyconnect == on) { set %setspyconnect off | halt }
+      if (%setspyconnect == off) { set %setspyconnect on | halt }
+    }
+    if ($did == 20) {
+      if (%inviteshit == on) { set %inviteshit off | did -b findyourown 21 | halt }
+      if (%inviteshit == off) { set %inviteshit on | did -e findyourown 21 | halt }
+    }
+    if ($did == 26) {
+      if (%agentlog == on) { set %agentlog off | halt }
+      if (%agentlog == off) { set %agentlog on | halt }
+    }
+    if ($did == 27) { /rlevel domain }
+    if ($did == 28) { /rlevel Ginviter }
+  }
+}
+alias -l update.spychan {
+  did -r findyourown 13
+  set %temp.total $count(%spychan,$chr(44))
+  set %temp.count 0
+  :start
+  inc %temp.count 1
+  did -a findyourown 13 $gettok(%spychan,%temp.count,44)
+  if (%temp.count < %temp.total) { goto start }
+}
+dialog spyerror {
+  title "Cyborg Script Syntax Error"
+  size -1 -1 98 37
+  icon Miscellaneous\error.ico
+  option dbu
+  icon 2, 3 4 16 17, Miscellaneous\error.ico
+  text "Error! You are not Connected" 3, 21 7 75 7,
+  button "Close" 4, 36 20 25 12, Ok  
+}
+dialog topic {
+  title "Topic Manager"
+  size -1 -1 170 78
+  icon Miscellaneous\topic.ico
+  option dbu
+  box "Topic design" 2, 3 2 164 73, Disable
+  button "config" 3, 65 52 25 10,
+  button "Design Color" 4, 61 12 50 10,
+  button "Topic Color" 5, 7 40 50 10,
+  text "Design 1:" 6, 7 12 25 10,
+  text "Design 2:" 7, 114 12 25 10,
+  edit "" 8, 32 12 25 10, AutoHs
+  edit "" 9, 139 12 25 10, AutoHs
+  button "Close" 10, 124 62 40 10, Ok  
+  check "background color" 11, 7 52 55 10,
+  button "Default Design" 12, 114 40 50 10,
+  edit "" 13, 7 27 156 10, AutoHs
+  button "Set topic" 14, 61 40 50 10,
+  text "" 15, 7 65 100 7,
+}
+on *:DIALOG:topic:sclick:*: {
+  if ($did == 3) { dialog -m colortop3 colortop3 }
+  if ($did == 4) { dialog -m colortop1 colortop1 }
+  if ($did == 5) { dialog -m colortop2 colortop2 }
+  if ($did == 12) { $topdefault }
+  if ($did == 14) { $settopicnow }
+  if ($did == 11) {
+    if (%colortopback == on) { set %colortopback off | halt }
+    if (%colortopback == off) { set %colortopback on | halt }
+  }
+}
+on *:DIALOG:topic:edit:*: {
+  if ($did == 8) { set %topdesign1 $did(8).text }
+  if ($did == 9) { set %topdesign2 $did(9).text }
+  if ($did == 13) { set %topicmsg $did(13).text }
+}
+on *:DIALOG:topic:init:0: {
+  if (%topdesign1 != $null) { did -a topic 8 %topdesign1 }
+  if (%topdesign2 != $null) { did -a topic 9 %topdesign2 }
+  if (%colortopback == $null) { set %colortopback off }
+  if (%colortopback == on) { did -c topic 11 }
+  $notopicset
+}
+
+dialog colortop1 {
+  title "Design Color "
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colortop1:sclick:*: {
+  if ($did == 2) { set %colortop1 0 | dialog -k $dname }
+  if ($did == 3) { set %colortop1 1 | dialog -k $dname }
+  if ($did == 4) { set %colortop1 2 | dialog -k $dname }
+  if ($did == 5) { set %colortop1 3 | dialog -k $dname }
+  if ($did == 6) { set %colortop1 4 | dialog -k $dname }
+  if ($did == 7) { set %colortop1 5 | dialog -k $dname }
+  if ($did == 8) { set %colortop1 6 | dialog -k $dname }
+  if ($did == 9) { set %colortop1 7 | dialog -k $dname }
+  if ($did == 10) { set %colortop1 8 | dialog -k $dname }
+  if ($did == 11) { set %colortop1 9 | dialog -k $dname }
+  if ($did == 12) { set %colortop1 10 | dialog -k $dname }
+  if ($did == 13) { set %colortop1 11 | dialog -k $dname }
+  if ($did == 14) { set %colortop1 12 | dialog -k $dname }
+  if ($did == 15) { set %colortop1 13 | dialog -k $dname }
+  if ($did == 16) { set %colortop1 14 | dialog -k $dname }
+  if ($did == 17) { set %colortop1 15 | dialog -k $dname }
+}
+dialog colortop2 {
+  title "Topic Color "
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colortop2:sclick:*: {
+  if ($did == 2) { set %colortop2 0 | dialog -k $dname }
+  if ($did == 3) { set %colortop2 1 | dialog -k $dname }
+  if ($did == 4) { set %colortop2 2 | dialog -k $dname }
+  if ($did == 5) { set %colortop2 3 | dialog -k $dname }
+  if ($did == 6) { set %colortop2 4 | dialog -k $dname }
+  if ($did == 7) { set %colortop2 5 | dialog -k $dname }
+  if ($did == 8) { set %colortop2 6 | dialog -k $dname }
+  if ($did == 9) { set %colortop2 7 | dialog -k $dname }
+  if ($did == 10) { set %colortop2 8 | dialog -k $dname }
+  if ($did == 11) { set %colortop2 9 | dialog -k $dname }
+  if ($did == 12) { set %colortop2 10 | dialog -k $dname }
+  if ($did == 13) { set %colortop2 11 | dialog -k $dname }
+  if ($did == 14) { set %colortop2 12 | dialog -k $dname }
+  if ($did == 15) { set %colortop2 13 | dialog -k $dname }
+  if ($did == 16) { set %colortop2 14 | dialog -k $dname }
+  if ($did == 17) { set %colortop2 15 | dialog -k $dname }
+}
+dialog colortop3 {
+  title "Back Color "
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colortop3:sclick:*: {
+  if ($did == 2) { set %colortop3 0,0 | dialog -k $dname }
+  if ($did == 3) { set %colortop3 0,1 | dialog -k $dname }
+  if ($did == 4) { set %colortop3 0,2 | dialog -k $dname }
+  if ($did == 5) { set %colortop3 0,3 | dialog -k $dname }
+  if ($did == 6) { set %colortop3 0,4 | dialog -k $dname }
+  if ($did == 7) { set %colortop3 0,5 | dialog -k $dname }
+  if ($did == 8) { set %colortop3 0,6 | dialog -k $dname }
+  if ($did == 9) { set %colortop3 0,7 | dialog -k $dname }
+  if ($did == 10) { set %colortop3 0,8 | dialog -k $dname }
+  if ($did == 11) { set %colortop3 0,9 | dialog -k $dname }
+  if ($did == 12) { set %colortop3 0,10 | dialog -k $dname }
+  if ($did == 13) { set %colortop3 0,11 | dialog -k $dname }
+  if ($did == 14) { set %colortop3 0,12 | dialog -k $dname }
+  if ($did == 15) { set %colortop3 0,13 | dialog -k $dname }
+  if ($did == 16) { set %colortop3 0,14 | dialog -k $dname }
+  if ($did == 17) { set %colortop3 0,15 | dialog -k $dname }
+}
+alias settopicnow {
+  cl
+  if (%colortopback == on) { topic %channelscanwho %colortop3 $+ %colortop1 $+ %topdesign1 %colortop2 $+ %topicmsg %colortop1 $+ %topdesign2 | goto end }
+  topic %channelscanwho %colortop1 $+ %topdesign1 %colortop2 $+ %topicmsg %colortop1 $+ %topdesign2
+:end
+}
+alias notopicset { did -a topic 15 Setting topic for: %channelscanwho }
+alias topdefault {
+did -r topic 8
+did -r topic 9
+set %topdesign1 15,0|0,15|14,15|0,15|14,15|1,14|15,14|1,14|14,1|15,1|
+set %topdesign2 15,1|14,1|1,14|15,14|1,14|14,15|0,15|14,15|0,15|15,0|
+set %colortopback off
+unset %colortop1
+set %colortop2 15,1
+unset %colortop3
+did -a topic 8 %topdesign1
+did -a topic 9 %topdesign2
+}
+;eof

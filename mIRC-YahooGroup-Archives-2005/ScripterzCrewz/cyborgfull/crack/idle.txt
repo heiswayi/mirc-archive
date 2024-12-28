@@ -1,0 +1,4 @@
+Channel idle detected
+Dont idle the channel
+excessive idle removal
+Dont idle our channel

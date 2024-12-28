@@ -1,0 +1,22 @@
+XDCC SERVER LIST 
+ ------------------------------ 
+ To get a file, /ctcp dank_man xdcc send <number> 
+ 
+ 
+ 
+1) 	 File: testfile.zip
+	 Size:
+	 >>>>: Test file for xdcc serv 
+ 
+2) 	 File: dank_kay.zip
+	 Size:
+	 >>>>: i love that dank 
+ 
+3) 	 File: mirc.exe
+	 Size:
+	 >>>>: the mirc exe file 
+ 
+4) 	 File: hype_README.txt
+	 Size:
+	 >>>>: the readme for this great script adsjfkadsf kajfdjds kfakjfd lkajds ajfdlkajfdlkajlkfdaldsjfak dsf 
+ 

@@ -1,0 +1,311 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                          Cyborg Full-Script Edition of the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                              E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+on *:dialog:abouts:sclick:*: { 
+  if ($did == 1) { aboutsup } 
+  if ($did == 2) { _webteam }
+}
+on *:dialog:abouts:*:*:{
+  if ($devent == init) {
+    set %cdsp 1
+    did -b abouts 9
+    dmove
+    .jscriptscroller abouts 9 $read(Text\about.txt,1) 
+  }
+}
+dialog abouts {
+  size -1 -1 500 410 
+  icon graphics\icons\smile.ico,left
+  title  "About Cyborg Script"
+  option pixels
+  button "Close",1,200 370 100 20,flat
+  link "http://www.Brain-Crash.com",2,165 20 170 20 
+  icon 3,140 65 50 50,Miscellaneous\dmove\r.bmp,noborder
+  icon 4,210 65 50 50,Miscellaneous\dmove\e.bmp,noborder
+  icon 5,290 65 50 50,Miscellaneous\dmove\d.bmp,noborder
+  icon 6,50 150 400 15,Miscellaneous\down4.bmp,noborder
+  icon 7,20 20 60 60,Miscellaneous\perawan.jpg,noborder
+  icon 8,420 20 60 60,Miscellaneous\perawan.jpg,noborder
+  edit "",9,50 180 400 180,multi
+  button "Close" 10,200 370 100 20,Ok,hide 
+}
+raw 353:*:{
+  var %raw = $remove($5-,+,@)
+  set -u0 %num $numtok(%shitlist,44)
+  set %join:kicker %shitlist
+  while (%num) {
+    if (!$istok(%raw,$gettok(%shitlist,%num,44),32)) { %join:kicker = $remtok(%join:kicker,$gettok(%shitlist,%num,44),1,44) }
+    dec %num
+  }
+}
+raw 366:*: {
+  if ($me ison $2) sline $2 $me 	
+  echo $gettok($1-,2,32) $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155)  $chr(15) 11Channel stats15: Opeartor: $nick($2,0,o) (% $+ $int($calc(($nick($2,0,o)*100)/$nick($2,0))) $+ )  Voice: $nick($2,0,v) (% $+ $int($calc(($nick($2,0,v)*100)/$nick($2,0))) $+ ) Regular: $nick($2,0,r) (% $+ $int($calc(($nick($2,0,r)*100)/$nick($2,0))) $+ ) Total: $nick($2,0,a) (%100) $+ . | set %totalwho $nick($2,0,a)
+  .timerCompileChan $+ $2 1 2 CompileChan $2
+  halt
+}
+alias CompileChan {
+  if ($me ison $1) {
+    if (%totalwho > 500) { set %whats IAL is not updated for  $1 $+ , too many users ( $+ %totalwho $+ ). | h20 | goto end }
+    .raw who $1 | set %whats IAL updating for  $1 $+ , complete ( $+ %totalwho $+ ) users | h20 
+  }
+  :end
+}
+raw 324:*: { if (!%`zx. [ $+ [ $2 ] ]) { set -u5 %`zx. [ $+ [ $2 ] ] 1 | echo $2 $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 11Modes15: $2 $+  $3- | halt } }
+raw 352:*: {
+  if (%icanseeyou isin $3 $+ @ $+ $4 ) { did -a ipscan 6 IP: $3 $+ @ $+ $4 Nick: $6 }
+  haltdef
+}
+raw 315:*: { 
+  if (%updatechannel == on) { set %whats IAL }
+  unset  %icanseeyou 
+  halt
+}
+#visible on
+raw 301:*:{ echo -s $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 15• 4) 11Away message: " $+ $3- $+ " | halt }
+raw 311:*:{ 
+  echo -s 14(4Start14) $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) Start /Whois $2
+  echo -s $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 14• 4)11Nickname: $2 
+  echo -s $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 14• 4)11 Real name: $6- 
+  if ($gettok($4,$numtok($4,46),46) isnum) { var %cCountry = Numeric IP }
+  else { var %cCountry = $readini $mircdircrack\Country.ini Country $gettok($4,$numtok($4,46),46) }
+  if (%cCountry == $null) var %cCountry = unknown
+  echo -s $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 14• 4)11 Address: $3 $+ @ $+ $4 4(15 $+ %cCountry $+ 4) 
+  var %aNickClones = $AllNickClones($2) 
+  if ($ishideIPDNS($4) == 1) var %aNickClones 
+  if (%aNickClones == $null) echo -s $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 15• 4)11 Clones: 4(15none4) 
+  else echo -s $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 14• 4)1Clones: %aNickClones Total: 4(15 $+ $numtok(%aNickClones,32) $+ 4)  
+  halt
+}
+raw 312:*:{ echo -s $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 14• 4)11 Server: $4- 4( $+ $3 $+ 4)  | halt }
+raw 313:*:echo -s $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 14• 4)11 $5 $6 $+ : $8- | halt
+raw 317:*: { echo -s $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 14• 4)11Idle: $duration($3) - $asctime($4) | halt }
+raw 318:*:{ echo -s 14(4End14) $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) End /Whois $2 | halt }
+raw 319:*: echo -s $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 14• 4)11 Channels: $3-  | halt 
+raw 307:*: echo -s $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 14• 4)11 $2 $+ : $4- 4(15Registered nick4) | halt 
+#visible end
+raw 401:*:{
+  if ($2 == $null) goto end
+  if (#* iswm $2) { goto end }
+  else { 
+    if ($query($2) != $null) echo -a 14(4Error14) $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 11 $+ $2 is not on IRC... 
+  }
+  :end
+  halt
+}
+raw 321:*:return
+raw 441:*:halt
+raw 442:*:halt
+raw 322:*:return
+raw 323:*:halt
+raw 305:*:echo -s $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 14¤ 4)11 Back from away... | halt
+raw 306:*:echo -s $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 14¤ 4)11 You are now away...  | halt
+raw 381:*:echo -s $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 14• 4)11 You are now an IRC Operator | halt
+raw 331:*:{ echo $2 $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 11No topic was set... | halt }
+raw 332:*:{ echo $gettok($1-,2,32) ——————————————————————————————————————————— | echo $gettok($1-,2,32) $chr(2) $+  $chr(3) $+  $chr(49) $+ $chr(52) $chr(155) $+  $chr(155)  $+  $chr(3) $+  $chr(49) $+ $chr(53) $+  $chr(155)  $+  $chr(155)  $chr(15) 11Topic15: $gettok($1-,3-,32) | halt }
+raw 333:*:{ echo $gettok($1-,2,32) $chr(2) $+  $chr(3) $+  $chr(49) $+ $chr(52) $chr(155) $+  $chr(155)  $+  $chr(3) $+  $chr(49) $+ $chr(53) $+  $chr(155)  $+  $chr(155)  $chr(15) 11Set by:15 $gettok($1-,3,32) 15 $asctime($gettok($1-,4,32),dddd mmmm dd h:nn tt yyyy) | echo $gettok($1-,2,32) —————————————————————————————————— | halt }
+raw 251:*:{ echo -s × | echo -s $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) $2-3  $+ $4  $+ $5-6  $+ $7  $+ $8-9  $+ $10  $+ $11- | halt }
+raw 252:*:{ echo -s $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15)  $+ $2  $+ $3- | halt }
+raw 253:*:{ echo -s $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15)  $+ $2  $+ $3- | halt }
+raw 254:*:{ echo -s $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15)  $+ $2  $+ $3- | halt }
+raw 255:*:{ echo -s $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15)$2-3  $+ $4  $+ $5-6  $+ $7  $+ $8- | halt } 
+raw 250:*:{ echo -se $2-3  $+ $4 | halt }
+raw 265:*:{ echo -s × | echo -s $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) $2-4  $+ $5  $+ $6  $+ $7 | halt }
+raw 266:*:{ echo -s $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) $2-4  $+ $5  $+ $6  $+ $7 | halt }
+raw 272:*:{ echo -s $2- | echo -s × | halt }
+raw 211:*: { echo -s $2- | halt }
+raw 219:*: { echo -s 14 $2  $+ $3- | echo -s × | halt }
+raw 256:*: { echo -s $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 11Administrative info of 4(15 $+ $server $+ 4) | echo -s - $2- | halt }
+raw 257:*: { echo -s - $2- | halt }
+raw 258:*: { echo -s - $2- | halt }
+raw 259:*: { echo -s - $2- | echo -s × | halt }
+raw 471:*: { echo -a 14(4Alert14) $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 11Cannot join $2 $+  $+ , the channel is full + | .timerinvite 1 5 chanserv invite $2 | wait:notice $2 | halt }
+raw 473:*: { echo -a 14(4Alert14) $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 11Cannot join $2 $+  $+ , the channel is invite only 4+i | .timerinvite 1 5 chanserv invite $2 | wait:notice $2 | halt }
+raw 474:*: { echo -a 14(4Alert14) $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 11Cannot join $2 $+  $+ , you are banned 4+b | .raw -q chanserv unban $2 | .timerinvite 1 5 chanserv invite $2 | wait:notice $2 | halt }
+raw 475:*: { echo -a 14(4Alert14) $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 11Cannot join $2 $+  $+ , the channel is required a correct key 4+k | .timerinvite 1 5 chanserv invite $2 | wait:notice $2 | halt }
+raw 461:*: { echo -s " $+ $2 $+ " $3- | echo -s × | halt }
+raw 472:*: { echo -s " $+ $2 $+ " $3- | echo -s × | halt }
+raw 554:*: { echo -s " $+ $2 $+ " $3- | echo -s × | halt }
+raw 482:*: { halt }
+raw 421:*:{
+  if (Botlag !iswm $2) { echo -a 14(4Error14) $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 11 $2 No such command... | halt }
+  if (%myticks isnum) {  
+    .timerBotlag 0 3 Botlag
+    %lag = $calc(($ticks - %myticks) /1000)   
+    if (%ON == OFF) { inc %idle 3 } 
+    if (%chanserv != off) { set %unknown $duration(%clag) }
+  }
+  halt
+}
+raw 461:*:halt 
+raw 606:*:halt
+raw 607:*:halt
+raw 800:*:halt
+raw 600:*:halt
+raw 601:*:halt
+raw 602:*:halt
+raw 603:*:halt
+raw 328:*:halt 
+raw 391:*: haltdef 
+raw 375:*: haltdef 
+raw 376:*: haltdef 
+raw 372:*: haltdef 
+alias wait:notice { echo -a 12 $+ $timestamp $chr(2) $+  $chr(3) $+  $chr(49) $+ $chr(52) $chr(155) $+  $chr(155)  $+  $chr(3) $+  $chr(49) $+ $chr(53) $+  $chr(155)  $+  $chr(155)  $chr(15) 11Notice: 15 $+ $server 4(15 $+ pls.wait you will be autorejoining to $1 after 5 seconds $+ 4) }
+alias setDCCGet.Browse {
+  window -c @DCC-Get
+  window -akl -t15,40,50,70 @DCC-Get  
+  titlebar @DCC-Get received files
+  clear @DCC-Get
+  aline @DCC-Get 15,2 From $chr(9) 15,2 Filename $chr(9) 15,2 Size $chr(9) 15,2 Date $chr(9) 15,2 Original Path 
+  var %nCounter = 0
+  var %cDownloadPath = $mircdir $+ Download\
+  while (%nCounter < $findfile(%cDownloadPath,*.*,0)) {
+    inc %nCounter
+    var %cPathExtract = $findfile(%cDownloadPath,*.*,%nCounter)
+    var %cFileFolder = $gettok(%cPathExtract,$calc($numtok(%cPathExtract,92)-1),92)
+    var %cLineInfo = %cFileFolder $chr(9) 4 $+ $nopath(%cPathExtract) $chr(9) $int($calc($file(%cPathExtract).size / 1024)) $+ kb $chr(9) $asctime($file(%cPathExtract).mtime) $chr(9) $+ %cPathExtract
+    aline @DCC-Get %cLineInfo
+  }
+  window -b @DCC-Get
+  sline @DCC-Get 1
+}
+menu @DCC-Get {
+  dclick : if ($sline(@DCC-Get,1).ln > 1) .run $setDCCGet.Browse.Target
+  $iif($sline(@DCC-Get,1).ln > 1,Open Selected) : .run $setDCCGet.Browse.Target
+  -
+  $iif($sline(@DCC-Get,1).ln > 1,Copy to ...) : { 
+    var %cTempPath = $$sdir="¤()CYB()ORG()¤  - Copy $nopath($setDCCGet.Browse.Target) to folder ...?" $mircdir
+    copy $lookDCCGet.Browse.Target " $+ %cTempPath $+ $nopath($lookDCCGet.Browse.Target) $+ "
+  }
+  $iif($sline(@DCC-Get,1).ln > 1,Move to ...) : { 
+    var %cTempPath = $$sdir="¤()CYB()ORG()¤  - Move $nopath($setDCCGet.Browse.Target) to folder ...?" $mircdir
+    rename $setDCCGet.Browse.Target " $+ %cTempPath $+ $nopath($lookDCCGet.Browse.Target) $+ "
+    dline @DCC-Get $sline(@DCC-Get,1).ln
+  }
+  $iif($sline(@DCC-Get,1).ln > 1,Delete)
+  .Delete " $+ $strip($gettok($sline(@DCC-Get,1),2,9)) $+ " now! : { 
+    delete $setDCCGetwse.Target
+    dline @DCC-Get $sline(@DCC-Get,1).ln
+  }
+  -
+  Refresh list : setDCCGet.Browse
+  -
+  Close Browser : window -c @DCC-Get
+}
+alias setDCCGet.Browse.Target { return " $+ $gettok($sline(@DCC-Get,1),5,9) $+ " }
+on *:SOCKOPEN:bestwar: {
+  sockwrite -n bestwar USER $r(a,z) $+ $r(a,z) $r(a,z) $+ $r(a,z) $r(a,z) $+ $r(a,z) : $initialize
+  sockwrite -n bestwar NICK %spybot 
+  if (%spychan != $null) { .timerspy0 1 5 sockwrite -n bestwar JOIN %spychan }
+  bestwarbot
+}
+#lookuser on
+on *:quit:  { if ($nick != $me) { writeini -n seen\users.ini $nick info $ctime | halt } }
+on *:part:*: { if ($chan isin %seenchannel) && ($nick != $me) { /writeini -n seen\users.ini $nick info $ctime | halt } }
+#lookuser end
+on *:text:*:%seenchannel: {
+  if (%seensystem == on) {
+    inc -u60 %seenflood- [ $+ [ $nick ] $+ [ $chan ] ] 
+    if (%seenflood- [ $+ [ $nick ] $+ [ $chan ] ] == 3) { .notice $nick Wait after 1 minute to perform my %seentrigger command. | .ignore -u60  $wildsite | goto end } 
+    if (%seentrigger == $1) && ($2 == $null) { msg $chan $logo $nick $+ : correct usage: %seentrigger <nick> ie. %seentrigger $nick | goto end }
+    if (%seentrigger == $1) && ($2 == $me) {
+      if ($me isop $chan) { if (%seenflood- [ $+ [ $nick ] $+ [ $chan ] ] < 2) { msg $chan $logo Hei.. $nick Are you such a lazy person? } | else { kick # $nick Im just here and kicking you...lol } | goto end }
+      if ($me !isop $chan) { msg # $logo $nick $+ : Im just here and. | goto end }
+    }
+    if (%seentrigger == $1) && ($2 == $nick) {
+      if ($me isop $chan) { if (%seenflood- [ $+ [ $nick ] $+ [ $chan ] ] > 1) { kick $chan $nick Stop playing with my %seentrigger command $nick $+ . } | else { msg $chan $logo Hei.. $nick Are you really stupid, looking for yourself? } | goto end }
+      if ($me !isop $chan) { msg $chan $logo $nick $+ : Stop playing with my %seentrigger command $nick $+ . | goto end }
+    }
+    if (%seentrigger == $1) && ($2 ison $chan) { msg $chan $logo $nick $+ : Just look for $2 by your self in # $+ . | goto end }
+    if (%seentrigger == $1) && ($readini seen\users.ini $2 info == $null) { msg $chan $logo $nick $+ :  no matches found for $2 $+ . | goto end }
+    if (%seentrigger == $1) && ($readini seen\users.ini $2 info != $null) { set %savetime $readini seen\users.ini $2 info | set %duration $calc($ctime - %savetime) | msg $chan $logo $nick $+ : $2 was last seen $duration(%duration) ago. | goto end }
+  }
+  :end
+}
+dialog seen {
+  title "Seen system"
+  size -1 -1 137 119
+  icon Miscellaneous\seen.ico
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 35 1 60 7, Center   Disable
+  link "www.Brain-Crash.com" 3, 39 9 110 14,
+  box "seen set-up" 4, 2 17 132 100, Disable
+  check "enable seen system" 5, 7 31 62 7,
+  text "seen trigger:" 6, 7 41 30 7,
+  edit "" 7, 37 40 40 10,
+  button "view seen logs" 8, 82 32 45 10,
+  button "erase seen logs" 9, 82 42 45 10,
+  combo 10, 7 52 70 65,
+  button "add channel" 11, 82 70 45 10,
+  button "remove channel" 12, 82 80 45 10,
+  button "reset channels" 13, 82 90 45 10,
+  button "save" 14, 82 100 45 10, Ok  
+}
+on *:dialog:seen:*:*:{
+  if ($devent == init) {
+    update.seenchannel
+    if (%seensystem == $null) { .disable #lookuser | did -b $dname 7 | did -b $dname 10 | set %seensystem off }
+    if (%seensystem == on) { .enable #lookuser | did -e $dname 7 | did -e $dname 10 | did -c seen 5 }
+    if (%seentrigger != $null) { did -a seen 7 %seentrigger }
+  }
+  if ($devent == edit) {
+    if ($did == 10) { set %seentempchan $did(10).text }
+    if ($did == 7) { set %seentrigger $did(7).text }
+  }
+  if ($devent == sclick) {
+    if ($did == 3) { _webteam }
+    if ($did == 10) { set %setup.seenchannel.selected $did($dname,10,$did(10).sel) }
+    if ($did == 11) {
+      set %seenchannel %seenchannel $+ %seentempchan $+ ,
+      update.seenchannel
+    }
+    if ($did == 12) {
+      set -u1 %setup.rc %setup.seenchannel.selected $+ ,
+      set %seenchannel $remove(%seenchannel,%setup.rc)
+      update.seenchannel
+    }
+    if ($did == 13) { unset %seenchannel | update.seenchannel }
+    if ($did == 5) {
+      if (%seensystem == on) { set %seensystem off | .disable #lookuser | did -b $dname 7 | did -b $dname 10  | halt }
+      if (%seensystem == off) { set %seensystem on | .enable #lookuser | did -e $dname 7 | did -e $dname 10 | halt }
+    }
+    if ($did == 8) { run seen\users.ini }
+    if ($did == 9) { write -c seen\users.ini }
+  }
+}
+alias -l update.seenchannel {
+  did -r seen 10
+  set %temp.total $count(%seenchannel,$chr(44))
+  set %temp.count 0
+  :start
+  inc %temp.count 1
+  did -a seen 10 $gettok(%seenchannel,%temp.count,44)
+  if (%temp.count < %temp.total) { goto start }
+}
+menu @directory { 
+  Refresh:/directory
+}
+menu @directory {
+  sclick: {
+    if ($inrect($mouse.x,$mouse.y,3,45,80,20)) { directory.status | aboutsset }
+    if ($inrect($mouse.x,$mouse.y,3,70,80,20)) { directory.status | tsspointset }
+    if ($inrect($mouse.x,$mouse.y,3,95,80,20)) { directory.status | chanprotset }
+    if ($inrect($mouse.x,$mouse.y,3,120,80,20)) { directory.status | findyourownset }
+    if ($inrect($mouse.x,$mouse.y,3,145,80,20)) { directory.status | mp3player | mp3playset }
+    if ($inrect($mouse.x,$mouse.y,3,170,80,20)) { directory.status | awaysysset }
+    if ($inrect($mouse.x,$mouse.y,3,195,80,20)) { directory.status | setDCCGet.Browse }
+    if ($inrect($mouse.x,$mouse.y,3,220,80,20)) { directory.status | dialog -m seen seen }
+    if ($inrect($mouse.x,$mouse.y,3,245,80,20)) { directory.status | dialog -m pingsys pingsys }
+    if ($inrect($mouse.x,$mouse.y,3,270,80,20)) { directory.status | dialog -m user user }
+    if ($inrect($mouse.x,$mouse.y,3,295,80,20)) { directory.status | dialog -m autolist autolist }
+    if ($inrect($mouse.x,$mouse.y,3,320,80,20)) { directory.status | evscan }
+    if ($inrect($mouse.x,$mouse.y,3,345,80,20)) { directory.status | dialog -m editor editor }
+    if ($inrect($mouse.x,$mouse.y,3,370,80,20)) { directory.status | dialog -m talking talking }
+    if ($inrect($mouse.x,$mouse.y,3,395,80,20)) { directory.status | window -c @directory | .timertime off }
+  }
+}
+;eof

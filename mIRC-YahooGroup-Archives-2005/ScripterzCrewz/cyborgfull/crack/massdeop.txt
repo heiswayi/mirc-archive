@@ -1,0 +1,4 @@
+Mass deop detected
+Stop this annoying mass deop
+You are not allowed to mass deop
+This is a free zone channel (mass deop detected)

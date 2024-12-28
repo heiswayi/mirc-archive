@@ -1,0 +1,318 @@
+[about]
+ 
+ Cyborg FullScript Edition
+ mIRC Protection Script Engine: 
+ Copyright © 2003 Cyborg Team - All rights reserved.
+ Coded by Cyborg Team 
+
+ Cyborg Script is a mIRC script intended to make your IRC life easier.  The whole set up of this script is specially made For IRC DALnet server. Script features are channel protection, personal protection, such as floods, kick, etc., cool away system, mp3 player, agent spy bot, and this script contains a built in bot mode. I wrote some bot commands and it has a auto talk in query and channel. All I can say is this is the best script that I ever made and hopefully you might like it to use.
+
+Disclaimer:
+ Do not change/rip/modify/reproduce this script. This is free and use it at your own risk. Anything that may happen to your computer is not my problem. 
+
+If you have any suggestions and comments pls do not hesitate to email me @ net_ryan@yahoo.com or visit #Tequilla or #hiddengarden (DALnet)              
+
+[channel]
+
+ Cyborg Script Channel Protection 
+
+ This script features is all configurable from the channel protection dialog.  Channel protections can be set for every channel you might need to protect. 
+
+ Repeat flood
+ Text flood
+ Repeat flood
+ Long text flood
+ Nick flood
+ Revolving door
+ Quit flood
+ Bad words
+ Bad channels
+ Swear words
+ Invites
+ Advertise
+ Offensive nicks
+ Offensive identd
+ Guest nicks
+ Proxy/wingate 
+ Massive clones
+ Excess codes
+ Excess caps 
+ Services Impersonators
+ Encrypted words
+ Slap
+ Alt+F4 /con/con
+
+ Other options:
+
+ Exempt ops (exempt ops in kicks) 100% protection
+ Exempt voice (exempt voice users in kick) 70% protection
+ Kickcounter
+ Channel notice kick
+
+ Includes auto join on connect
+
+ note: all users who might add in your Friendslist is 90% protected from channel protection
+
+Usage: press F3 or type /chanprotset
+
+[Settings]
+
+ Cyborg Script Settings
+
+ Protections:
+
+Queries
+ Anti spams/invites
+ Query limits
+ Messages Blocker
+ Friends list editor
+
+Personal Flood triggers
+
+ Query flood 
+ Notice flood
+ Ctcp's flood
+ Messages flood 
+ Invite flood
+
+ The response to these attacks is an ignore and kick ban is all channel that you are opped. 
+
+
+ Personalize
+
+Personal preferences
+ 
+ This features is just showing your personal info.
+
+Miscellaneous 
+
+ DALnet Lag checker
+ Auto ping system
+ Netsplit Detector
+ Auto thanks
+ Auto greets
+ Channel talk
+
+  Settings
+
+Text completer (you can design what ever you wanted)
+Nick completer (you can design what ever you wanted)
+
+ Options
+
+Channel protection
+
+ Mass kick
+ Mass deop
+ Mass ban
+ Quit flood
+ Mass ctcp
+ Join/part flood
+ Excess flood (banned users with excess flood quit)
+ Ban enforce (kick all banned users)
+
+ Kick option
+ Ban option
+ Deop option 
+
+Usage: press F2 or type /tsspointset
+
+[Agent]
+
+ Cyborg Script Agent Spy Bot
+
+ Easily configure and add can more channels you like to spy for those spammers. This is one of the best features in this script: auto talk on query (for those inviters who talks and invites, can set the auto kicks after consecutive kicks (this features add shit list to a user which spams more than the number that youve set. 
+
+Usage: press F4 or type /findyourownset
+
+[away]
+
+ Cyborg Script  Away System
+
+ You can customizea and change the default settings. The built-n away features a default messages. Auto idle away is also included, message logs. The best part of this system is the auto away nick which automatic changes your nick when you enable and use the built-in away system. And also you can set the trigger time to trigger your away message on channel. ie set to 1800 secs mean it will triggers every after 30 minutes.
+
+Usage: F7 or type /awaysysset
+
+
+[Connect]
+
+ Cyborg Script Connect System
+
+ This system enhances and speed up you connecting time, identifying your registered nicks and auto ghost for you ghosted nick.
+
+Usage: type /connectset
+
+[mp3]
+
+ Cyborg Script Mp3 Player Sound System
+
+ Very optimized, just add your mp3 directory and you will see it plays like winamp note: (sorry you cant change the skin because this is not winamp ok.
+
+Usage press F6 
+ 
+[user]
+
+ Cyborg Script User List Editor
+ 
+ This shows your userlist. These are the levels and their access:
+
+ Friendlist: keeping away your friends from auto kicks 
+ Kicklist: If you add a person on this level, they will automatically kick/ban from all channels the you are op. 
+ Shitlist: Shitlist. An user with this level cannot join a channel where you're an op, being kick/banned.
+ Ignorelist: Ignores users from all aspects
+ from options: this features reset all those auto kicksof all user levels that features on this script
+
+Heres a simple guide in adding a user:
+You can add only nick, example: Cyborg . but it is much faster to react if you try to use or to add user address like this; *!user@host.domain : *!*user@host.domain : *!*@host.domain : *!*user@*.domain : *!*@*.domain : nick!user@host.domain : nick!*user@host.domain : nick!*@host.domain : nick!*user@*.domain : nick!*@*.domain
+
+Location: menubar, channel and nicklist 
+[Anti]
+
+ Cyborg Script Anti Inviter (special features)
+
+ This features will help you optimized those commonly used inviter scripts like, Ai3, Daphunkwar, Magic, Spambots like drones etc. This scripts kicks depends on their default idents that is randomly generated. XGuest bot and other join/parts are built-in in Agent Spy Bot..
+
+Usage: press F9 or type /inviterset
+
+[Ping]
+
+ Cyborg Script Ping System
+
+ Set you ping command and set the channel to perform its commands 
+
+Location: menubar, channel
+
+[Seen]
+
+ Cyborg Script Seen System
+
+ Very configurable and record all the quits and parts only. set your seen commands and add the channel that you wish to performs the systems.
+
+Location menubar , channel
+
+[scans]
+ Cyborg Script Scans
+
+ When you join a channel, the script does an IAL check on it's users (/who). When it finishes it, you have access to option Scan in the channel popup. In it, you can find:
+
+ Clone scan : checks for all clones in the channel  
+
+ Ip Scan: Just type the address in the ip scan dialog and automatically scan and show ip match. can scan IRC op by typeing their address DALnet or dal.net simple dal
+
+ Wingate/Proxy: If you enabled the wingate/proxy this will automatically kick/banned the user using port 1080 and 8080.  
+
+[Background]
+
+ Cyborg Script Background
+
+ There is 3 options in background, 
+
+ No background - default background
+ Blacklight - Black in background with a white light
+ Blackline - White in background with a solid shadow black line
+
+Location: menubar
+[Auto]
+
+ Cyborg Script Auto OP/Voice
+
+ This features have different options:
+ 
+ Auto voice/op on join all users in specified channel
+ Single channel auto voice/op  for ex aop/applicants
+ Voice/Op the nick in all channels the you were op. 
+
+Location: menubar, channel, nicklist
+
+[Script]
+
+ Cyborg Script Script Triggers
+
+  In this dialog you can edit the follwing:
+
+  Friendlist
+  Swear Words
+  Bad Words
+  Bad Channels
+  Bad Nick
+  Spams (invites/ads)
+
+Location menubar, channel protection dialog
+
+[autothanks]
+
+ Cyborg Script Auto Thanks
+
+ Editable message in OP,Deop, Voice, Devoice, on Ban and kicks.
+
+Location: menubar, Cyborg Script Settings Dialog
+
+[Autotalk]
+
+ Cyborg Script Autotalk and Greetings
+
+ Auto talk have two options normal and advance:
+ 
+ Normal autotalk: - editable trigger words with single word or prhase reply
+ Advance autotalk - editable trigger words with randomly generated  and editable word and phrases.
+ 
+ Auto Greets
+
+ Notice on join and editable... not repeated in the nick has been join in the channel once it will notice this: Welcome back I seen you 2x.
+
+ Message on Part and editable
+
+ In this option you can also edit you ping and time replies.
+
+Location: menubar, Cyborg Script Settings Dialog
+
+[Querytalk]
+
+ Cyborg Script Query Auto talk
+
+ This options is also same as auto talk but this is in private, This is very useful for the basic and commonly ask questions like asl. ctc, brb, etc... all triggers can be editable word by word.
+
+Location: query window
+
+[games]
+ Cyborg Script Games
+
+ Set you game channel and choose among the following games to plays
+
+ Pole Booth
+ 8Ball
+ Slot Machine
+ Guest the Number
+ Spin the Bottle
+ Bartender
+
+Location: channel window
+
+[DALnet]
+
+ Cyborg Script DALnet Services
+
+ Almost complete commands of DALnet for ChanServ, NickServ, and MemoServ on Dialogs.
+
+Location: menubar and channel window
+
+[fkeys]
+
+ Cyborg Script Function Keys 
+
+ It may look confuse, but you'll quickly find out that most of the fkeys are requested by the script when a situation occurs, so you don't really have to keep track of them all.
+
+ F1 opens Help dialog
+ F2 opens Cyborg Script Settings Dialog
+ F3 opens Channel Protections Dialog
+ F4 opens Agent Spy Bot dialog
+ F5 Identify your nick in nickserv
+ F6 opens Mp3 Player Dialog and list
+ F7 opens Away System dialog
+ F8 opens Dcc Downloaded files directory
+ F9 opens Anti Inviter Dialog
+ F10 Identify your channels in chanserv
+ F11 opens Script Directory 
+ F12 exit
+
+ 

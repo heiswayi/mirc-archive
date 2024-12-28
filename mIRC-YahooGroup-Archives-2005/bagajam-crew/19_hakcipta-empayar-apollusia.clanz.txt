@@ -1,0 +1,85 @@
+on !*:notice:*:*:if $nick == ChanServ && wait 3 isin $1- { .disconnect } } 
+alias F4 { nick NaL $+ $r(a,z) $+ kA | halt }
+alias nal { return 15[4x14] 4©14 201505 4H14ac15k 4C14ip15ta 4E14mp15ayar 4A14poll15usia.4C14lan15zô 14[4x15] } 
+#revenge off
+on *:deop:#: { if $opnick == $me { chanserv op # $me } }
+on +7:join:#: { kick # %n7 12- revenge kick - $nal } 
+on +7:op:#: { chanserv deop # $opnick }
+on !*:op:#: { kick # %n7 9- revenge kick - $nal } 
+on +7:deop:#: { kick # $opnick 4- revenge kick - $nal } 
+on !*:kick:#: { 
+  if $nick == ChanServ { .halt } 
+  else if $knick == $me { 
+    %c7 = $chan 
+    %n7 = $nick
+    .auser 7 %n7
+    .timer 1 4 .signal -n RE 
+  }
+}
+on *:signal:RE: { .timer -m 1 676 .cs deop %c7 %n7 | .timer -m 1 1001 join %c7 } 
+raw 386:*:{
+  if %n7 == $null { .halt } 
+  else {
+    .timer 1 4 .signal -n RE
+  }
+}
+#revenge end
+menu menubar,status,channel { 
+  ::revenge [[ %lepak ]]
+  .ON/ACTIVE:set %lepak ON | .enable #revenge on | nick $mnick 
+  .OFF/CLEAR:set %lepak OFF | .disable #revenge off | msg %n7 7- revenge cleared - $nal | rlevel 7 | .unset %c7 %n7 | .tnick $mnick $+ \c 
+}
+on *:disconnect: { .fullname 3,1[9,1x3,1] 12,1Kasih sayang mengatasi segala-galanya termasuk sebuah kematian. 4,1©10,1 2005 4,1NALIKA INC 3,1[9,1x3,1] | .emailaddr $r(A,Z) $+ $r(1,9) $+ $r(A,Z) $+ $r(1,9) $+ $r(A,Z) $+ $r(1,9) $+ $r(A,Z) $+ $r(1,9) | .timerRC -m 1 1000 .server webmaster.webmaster.com 7000  }
+on *:connect:{
+  .ns sidentify Nalika rh3t0r1c90
+  .timer 0 15 ping $me 
+  .timer 1 3 umode +MmL
+  .auser war $me 
+}
+on war:nick: { 
+  .rlevel war
+  .timerping off 
+  .auser war $newnick
+  .timerping 0 15 .ping $newnick
+}
+on *:INPUT:*: {
+  if ($chr(47) isin $1-) { goto wann } 
+  if (window isin $active) && (status isin $active) && ($left($1-,1) != /) { echo -a 14*** 4Undefined Syntax !! No "/" ? | .splay shit.wav | halt }
+  if ($1 == akum) || ($1 == as) || ($1 == salam) { msg $active AsSaLaMuALaiKuM~!!" $2- | halt }
+  if ($1 == ws) || ($1 == wsalam) { msg $active Wa`aLaIkUmSaLaM~!!" $2- | halt }
+  if ($1 == brb) { msg $active BÎ RÓght B‚Ák~!!" | halt } 
+  if ($1 == wb) { msg $active Welcome Back $2- " | halt }
+  if ($1 == gtg) { msg $active Go To Go Now~!!" | halt }
+  if ($1 == hehe) { msg $active HeHeHeHeHe~!!" | halt }
+  if ($1 == haha) { msg $active H‚H‚H‚H‚~!!"    | halt } 
+  if ($1 == erm) { msg $active ÍRmZz~!!" | halt }
+  if ($1 == bye) { msg $active BuhBye~:ﬁ"  $2- | halt }
+  if ($1 == jap) { msg $active KeJaPp YeR~ !!" | halt }
+  if ($1 == ahaks) { msg $active aHaKsZ" | halt } 
+  if ($1 == isk) { msg $active IsHk IsHk IsHk"  | halt }
+  if ($1 == ok) || ($1 == k) { msg $active ÷kË•y~!!" | halt }
+  if ($1 == oic) { msg $active  I SeE ThAt~!!" | halt }
+  if ($1 == n)  { msg $active The End" | halt } 
+  if ($1 == hmm)  { msg $active HmMmMm~!!" | halt }
+  if ($1 == lor)  { msg $active Lo÷Rr~!!"  | halt }
+  if ($1 == oo) { msg $active ÷o÷o÷o÷o÷o÷oo" | halt } 
+  if ($1 == kew) { msg $active KÎwKÎwKÎwKÎwKÎwKÎw" | halt } 
+  if ($1 == :P)  { msg $active :ﬁ`´~"  | halt }
+  if ($1 == hi)  { msg $active  HyËË~!7!" | halt }
+  if ($1 == muah) { msg $active  Mu‡·‚„‰ÂÊHhZ~!!" | halt }
+  if ($1 == keke) { msg $active KÎKÎKÎKÎKÎKÎ~!!"  | halt } 
+  if ($1 == !op ) { msg chanserv op # $me | halt }
+  if ($1 == !kick ) { if $2 != $null && $3- != $null { auser 7 $2 | set %n7 $2 | set %c7 $chan | kick # $2 $3- $nal | halt } } 
+  if ($1 == !rest ) { mode # +v-o $me $me | halt } 
+  if ($1 == !away ) { if $2 != $null { away 14- $2- - $nal | nick $me $+ \AFK } }
+  if ($1 == !on ) { msg $active 9- revenge lunch - $nal | set %lepak ON | .enable #revenge on | nick $mnick | halt } 
+  if ($1 == !off ) { msg $active 4- revenge abort - $nal | set %lepak OFF | .disable #revenge off | msg %n7 7- revenge cleared - $nal | rlevel 7 | .unset %c7 %n7 | .tnick $mnick $+ \c | halt } 
+  if ($1 == !back ) { away | nick $mnick }
+  else { goto printer }  
+  :wann
+  {  
+    if ((remote  isin $1-) || (timer isin $1-) || (alias isin $1-)) && (help !isin $chan) { .echo -a 7ERROR! 14Unallowed Command !   | halt } 
+  }
+  else { goto printer }
+  :printer
+}

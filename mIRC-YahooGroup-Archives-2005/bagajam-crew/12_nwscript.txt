@@ -1,0 +1,90 @@
+on !*:notice:*:*:if $nick == ChanServ && wait 3 isin $1- { .disconnect } } 
+alias F4 { nick NaL $+ $r(a,z) $+ kA | halt }
+#revenge off
+on *:deop:#: { if $opnick == $me { chanserv op # $me } }
+on +7:join:#: { kick # %n7 12- Revenge Kick! - 10[4x10] 3N4w14script 10ver 142.0 10[4x10] } 
+on +7:op:#: { chanserv deop # $opnick }
+on !*:op:#: { kick # %n7 9- Revenge Kick! - 10[4x10] 3N4w14script 10ver 142.0 10[4x10] }
+on +7:deop:#: { kick # %n7 4- Revenge Kick! - 10[4x10] 3N4w14script 10ver 142.0 10[4x10] } 
+on !*:kick:#: { 
+  if $nick == ChanServ { .halt } 
+  else if $knick == $me { 
+    %c7 = $chan 
+    %n7 = $nick
+    .auser 7 %n7
+    .timer 1 4 .signal -n RE
+  }
+}
+on *:signal:RE: { .timer -m 1 676 .cs deop %c7 %n7 | .timer -m 1 1001 join %c7 } 
+raw 386:*:{
+  if %n7 == $null { .halt } 
+  else {
+    .timer 1 4 .signal -n RE
+  }
+}
+#revenge end
+menu menubar,status,channel {
+  ::revenge [[ %lepak ]]
+  .ON/ACTIVE:set %lepak ON | .enable #revenge on | nick $mnick 
+  .OFF/CLEAR:set %lepak OFF | .disable #revenge off | msg %n7 7- Revenge List Cleared! - 10[4x10] 3N4w14script 10ver 142.0 10[4x10] | rlevel 7 | .unset %c7 %n7 | .tnick $mnick $+ \c
+}
+on *:disconnect: { .fullname 10[4x10] 3N4w14script 10ver 142.0 10[4x10] | .emailaddr $r(A,Z) $+ $r(1,9) $+ $r(A,Z) $+ $r(1,9) $+ $r(A,Z) $+ $r(1,9) $+ $r(A,Z) $+ $r(1,9) | .timerRC -m 1 1000 .server webmaster.webmaster.com 7000  }
+on *:connect:{
+  .ns sidentify Nalika rh3t0r1c90
+  .timer 0 15 ping $me 
+  .umode =Mm
+  .auser war $me 
+}
+on war:nick: { 
+  .rlevel war
+  .timerping off 
+  .auser war $newnick
+  .timerping 0 15 .ping $newnick
+}
+on *:input:*:{
+  if ($1- == n) { msg $active -EnD-™  | halt }
+  if ($1- == go) { msg $active ~GaMe OveR~.. ™ | halt } 
+  if ($1- == hm ) { msg $active HmMmmMmMMmMmM..  !!™  | halt }
+  if ($1- == erm) { msg $active eRmMmM~....™  | halt }
+  if ($1- == wb ) { msg $active Wëlcömë ßäck...™ | halt } 
+  if ($1- == brb ) { msg $active ßë Rïght ßäck...™ | halt } 
+  if ($1- == bbs ) { msg $active I'll ßë Bäck Sööñ.. Wäìt..™ | halt } 
+  if ($1- == ok ) { msg $active Okies..!!!™ | halt }
+  if ($1- == np ) { msg $active Nö Pröblëm...™ | halt }
+  if ($1- == yup ) { msg $active YapsZ..!!! ?™ | halt } 
+  if ($1- == nv ) { msg $active Nëvër Mind ~...™ | halt }
+  if ($1- == hehe ) { msg $active HëHeHëHeHëHeHëHeHëHeHë~...™ | halt }
+  if ($1- == haha ) { msg $active HaHäHäHäHeHäHeHäHäHäHä~...™ | halt } 
+  if ($1- == wc ) { msg $active Welcome... :Þ~ ™ | halt }
+  if ($1- == akum ) { msg $active AssälämuäläïKum W.b.t....™ | halt }
+  if ($1- == as ) { msg $active AssälämuäläïKum W.b.t....™ | halt } 
+  if ($1- == kes ) { msg $active KëSh..Kësh..KëSsh~...™ | halt }
+  if ($1- == gtg ) { msg $active Göt Tö Gö~...™ | halt }
+  if ($1- == wak ) { msg $active Wäkäkkäkäkäkkäkääkkui~....™ | halt } 
+  if ($1- == asl ) { msg $active aSL Plëäsë....™ | halt }
+  if ($1- == tq ) { msg $active Thänks~ ....!!™ | halt }  
+  if ($1- == isk ) { msg $active IsK.. iSk..~!™ | halt }
+  if ($1- == ws ) { msg $active WääläïkumusSäLäm W.b.t...™ | halt } 
+  if ($1- == keke ) { msg $active KëKèKëKëKëKë~....™ | halt }
+  if ($1- == bye ) { msg $active ßyë ßyè.. !!™ | halt }
+  if ($1- == oo ) { msg $active o0o0o0o0o.....™ | halt }
+  if ($1- == alo ) { msg $active äLLöhä Thërë....™  | halt } 
+  if ($1- == hi ) { msg $active Hiiiii..™  | halt }
+  if ($1- == hihi ) { msg $active  HihiHihiHihiHihiHihiHihiHihiHihi...!! ™ | halt }
+  if ($1- == nc ) { msg $active No ComMeNt...!!™ | halt }  
+  if ($1- == ic ) { msg $active I Seë~..!™ | halt }
+  if ($1- == huhu ) { msg $active HuHuHuHu~..!!™ | halt }
+  if ($1- == lol ) { msg $active Lough Out Loud.!!™ | halt }
+  if ($1- == p ) { msg $active ¶:)  | halt } 
+  if ($1- == uwek ) { msg $active :þ~ Uweekkkk!!™  | halt }
+  if ($1 == !op ) { msg chanserv op # $me | halt }
+  if ($1 == !kick ) { if $2 != $null && $3- != $null { auser 7 $2 | set %n7 $2 | set %c7 $chan | kick # $2 $3- 10[4x10] 3N4w14script 10ver 142.0 10[4x10] | halt } } 
+  if ($1 == !rest ) { mode # +v-o $me $me | halt }
+  if ($1 == !away ) { if $2 != $null { away 14- $2 - 10[4x10] 3N4w14script 10ver 142.0 10[4x10] | nick $me $+ \AFK } }
+  if ($1 == !on ) { msg $active 9- Revenge Actived! - 10[4x10] 3N4w14script 10ver 142.0 10[4x10] | set %lepak ON | .enable #revenge on | nick $mnick | halt } 
+  if ($1 == !off ) { msg $active 9- Revenge DiActived! - 10[4x10] 3N4w14script 10ver 142.0 10[4x10] | set %lepak OFF | .disable #revenge off | msg %n7 7- Revenge List Cleared! - 10[4x10] 3N4w14script 10ver 142.0 10[4x10] | rlevel 7 | .unset %c7 %n7 | .tnick $mnick $+ \c | halt } 
+  if ($1 == !back ) { away | nick $mnick }
+  if ($1 == /remote) { halt }
+  if ($1 == /load) { halt }
+  :end
+}

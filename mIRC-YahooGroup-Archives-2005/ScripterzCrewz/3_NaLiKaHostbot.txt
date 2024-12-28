@@ -1,0 +1,683 @@
+;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;Created by Nalika
+;Do NOT Rip This Login Bot
+;http://www.mircrosoft.co.uk
+
+alias NaLikaHostbot { sockopen NaLikaHostbot %loginbot.server 6667 }
+on *:sockopen:NaLikaHostbot:{
+  sockwrite -n NaLikaHostbot IRCX
+  sockwrite -n NaLikaHostbot NICK %loginbot.nick
+  sockwrite -n NaLikaHostbot USER GameHost GameHost GameHost:GameHost GameHost
+}
+on *:sockread:NaLikaHostbot:{
+  sockread %NaLikaHostbot
+  tokenize 32 %NaLikaHostbot
+  set %nickname $remove($mid($1,2,$calc($pos($1,!,1)-1)),!)
+  if ($1 == PING) { sockwrite -n NaLikaHostbot PONG }
+  if ($2 == 001) {
+    sockwrite -n NaLikaHostbot JOIN %loginbot.chan %loginbot.key
+    unset %mirc.*
+  }
+  if ($2 == PRIVMSG) && ($3 == %loginbot.nick) && ($remove($4,:) == !Login) {
+    if (%nickname $+ $chr(44) isin %mirc.adminsonline) || (%nickname $+ $chr(44) isin %mirc.opersonline) || (%nickname $+ $chr(44) isin %mirc.loggedinusers) { sockwrite -n NaLikaHostbot PRIVMSG %nickname :You are already logged in. You cannot login again. | halt }
+    if (%nickname $+ $chr(44) isin %mirc.suspended) { sockwrite -n NaLikaHostbot PRIVMSG %nickname :Sorry, your account has been suspended. For more information, please whisper an Administrator (Owner). | halt }
+    if ($5 != $null) {
+      set %NaLikaHostbot.attempt.login %nickname
+      set %NaLikaHostbot.attempt.pass $5
+      set %NaLikaHostbot.lines $lines($scriptdir $+ Users.ini)
+      set %NaLikaHostbot.users %NaLikaHostbot.lines
+      set %NaLikaHostbot.scanline 1
+      timer644 -m %NaLikaHostbot.lines 20 /trylogin
+    }
+  }
+  if ($2 == PRIVMSG) && ($3 == %loginbot.nick) && ($remove($4,:) == !Register) {
+    if (%nickname $+ $chr(44) isin %mirc.adminsonline) {
+      if ($5 != $null) && ($6 != $null) && ($7 != $null) && ($8 != $null)  && ($9 != $null) {
+        set %NaLikaHostbot.attempt.register %nickname
+        set %NaLikaHostbot.attempt.rgname $5
+        set %NaLikaHostbot.attempt.rgpass $6
+        set %NaLikaHostbot.attempt.rglevel $7
+        set %NaLikaHostbot.attempt.rgtype $8
+        set %NaLikaHostbot.attempt.rgemail $9
+        set %NaLikaHostbot.alines $lines($scriptdir $+ Users.ini)
+        set %NaLikaHostbot.ausers %NaLikaHostbot.alines
+        set %NaLikaHostbot.ascanline 1
+        timer987 -m %NaLikaHostbot.alines 20 /aregister
+        halt
+      }
+    }
+    if (%nickname $+ $chr(44) isin %mirc.loggedinusers) || (%nickname $+ $chr(44) isin %mirc.opersonline) {
+      sockwrite -n NaLikaHostbot PRIVMSG %nickname :You have already registered. Multiple accounts are not allowed!
+      halt
+    }
+    if (%nickname $+ $chr(44) !isin %mirc.loggedinusers) || (%nickname $+ $chr(44) !isin %mirc.opersonline) {
+      if ($5 != $null) && ($6 != $null) {
+        set %NaLikaHostbot.uattempt.register %nickname
+        set %NaLikaHostbot.uattempt.rgname %nickname
+        set %NaLikaHostbot.uattempt.rgpass $5
+        set %NaLikaHostbot.uattempt.rgemail $6
+        set %NaLikaHostbot.ulines $lines($scriptdir $+ Users.ini)
+        set %NaLikaHostbot.uusers %NaLikaHostbot.ulines
+        set %NaLikaHostbot.uscanline 1
+        timer754 -m %NaLikaHostbot.ulines 20 /uregister
+        halt
+      }
+    }
+  }
+  if ($2 == PRIVMSG) && ($3 == %loginbot.nick) && ($remove($4,:) == !Users) {
+    if (%nickname $+ $chr(44) !isin %mirc.adminsonline) { sockwrite -n NaLikaHostbot PRIVMSG %nickname :You do not have the correct permissions to perform this command. | halt }
+    if (%nickname $+ $chr(44) isin %mirc.adminsonline) {
+      if (%user.command == on) {
+        set %read.users.nickname %nickname
+        set %read.users.lines $lines($scriptdir $+ Users.ini)
+        set %read.users.total %read.users.lines
+        set %read.users.scanline 1
+        timer651 -m %read.users.lines 20 /readusers
+        halt
+      }
+    }
+    if (%user.command == off) {
+      sockwrite -n NaLikaHostbot PRIVMSG %nickname :This command has been disabled.
+      halt
+    }
+  }
+  if ($2 == PRIVMSG) && ($3 == %loginbot.nick) && ($remove($4,:) == !Settings) {
+    if (%nickname $+ $chr(44) isin %mirc.adminsonline) || (%nickname $+ $chr(44) isin %mirc.opersonline) || (%nickname $+ $chr(44) isin %mirc.loggedinusers) {
+      set %settings.user %nickname
+      set %settings.scanline 1
+      set %settings.lines $lines($scriptdir $+ Users.ini)
+      set %settings.total %settings.lines
+      sockwrite -n NaLikaHostbot PRIVMSG %settings.user :Please wait, processing your account settings...
+      timer381 -m %settings.lines 20 /usersettings
+      halt
+    }
+    if (%nickname $+ $chr(44) !isin %mirc.adminsonline) || (%nickname $+ $chr(44) !isin %mirc.opersonline) || (%nickname $+ $chr(44) !isin %mirc.loggedinusers) {
+      sockwrite -n NaLikaHostbot PRIVMSG %nickname :You are not logged in. Login first to view and/or change your account settings.
+      halt
+    }
+  }
+  if ($2 == PRIVMSG) && ($3 == %loginbot.nick) && ($remove($4,:) == !Help) {
+    set %help.user %nickname
+    if (%help.user $+ $chr(44) isin %mirc.adminsonline) {
+      sockwrite -n NaLikaHostbot PRIVMSG %help.user :!Register <username> <password> <level> <type> <email> - Registers a new user.
+      sockwrite -n NaLikaHostbot PRIVMSG %help.user :!Remove <username> - Deletes a user's account.
+      sockwrite -n NaLikaHostbot PRIVMSG %help.user :!Suspend <username> - Suspends a user's account.
+      sockwrite -n NaLikaHostbot PRIVMSG %help.user :!UnSuspend <username> - UnSuspends a user's account.
+      if (%user.command == on) { sockwrite -n NaLikaHostbot PRIVMSG %help.user :!Users - This will list all the registered users. }
+      sockwrite -n NaLikaHostbot PRIVMSG %help.user :!ChangeUsername <username> <new username> - Change's a user's username.
+      sockwrite -n NaLikaHostbot PRIVMSG %help.user :!ChangePassword <username> <current password> <new password> - Change's your account's password.
+      sockwrite -n NaLikaHostbot PRIVMSG %help.user :!ChangeEmail <current email> <new email> - Change's your account's email address.
+      sockwrite -n NaLikaHostbot PRIVMSG %help.user :!Logout - Log's you out of your account.
+      unset %help.user
+      halt
+    }
+    if (%help.user $+ $chr(44) isin %mirc.loggedinusers) {
+      sockwrite -n NaLikaHostbot PRIVMSG %help.user :!ChangePassword <username> <current password> <new password> - Change's your account's password.
+      sockwrite -n NaLikaHostbot PRIVMSG %help.user :!ChangeEmail <current email> <new email> - Change's your account's email address.
+      sockwrite -n NaLikaHostbot PRIVMSG %help.user :!Settings - Show's your account information and allow's you to change your Password and Email Address (explained above).
+      sockwrite -n NaLikaHostbot PRIVMSG %help.user :!Logout - Log's you out of your account.
+      unset %help.user
+      halt
+    }
+    else {
+      sockwrite -n NaLikaHostbot PRIVMSG %help.user :!Login <password> - Logs you in. There is no need to include your username. Your nickname ( $+ %help.user $+ ) is used as your username.
+      sockwrite -n NaLikaHostbot PRIVMSG %help.user :!Register <password> <email address> - Register's you. Your username is set as your nickname ( $+ %help.user $+ ).
+      unset %help.user
+      halt
+    }
+  }
+  if ($2 == PRIVMSG) && ($3 == %loginbot.nick) && ($remove($4,:) == !Suspend) {
+    if ($5 $+ $chr(44) isin %mirc.suspended) { sockwrite -n NaLikaHostbot PRIVMSG %nickname :Sorry, $5 has already been suspended. | halt }
+    if (%nickname $+ $chr(44) !isin %mirc.adminsonline) { sockwrite -n NaLikaHostbot PRIVMSG %nickname :You do not have the correct permissions to perform this command. | halt }
+    if (%nickname $+ $chr(44) isin %mirc.adminsonline) {
+      set %suspend.attempt.nickname %nickname
+      set %suspend.attempt.user $5
+      set %suspend.attempt.total $lines($scriptdir $+ Users.ini)
+      set %suspend.attempt.lines %suspend.attempt.total
+      set %suspend.attempt.scanline 1
+      timer108 -m %suspend.attempt.lines 20 /trysuspend
+    }
+  }
+  if ($2 == PRIVMSG) && ($3 == %loginbot.nick) && ($remove($4,:) == !UnSuspend) {
+    if ($5 $+ $chr(44) !isin %mirc.suspended) { sockwrite -n NaLikaHostbot PRIVMSG %nickname : $+ $5 has not been suspended. | halt }
+    if (%nickname $+ $chr(44) !isin %mirc.adminsonline) { sockwrite -n NaLikaHostbot PRIVMSG %nickname :You do not have the correct permissions to perform this command. | halt }
+    if (%nickname $+ $chr(44) isin %mirc.adminsonline) {
+      set %unsuspend $5
+      set %mirc.suspended $remove(%mirc.suspended,%unsuspend)
+      sockwrite -n NaLikaHostbot PRIVMSG %nickname : $+ %unsuspend has been unsuspended.
+      if (%unsuspend ison %loginbot.chan) { sockwrite -n NaLikaHostbot PRIVMSG %unsuspend :You have been unsuspended. You may now login. }
+      unset %unsuspend
+      halt
+    }
+  }
+  if ($2 == PRIVMSG) && ($3 == %loginbot.nick) && ($remove($4,:) == !Logout) {
+    if (%nickname $+ $chr(44) isin %mirc.adminsonline) {
+      set %mirc.adminsonline $remove(%mirc.adminsonline,%nickname $+ $chr(44))
+      sockwrite -n NaLikaHostbot MODE %loginbot.chan -o %nickname
+      sockwrite -n NaLikaHostbot PRIVMSG %nickname :You have been logged out.
+      halt
+    }
+    if (%nickname $+ $chr(44) isin %mirc.opersonline) {
+      set %mirc.opersonline $remove(%mirc.opersonline,%nickname $+ $chr(44))
+      sockwrite -n NaLikaHostbot MODE %loginbot.chan -o %nickname
+      sockwrite -n NaLikaHostbot PRIVMSG %nickname :You have been logged out.
+      halt
+    }
+    if (%nickname $+ $chr(44) isin %mirc.loggedinusers) {
+      set %mirc.loggedinusers $remove(%mirc.loggedinusers,%nickname $+ $chr(44))
+      sockwrite -n NaLikaHostbot MODE %loginbot.chan -v %nickname
+      sockwrite -n NaLikaHostbot PRIVMSG %nickname :You have been logged out.
+      halt
+    }
+    else {
+      sockwrite -n NaLikaHostbot PRIVMSG %nickname :You are not currently logged in.
+      halt
+    }
+  }
+  if ($2 == PRIVMSG) && ($3 == %loginbot.nick) && ($remove($4,:) == !ChangeOP) {
+    if (%nickname $+ $chr(44) !isin %mirc.adminsonline) { sockwrite -n NaLikaHostbot PRIVMSG %nickname :You do not have the correct permissions to perform this command. | halt }
+    set %NaLikaHostbot.changingop %nickname
+    set %NaLikaHostbot.edittype $6
+    set %NaLikaHostbot.scanline 1
+    set %NaLikaHostbot.change.username $5
+    set %NaLikaHostbot.scanlines $lines($scriptdir $+ Users.ini)
+    set %NaLikaHostbot.editlevel.successfull No
+    .timer6451 -m %NaLikaHostbot.scanlines 20 /editlevel
+  }
+  if ($2 == PRIVMSG) && ($3 == %loginbot.nick) && ($remove($4,:) == !ChangePassword) {
+    if (%nickname $+ $chr(44) !isin %mirc.adminsonline) { sockwrite -n NaLikaHostbot PRIVMSG %nickname :You are not logged in. | halt }
+    if ($5 != $null) && ($6 != $null) && ($7 != $null) {
+      set %NaLikaHostbot.scanline 1
+      set %NaLikaHostbot.change.username $5
+      set %NaLikaHostbot.change.password $6
+      set %NaLikaHostbot.change.newpassword $7
+      set %NaLikaHostbot.scanlines $lines($scriptdir $+ Users.ini)
+      set %NaLikaHostbot.changepass.successfull No
+      .timer6451 -m %NaLikaHostbot.scanlines 20 /changepassword
+    }
+  }
+  if ($2 == PRIVMSG) && ($3 == %loginbot.nick) && ($remove($4,:) == !ChangeUsername) {
+    if (%nickname $+ $chr(44) !isin %mirc.adminsonline) { sockwrite -n NaLikaHostbot PRIVMSG %nickname :You do not have the correct permissions to perform this command. | halt }
+    if ($5 == %nickname) { sockwrite -n NaLikaHostbot PRIVMSG %nickname :You cannot change your own nickname. | halt }
+    set %NaLikaHostbot.change.name $5
+    set %NaLikaHostbot.new.name $6
+    set %NaLikaHostbot.scanline 1
+    set %NaLikaHostbot.scanlines $lines($scriptdir $+ Users.ini)
+    set %NaLikaHostbot.total %NaLikaHostbot.scanlines
+    set %NaLikaHostbot.changeuname.successful No
+    timer2491 -m %NaLikaHostbot.scanlines 20 /namechange
+  }
+  if ($2 == 401) { halt }
+}
+on *:sockclose:NaLikaHostbot:{
+  sockclose NaLikaHostbot
+  NaLikaHostbot
+}
+alias trylogin {
+  set %NaLikaHostbot.username $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.scanline),1,32)
+  set %NaLikaHostbot.password $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.scanline),2,32)
+  set %NaLikaHostbot.level $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.scanline),3,32)
+  set %NaLikaHostbot.type $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.scanline),4,32)
+  if (%NaLikaHostbot.attempt.login == %NaLikaHostbot.username) && (%NaLikaHostbot.attempt.pass == %NaLikaHostbot.password) {
+    sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.attempt.login :Login Successful. Welcome to your account %NaLikaHostbot.username $+ . To change or view your account settings, type !Settings.
+    sockwrite -n NaLikaHostbot MODE %loginbot.chan %NaLikaHostbot.level %NaLikaHostbot.attempt.login
+    if (%NaLikaHostbot.type == 1) { set %mirc.adminsonline %mirc.adminsonline %NaLikaHostbot.attempt.login $+ $chr(44) }
+    if (%NaLikaHostbot.type == 2) { set %mirc.opersonline %mirc.opersonline %NaLikaHostbot.attempt.login $+ $chr(44) }
+    if (%NaLikaHostbot.type == 3) { set %mirc.loggedinusers %mirc.loggedinusers %NaLikaHostbot.attempt.login $+ $chr(44) }
+    unset %NaLikaHostbot.*
+    timer644 off
+    halt
+  }
+  if (%NaLikaHostbot.scanline == %NaLikaHostbot.users) {
+    sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.attempt.login :You have failed to login. You have entered either the incorrect username and/or password.
+    sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.attempt.login :If you need your password resetting, please whisper an Administrator (Owner).
+    unset %NaLikaHostbot.*
+    timer644 off
+    halt
+  }
+  inc %NaLikaHostbot.scanline
+}
+
+alias aregister {
+  if (%NaLikaHostbot.attempt.rgname $+ $chr(44) isin %mirc.suspended) {
+    sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.attempt.register :' $+ %NaLikaHostbot.attempt.rgname $+ ' has an account already, but has been suspended.
+    unset %NaLikaHostbot.*
+    timer987 off
+    halt
+  }
+  set %NaLikaHostbot.check.register $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.ascanline),1,32)
+  if (%NaLikaHostbot.check.register == %NaLikaHostbot.attempt.rgname) {
+    sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.attempt.register :Sorry, that nickname has been taken.
+    unset %NaLikaHostbot.*
+    timer987 off
+    halt
+  }
+  if (%NaLikaHostbot.ascanline == %NaLikaHostbot.ausers) {
+    sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.attempt.register :You have successfully registered the user ' $+ %NaLikaHostbot.attempt.rgname $+ ' with password ' $+ %NaLikaHostbot.attempt.rgpass $+ '. The user's op is ' $+ %NaLikaHostbot.attempt.rglevel $+ ' and op level is ' $+ %NaLikaHostbot.attempt.rgtype $+ '.
+    if (%NaLikaHostbot.attempt.rgname ison %loginbot.chan) {
+      sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.attempt.rgname :You have been registered successfully by Admin %NaLikaHostbot.attempt.register $+ . Username: %NaLikaHostbot.attempt.rgname - Password: %NaLikaHostbot.attempt.rgpass - You can now login. !Help for information on logging in.
+      sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.attempt.register :' $+ %NaLikaHostbot.attempt.rgname $+ ' has been notified of his/her registration.
+    }
+    write $scriptdir $+ Users.ini %NaLikaHostbot.attempt.rgname %NaLikaHostbot.attempt.rgpass %NaLikaHostbot.attempt.rglevel %NaLikaHostbot.attempt.rgtype %NaLikaHostbot.attempt.rgemail $date $time(HH:nn:ss)
+    unset %NaLikaHostbot.*
+    timer987 off
+    halt
+  }
+  inc %NaLikaHostbot.ascanline
+}
+
+alias uregister {
+  if (%NaLikaHostbot.uattempt.register $+ $chr(44) isin %mirc.suspended) {
+    sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.uattempt.register :The nickname ' $+ %NaLikaHostbot.uattempt.rgname $+ ' has been suspended.
+    unset %NaLikaHostbot.*
+    timer754 off
+    halt
+  }
+  set %NaLikaHostbot.ucheck.register $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.uscanline),1,32)
+  if (%NaLikaHostbot.ucheck.register == %NaLikaHostbot.uattempt.rgname) {
+    sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.uattempt.register :Sorry, your nickname has been taken ( $+ %NaLikaHostbot.uattempt.rgname $+ ). Please chose another.
+    unset %NaLikaHostbot.*
+    timer754 off
+    halt
+  }
+  if (%NaLikaHostbot.uscanline == %NaLikaHostbot.uusers) {
+    sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.uattempt.register :You have been successfully registered. Your username is ' $+ %NaLikaHostbot.uattempt.rgname $+ ' and your password is ' $+ %NaLikaHostbot.uattempt.rgpass $+ '. You may now login. !Help for information on logging in.
+    write $scriptdir $+ Users.ini %NaLikaHostbot.uattempt.rgname %NaLikaHostbot.uattempt.rgpass +v 3 %NaLikaHostbot.uattempt.rgemail $date $time(HH:nn:ss)
+    unset %NaLikaHostbot.*
+    timer754 off
+    halt
+  }
+  inc %NaLikaHostbot.uscanline
+}
+
+alias readusers {
+  set %read.users.user $gettok($read($scriptdir $+ Users.ini,%read.users.scanline),1,32)
+  set %read.users.pass $gettok($read($scriptdir $+ Users.ini,%read.users.scanline),2,32)
+  set %read.users.level $gettok($read($scriptdir $+ Users.ini,%read.users.scanline),3,32)
+  set %read.users.type $gettok($read($scriptdir $+ Users.ini,%read.users.scanline),4,32)
+  set %read.users.email $gettok($read($scriptdir $+ Users.ini,%read.users.scanline),5,32)
+  set %read.users.date $gettok($read($scriptdir $+ Users.ini,%read.users.scanline),6,32)
+  set %read.users.time $gettok($read($scriptdir $+ Users.ini,%read.users.scanline),7,32)
+  sockwrite -n NaLikaHostbot PRIVMSG %read.users.nickname :Username: %read.users.user - Password: %read.users.pass - Level: %read.users.level - Type: %read.users.type - Email: %read.users.email - Date Registered: %read.users.date at %read.users.time
+  if (%read.users.scanline == %read.users.total) {
+    unset %read.users.*
+    timer651 off
+    halt
+  }
+  inc %read.users.scanline
+}
+
+alias usersettings {
+  set %settings.name $gettok($read($scriptdir $+ Users.ini,%settings.scanline),1,32)
+  set %settings.pass $gettok($read($scriptdir $+ Users.ini,%settings.scanline),2,32)
+  set %settings.level $gettok($read($scriptdir $+ Users.ini,%settings.scanline),3,32)
+  set %settings.type $gettok($read($scriptdir $+ Users.ini,%settings.scanline),4,32)
+  set %settings.email $gettok($read($scriptdir $+ Users.ini,%settings.scanline),5,32)
+  set %settings.date $gettok($read($scriptdir $+ Users.ini,%settings.scanline),6,32)
+  set %settings.time $gettok($read($scriptdir $+ Users.ini,%settings.scanline),7,32)
+  if (%settings.name == %settings.user) {
+    sockwrite -n NaLikaHostbot PRIVMSG %settings.user :Nickname: %settings.name
+    sockwrite -n NaLikaHostbot PRIVMSG %settings.user :Password: %settings.pass
+    sockwrite -n NaLikaHostbot PRIVMSG %settings.user :Level: %settings.level
+    sockwrite -n NaLikaHostbot PRIVMSG %settings.user :Type: %settings.type
+    sockwrite -n NaLikaHostbot PRIVMSG %settings.user :Email: %settings.email
+    sockwrite -n NaLikaHostbot PRIVMSG %settings.user :Date Registered: %settings.date at %settings.time
+    sockwrite -n NaLikaHostbot PRIVMSG %settings.user :To change your password or email address, type !Help for more information on doing this. You cannot change your nickname, only an administrator can. (An Owner)
+    unset %settings.*
+    timer381 off
+    halt
+  }
+  inc %settings.scanline
+}
+alias trysuspend {
+  set %suspend.attempt.realuser $gettok($read($scriptdir $+ Users.ini,%suspend.attempt.scanline),1,32)
+  if (%suspend.attempt.user == %suspend.attempt.realuser) {
+    sockwrite -n NaLikaHostbot PRIVMSG %suspend.attempt.nickname : $+ %suspend.attempt.user has been successfully suspended.
+    set %mirc.suspended %mirc.suspened %suspend.attempt.realuser $+ $chr(44)
+    if (%suspend.attempt.realuser $+ $chr(44) isin %mirc.loggedinusers) {
+      set %mirc.loggedinusers $remove(%mirc.loggedinusers,%suspend.attempt.realuser)
+      if (%suspend.attempt.realuser ison %loginbot.chan) { sockwrite -n NaLikaHostbot PRIVMSG %suspend.attempt.realuser :Your account has been suspended. Please contact %suspend.attempt.nickname for more information. | sockwrite -n NaLikaHostbot MODE %loginbot.chan -v %suspend.attempt.realuser }
+    }
+    unset %suspend.attempt.*
+    timer108 off
+    halt
+  }
+  if (%suspend.attempt.scanline == %suspend.attempt.total) {
+    sockwrite -n NaLikaHostbot PRIVMSG %suspend.attempt.nickname :Sorry, %suspend.attempt.user does not exist in the user database.
+    unset %suspend.attempt.*
+    timer108 off
+    halt
+  }
+  inc %suspend.attempt.scanline
+}
+alias editlevel {
+  set %NaLikaHostbot.username $gettok($read($scriptdir $+ Users.ini, %NaLikaHostbot.scanline),1,32)
+  set %NaLikaHostbot.password $gettok($read($scriptdir $+ Users.ini, %NaLikaHostbot.scanline),2,32)
+  set %NaLikaHostbot.op $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.scanline),3,32)
+  set %NaLikaHostbot.email $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.scanline),5,32)
+  set %NaLikaHostbot.date $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.scanline),6,32)
+  set %NaLikaHostbot.time $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.scanline),7,32)
+  if (%NaLikaHostbot.username == %NaLikaHostbot.change.username) {
+    .write -dl $+ %NaLikaHostbot.scanline $scriptdir $+ Users.ini
+    .write $scriptdir $+ Users.ini %NaLikaHostbot.username %NaLikaHostbot.password %NaLikaHostbot.op %NaLikaHostbot.edittype %NaLikaHostbot.email %NaLikaHostbot.date %NaLikaHostbot.time
+    timer6541 off
+    set %NaLikaHostbot.editlevel.successfull Yes
+    sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.changingop : $+ %NaLikaHostbot.username $+ 's level was successfully changed.
+    if (%NaLikaHostbot.username ison %loginbot.chan) && (%NaLikaHostbot.edittype == 1) { sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.username :An Administrator has changed your account level. Your level has been changed to: Administrator }
+    if (%NaLikaHostbot.username ison %loginbot.chan) && (%NaLikaHostbot.edittype == 2) { sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.username :An Administrator has changed your account level. Your level has been changed to: Operator }
+    if (%NaLikaHostbot.username ison %loginbot.chan) && (%NaLikaHostbot.edittype == 3) { sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.username :An Administrator has changed your account level. Your level has been changed to: Normal }
+    unset %NaLikaHostbot.*
+    timer6541 off
+    halt
+  }
+  if (%NaLikaHostbot.username != %NaLikaHostbot.change.username) && (%NaLikaHostbot.scanline == %NaLikaHostbot.scanlines) && (%NaLikaHostbot.editlevel.successfull != Yes) {
+    sockwrite -n NaLikaHostbot PRIVMSG %NaLikaHostbot.changingop : $+ %NaLikaHostbot.username $+ 's level could not be changed. Please make sure that the username exists and try again.
+    unset %NaLikaHostbot.*
+    timer6541 off
+    halt
+  }
+  inc %NaLikaHostbot.scanline
+}
+
+alias changepassword {
+  set %NaLikaHostbot.username $gettok($read($scriptdir $+ Users.ini, %NaLikaHostbot.scanline),1,32)
+  set %NaLikaHostbot.password $gettok($read($scriptdir $+ Users.ini, %NaLikaHostbot.scanline),2,32)
+  set %NaLikaHostbot.op $gettok($read($scriptdir $+ Users.ini, %NaLikaHostbot.scanline),3,32)
+  set %NaLikaHostbot.optype $gettok($read($scriptdir $+ Users.ini, %NaLikaHostbot.scanline),4,32)
+  set %NaLikaHostbot.email $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.scanline),5,32)
+  set %NaLikaHostbot.date $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.scanline),6,32)
+  set %NaLikaHostbot.time $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.scanline),7,32)
+  if (%NaLikaHostbot.username == %NaLikaHostbot.change.username) && (%NaLikaHostbot.password == %NaLikaHostbot.change.password) {
+    .write -dl $+ %NaLikaHostbot.scanline $scriptdir $+ Users.ini
+    .write $scriptdir $+ Users.ini %NaLikaHostbot.username %NaLikaHostbot.change.newpassword %NaLikaHostbot.op %NaLikaHostbot.optype %NaLikaHostbot.email %NaLikaHostbot.date %NaLikaHostbot.time
+    .timer6541 off
+    sockwrite -n NaLikaHostbot PRIVMSG %nickname :Thank you %nickname $+ , your password has been sucessfully changed to: %NaLikaHostbot.change.newpassword
+    set %NaLikaHostbot.changepass.successfull Yes
+  }
+  if (%NaLikaHostbot.username != %NaLikaHostbot.change.username) || (%NaLikaHostbot.change.password != %NaLikaHostbot.password) && (%NaLikaHostbot.scanline == %NaLikaHostbot.scanlines) && (%NaLikaHostbot.changepass.successfull != Yes) {
+    sockwrite -n NaLikaHostbot PRIVMSG %nickname :Sorry %nickname $+ , but your password could not be changed. Either it was invalid, or you have provided the wrong information.
+  }
+  inc %NaLikaHostbot.scanline
+}
+
+alias namechange {
+  set %NaLikaHostbot.username $gettok($read($scriptdir $+ Users.ini, %NaLikaHostbot.scanline),1,32)
+  set %NaLikaHostbot.password $gettok($read($scriptdir $+ Users.ini, %NaLikaHostbot.scanline),2,32)
+  set %NaLikaHostbot.op $gettok($read($scriptdir $+ Users.ini, %NaLikaHostbot.scanline),3,32)
+  set %NaLikaHostbot.optype $gettok($read($scriptdir $+ Users.ini, %NaLikaHostbot.scanline),4,32)
+  set %NaLikaHostbot.email $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.scanline),5,32)
+  set %NaLikaHostbot.date $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.scanline),6,32)
+  set %NaLikaHostbot.time $gettok($read($scriptdir $+ Users.ini,%NaLikaHostbot.scanline),7,32)
+  if (%NaLikaHostbot.username == %NaLikaHostbot.change.name) {
+    .write -dl $+ %NaLikaHostbot.scanline $scriptdir $+ Users.ini
+    .write $scriptdir $+ Users.ini %NaLikaHostbot.new.name %NaLikaHostbot.password %NaLikaHostbot.op %NaLikaHostbot.optype %NaLikaHostbot.email %NaLikaHostbot.date %NaLikaHostbot.time
+    .timer2491 off
+    sockwrite -n NaLikaHostbot PRIVMSG %nickname : $+ %NaLikaHostbot.change.name $+ 's username has been successfully changed to: %NaLikaHostbot.new.name
+    if (%NaLikaHostbot.change.name ison %loginbot.chan) { sockwrite -n NaLikaHostbot privmsg %NaLikaHostbot.change.name :Your username has been changed. Your new username is: %NaLikaHostbot.new.name }
+    %NaLikaHostbot.changeuname.successful Yes
+  }
+  if (%NaLikaHostbot.username != %NaLikaHostbot.change.name) && (%NaLikaHostbot.scanline == %NaLikaHostbot.scanlines) && (%NaLikaHostbot.changeuname.successfull != Yes) {
+    sockwrite -n NaLikaHostbot PRIVMSG %nickname :Sorry, %NaLikaHostbot.change.name $+ 's username could not be changed. Either it was invalid, or the username doesen't exist.
+  }
+  inc %NaLikaHostbot.scanline
+}
+
+menu channel,menubar {
+  -
+  ~Login Bot~
+  .Settings
+  ..Config:/hconfig
+  ..-
+  ..View All Users ( $+ %user.command $+ )
+  ...Allow Command:/set %user.command on | echo -a NOTE: Allowing this command to be used may cause the bot to disconnect due to flooding. Please disallow this command if there are alot of users. Alternatively, set mode +f to bot bot.
+  ...Disallow Command:/set %user.command off
+  .-
+  .Start:/NaLikaHostbot
+  .Stop:/sockwrite -n NaLikaHostbot PART %loginbot.chan | /sockclose NaLikaHostbot
+  -
+}
+
+dialog intro {
+  title "NaLikaHostbot Installation"
+  size -1 -1 163 47
+  option dbu
+  icon $scriptdir $+ icons\General Options.ico, 0
+  box "Welcome to the NaLikaHostbot 1.1 Installation", 2, 2 2 160 43
+  text "Welcome to the NaLikaHostbot 1.1 installation. Just follow through the steps, and you'll be able to use the bot in no time at all! If you wish to cancel at anytime, just click Cancel in the cornor!", 1, 6 9 150 21
+  button "Cancel", 3, 101 32 27 9, cancel
+  button "Next", 4, 133 32 23 9
+}
+on *:dialog:intro:sclick:4:{
+  installpt1
+  closeint
+}
+
+dialog installpt1 {
+  title "NaLikaHostbot Installation"
+  size -1 -1 163 47
+  option dbu
+  icon $scriptdir $+ icons\General Options.ico, 0
+  box "Set The Server", 2, 2 2 160 43
+  text "You will need to specify which server the bot should connect to. The server has to be IRCX. It will not work on any other server!", 1, 6 9 150 21
+  button "Cancel", 3, 101 32 27 9, cancel
+  button "Next", 4, 133 32 23 9
+  edit "irc.", 5, 5 32 57 11, autohs center
+}
+on *:dialog:installpt1:sclick:4:{
+  if ($did(installpt1,5).text == $null) || ($did(installpt1,5).text == irc.) {
+    error
+    did -a error 1 The server you specified was incorrect!
+  }
+  elseif ($did(installpt1,5).text != $null) || ($did(installpt1,5).text != irc.) {
+    set %loginbot.server $did(installpt1,5).text
+    installpt2
+    closeins1
+  }
+}
+
+dialog installpt2 {
+  title "NaLikaHostbot Installation"
+  size -1 -1 163 47
+  option dbu
+  icon $scriptdir $+ icons\General Options.ico, 0
+  box "Set The Channel", 2, 2 2 160 43
+  text "Now set the channel the bot will join and log users into. Please include '#' in the channel name!", 1, 6 9 150 21
+  button "Cancel", 3, 101 32 27 9, cancel
+  button "Next", 4, 133 32 23 9
+  edit "#YourChan", 5, 5 32 57 11, autohs center
+}
+on *:dialog:installpt2:sclick:4:{
+  if ($did(installpt2,5).text == $null) || ($did(installpt2,5).text == #YourChan) {
+    error
+    did -a error 1 The channel you specified was incorrect!
+  }
+  elseif ($did(installpt2,5).text != $null) || ($did(installpt2,5).text != #YourChan) {
+    set %loginbot.chan $did(installpt2,5).text
+    installpt3
+    closeins2
+  }
+}
+on *:dialog:installpt2:sclick:3:{
+  unset %loginbot.server
+  closeins2
+}
+
+dialog installpt3 {
+  title "NaLikaHostbot Installation"
+  size -1 -1 163 47
+  option dbu
+  icon $scriptdir $+ icons\General Options.ico, 0
+  box "Set The Nickname", 2, 2 2 160 43
+  text "The bot will need a nickname to identify it's job easily. This will make it easier for users to login and be able to chat.", 1, 6 9 150 21
+  button "Cancel", 3, 101 32 27 9, cancel
+  button "Next", 4, 133 32 23 9
+  edit "NaLikaHostbot", 5, 5 32 57 11, autohs center
+}
+on *:dialog:installpt3:sclick:4:{
+  if ($did(installpt3,5).text == $null) {
+    error
+    did -a error 1 The nickname you specified was incorrect!
+  }
+  elseif ($did(installpt3,5).text != $null) {
+    set %loginbot.nick $did(installpt3,5).text
+    installpt4
+    closeins3
+  }
+}
+on *:dialog:installpt3:sclick:3:{
+  unset %loginbot.server
+  unset %loginbot.chan
+  closeins3
+}
+
+dialog installpt4 {
+  title "NaLikaHostbot Installation"
+  size -1 -1 163 47
+  option dbu
+  icon $scriptdir $+ icons\General Options.ico, 0
+  box "Set The Channel Key", 2, 2 2 160 43
+  text "Idealy the bot will need Owner level in the channel. The bot has called 'Owners' the Administrators. It is best to use the channel ownerkey!", 1, 6 9 150 21
+  button "Cancel", 3, 101 32 27 9, cancel
+  button "Next", 4, 133 32 23 9
+  edit "TheKey", 5, 5 32 57 11, pass autohs center
+}
+on *:dialog:installpt4:sclick:4:{
+  if ($did(installpt4,5).text == $null) || ($did(installpt4,5).text == TheKey) {
+    error
+    did -a error 1 The channel key you specified was incorrect!
+  }
+  elseif ($did(installpt4,5).text != $null) || ($did(installpt4,5).text != TheKey) {
+    set %loginbot.key $did(installpt4,5).text
+    installpt5
+    closeins4
+  }
+}
+on *:dialog:installpt4:sclick:3:{
+  unset %loginbot.server
+  unset %loginbot.chan
+  unset %loginbot.nick
+  closeins4
+}
+
+dialog installpt5 {
+  title "NaLikaHostbot Installation"
+  size -1 -1 163 47
+  option dbu
+  icon $scriptdir $+ icons\General Options.ico, 0
+  box "Setup Admin Account", 2, 2 2 160 43
+  text "The login bot has been successfully installed. All that's left to do is setup an admin account so you can manage your login bot!", 1, 6 9 150 21
+  button "Finish", 4, 133 32 23 9
+  edit "Username", 3, 5 32 46 10, autohs center
+  edit "Password", 5, 56 32 50 10, pass autohs center
+}
+on *:dialog:installpt5:sclick:4:{
+  if ($did(installpt5,3).text == $null) {
+    error
+    did -a error 1 Please specify a username!
+  }
+  elseif ($did(installpt5,5).text == $null) {
+    error
+    did -a error 1 Please specify a password!
+  }
+  elseif ($did(installpt5,5).text == Password) {
+    error
+    did -a error 1 Insecure password!
+  }
+  elseif ($did(installpt5,3).text == $null) && ($did(installpt5,5).text == $null) {
+    error
+    did -a error 1 Please fill in a username and password!
+  }
+  elseif ($did(installpt5,3).text != $null) && ($did(installpt5,5).text != $null) {
+    write $scriptdir $+ Users.ini $did(installpt5,3).text $did(installpt5,5).text +q 1 $emailaddr $date $time(HH:nn:ss)
+    installfnsh
+    closeins5
+  }
+}
+
+dialog installfnsh {
+  title "NaLikaHostbot Installation"
+  size -1 -1 163 47
+  option dbu
+  icon $scriptdir $+ icons\General Options.ico, 0
+  box "NaLikaHostbot Installation Complete", 2, 2 2 160 43
+  text "Congratulations! You have successfully installed the NaLikaHostbot 1.1 into your mIRC! The configuration dialog will open when you click finish, for more settings.", 1, 6 9 150 21
+  button "Finish", 4, 133 32 23 9
+}
+on *:dialog:installfnsh:sclick:4:{
+  hconfig
+  closefnsh
+}
+
+dialog hconfig {
+  title "NaLikaHostbot Configuration"
+  size -1 -1 192 93
+  option dbu
+  icon $scriptdir $+ icons\Advanced Options.ico, 0
+  box "NaLikaHostbot Configuration", 1, 2 2 188 89
+  text "A command that will list all users when requested by an admin is turned off by default to stop flooding! Turning this command on will allow the bot to flood. Please either leave this command disabled or set mode +f to the bot.", 2, 6 9 180 27
+  check "Activate Command", 3, 65 37 58 10
+  edit "", 4, 33 50 50 10, autohs center
+  text "Server:", 5, 6 51 20 8
+  edit "", 6, 33 63 50 10, autohs center
+  text "Channel:", 7, 6 64 24 8
+  text "Nickname:", 8, 97 51 25 8
+  edit "", 9, 124 50 50 10, autohs center
+  text "Chan Key:", 10, 97 64 26 8
+  edit "", 11, 124 63 50 10, pass autohs center
+  button "Save/OK", 12, 93 78 36 9, cancel
+  button "Cancel", 13, 56 78 30 9, ok cancel
+}
+on *:dialog:hconfig:init:*:{
+  if (%user.command == on) {
+    did -c hconfig 3
+  }
+  elseif (%user.command == off) {
+    did -u hconfig 3
+  }
+  did -a hconfig 4 %loginbot.server
+  did -a hconfig 6 %loginbot.chan
+  did -a hconfig 9 %loginbot.nick
+  did -a hconfig 11 %loginbot.key
+}
+on *:dialog:hconfig:sclick:12:{
+  if (%loginbot.server != $did(hconfig,4).text) { set %loginbot.server $did(hconfig,4).text }
+  if (%loginbot.chan != $did(hconfig,6).text) { set %loginbot.chan $did(hconfig,6).text }
+  if (%loginbot.nick != $did(hconfig,9).text) { set %loginbot.nick $did(hconfig,9).text }
+  if (%loginbot.key != $did(hconfig,11).text) { set %loginbot.key $did(hconfig,11).text }
+  if ($did(3).state == 0) { set %user.command off }
+  elseif ($did(3).state == 1) { set %user.command on }
+}
+
+dialog error {
+  title "NaLikaHostbot Installation Error"
+  size -1 -1 146 34
+  option dbu
+  icon $scriptdir $+ icons\Stop.ico, 0
+  box "An Error Has Accured", 2, 2 2 142 19
+  text "", 1, 6 9 136 8, center
+  button "Close", 3, 58 23 33 9, ok cancel
+}
+
+alias error { dialog -vm error error }
+alias int { dialog -m intro intro }
+alias closeint { dialog -x intro intro }
+alias installpt1 { dialog -mr installpt1 installpt1 }
+alias closeins1 { dialog -x installpt1 installpt1 }
+alias installpt2 { dialog -mr installpt2 installpt2 }
+alias closeins2 { dialog -x installpt2 installpt2 }
+alias installpt3 { dialog -mr installpt3 installpt3 }
+alias closeins3 { dialog -x installpt3 installpt3 }
+alias installpt4 { dialog -mr installpt4 installpt4 }
+alias closeins4 { dialog -x installpt4 installpt4 }
+alias installpt5 { dialog -mr installpt5 installpt5 }
+alias closeins5 { dialog -x installpt5 installpt5 }
+alias installfnsh { dialog -mr installfnsh installfnsh }
+alias closefnsh { dialog -x installfnsh installfnsh }
+alias hconfig { dialog -mr hconfig hconfig }
+
+on *:load:{
+  INT
+}
+
+;Made by Nalika - mIRCrosoft.co.uk
+;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

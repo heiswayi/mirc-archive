@@ -1,0 +1,122 @@
+.                                                                                                                                                                                                                 The property of 
+.                                                                                                                                                                                                                 "Air Biru Incorp."
+.                                                                                                                                                                                                           All copy right reserved.                                
+.                                                                                                                                                                                                               Copyright © 500                                                     
+
+#bad on
+on +badnick:join:#: {
+  if ($level($address($nick,9)) == badnick) && ($me isop $chan) && (bohsia !isin $chan) && (sex !isin $chan) && (seks !isin $chan) && (lesbian !isin $chan) && (pantat !isin $chan) && ( %badnick == ON ) { .ignore -u15 $mask($fulladdress,3)
+    if ($nick ison $chan) { .raw -q kick $chan $nick No Bad Nick ( $+ $maddress $+ ) [:Kick On:] 5 $fulldate  $sark $fark %xrc   }
+    .raw -q mode $chan  +b $maddress
+    halt
+  }
+}
+on +badident:join:#: {
+  if ($nick == $me) || ($level($nick) == 404) { halt }
+  if ($me isop $chan) && (bohsia !isin $chan) && (sex !isin $chan) && (seks !isin $chan) && (lesbian !isin $chan) && (pantat !isin $chan) && ( %badident == ON ) { .ignore -u15 $mask($fulladdress,3)
+    if ($nick ison $chan) { .raw -q kick $chan $nick No Bad  Identd ( $+ $maddress $+ ) [:Kick On:] 5 $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel) }
+    .raw -q mode $chan +b $maddress
+    halt
+  }
+}
+on 1:NICK: {  
+  if ($level($address($newnick,9)) == badnick) && ($me isop $comchan($newnick,1)) && ($newnick !isop $comchan($newnick,1)) && ($newnick !isvo $comchan($newnick,1)) && (sex !isin $comchan($newnick,1)) && (seks !isin $comchan($newnick,1)) && (bohsia !isin $comchan($newnick,1)) && (lesbian !isin $comchan($newnick,1))  && (pantat !isin $comchan($newnick,1))  && ( %badnick == ON ) { .ignore -u15 $mask($fulladdress,3)
+    if ($newnick ison $comchan($newnick,1)) { .raw -q kick $comchan($newnick,1) $newnick No Bad  Nick ( $+ $maddress $+ ) [:Kick On:] 5 $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel) }
+    .raw -q mode $comchan($newnick,1) +b $address
+  }
+  else { goto abis }
+  :abis
+}
+#bad end
+on +virus:join:#: {
+  if ($me isop $chan) && ($level($fulladdress) != 2) && (%virus == ON) {
+    .raw -q kick $chan $nick 4No Virus [:Kick On:] 5 $fulldate   $sark $fark %xrc 
+    .raw -q mode $chan +b $mask($fulladdress,%blevel)
+    .echo -a 14*** Virus Sender Join From 4 $nick  [12 $+ $chan $+ ]
+    halt
+  }
+}
+=====
+#selfpro on
+ON *:TEXT:*:?: {
+  if ($nick isop $comchan($nick,1)) || ($nick isvo $comchan($nick,1)) || (Serv isin $nick) || ($nick == $me) { goto end }
+  if ($chr(35) isin $1-) || (/j isin $1-) || (www. isin $1-) || (http:/ isin $1-) || (/server isin $1-) || (.xoom. isin $1-) || (# isin $1-) && ($chan !isin $1-) { .close -m $nick |  .ignore -u15 $mask($fulladdress,3) 
+    if ($me isop $comchan($nick,1)) && ($nick ison $comchan($nick,1)) { 
+      .raw -q mode $comchan($nick,1) +b $mask($fulladdress,1)
+      .raw -q kick $comchan($nick,1) $nick [:Target:] $comchan($nick,1) No Advertising On Private Message [:Kick On:] 5 $fulldate   $sark $fark %xrc 
+      .timer 1 120 .ruser inviter $nick
+      goto end 
+    }
+  }
+  inc -u3 %queryflod. [ $+ [ $gettok($address,1,64) [ $+ [ $comchan($nick,1) ] ] ] ] 
+  if (%queryflod. [ $+ [ $gettok($address,1,64) [ $+ [ $comchan($nick,1) ] ] ] ]  >= 6) { close -m $nick | .ignore -u15 $mask($fulladdress,2) 
+
+    goto end 
+  }
+  else { goto end }
+  :end
+}
+
+ON *:NOTICE:*:?: {
+  if ($nick isop $comchan($nick,1)) || ($nick isvo $comchan($nick,1)) || (Serv isin $nick) || ($nick == $me) { goto end }
+  if ($chr(35) isin $1-) || (/j isin $1-) || (www. isin $1-) || (http:/ isin $1-) || (/server isin $1-) || (.xoom. isin $1-) || (# isin $1-) && ($chan !isin $1-) { .close -m $nick | .ignore -u15 $mask($fulladdress,3) 
+    if ($me isop $comchan($nick,1)) && ($nick ison $comchan($nick,1)) {
+      .raw -q mode $comchan($nick,1) +b $mask($fulladdress,1)
+      .raw -q kick $comchan($nick,1) $nick [:Target:] $comchan($nick,1) No Advertising On Private Notice [:Kick On:] 5  $fulldate   $sark $fark %xrc
+      .timer 1 120 .ruser inviter $nick
+      goto end 
+    }
+  }
+  inc -u3 %noticeflod. [ $+ [ $gettok($address,1,64) [ $+ [ $comchan($nick,1) ] ] ] ] 
+  if (%noticeflod. [ $+ [ $gettok($address,1,64) [ $+ [ $comchan($nick,1) ] ] ] ]  >= 6) { .ignore -u15 $mask($fulladdress,2) 
+    goto end 
+  }
+  else { goto end }
+  :end
+}
+
+ON *:ACTION:*:?: {
+  if ($nick isop $comchan($nick,1)) || ($nick isvo $comchan($nick,1)) || (Serv isin $nick) || ($nick == $me) { goto end }
+  if ($chr(35) isin $1-) || (/j isin $1-) || (www. isin $1-) || (http:/ isin $1-) || (/server isin $1-) || (.xoom. isin $1-) || (# isin $1-) && ($chan !isin $1-) { .close -m $nick |  .ignore -u15 $mask($fulladdress,3) 
+    if ($me isop $comchan($nick,1)) && ($nick ison $comchan($nick,1)) {
+      .raw -q mode $comchan($nick,1) +b $mask($fulladdress,1)
+      .raw -q kick $comchan($nick,1) $nick [:Target:] $comchan($nick,1) No Advertising On Private Action [:Kick On:] 5  $fulldate   $sark $fark %xrc
+      .timer 1 120 .ruser inviter $nick
+      goto end 
+    }
+  }
+  inc -u3 %actionflod. [ $+ [ $gettok($address,1,64) [ $+ [ $comchan($nick,1) ] ] ] ] 
+  if (%actionflod. [ $+ [ $gettok($address,1,64) [ $+ [ $comchan($nick,1) ] ] ] ]  >= 6) { .ignore -u15 $mask($fulladdress,2) 
+    goto end 
+  }
+  else { goto end }
+  :end
+}
+
+on *:invite:*: {
+  if ($nick == ChanServ) && ( %massinvite == ON ) { 
+    .raw -q join $chan 
+    goto end
+  }
+  if (( $me isop $comchan($nick,1)) && ( $nick !isop $comchan($nick,1))) {  .ignore -u15 $mask($fulladdress,3)
+    .raw -q kick $comchan($nick,1) $nick [:Target:] $comchan($nick,1) No Mass Inviting [:Kick On:] 5  $fulldate   $sark $fark %xrc
+    .raw -q mode $comchan($nick,1) +b $mask($fulladdress,1)
+    .timer 1 120 .ruser inviter $nick
+  }
+  :end
+}
+
+#selfpro end
+
+alias screw var %x = 0, %screw | :loop | inc %x | if ($mid($1,%x,1) != $null) { if ($ifmatch isin *!@.) { %screw = %screw $+ $ifmatch | goto loop } | if (2 // %x) { %screw = %screw $+ x | goto loop } | %screw = %screw $+ $mid($1,%x,1) | goto loop } | return %screw
+
+on inviter:join:#: {
+  if ( $nick isop $chan ) { halt } 
+  if ( $nick == MaYaT ) { halt }
+  if ( serv isin $nick ) { halt }
+  if ( $me isop $chan ) {
+    .ignore -u15 $mask($fulladdress,3)
+    .raw -q kick # $nick Inviter Shit List  [:Kick On:] 5  $fulldate  $sark $fark  %xrc 
+    .raw -q mode $chan +b $maddress
+  }
+}

@@ -1,0 +1,469 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                                Cyborg Full-Script Edition of the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                          E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+dialog user {
+  title "User list Editor"
+  icon Miscellaneous\users.ico
+  size -1 -1 200 177
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 66 1 60 7, Center   Disable
+  link "www.Brain-Crash.com" 3, 69 8 110 14,
+  button "done" 4, 158 163 40 12, Ok  
+  tab "friendlist" 5, 2 18 195 143
+  button "add" 6, 32 52 40 12, tab 5
+  button "delete" 7, 75 52 40 12, tab 5
+  button "reset all" 8, 117 52 40 12, tab 5
+  edit "" 9, 36 39 150 10, AutoHs tab 5
+  text "hostmark:" 10, 10 40 25 10, tab 5
+  list 11, 6 67 187 95, tab 5
+  tab "kicklist" 12,
+  edit "" 13, 36 39 150 10, tab 12
+  text "hostmark:" 14, 10 40 25 10, tab 12
+  button "add" 15, 15 52 40 12, tab 12
+  button "delete" 16, 57 52 40 12, tab 12
+  button "reset all" 17, 100 52 40 12, tab 12
+  list 18, 6 67 187 95, tab 12
+  button "kick message" 19, 142 52 40 12, tab 12
+  tab "shitlist" 20,
+  text "hostmark:" 21, 10 40 25 10, tab 20
+  edit "" 22, 36 39 150 10, tab 20
+  button "add" 23, 15 52 40 12, tab 20
+  button "delete" 24, 57 52 40 12, tab 20
+  button "reset all" 25, 100 52 40 12, tab 20
+  button "kick message" 26, 142 52 40 12, tab 20
+  list 27, 6 67 187 95, tab 20
+  tab "ignorelist" 28,
+  text "hostmark:" 29, 10 40 25 10, tab 28
+  edit "" 30, 36 39 150 10, tab 28
+  button "add" 31, 57 52 40 12, tab 28
+  button "delete" 32, 100 52 40 12, tab 28
+  list 33, 6 67 187 95, tab 28
+  tab "options" 34,
+  box "reset all user levels" 35, 7 40 184 91, Disable tab 34
+  button "remove friendlist" 36, 70 50 50 12, tab 34
+  button "remove kicklist" 37, 70 62 50 12, tab 34
+  button "remove shitlist" 38, 70 75 50 12, tab 34
+  button "remove inviter ip" 39, 70 87 50 12, tab 34
+  button "rem. relay inviter" 40, 70 100 50 12, tab 34
+  edit "" 41, 10 115 177 10, Disable tab 34
+  tab "help" 42,
+  box "how to:" 43, 14 36 171 82, Disable tab 42
+  text "heres a simple guide in adding a user:" 44, 22 50 100 10, tab 42
+  text "you can add address, example: nick!user@host.domain (for shitlist and kicklist) ; *!*@host.domain (ignore list) ; *!*user@host.domain : *!*@host.domain : *!*user@*.domain : *!*@*.domain : nick!user@host.domain : nick!*user@host.domain : nick!*@host.domain : nick!*user@*.domain : nick!*@*.domain" 45, 22 62 150 40, tab 42
+}
+on *:DIALOG:user:*:*:{
+  if ($devent == init) {
+    update.friendlist
+    update.kicklist
+    update.shitlist
+    update.ignorelist
+  }
+  if ($devent == edit) {
+    if ($did == 9) { set %tempfriend $did(9).text }
+    if ($did == 13) { set %tempkick $did(13).text }
+    if ($did == 22) { set %tempshit $did(22).text }
+    if ($did == 30) { set %tempignore $did(30).text }
+  }
+  if ($devent == sclick) {
+    if ($did == 3) { _webteam }
+    if ($did == 11) { set %setup.friendlist.selected $did($dname,11,$did(11).sel) | did -r user 9 | did -a user 9 $did($dname,11,$did(11).sel) }
+    if ($did == 6) {
+      set %friendlist %friendlist $+ %tempfriend $+ ,
+      update.friendlist
+      did -r user 9
+      .auser friend %tempfriend
+    }
+    if ($did == 7) {
+      set -u1 %setup.rc %setup.friendlist.selected $+ ,
+      set %friendlist $remove(%friendlist,%setup.rc)
+      update.friendlist
+      did -r user 9
+      .ruser friend %setup.friendlist.selected
+    }
+    if ($did == 8) { unset %friendlist | update.friendlist | did -r user 9 | .rlevel friend }
+    if ($did == 15) {
+      set %kicklist %kicklist $+ %tempkick $+ ,
+      update.kicklist
+      did -r user 13
+      .auser bullshit %tempkick
+    }
+    if ($did == 16) {
+      set -u1 %setup.rc %setup.kicklist.selected $+ ,
+      set %kicklist $remove(%kicklist,%setup.rc)
+      update.kicklist
+      did -r user 13
+      .ruser bullshit %setup.kicklist.selected
+    }
+    if ($did == 17) { unset %kicklist | update.kicklist | did -r user 13 | .rlevel bullshit }
+    if ($did == 18) { set %setup.kicklist.selected $did($dname,18,$did(18).sel) | did -r user 13 | did -a user 13 $did($dname,18,$did(18).sel) }
+    if ($did == 19) { run crack\kicklisted.txt }
+    if ($did == 23) {
+      set %shitlist $addtok(%shitlist,$gettok(%tempshit,1,33),44)
+      update.shitlist
+      did -r user 22
+      .auser shitlist %tempshit
+    }
+    if ($did == 24) {
+      set -u0 %setup.rc %setup.shitlist.selected
+      set %shitlist $remove(%shitlist,%setup.rc)
+      update.shitlist
+      did -r user 22
+      .ruser shitlist %setup.shitlist.selected
+    }
+    if ($did == 25) { unset %shitlist | update.shitlist | did -r user 22 | .rlevel shitlist }
+    if ($did == 27) { set %setup.shitlist.selected $did($dname,27,$did(27).sel) | did -r user 22 | did -a user 22 $did($dname,27,$did(27).sel) }
+    if ($did == 26) { run Text\kick.txt }
+    if ($did == 31) {
+      set %ignorelist %ignorelist $+ %tempignore $+ ,
+      update.ignorelist
+      did -r user 30
+      .ignore %tempignore
+    }
+    if ($did == 32) {
+      set -u1 %setup.rc %setup.ignorelist.selected $+ ,
+      set %ignorelist $remove(%ignorelist,%setup.rc)
+      update.ignorelist
+      did -r user 30
+      .ignore -r %setup.ignorelist.selected
+    }
+    if ($did == 33) { set %setup.ignorelist.selected $did($dname,33,$did(33).sel) | did -r user 30 | did -a user 30 $did($dname,33,$did(33).sel) }
+    if ($did == 36) { .rlevel friend }
+    if ($did == 37) { .rlevel bullshit }
+    if ($did == 38) { .rlevel shitlist }
+    if ($did == 39) { .rlevel domain | .rlevel inviter | .rlevel domains }
+    if ($did == 40) { .rlevel ginviter }
+  }
+}
+alias -l update.kicklist {
+  did -r user 18
+  set %temp.total $count(%kicklist,$chr(44))
+  set %temp.count 0
+  :start
+  inc %temp.count 1
+  did -a user 18 $gettok(%kicklist,%temp.count,44)
+  if (%temp.count < %temp.total) { goto start }
+}
+alias -l update.friendlist {
+  did -r user 11
+  set %temp.total $count(%friendlist,$chr(44))
+  set %temp.count 0
+  :start
+  inc %temp.count 1
+  did -a user 11 $gettok(%friendlist,%temp.count,44)
+  if (%temp.count < %temp.total) { goto start }
+}
+alias -l update.shitlist {
+  did -r user 27
+  set %temp.total $count(%shitlist,$chr(44))
+  set %temp.count 0
+  :start
+  inc %temp.count 1
+  did -a user 27 $gettok(%shitlist,%temp.count,44)
+  if (%temp.count < %temp.total) { goto start }
+}
+alias -l update.ignorelist {
+  did -r user 33
+  set %temp.total $count(%ignorelist,$chr(44))
+  set %temp.count 0
+  :start
+  inc %temp.count 1
+  did -a user 33 $gettok(%ignorelist,%temp.count,44)
+  if (%temp.count < %temp.total) { goto start }
+}
+
+on ^*:NOTICE:*:?:{
+  haltdef
+  if ($nick == $me) || ($nick == %spybot) || ($nick == $master) || ($nick == %friend1) || ($nick == MemoServ) || ($nick == NickServ) || ($nick ==  ChanServ) || ($nick == %friend2) || ($nick == %friend3) || ($nick == %friend4) || ($nick == %friend5) || ($nick == %friend6) || ($nick == %friend7) || ($nick == %friend30) || ($nick == %friend8) || ($nick == %friend9) || ($nick == %friend10) || ($nick == %friend11) || ($nick == %friend12) || ($nick == %friend13) || ($nick == %friend14) || ($nick == %friend15) || ($nick == %friend16) || ($nick == %friend17) || ($nick == %friend18) || ($nick == %friend19) || ($nick == %friend20) || ($nick == %friend21) || ($nick == %friend22) || ($nick == %friend23) || ($nick == %friend24) || ($nick == %friend25) || ($nick == %friend26) || ($nick == %friend27) || ($nick == %friend28) || ($nick == %friend29) { goto return1 } 
+  if (%noticefldmsg == on) {
+    inc -u5 %notfloodmsg- [ $+ [ $wildsite ]  ]
+    if (%notfloodmsg- [ $+ [ $wildsite ]  ] > %notfloodmsgcount) { set %fromflood Notice | protfld1 | goto end } 
+    if (%notfloodmsg- [ $+ [ $wildsite ]  ] == %notfloodmsgcount) { set %fromflood Notice | tfld | set %reason $read $mircdircrack\prvtfloods.txt | protfld | goto execute }
+  }  
+  if (%msgblock == on) {  
+    .ignore -u60 $wildsite
+    .notice $nick $logo 12I'm NOT accepting any Notice messages. 
+    echo -a 14 $+ $timestamp $chr(2) $+ $chr(3) $+  $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155)  $chr(15) 11Notice: $nick 4(15 $+ $address $+ 4)15 is trying to notice you : | goto end 
+  }
+  if (fuck isin $strip($1-)) || (sex isin $strip($1-)) || (cunt isin $strip($1-)) || (pussy isin $strip($1-)) || (kontol isin $strip($1-)) || (bitch isin $strip($1-)) || (asshole isin $strip($1-)) || (memek isin $strip($1-)) { set %reason Bad word detected | goto red:xlookup }
+  if ($chr(35) isin $1-) && ((go isin $1-) || (come isin $1-) || (click isin $1-) || (klik isin $1-) || (join isin $1-) || (invi isin $1-) || (visit isin $1-)) && ($chan !isin $1-) { Slist | qinv | tinv | goto red:xlookup }
+  if (www. isin $1-) || (http: isin $1-) || (ftp: isin $1-) || (xGuest  isin $1-)  { Slist | qadv | tadv | goto red:xlookup }
+  if (âMok isin $1-) || (s·¢·®·í·þ·t isin $1-) || (Scøøp isin $1-) || (VirusScript isin $1-) || (oz ver isin $1-) || (IRCap isin $1-) { Slist | qadvscript | tadv | goto red:xlookup }
+  if (%impersonatorkick == on) { if (someone isin $6) || (services.dal isin $9) || (<password> isin $6-) { set %bantime 86400 | set %reason $read $mircdircrack\impersonator.txt | goto red:xlookup } }
+  :return
+  if (%nowaway == on) {
+    .notice $nick %logo Currently away: I'm not accepting any Notices at the moment Reason: %away  | .ignore -u5 $nick
+    if (%log == on) { echo @Away-Logging $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155)  $chr(15) 12 $timestamp (11NOTICE14) $nick Message: 4[15 $1- 4]  }
+    goto end 
+  }
+  :return1
+  if ($chan == $null ) { echo -a 14 $+ $timestamp $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155)  $chr(15) 11Notice: $nick 4(15 $+ $address $+ 4)15: $+ $chr(15) $1- | goto end }
+  echo -a 14 $+ $timestamp $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155)  $chr(15) 11Notice: $nick 4(15 $+ $chan $+ 4)15: $+ $chr(15) $1- | goto end
+  :red:xlookup
+  set %whats 4Notice spam by $nick 4(15 $+ $address $+ 4) | closemsg $nick | h20 | .ignore -u20 $wildsite | .msg $nick you are ignored for spamming
+  if (%Channeladskick != Enable) { goto end }
+  :execute
+  set %i $comchan($nick,0) 
+  while (%i) { 
+    if ($comchan($nick,%i).op) && (!%_not:fld) { set -u1 %_not:fld ! | ban -u $+ %bantime $comchan($nick,%i) $nick 11 | kick $comchan($nick,%i) $nick Notice: %reason }
+    else { .ignore -pntu60 $wildsite }
+    dec %i
+  }
+  :end
+}
+on ^*:TEXT:*:?:{
+  haltdef
+  if ($nick == $me) || ($nick == $master) || ($nick == %friend1) || ($nick == MemoServ) || ($nick == NickServ) || ($nick ==  ChanServ) || ($nick == %friend2) || ($nick == %friend3) || ($nick == %friend4) || ($nick == %friend5) || ($nick == %friend6) || ($nick == %friend7) || ($nick == %friend30) || ($nick == %friend8) || ($nick == %friend9) || ($nick == %friend10) || ($nick == %friend11) || ($nick == %friend12) || ($nick == %friend13) || ($nick == %friend14) || ($nick == %friend15) || ($nick == %friend16) || ($nick == %friend17) || ($nick == %friend18) || ($nick == %friend19) || ($nick == %friend20) || ($nick == %friend21) || ($nick == %friend22) || ($nick == %friend23) || ($nick == %friend24) || ($nick == %friend25) || ($nick == %friend26) || ($nick == %friend27) || ($nick == %friend28) || ($nick == %friend29) { goto return1 } 
+  if ($nick == %spybot) || ($level($address($nick,5)) == spy) { haltdef | closemsg $nick | goto reportspamnow }
+  if (%prvtfldmsg == on) {
+    inc -u5 %prvtfloodmsg- [ $+ [ $wildsite ]  ]
+    if (%prvtfloodmsg- [ $+ [ $wildsite ]  ] > %prvtfloodmsgcount) && (!%_prvtfl) { set -u1 %_prvtfl ! | set %fromflood Query | protfld1 | goto end } 
+    if (%prvtfloodmsg- [ $+ [ $wildsite ]  ] == %prvtfloodmsgcount) && (!%_prvtfl) { set -u1 %_prvtfl ! | set %fromflood Query | tfld | set %reason $read $mircdircrack\prvtfloods.txt | protfld | goto execute }
+  }  
+  if (%msgblock == on) {  
+    .ignore -pntu60 $wildsite
+    .msg $nick $logo 2I'm currently NOT accepting any Private messages. | closemsg $nick 
+    echo -a 12 $+ $timestamp $chr(2) $+  $chr(3) $+  $chr(49) $+ $chr(52) $chr(155) $+  $chr(155)  $+  $chr(3) $+  $chr(49) $+ $chr(53) $+  $chr(155)  $+  $chr(155)  $chr(15) 11Query: $nick 4(14 $+ $address $+ 4)14 is trying to 4Query14 you : | goto end 
+  }
+  if (%antispammmings !=  on) { goto return1 }
+  if (fuck isin $strip($1-)) || (sex isin $strip($1-)) || (cunt isin $strip($1-)) || (pussy isin $strip($1-)) || (kontol isin $strip($1-)) || (bitch isin $strip($1-)) || (asshole isin $strip($1-)) || (memek isin $strip($1-)) { set %reason Bad word detected | goto red:xlookup } 
+  if ($chr(35) isin $strip($1-)) && ((%inviteword1 isin $strip($1-)) || (%inviteword2 isin $strip($1-)) || (%inviteword3 isin $strip($1-)) || (%inviteword4 isin $strip($1-)) || (%inviteword5 isin $strip($1-)) || (%inviteword6 isin $strip($1-)) || (%inviteword7 isin $strip($1-)) || (%inviteword8 isin $strip($1-)) || (%inviteword9 isin $strip($1-)) || (%inviteword10 isin $strip($1-)) || (%inviteword11 isin $strip($1-)) || (%inviteword12 isin $strip($1-)) || (%inviteword13 isin $strip($1-)) || (%inviteword14 isin $strip($1-)) || (%inviteword15 isin $strip($1-)))  { Slist | qinv | tinv | goto red:xlookup }
+  if (www. isin $strip($1-)) || (http isin $strip($1-)) || (com. isin $strip($1-)) || (xGuest isin $strip($1-)) { Slist | qadv | tadv | goto red:xlookup }
+  if (âMok isin $strip($1-)) || (s·¢·®·í·þ·t isin $strip($1-)) || (Scøøp isin $strip($1-)) || (VirusScript isin $strip($1-)) || (oz ver isin $strip($1-))  || (IRCap isin $strip($1-)) { Slist | qadvscript | tadv | goto red:xlookup }
+  :return
+  if (%nowaway == on) {
+    if (%log == on)   { echo @Away-Logging $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+  $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155)  $chr(15) 12 $timestamp 4(4Query4) $nick Message: 4[14 $1- 4]  }
+  .msg $nick %logo Currently away: I'm not accepting any Query at the moment Reason: %away | closemsg $nick | .ignore -u5 $nick | goto end }
+  :return1
+  if (%querylimits == on) && (%querylimitnicks != $nick) { echo $nick 12 $+ $timestamp 4(14 $nick 4)14 $1- | goto end }
+  if (%querylimits == off) { echo $nick 12 $+ $timestamp 4(14 $nick 4)14 $1- | goto end }
+  else goto end
+  :red:xlookup
+  set %whats 4Query spam by $nick 4(14 $+ $address $+ 4) | h20 | closemsg $nick | .ignore -u20 $wildsite | .msg $nick you are ignored for spamming
+  if (%Channeladskick != Enable) { goto end }
+  :execute
+  set %i $comchan($nick,0)
+  while (%i) {
+    if ($comchan($nick,%i).op) && (!%_not:fld) { set -u1 %_not:fld ! | ban -u $+ %bantime $comchan($nick,%i) $nick 11 | kick $comchan($nick,%i) $nick Query: %reason }
+    else { .ignore -pntu60 $wildsite | .msg $nick you are ignored }
+    dec %i
+  }
+  :reportspamnow
+  set %reportispamnick $mid($1,2,99)
+  set %spamnick:addr $ial(%reportispamnick,1).addr
+  if (xGuest isin $strip($3-)) || (pirch isin $strip($3-)) || (powered isin $strip($3-)) || (vibrator isin $strip($3-)) || (Dating isin $strip($3-)) || (looking isin $strip($3-)) { goto red:xsock }
+  if ($chr(35) isin $strip($3-)) && ((%inviteword1 isin $strip($3-)) || (%inviteword2 isin $strip($3-)) || (%inviteword3 isin $1-) || (%inviteword4 isin $strip($3-)) || (%inviteword5 isin $strip($3-)) || (%inviteword6 isin $strip($3-)) || (%inviteword7 isin $strip($3-)) || (%inviteword8 isin $1-) || (%inviteword9 isin $strip($3-)) || (%inviteword10 isin $strip($3-)) || (%inviteword11 isin $strip($3-)) || (%inviteword12 isin $strip($3-)) || (%inviteword13 isin $strip($3-)) || (%inviteword14 isin $strip($3-)) || (%inviteword15 isin $strip($3-))) { set %reason $read $mircdircrack\invite.txt | goto kickass }
+  if (www. isin $strip($3-)) || (http isin $strip($3-)) { set %reason $read $mircdircrack\ads.txt | goto kickass }
+  if (server isin $strip($3-)) || (.net isin $strip($3-)) { set %reason Server advs | goto kickass }
+  if (welcome isin $strip($3-)) || (thank isin $strip($3-)) || (mess isin $1-) { set %reason Auto Greet /Spam Messages | goto kickass }
+  if (System isin $strip($3-)) && (busy isin $strip($3-)) { set %reason Virus infected: Go to #nohack for removal | goto kickass }
+  if (decode isin $strip($3-)) { set %reason Type /remote off to stop sending decode messages | goto kickass }
+  if (dcc isin $strip($3-)) && (send isin $strip($3-)) { set %reason Virus infected: Go to #nohack for removal | goto kickass }
+  if (LAGG isin $strip($3-)) || (SCRIPTVER isin $strip($3-)) { set %reason Backdoor exploits are detected | goto kickass }
+  if (fuck isin $strip($3-)) || (sex isin $strip($3-)) || (cunt isin $strip($3-)) || (pussy isin $strip($3-)) || (bitch isin $strip($3-)) || (asshole isin $strip($3-)) || (memek isin $strip($3-)) { set %reason General annoyance | goto triggers }
+  if (Oz ver isin $strip($3-)) || (VirusScript isin $strip($3-)) || (s·¢·®·í·þ·t isin $strip($3-)) || (Scøøp isin $strip($3-))  || (Ircap isin $strip($3-)) { set %reason Script advs | goto kickass } 
+  else goto end
+  :kickass
+  if (%inviteshit != off) {
+    if (%reportispamnick == $me) || (%reportispamnick == $master) || (%reportispamnick == %spybot) || (%reportispamnick == NickServ) || (%reportispamnick == %friend26) || (%reportispamnick == %friend27) || (%reportispamnick == %friend28) || (%reportispamnick == %friend29) || (%reportispamnick == Memoserv) || (%reportispamnick == ChanServ) { goto end }
+    if (%reportispamnick == %friend1) || (%reportispamnick == %friend2) || (%reportispamnick == %friend3) || (%reportispamnick == %friend4) || (%reportispamnick == %friend5) || (%reportispamnick == %friend6) || (%reportispamnick == %friend7) || (%reportispamnick == %friend30) || (%reportispamnick == %friend8) || (%reportispamnick == %friend9) || (%reportispamnick == %friend10) || (%reportispamnick == %friend11) || (%reportispamnick == %friend12) || (%reportispamnick == %friend13) || (%reportispamnick == %friend14) || (%reportispamnick == %friend15) || (%reportispamnick == %friend16) || (%reportispamnick == %friend17) || (%reportispamnick == %friend18) || (%reportispamnick == %friend19) || (%reportispamnick == %friend20) || (%reportispamnick == %friend21) || (%reportispamnick == %friend22) || (%reportispamnick == %friend23) || (%reportispamnick == %friend24) || (%reportispamnick == %friend25) { goto end  }    
+    inc -u10800 %recordspamnick- [ $+ [ $mid($1,2,99) ]  ]
+    inc -u1800 %recordrelaynick- [ $+ [ $mid($1,2,99) ]  ]
+  } 
+  :triggers
+  var %i = 0
+  while (%i < $comchan(%reportispamnick,0)) { 
+    inc %i
+    if (%reportispamnick == $me) || (%reportispamnick == $master) || (%reportispamnick == %spybot) || (%reportispamnick == NickServ) || (%reportispamnick == %friend26) || (%reportispamnick == %friend27) || (%reportispamnick == %friend28) || (%reportispamnick == %friend29) || (%reportispamnick == Memoserv) || (%reportispamnick == ChanServ) { goto end }
+    if (%reportispamnick == %friend1) || (%reportispamnick == %friend2) || (%reportispamnick == %friend3) || (%reportispamnick == %friend4) || (%reportispamnick == %friend5) || (%reportispamnick == %friend6) || (%reportispamnick == %friend7) || (%reportispamnick == %friend30) || (%reportispamnick == %friend8) || (%reportispamnick == %friend9) || (%reportispamnick == %friend10) || (%reportispamnick == %friend11) || (%reportispamnick == %friend12) || (%reportispamnick == %friend13) || (%reportispamnick == %friend14) || (%reportispamnick == %friend15) || (%reportispamnick == %friend16) || (%reportispamnick == %friend17) || (%reportispamnick == %friend18) || (%reportispamnick == %friend19) || (%reportispamnick == %friend20) || (%reportispamnick == %friend21) || (%reportispamnick == %friend22) || (%reportispamnick == %friend23) || (%reportispamnick == %friend24) || (%reportispamnick == %friend25) { goto end  }
+    if (%reportispamnick !ison $comchan(%reportispamnick,%i)) { .ignore -pntu60 %spamnick:addr | .msg %reportispamnick You are ignored | goto end }
+    if (%reportispamnick !isop $comchan(%reportispamnick,%i)) { goto shut }
+    else goto end 
+    :shut
+    if ($me !isop $comchan(%reportispamnick,%i)) { .ignore -pntu60 %spamnick:addr | .msg %reportispamnick You are ignored  | goto end }
+    kick $comchan(%reportispamnick,%i) %reportispamnick Spy: %reason  
+    ban -u $+ %inviters $comchan(%reportispamnick,%i) %reportispamnick 11 | goto end 
+  }
+  else goto end
+  :red:xsock
+  red:xsock
+  .set %reportispamnick $mid($1,2,99) 
+  if (%reportispamnick == $me) || (%reportispamnick == $master) || (%reportispamnick == NickServ) || (%reportispamnick == %friend26) || (%reportispamnick == %friend27) || (%reportispamnick == %friend28) || (%reportispamnick == %friend29) || (%reportispamnick == Memoserv) || (%reportispamnick == ChanServ) { goto end } 
+  if (%reportispamnick == %friend1) || (%reportispamnick == %friend2) || (%reportispamnick == %friend3) || (%reportispamnick == %friend4) || (%reportispamnick == %friend5) || (%reportispamnick == %friend6) || (%reportispamnick == %friend7) || (%reportispamnick == %friend30) || (%reportispamnick == %friend8) || (%reportispamnick == %friend9) || (%reportispamnick == %friend10) || (%reportispamnick == %friend11) || (%reportispamnick == %friend12) || (%reportispamnick == %friend13) || (%reportispamnick == %friend14) || (%reportispamnick == %friend15) || (%reportispamnick == %friend16) || (%reportispamnick == %friend17) || (%reportispamnick == %friend18) || (%reportispamnick == %friend19) || (%reportispamnick == %friend20) || (%reportispamnick == %friend21) || (%reportispamnick == %friend22) || (%reportispamnick == %friend23) || (%reportispamnick == %friend24) || (%reportispamnick == %friend25) { goto end  }  
+  :examine
+  .guser Ginviter $mid($1,2,99) 9 | set %Ginviters %reportispamnick | if (%agentlog == on) { agentlog | echo @spy-log 12››11››12 $timestamp 4Spam/Invite: 12 $+ %Ginviters is added from 4Ginviter12 list. 14(4Press Ctrl + F3 to removed14) }
+  :end
+  halt
+}
+on @*:join:%prvtchan: {
+  if ($nick == $me) || ($nick == $master) || ($nick == %friend1) || ($nick == MemoServ) || ($nick == NickServ) || ($nick ==  ChanServ) || ($nick == %friend2) || ($nick == %friend3) || ($nick == %friend4) || ($nick == %friend5) || ($nick == %friend6) || ($nick == %friend7) || ($nick == %friend30) || ($nick == %friend8) || ($nick == %friend9) || ($nick == %friend10) || ($nick == %friend11) || ($nick == %friend12) || ($nick == %friend13) || ($nick == %friend14) || ($nick == %friend15) || ($nick == %friend16) || ($nick == %friend17) || ($nick == %friend18) || ($nick == %friend19) || ($nick == %friend20) || ($nick == %friend21) || ($nick == %friend22) || ($nick == %friend23) || ($nick == %friend24) || ($nick == %friend25) || ($nick == %friend26) || ($nick == %friend27) || ($nick == %friend28) || ($nick == %friend29) { goto end }
+  if ($me !isop $chan) || ($nick == %spybot) || ($nick == %spybot1)  { goto end }
+  if (%Guestnickkick  == Enable) {
+    if (guest????? iswm $nick) {
+      inc -u300 %_guest. [ $+ [ $wildsite ] ]
+      if (%_guest. [ $+ [ $wildsite ] ] < 2) { tgue | cgue | kick # $nick %reason }
+      else { tgue | cgue | red:xkb # $nick }
+    }
+  }
+  if (%badnickkick == Enable) {
+    if (%badnicklist1 isin $nick) || (%badnicklist2 isin $nick) || (%badnicklist3 isin $nick) || (%badnicklist4 isin $nick) || (%badnicklist5 isin $nick) || (%badnicklist6 isin $nick) || (%badnicklist7 isin $nick) || (%badnicklist8 isin $nick) || (%badnicklist9 isin $nick) || (%badnicklist10 isin $nick) || (%badnicklist11 isin $nick) || (%badnicklist12 isin $nick) || (%badnicklist13 isin $nick) || (%badnicklist14 isin $nick) || (%badnicklist15 isin $nick) || (%badnicklist16 isin $nick) || (%badnicklist17 isin $nick) || (%badnicklist18 isin $nick) || (%badnicklist19 isin $nick) || (%badnicklist20 isin $nick) || (%badnicklist21 isin $nick) || %badnicklist22 isin $nick) || (%badnicklist23 isin $nick) || (%badnicklist24 isin $nick) || (%badnicklist25 isin $nick) || (%badnicklist26 isin $nick) || (%badnicklist27 isin $nick) || (%badnicklist28 isin $nick) || (%badnicklist29 isin $nick) || (%badnicklist30 isin $nick)  {
+      inc -u300 %_badnick. [ $+ [ $wildsite ] ]
+      if (%_badnick. [ $+ [ $wildsite ] ] < 2) { tbadni | cbadni | kick # $nick %reason }
+      else { tbadni | cbadni | red:xkb # $nick }
+    }
+  }
+  if (%badidentkick == Enable) {
+    if (*!*fuck*@* iswm $fulladdress) || (*!*SHIT*@* iswm $fulladdress) || (*!*DICK@* iswm $fulladdress) || (*!*asshole*@* iswm $fulladdress) || (*!*bangsat*@* iswm $fulladdress) || (*!*kontol*@* iswm $fulladdress) || (*!*kantot*@* iswm $fulladdress) || (*!*libog*@* iswm $fulladdress) || (*!*anjing*@* iswm $fulladdress) || (*!*tangina*@* iswm $fulladdress) || (*!*bitch*@* iswm $fulladdress) || (*!*biatch*@* iswm $fulladdress) || (*!*memek*@* iswm $fulladdress) || (*!*damn*@* iswm $fulladdress) || (*!*suck*@* iswm $fulladdress) || (*!*bastard@* iswm $fulladdress) || (*!*pussy*@* iswm $fulladdress) {
+      inc -u300 %_bident. [ $+ [ $wildsite ] ]
+      if (%_bident. [ $+ [ $wildsite ] ] < 2) { tbadid | cbadid | kick # $nick %reason }
+      else { tbadni | cbadni | red:xkb # $nick }
+    }
+  }
+  if (%clonekick == Enable) {
+    var %iclone = $ialchan($wildsite,#,0)
+    if (%iclone >= %clcount) && (!%_clone:kick)  { 
+      set -u2 %_clone:kick ! | ban -u $+ %Clonetime # $nick 2 
+      _chnm | set %reason $read($mircdircrack\clonemsg.txt) ( $+ %iclone $+ )
+      prot.filter.kick # $wildsite %reason
+    }
+  }
+  if (%revolvingdoorkick == Enable) {
+    inc -u5 %revolved- [ $+ [ $nick ] $+ [ $chan ] ]
+    if (%revolved- [ $+ [ $nick ] $+ [ $chan ] ] > 1 ) { set %reason $read $mircdircrack\doork.txt | ban -u $+ %doortime #  $nick 11 | kick # $nick %reason  }
+  }
+  if (%proxywingate == enable) { 
+    set %gatenick $nick | set %ip.toscan $gettok($address($nick,2),2,64) | .sockopen gate $+ %gatenick %ip.toscan 1080 | .sockopen proxy $+ %gatenick %ip.toscan 8080 | .sockopen $+(proxy,%gatenick,x) %ip.toscan 3128 | set %wingatechannel #  | .enable #wingate
+  }
+  if (%badchannelkick  == Enable) { .disable #visible | cset | .enable #rawchannels | .timerraw 1 5 .disable #rawchannels | whois $nick }
+  if (%antispammmings ==  on) { if (~ isin $fulladdress) { if (($right($nick,2) isnum) && (($left($nick,1) isin ^{_) || ($mid($nick,-3,1) == _))) { ban -u60 # $nick 5 | kick # $nick Thanks for not spamming here. } } } 
+  :end
+} 
+#rawchannels off
+raw 319:*: {
+  haltdef
+  if (%badchannel1 isin $3-) || (%badchannel2 isin $3-) || (%badchannel3 isin $3-) || (%badchannel4 isin $3-) || (%badchannel5 isin $3-) || (%badchannel6 isin $3-) || (%badchannel7 isin $3-) || (%badchannel8 isin $3-) || (%badchannel9 isin $3-) || (%badchannel10 isin $3-) || (%badchannel11 isin $3-)  || (%badchannel12 isin $3-) || (%badchannel13 isin $3-) || (%badchannel14 isin $3-) || (%badchannel15 isin $3-) || (%badchannel16 isin $3-) || (%badchannel17 isin $3-) || (%badchannel18 isin $3-) || (%badchannel19 isin $3-) || (%badchannel20 isin $3-) || (%badchannel21 isin $3-)  || (%badchannel22 isin $3-) || (%badchannel23 isin $3-) || (%badchannel24 isin $3-) || (%badchannel25 isin $3-) || (%badchannel26 isin $3-) || (%badchannel27 isin $3-) || (%badchannel28 isin $3-) || (%badchannel29 isin $3-) || (%badchannel30 isin $3-) {
+    set %nickkick $2
+    set %bantime %badchanneltime  
+    set %badchanmatch $ifmatch
+    cbadcha | badkick | goto end
+    else goto end
+  }
+  :end
+  .timer 1 3 .enable #visible 
+}
+raw 301:*: { halt }
+raw 312:*: { halt }
+raw 311:*: { halt }
+raw 313:*: { halt }
+raw 317:*: { halt }
+raw 318:*: { halt }
+raw 307:*: { halt }
+#rawchannels end
+
+#sock on
+on *:sockclose:*:{
+  if ($sockname == bestwar) {
+    bestwarbotx
+    sockclose $sockname
+    set %gonebot %spybot
+    .timer 1 3 closemsg %gonebot
+    .timer 1 5 sockopen bestwar $server $port
+  }
+  else { echo -a *  SOCKET:  4** Alert disconnected on  $+ $sockname $+  | halt }
+}
+#sock end
+#wingate off
+on *:sockopen:gate*:{ if ($sockerr > 0) { return } | set %sockfirewalls wingate  | set %sockgateport $sock($sockname).ip $sock($sockname).port | kick %wingatechannel $remove($sockname,$left($sockname,4))  $read $mircdircrack\proxywingate.txt | ban -u1800 %wingatechannel $remove($sockname,$left($sockname,4)) 2 | .sockclose $sockname | .disable #wingate }
+on *:sockopen:proxy*:{ if ($sockerr > 0) { return } | set %sockfirewalls proxy | set %sockgateport $sock($sockname).ip $sock($sockname).port | kick %wingatechannel $remove($sockname,$left($sockname,5))  $read $mircdircrack\proxywingate.txt | ban -u1800 %wingatechannel $remove($sockname,$left($sockname,5)) 2 | .sockclose $sockname | .disable #wingate }
+#wingate end
+on 1:sockread:bestwars:{
+  if ($sockerr > 0) { halt }
+  :nextread
+  sockread %temp
+  if ($sockbr == 0) { return }
+  if (%temp == $null) { set %whats 15Socket error | h20 | halt }
+  else { msg $active %insult $+ : %temp | halt }
+}
+
+menu @ascii {
+  rclick:window -c @ascii
+}
+alias inviterset { dialog -m inviter inviter | inviteropen }
+alias inviterclose {
+  :reduce
+  if (%cdsp <= 10) { dialog -c inviter | halt }
+  dec %cdsp 3 | dialog -s inviter -1 -1 324 %cdsp | goto reduce
+}
+alias inviteropen {
+  :increase
+  if (%cdsp >= 328) { dialog -s inviter -1 -1 324 328  | halt }
+  inc %cdsp 3 | dialog -s inviter -1 -1 324 %cdsp | goto increase
+}
+alias inviterup { set %cdsp 328 | dialog -s inviter -1 -1 324 328 | .timerinviterclose 1 0 inviterclose }
+dialog inviter {
+  title "Special Anti-inviter Kicker"
+  size -1 -1 162 164
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 25 1 110 7, Center   Disable
+  link "www.Brain-Crash.com" 3, 55 8 110 14,
+  box "special features" 4, 6 20 150 127, Disable
+  box "" 5, 9 100 144 45,
+  text "This features will help you optimized those commonly used inviter scripts like, Ai3, Daphunkwar, Magic, Spambots like drones etc. This scripts kicks depends on their default idents that is randomly generated. XGuest bot and other join/parts are built-in in Agent Spy Bot.." 6, 13 106 136 37,
+  button "done" 7, 54 150 50 13, Ok  
+  check "clone relay inviter" 8, 40 35 100 10,
+  check "clone relay inviter w/ flooder" 9, 40 45 100 10,
+  check "magic inviters" 10, 40 55 100 10,
+  check "spambots, like drone etc.." 11, 40 65 100 10,
+  check "Ai3 inviter" 12, 40 75 100 10,
+  check "other inviter" 13, 40 85 100 10,
+  button "done" 14, 54 150 50 13, Ok, hide  
+}
+on *:DIALOG:inviter:*:*:{
+  if ($devent == init) {
+    set %cdsp 1
+    if (%relayclones == $null) { set %relayclones off }
+    if (%relayclones == on) { did -c inviter 8 }
+    if (%relayflood == $null) { set %relayflood off }
+    if (%relayflood == on) { did -c inviter 9 }
+    if (%magic == $null) { set %magic off }
+    if (%magic == on) { did -c inviter 10 }
+    if (%spambots == $null) { set %spambots off }
+    if (%spambots == on) { did -c inviter 11 }
+    if (%ai3 == $null) { set %ai3 off }
+    if (%ai3 == on) { did -c inviter 12 }
+    if (%common == $null) { set %common off }
+    if (%common == on) { did -c inviter 13 }
+  }
+  if ($devent == sclick) {
+    if ($did == 3) { _webteam }
+    if ($did == 7) { inviterup }
+    if ($did == 8) {
+      if (%relayclones == on) { set %relayclones off | halt }
+      if (%relayclones == off) { set %relayclones on | halt }
+    }
+    if ($did == 9) {
+      if (%relayflood == on) { set %relayflood off | halt }
+      if (%relayflood == off) { set %relayflood on | halt }
+    }
+    if ($did == 10) {
+      if (%magic == on) { set %magic off | halt }
+      if (%magic == off) { set %magic on | halt }
+    }
+    if ($did == 11) {
+      if (%spambots == on) { set %spambots off | halt }
+      if (%spambots == off) { set %spambots on | halt }
+    }
+    if ($did == 12) {
+      if (%ai3 == on) { set %ai3 off | halt }
+      if (%ai3 == off) { set %ai3 on | halt }
+    }
+    if ($did == 13) {
+      if (%common == on) { set %common off | halt }
+      if (%common == off) { set %common on | halt }
+    }
+  }
+}
+;eof

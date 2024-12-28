@@ -1,0 +1,74 @@
+menu channel,menubar {
+  -
+  &Protections-Control-  $+ %protections.status $+ 
+  .-
+  .On-All-Protections:/protect.on
+  .Off-All-Protections:/protect.off
+  .-
+  .Configuration:/protections
+}
+menu @Protections {
+  dclick {
+    if $1 == 2 { if %swear.kick == On  { set %swear.kick Off } | else { set %swear.kick On } }
+    if $1 == 3 { if %advertise.kick == On  { set %advertise.kick Off } | else { set %advertise.kick On } }
+    if $1 == 4 { if %code.kick == On  { set %code.kick Off } | else { set %code.kick On } } 
+    if $1 == 5 { set %code.limit $?="How Many Codes For Max" }
+    if $1 == 6 { if %cap.kick.kick == On  { set %cap.kick.kick Off } | else { set %cap.kick.kick On } }
+    if $1 == 7 { set %cap.kick.limit $?="How Many Caps For Max" }
+    if $1 == 8 { if %digit.kick == On  { set %digit.kick Off } | else { set %digit.kick On } }
+    if $1 == 9 { set %digit.limit $?="How Many Digits For Max" }
+    if $1 == 10 { if %punct.kick == On  { set %punct.kick Off } | else { set %punct.kick On } }
+    if $1 == 11 { set %punct.limit $?="How Many Punctuations For Max" }
+    if $1 == 12 { if %length.kick == On  { set %length.kick Off } | else { set %length.kick On } }
+    if $1 == 13 { set %length.limit $?="How Many Words For Max" }
+    if $1 == 14 { if %ascii.kick == On  { set %ascii.kick Off } | else { set %ascii.kick On } }
+    if $1 == 15 { set %ascii.limit $?="How Many Ascii For Max" }
+    if $1 == 16 { if %blank.kick == On  { set %blank.kick Off } | else { set %blank.kick On } }
+    if $1 == 17 { set %blank.limit $?="How Many Blanks For Max" }
+    if $1 == 18 { if %repeat.kick == On  { set %repeat.kick Off } | else { set %repeat.kick On } }
+    if $1 == 19 { set %repeat.limit $?="How Many Repeat Lines For Max" }
+    if $1 == 20 { if %line.kick == On  { set %line.kick Off } | else { set %line.kick On } }
+    if $1 == 21 { set %line.limit $?="How Many Rows For Max" }
+    if $1 == 22 { if %badnick.kick == On { set %badnick.kick Off } | else { set %badnick.kick On } }
+    if $1 == 23 { if %massjoin.kick == On { set %massjoin.kick Off } | else { set %massjoin.kick On } }
+    if $1 == 24 { set %massjoin.limit $?="How Many Nicks For Kicking If There's A Massjoin" }
+    if $1 == 25 { if %block.msg == On { set %block.msg Off } | else { set %block.msg On } }
+    if $1 == 26 { if %queryswear.kick == On { set %queryswear.kick Off } | else { set %queryswear.kick On } }
+    Protections | halt 
+  }
+}
+alias Protections {
+  window  -alo @Protections $window(@Protections).x $window(@Protections).y @Protections Arial
+  rline @Protections 1 %lost 4•7 Configuration 4• 4(7 Double Click to Change 4)
+  rline @Protections 2 4•7 Swear-Kick 4• 4(7 %swear.kick 4)
+  rline @Protections 3 4•7 Advertise-Kick 4• 4(7 %advertise.kick 4)
+  rline @Protections 4 4•7 Code-Kick 4• 4(7 %code.kick 4)
+  rline @Protections 5 4•7 Code-Limit 4• 4(7 %code.limit  4)
+  rline @Protections 6 4•7 Cap-Kick 4• 4(7 %cap.kick.kick 4)
+  rline @Protections 7 4•7 Cap-Limit 4• 4(7 %cap.kick.limit 4)
+  rline @Protections 8 4•7 Digit-Kick 4• 4(7 %digit.kick 4)
+  rline @Protections 9 4•7 Digit-Limit 4• 4(7 %digit.limit 4)
+  rline @Protections 10 4•7 Punct-Kick 4• 4(7 %punct.kick 4)
+  rline @Protections 11 4•7 Punct-Limit 4• 4(7 %punct.limit 4)
+  rline @Protections 12 4•7 Length-Kick 4• 4(7 %length.kick 4)
+  rline @Protections 13 4•7 Length-Limit 4• 4(7 %length.limit 4)
+  rline @Protections 14 4•7 Ascii-Kick 4• 4(7 %ascii.kick 4)
+  rline @Protections 15 4•7 Ascii-Limit 4• 4(7 %ascii.limit 4)
+  rline @Protections 16 4•7 Blank-Kick 4• 4(7 %blank.kick 4)
+  rline @Protections 17 4•7 Blank-Limit 4• 4(7 %blank.limit 4)
+  rline @Protections 18 4•7 Repeat-Kick 4• 4(7 %repeat.kick 4)
+  rline @Protections 19 4•7 Repeat-Limit 4• 4(7 %repeat.limit 4)
+  rline @Protections 20 4•7 Line-Kick 4• 4(7 %line.kick 4)
+  rline @Protections 21 4•7 Line-Limit 4• 4(7 %line.limit 4)
+  rline @Protections 22 4•7 Badnick-Kick 4• 4(7 %badnick.kick 4)
+  rline @Protections 23 4•7 Massjoin-Kick 4• 4(7 %massjoin.kick 4)
+  rline @Protections 24 4•7 Massjoin-Kick-Limit 4• 4(7 %massjoin.limit 4)
+  rline @Protections 25 4•7 Block-Query-Msg 4• 4(7 %block.msg 4)
+  rline @Protections 26 4•7 Queryswear-Kick 4• 4(7 %queryswear.kick 4)
+} 
+alias protect.on { 
+  enable #protect | set %protections.status On | set %swear.kick On | set %advertise.kick On | set %code.kick On | set %cap.kick.kick On | set %digit.kick On | set %punct.kick On | set %length.kick On | set %ascii.kick On | set %blank.kick On | set %repeat.kick On | set %line.kick On | set %floodz.prot Off | set %badnick.kick On | set %massjoin.kick On | set %block.msg On | set %queryswear.kick On
+}
+alias protect.off {
+  disable #protect | set %protections.status Off | set %swear.kick Off | set %advertise.kick Off | set %code.kick Off | set %cap.kick.kick Off | set %digit.kick Off | set %punct.kick Off | set %length.kick Off | set %ascii.kick Off | set %blank.kick Off | set %repeat.kick Off | set %line.kick Off | set %badnick.kick Off | set %massjoin.kick Off | set %block.msg Off | set %queryswear.kick Off
+}

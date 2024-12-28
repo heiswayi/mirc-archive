@@ -1,0 +1,344 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                          Cyborg Full-Script Edition of the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                          E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+on ^*:notice:*:#:{ echo 12 # $timestamp $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+  $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 15Notice: $nick 4(15 $+ # $+ 4)15: $1- | haltdef }
+on *:START: { .play -sc crack/start.mrc 10 | /inc %startup 1 | set %chanservmsg off | set %unknown Down | .timerchecklog 99999999999999 1 /` | .rlevel flood | if (%startup == 1) { .timer 1 6 helpset } | bestwar:x }
+alias autoaway.check {
+  if ($idle > %options.aatime) {
+    away autoaway after $duration(%options.aatime)
+    .timer(autoaway) off
+  }
+}
+on ^*:text:*:#: { 
+  if ($me isin $1-) && ($chan != $active) { set %whats (4Message15) $chan $+ : $nick $+ : 4(15 $1- 4) | h20 } 
+  if ($nick isop $chan) { echo 12 # $timestamp 4(11@ $+ $nick $+ 4)15 $1-  | goto end }
+  if ($nick isvo $chan) { echo 12 # $timestamp 4(9+ $+ $nick $+ 4)15 $1-  | goto end } 
+  echo 14 # $timestamp 4(15 $+ $nick $+ 4)15 $1- 
+  :end
+  haltdef
+}
+on ^*:action:*:#: { 
+  if ($me isin $1-) && ($chan != $active) { set %whats 15(4Action15) $chan $+ : $nick $+ : 4(14 $1- 4) | h20 } 
+  echo 12 # $timestamp *15 $nick $+ 15 $1- | haltdef
+}
+#completer off
+on *:input:*:{ 
+  if (%Input1 == on) {
+    if (/* !iswm $1-) { 
+      say %colora1 $+ ( %colora2 $+ $left($1-,1)  $+  $+ $chr(31) $+ %colora3 $+ $right($1-,-1)  $+  $+ $chr(15)  $+ %colora1 $+ ) 
+      halt 
+    } 
+  }
+  if (%input2 == on) {
+    if (/* !iswm $1) { 
+      msg $active $replace($1-,a,ä,b,ß,c,©,d,d,e,ë,f,f,g,g,h,h,i,î,j,j,k,k,l,l,m,m,n,ñ,o,õ,p,p,q,q,r,®,s,§,t,t,u,ú,v,v,w,w,x,x,y,ý,z,z) 
+      halt
+    }
+  }
+  if (%input3 == on) {
+    if (/* !iswm $1) { 
+      msg $active $replace($1-,a, $+ $r(1,15) $+ ä,b, $+ $r(1,15) $+ ß,c, $+ $r(1,15) $+ ©,d, $+ $r(1,15) $+ d,e, $+ $r(1,15) $+ ë,f, $+ $r(1,15) $+ f,g, $+ $r(1,15) $+ g,h, $+ $r(1,15) $+ h,i, $+ $r(1,15) $+ î,j, $+ $r(1,15) $+ j,k, $+ $r(1,15) $+ ,l, $+ $r(1,15) $+ l,m, $+ $r(1,15) $+ m,n, $+ $r(1,15) $+ ñ,o, $+ $r(1,15) $+ õ,p, $+ $r(1,15) $+ p,q, $+ $r(1,15) $+ q,r, $+ $r(1,15) $+ ®,s, $+ $r(1,15) $+ §,t, $+ $r(1,15) $+ t,u, $+ $r(1,15) $+ ú,v, $+ $r(1,15) $+ v,w, $+ $r(1,15) $+ w,x, $+ $r(1,15) $+ x,y, $+ $r(1,15) $+ ý,z, $+ $r(1,15) $+ z) 
+      halt
+    }
+  }
+  if (%input4 == on) {
+    if (/* !iswm $1) { 
+      msg $active $replace($1-,a, $+ $r(1,15) $+ a,b, $+ $r(1,15) $+ b,c, $+ $r(1,15) $+ c,d, $+ $r(1,15) $+ d,e, $+ $r(1,15) $+ e,f, $+ $r(1,15) $+ f,g, $+ $r(1,15) $+ g,h, $+ $r(1,15) $+ h,i, $+ $r(1,15) $+ i,j, $+ $r(1,15) $+ j,k, $+ $r(1,15) $+ k,l, $+ $r(1,15) $+ l,m, $+ $r(1,15) $+ m,n, $+ $r(1,15) $+ n,o, $+ $r(1,15) $+ o,p, $+ $r(1,15) $+ p,q, $+ $r(1,15) $+ q,r, $+ $r(1,15) $+ r,s, $+ $r(1,15) $+ s,t, $+ $r(1,15) $+ t,u, $+ $r(1,15) $+ u,v, $+ $r(1,15) $+ v,w, $+ $r(1,15) $+ w,x, $+ $r(1,15) $+ x,y, $+ $r(1,15) $+ y,z, $+ $r(1,15) $+ z)
+      halt
+    }
+  }
+  if (%input5 == on) {
+    if (/* !iswm $1) { 
+      var %text = $reptok($1-,brb, $+ %color1s $+ B $+ %color2s $+ e  %color1s $+ R $+ %color2s $+ ight  %color1s $+ B $+ %color2s $+ ack,1,32)
+      var %text = $reptok(%text,lol,$+ %color1s $+ L $+ %color2s $+ aughing  %color1s $+ O $+ %color2s $+ ut  %color1s $+ L $+ %color2s $+ oud,1,32)
+      var %text = $reptok(%text,jk,$+ %color1s $+ J $+ %color2s $+ ust  %color1s $+ K $+ %color2s $+ idding,1,32)
+      var %text = $reptok(%text,bbl,$+ %color1s $+ B $+ %color2s $+ e  %color1s $+ B $+ %color2s $+ ack %color1s $+ L $+ %color2s $+ ater,1,32)
+      var %text = $reptok(%text,gtg,%color1s $+ G $+ %color2s $+ ot %color1s $+ T $+ %color2s $+ o %color1s $+ G $+ %color2s $+ o,1,32)    
+      var %text = $reptok(%text,asl,%color1s $+ A $+ %color2s $+ ge %color1s $+ S $+ %color2s $+ ex %color1s $+ L $+ %color2s $+ ocation,1,32)
+      var %text = $reptok(%text,hello,%color1s $+ H $+ %color2s $+ ello ,1,32) 
+      var %text = $reptok(%text,hey,%color1s $+ H $+ %color2s $+ ey ,1,32)
+      var %text = $reptok(%text,hi,%color1s $+ H $+ %color2s $+ i ,1,32)     
+      var %text = $reptok(%text,ok,%color1s $+ O $+ %color2s $+ kay ,1,32)   
+      var %text = $reptok(%text,yeah,%color1s $+ Y $+ %color2s $+ eah ,1,32)
+      var %text = $reptok(%text,nope,%color1s $+ N $+ %color2s $+ ope ,1,32)
+      var %text = $reptok(%text,no,%color1s $+ N $+ %color2s $+ o ,1,32)
+      var %text = $reptok(%text,yes,%color1s $+ Y $+ %color2s $+ es ,1,32) 
+      var %text = $reptok(%text,amp,%color1s $+ A $+ %color2s $+ mp! ,1,32)    
+      var %text = $reptok(%text,shit,%color1s $+ S $+ %color2s $+ hit ,1,32)    
+      var %text = $reptok(%text,sure,%color1s $+ S $+ %color2s $+ ure ,1,32)      
+      var %text = $reptok(%text,wtf,%color1s $+ W $+ %color2s $+ hat %color1s $+ T $+ %color2s $+ he %color1s $+ F $+ %color2s $+ uck,1,32)
+      var %text = $reptok(%text,lmao,%color1s $+ L $+ %color2s $+ aughing %color1s $+ M $+ %color2s $+ y %color1s $+ A $+ %color2s $+ ss %color1s $+ O $+ %color2s $+ ff,1,32)
+      var %text = $reptok(%text,hehehe,%color1s $+ H $+ %color2s $+ eheh %color1s $+ H $+ %color2s $+ eheh ,1,32)      
+      var %text = $reptok(%text,hahaha,%color1s $+ H $+ %color2s $+ ahah %color1s $+ H $+ %color2s $+ ahah ,1,32) 
+      var %text = $reptok(%text,harharhar,%color1s $+ H $+ %color2s $+ ar %color1s $+ H $+ %color2s $+ ar %color1s $+ H $+ %color2s $+ ar %color1s $+ H $+ %color2s $+ ar %color1s $+ H $+ %color2s $+ ar ,1,32) 
+      var %text = $reptok(%text,ic, %color1s $+ I %color1s $+ S $+ %color2s $+ ee ,1,32)      
+      var %text = $reptok(%text,np,%color1s $+ N $+ %color2s $+ o %color1s $+ P $+ %color2s $+ roblem ,1,32)
+      var %text = $reptok(%text,tc,%color1s $+ T $+ %color2s $+ ake %color1s $+ C $+ %color2s $+ are ,1,32)
+      var %text = $reptok(%text,ty,%color1s $+ T $+ %color2s $+ hank %color1s $+ Y $+ %color2s $+ ou ,1,32)      
+      var %text = $reptok(%text,tccic,%color1s $+ T $+ %color2s $+ ake %color1s $+ C $+ %color2s $+ are %color1s $+ C $+ %color2s $+ oz %color1s $+ I %color1s $+ C $+ %color2s $+ are ,1,32)  
+      var %text = $reptok(%text,wb,%color1s $+ W $+ %color2s $+ elcome %color1s $+ B $+ %color2s $+ ack ,1,32)    
+      var %text = $reptok(%text,btw,%color1s $+ B $+ %color2s $+ y %color1s $+ T $+ %color2s $+ he %color1s $+ W $+ %color2s $+ ay,1,32)
+      var %text = $reptok(%text,lolwrotf,%color1s $+ L $+ %color2s $+ aughing %color1s $+ O $+ %color2s $+ ut %color1s $+ L $+ %color2s $+ oud %color1s $+ W $+ %color2s $+ hile %color1s $+ R $+ %color2s $+ olling %color1s $+ O $+ %color2s $+ n %color1s $+ T $+ %color2s $+ he %color1s $+ F $+ %color2s $+ loor,1,32)
+      var %text = $reptok(%text,bye,%color1s $+ B $+ %color2s $+ uh %color1s $+ B $+ %color2s $+ ye ,1,32) 
+      var %text = $reptok(%text,pls,%color1s $+ P $+ %color2s $+ lease ,1,32)          
+      var %text = $reptok(%text,ttl,%color1s $+ T $+ %color2s $+ alk %color1s $+ T $+ %color2s $+ o %color1s $+ Y $+ %color2s $+ ou %color1s $+ L $+ %color2s $+ ater,1,32)  
+      var %text = $reptok(%text,ctc,%color1s $+ C $+ %color2s $+ are %color1s $+ T $+ %color2s $+ o %color1s $+ C $+ %color2s $+ hat,1,32)  
+      var %text = $reptok(%text,tyt,%color1s $+ T $+ %color2s $+ ake %color1s $+ Y $+ %color2s $+ our %color1s $+ T $+ %color2s $+ ime,1,32)  
+      var %text = $reptok(%text,huh,%color1s $+ H $+ %color2s $+ uh ,1,32)
+      msg $active %text
+      halt
+    }
+  }
+  if (%Input6 == on) {
+    if (/* !iswm $1-) { 
+      if (%colorback == on) {  say  %colorb3 $+ %colorb1 $+  $+ %textdesign1 $+  $+ %colorb2  $mid($1-,1) %colorb1 $+  $+ %textdesign2 $+  | halt }
+      say  %colorb1 $+  $+ %textdesign1 $+  $+ %colorb2  $mid($1-,1) %colorb1 $+  $+ %textdesign2 $+       
+      halt 
+    } 
+  }
+  if (%Input7 == on) {
+    if ($1 ison #) { 
+      say %colorc1 $+ $left($1,1)  $+ %colorc2 $+ $left($1,1) $+ %colorc3 $+ $left($1,1) $+ %colorc4 $+ $left($1,1)  $+ %colorc5 $+ $chr(31) $+  $mid($1,1) $+ $chr(15) $+ %colorc4 $+ $right($1,1) $+ %colorc3 $+ $right($1,1) $+ %colorc2 $+ $right($1,1) $+ %colorc1 $+ $right($1,1)) $+ $chr(15) $2- 
+      halt  
+    } 
+  }
+  if (%Input8 == on) {
+    if ($1 ison #) { 
+      if (%colord3rand != off) { set %colord1  $+ $rand(1,15) | set %colord2  $+ $rand(1,15) }
+      say %colord3 $+  $+ %leftdesign $+  $+ %colord1 $+ $left($1,1) $+ $chr(31) $+ %colord2 $+ $mid($1,2,1) $+  $+ %colord1 $+ $right($1,-2) $+  $+ %colord3 $+  $+ %rightdesign $+  $2-
+      halt
+    }
+  }
+  if (%Input9 == on) {
+    if ($1 ison #) { 
+      say %colore1 $+ ( %colore2 $+ $left($1,1) $+  $+ $chr(31) $+ %colore3 $+ $right($1,-1)  $+  $+ $chr(15)  $+ %colore1 $+ ) $2- 
+      halt
+    }
+  }
+  if (%Input10 == on) {
+    if ($1 ison #) { 
+      if (%colorback1 == on) {  say %colorf3 $+ %colorf1 $+ %leftdesign1 %colorf2 $+ $mid($1,1) %colorf1 $+ %rightdesign2 $+  $2- | halt }
+      say  %colorf1 $+ %leftdesign1 %colorf2 $+ $mid($1,1) %colorf1 $+ %rightdesign2 $+  $2- | halt
+    }
+  } 
+  :end
+}
+#completer end
+on *:OPEN:?:{
+  if ( %querylimits == Off ) { goto open1 }
+  if ($nick == $me) || ($nick isop $comchan($nick,1)) { closemsg $nick | goto end }
+  if ($nick == %spybot) { haltdef | goto end }
+  if (($nick == %friend1) || ($nick == %friend2) || ($nick == %friend3) || ($nick == %friend4) || ($nick == %friend5) || ($nick == %friend6) || ($nick == %friend7) || ($nick == %friend8) || ($nick == %friend9) || ($nick == %friend10) || ($nick == %friend11) || ($nick == %friend12) || ($nick == %friend13) || ($nick == %friend14) || ($nick == %friend15) || ($nick == %friend16) || ($nick == %friend17) || ($nick == %friend18) || ($nick == %friend19) || ($nick == %friend20) || ($nick == %friend21) || ($nick == %friend22) || ($nick == %friend23) || ($nick == %friend24) || ($nick == %friend25) || ($nick == %friend26) || ($nick == %friend27) || ($nick == %friend28) || ($nick == %friend29) || ($nick == %friend30)) { goto open1 }
+  if (%queryfldmsg == on) {
+    inc -u1 %queryfloodmsg
+    if (%queryfloodmsg == %queryfloodmsgcount) { set %fromflood Query | protfld1 | goto end } 
+  }  
+  if ($query(0) = %querylimit) { .echo -a 12››11›› 4Warning: 15Your query limit is exceeded. All incoming queries will be ignore.... } 
+  if ($query(0) > %querylimit) { 
+    .ignore -pu20 $wildsite 
+    .close -m $nick
+    set -u20 %querylimitnicks $nick
+    .MSG $nick $logo $+  $chr(15) Sorry, I have my limit on my query... 
+    halt 
+  }
+  :open1
+  set %c $null | var %i = 0 | :loop | inc %i 
+  if ($comchan($nick,0) < %i) { echo $nick $chr(2) $+  $chr(3) $+  $chr(49) $+ $chr(52) $chr(155) $+  $chr(155)  $+  $chr(3) $+  $chr(49) $+ $chr(53) $+  $chr(155)  $+  $chr(155)  $chr(15) $chr(3) $+ $chr(49) $+ $chr(52) $+ Query with $nick 4(14 $+ $address $+ 4) 15 $time(h:nntt)  | if (%c == $null) { set %c none } | echo $nick $chr(2) $+  $chr(3) $+  $chr(49) $+ $chr(52) $chr(155) $+  $chr(155)  $+  $chr(3) $+  $chr(49) $+ $chr(53) $+  $chr(155)  $+  $chr(155)  $chr(15) $chr(3) $+ $chr(49) $+ $chr(52) $+ Common channels  4(15 $+ %c $+ 4) | halt }
+  else { set %c %c $comchan($nick,%i) | goto loop }
+  :end
+}
+alias protfld {
+  closemsg $nick
+  ignore -u $+ %silenceon $wildsite  
+  echo -a $timestamp $chr(2) $+ $chr(3) $+  $chr(49) $+ $chr(52) $chr(155) $+ $chr(155)  $+ $chr(3) $+ $chr(49) $+ $chr(53) $+  $chr(155)  $+  $chr(155)  $chr(15) 4 $+ %fromflood flood 4: $nick 4(15 $+ $address $+ 4)
+}
+alias protfld1 {
+  ignore -pntiu $+ %silenceon *!*@*  
+  echo -a $timestamp $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155)  $+ $chr(155)  $chr(15) 4Multiple %fromflood flood 4: $nick 4(15 $+ $address $+ 4)
+}
+ctcp *:*: {
+  if (Send isin $1-) { goto end }
+  if (get isin $1-) { goto end }
+  if (Chat isin $1-) { goto end }
+  if (Dcc isin $1-) { goto end }
+  if (resume isin $1-) { goto end }
+  haltdef
+  if (%ctcpfldmsg == on) {
+    inc -u1 %ctcpfloodmsg- [ $+ [ $wildsite ]  ]
+    if (%ctcpfloodmsg- [ $+ [ $wildsite ]  ] > %ctcpfloodmsgcount) { set %fromflood Ctcp's | protfld1 | goto protect } 
+    if (%ctcpfloodmsg- [ $+ [ $wildsite ]  ] == %ctcpfloodmsgcount) { set %fromflood Ctcp's | protfld | goto protect }
+    :ctcpecho
+    if (Sound isin $1-) { set %ctcpechonow SOUND | goto ctcp }
+    if (page isin $1-) { set %ctcpechonow PAGE14: $2- $+ : | goto ctcp }
+    if (Ping isin $1-) { set %ctcpechonow PING | ctcpping | goto ctcp }
+    if (Version isin $1-) { set %ctcpechonow VERSION | ctcpversion | goto ctcp }
+    if (FINGER isin $1-) { set %ctcpechonow FINGER | ctcpfinger | goto ctcp }
+    if (TIME isin $1-) { set %ctcpechonow TIME | ctcptime | goto ctcp }
+    if (ClientInfo isin $1-) { set %ctcpechonow CLIENTINFO | ctcpclientinfo | goto ctcp }
+    if (UserINFO isin $1-) { set %ctcpechonow USERINFO | ctcpuserinfo | goto ctcp }
+    else goto end
+  }
+  :ctcp
+  if ($chan isin $1-) { if (!%_ctcp) { set -u10 %_ctcp ! | echo # 12 $timestamp $chr(2) $+ $chr(3) $+  $chr(49) $+ $chr(52) $chr(155) $+  $chr(155)  $+  $chr(3) $+  $chr(49) $+ $chr(53) $+  $chr(155)  $+  $chr(155)  $chr(15)  11Ctcp:4$nick 4(14 $+ $address $+ 4)14 trying to 4 %ctcpechonow 14 $chan } | goto channelctcp }
+  if (!%_ctcp) set -u10 %_ctcp ! | echo -a $chr(2) $+  $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+  $chr(155)  $+  $chr(3) $+  $chr(49) $+ $chr(53) $+  $chr(155)  $+  $chr(155)  $chr(15) 4Ctcp:4 %ctcpechonow 14requested by $nick 4(14 $+ $address $+ 4)14 | goto end
+  :protect
+  set %i 0 
+  :nexti 
+  inc %i 
+  if $comchan($nick,0) < %i { unset %i | return } 
+  if ($me !isop $comchan($nick,%i)) || ($nick isop $comchan($nick,%i)) { .ignore -u60 $wildsite | echo -a $chr(2) $+  $chr(3) $+  $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155)  $chr(15) 4Ctcp:4 FLOOD 14detected  from 4(14 $+ $wildsite $+ 4)14 | goto end }
+  else { ban -u20 $comchan($nick,%i) $nick 11 | kick $comchan($nick,%i) $nick Ctcp Flood | goto nexti 
+  }
+  :channelctcp
+  if (%massctcp == on) {
+    .set %reportispamnick $nick
+    var %i = 0
+    while (%i < $comchan(%reportispamnick,0)) { 
+      inc %i
+      if (%reportispamnick !isop $comchan(%reportispamnick,%i)) { goto ctcpganstah }
+      else goto end 
+      :ctcpganstah
+      if ($me !isop $comchan(%reportispamnick,%i)) { goto end }
+      ban -u $+ %inviters $comchan(%reportispamnick,%i) %reportispamnick 11
+      kick $comchan(%reportispamnick,%i) %reportispamnick Mass4 %ctcpechonow Ctcp | goto end
+    }  
+  }
+  :end
+}
+ctcp *:finger:{  ctcpfinger }
+ctcp *:ping:{  ctcpping }
+ctcp *:TIME:{  ctcptime }
+ctcp *:version:{  ctcpversion }
+ctcp *:clientinfo:{  ctcpclientinfo }
+ctcp *:userinfo:{  ctcpuserinfo }
+on *:CTCPREPLY:ping*: {
+  if  ($nick == nickserv) || ($nick == memoserv) goto end   
+  if (chanserv == $nick) { 
+    set %clag $calc($ctime - $2)   
+    if (%clag <= 30) && (%ON == OFF) {
+      .set %ON ON | set %idle 0 | .timerSERvices OFF | chanservnormallag      
+      .timerPING 1 300 .ctcp chanserv@services.dal.net PING 
+      halt   
+    }
+    elseif (%ON == ON) { .timerPING 1 300 .ctcp chanserv@services.dal.net PING | .timerCheckPING 1 300 CheckPing | halt  
+    }
+    if (%ON == OFF) { chantoolagserv
+      .timerPING 1 300 .ctcp chanserv@services.dal.net PING 
+      halt   
+    }
+    elseif (%clag >= 60) && (%ON == ON) {
+      .set %ON OFF | chanlagserv
+      .timerPING 1 300 .ctcp chanserv@services.dal.net PING 
+      .timerservices 0 300 ChanLaG  
+      halt   
+    }
+  }
+  var %pt = $calc($ctime - $2)  
+  if ($nick == nickserv) || ($nick == memoserv) goto end   
+  .notice $nick $logo Ping Reply: $duration(%pt) 
+  if (%pt < 3) .notice $nick $logo Ping Comment: Good
+  elseif (%pt < 10) .notice $nick $logo Ping Comment: Bad
+  else .notice $nick $logo Ping Comment: Worst
+  :end
+}
+alias pong  { .notice $nick $logo Wait for your 4PING request.. | .ctcp $nick ping | halt }
+alias ctcptime {
+  if (%ctcptime  == $null ) { 
+  .ctcpreply $nick TIME %ctcptime }
+  else { .ctcpreply $nick TIME %logo $timectcp }
+}
+alias ctcpping {
+  if (%ctcpping  == $null ) { .ctcpreply $nick PING %ctcpping }
+  else { .ctcpreply $nick Ping $pingctcp %logo }
+}
+alias ctcpversion {
+  if (%Version  == $null ) { .ctcpreply $nick VERSION $vctcp }
+  else { .ctcpreply $nick VERSION $versionctcp }
+}
+alias ctcpfinger {
+  if (%finger  == $null ) { .ctcpreply $nick Finger $fctcp }
+  else { .ctcpreply $nick FINGER $fingerctcp %logo }
+}
+alias ctcpclientinfo {
+  if (%Version  == $null ) { .ctcpreply $nick CLIENTINFO $pctcp }
+  else { .ctcpreply $nick CLIENTINFO $pingctcp %logo }
+}
+alias ctcpuserinfo {
+  if (%Version  == $null ) { .ctcpreply $nick USERINFO $pctcp }
+  else { .ctcpreply $nick USERINFO $pingctcp %logo }
+}
+alias timectcp /return Get The Cyborg Full-Script Edition @ $team:web
+alias pingctcp /return  No Reply:Cyborg Full-Script Edition @ $team:web
+alias versionctcp /return Cyborg Full-Script  Edition by $master mIRC Protection Script Engine! 
+alias fingerctcp /return Cyborg Full-Script Edition @ $team:web
+alias tctcp /return Its Time To Get Cyborg Full-Script Edition @ $team:web
+alias pctcp /return No Reply: Cyborg Full-Script Edition $team:web
+alias vctcp /return Cyborg Full-Script Edition by $master In-Search of Excellence! 
+alias fctcp /return Cyborg Full-Script Edition $mymail
+#autogreet off
+on !*:join:%textjoinchannel: {
+  if ($nick == %spybot) { goto end }
+  if (%partspy. [ $+ [ $+($chan,$wildsite) ] ] > %partspycount) { goto end }
+  inc %joined $+ $nick 
+  if (%joined [ $+ [ $nick ] ] == 1) .notice $nick $logo %joingreetmsg
+  else .notice $nick $logo Welcome Back $nick $+ .  I've seen you %joined [ $+ [ $nick ] ] $+ x. 
+  :end
+}
+on !*:part:%textjoinchannel:{ 
+  if ($nick == %spybot) { goto end }
+  inc -u30 %partspy. [ $+ [ $+($chan,$wildsite) ] ]
+  .msg $nick $logo %partgreetmsg
+  :end
+}
+#autogreet end
+alias helpset { dialog -m help help  | helpopen }
+alias helpclose {
+  :reduce
+  if (%cdsp <= 10) { dialog -c help | halt }
+  dec %cdsp 3 | dialog -s help -1 -1 484 %cdsp | goto reduce
+}
+alias helpopen {
+  :increase
+  if (%cdsp >= 354) { dialog -s help -1 -1 484 354  | halt }
+  inc %cdsp 3 | dialog -s help -1 -1 484 %cdsp | goto increase
+}
+alias helpup { set %cdsp 354 | dialog -s help -1 -1 484 354 | .timerhelpclose 1 0 helpclose }
+dialog help {
+  title "Cyborg Script Help"
+  size -1 -1 242 177
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 67 1 110 7, Center   Disable
+  link "www.Brain-Crash.com" 3, 97 8 110 14,
+  button "done" 4, 100 162 40 15, 
+  tab "about" 5, 3 15 236 145
+  box "" 6, 6 32 230 125, tab 5
+  list 7, 9 39 75 115, tab 5
+  edit "" 8, 84 39 148 115, Multi Read vsbar tab 5
+  tab "commands" 9,
+  box "" 10, 6 32 230 125, tab 9
+  list 11, 9 39 75 115, tab 9
+  edit "" 12, 84 39 148 115, Multi Read vsbar tab 9
+  button "done" 13, 100 162 40 15, Ok, hide  
+}
+alias -l tread if ($ini(crack\help.txt,$1)) loadbuf -oert $+ $1 help 8 crack\help.txt | else did -ra help 8 $str($crlf,3) $+ $str($chr(160),30) $+ ***  File Not found ***
+alias -l cread if ($ini(crack\help2.txt,$1)) loadbuf -oert $+ $1 help 12 crack\help2.txt | else did -ra help 12 $str($crlf,3) $+ $str($chr(160),30) $+ *** File Not Found ***
+on *:dialog:help:*:*:{
+  if ($devent == init) {
+    set %cdsp 1
+    didtok help 7 46 About. .Channel Protections.Settings.Agent Spy Bot.Away System.Connect.Mp3 Player System.User level.Anti Inviter.Ping System.Seen System.Scans.Background.Auto Op/Voice.Script triggers.Autothanks.Autotalk and Greets.Querytalk.Games.DALnet Services. .FKeys. . .
+    didtok help 11 46 Commands. .a.alist.aping.aquery.atopic.awaynick.b.backaway.chat.chnick.cq.cs.csp.dop.dv.edit.help.findclone.friend.identify.insult.j.k.kb.mp3.ms.msgaway.n.ns.o.op.p.ping.q.seen.send.talk.thanks.time.v.version.w.windows.
+    did -ra help 8 $str($crlf,3) $+ $str($chr(160),30) $+ *** No topic selected ***
+    did -ra help 12 $str($crlf,3) $+ $str($chr(160),30) $+ *** No command selected *** 
+  }
+  if ($devent == sclick) {
+    if ($did == 3) { _webteam }
+    if ($did == 4) { helpup }
+    if ($did == 7) { if ($did(7).seltext == $chr(160)) { did -ra help 8 $str($crlf,3) $+ $str($chr(160),30) $+ *** No topic selected *** | return } | var %t = $gettok($did(7).seltext,1,32) | tread %t }
+    if ($did == 11) { if ($did(11).seltext == $chr(160)) { did -ra help 12 $str($crlf,3) $+ $str($chr(160),30) $+ *** No command selected *** | return } | var %oc = $gettok($did(11).seltext,1,32) | cread %oc }
+  }
+}
+;eof

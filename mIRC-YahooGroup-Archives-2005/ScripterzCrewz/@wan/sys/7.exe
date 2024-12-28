@@ -1,0 +1,126 @@
+.                                                                                                                                                                                                                 The property of 
+.                                                                                                                                                                                                                 "Air Biru Incorp."
+.                                                                                                                                                                                                           All copy right reserved.                                
+.                                                                                                                                                                                                               Copyright © 500                                                     
+aw 301:*: { echo  $+ $2 $+ 15 Is Away :4 $3-  | halt } 
+raw 307:*:echo -a 4 $+ $2 $+ 15 Is A Registered Nick  | halt
+raw 308:*:echo -a 4 $+ $2 $+ 15 Is A Irc Server Agent  | halt
+raw 309:*:echo -a 4 $+ $2 $+ 15 $3-  | halt 
+raw 310:*:echo -a  4 $+ $2 $+ 15Looks Very Helpful  | halt
+raw 311:*: { echo -a 4*** The Whois Info Center | echo -a 4Nick Name :15 $2  | echo -a 4Full Name :15 $6-  | echo -a 4User IP :15 $3 $+ @ $+ $4 $wildsite  | halt }
+raw 312:*: { echo -a 4Server :15 $3   $+ $4- $+  | halt }
+raw 313:*:echo -a 4Status :15 $5-  | halt 
+raw 317:*: { echo -a 4Idle:15 Idle Is $duration($3)  | echo -a 4Signed On :15 $asctime($4-)  | halt }
+raw 318:*: { echo -a 4*** 4End Of Whois Info List | halt }
+raw 319:*: { echo -a 4Channel :15 $3-  | halt }
+raw 325:*:echo -a 4 $+ $2 $+ 15 Have Sensitive Ears  | halt 
+raw 0:*:halt
+raw 1:*:halt
+raw 2:*:halt
+raw 3:*:halt
+raw 4:*:halt
+raw 5:*:halt
+raw 6:*:halt
+raw 250:*:halt
+raw 255:*:halt
+raw 441:*:halt
+raw 402:*:halt
+raw 440:*:{ 
+  echo 12 -a Services is currently down or that service does not exist. Please wait a few moments, and then try again. 
+  .raw off
+  .timerrawon 1 10 .raw on
+  halt 
+}
+raw 442:*:halt
+raw 482:*:halt
+raw 331:*:halt
+raw 314:*:echo -a - | echo -a 12Whowas On:2 $2 14(18 $+ $3 $+ @ $+ $4 $+ 14) | echo -a 12Real Name:2 $6* | halt
+raw 315:*:halt
+raw 343:*:halt
+raw 366:*:halt
+raw 369:*:halt
+raw 374:*:halt
+raw 369:*:halt
+raw 371:*:halt
+raw 372:*:halt
+raw 373:*:halt
+raw 374:*:halt 
+raw 376:*:halt
+raw 377:*:halt
+raw 353:*:halt
+raw 250:*:halt
+raw 378:*:halt
+raw 403:*:halt
+raw 320:*:halt
+raw 421:*:halt
+raw 513:*:halt
+raw 800:*:halt
+raw 401:*:halt
+raw 301:*:halt
+raw 812:*:return
+raw 375:*:haltdef 
+raw 219:*:haltdef
+raw 250:*:echo -a $2- | halt
+raw &332:*: { echo $2 12 *** Topic 4: $3- | halt  }
+raw 341:*:echo 4 $active Invite succesfully recieved
+raw 478:*: { echo -a 7*** $+ 6B6an 6L6ist 6i6s 6F6ull 7(:12 $2 7:) | halt
+}
+raw 436:*:echo  4 $active Killed by $server | /whowas $me
+raw 405:*:{ .echo 7 -a 10***  You're On Too Many Channels  | halt }
+raw 406:*:echo 7 -a *** Error 14: 0 No such nick 14[10 $2 14] | halt
+raw 473:*:echo -a 12*** $2 Is Invite Only | { .chanserv invite $2 $me | join $2 | halt  } 
+raw 474:*:echo 7 -s  *** Cannot join channel  14[10 $2 14]  U're Ban | { .chanserv invite $2 $me |  halt }  
+raw 404:*:echo $chan 4 *** 4Cannot Send To Channel $chan " Possible..Moderation Ban Or Desynched Channel 
+raw 314:*:haltdef
+raw 001:*:halt
+raw 002:*:halt
+raw 003:*:halt
+raw 004:*:halt
+raw 252:*:echo 7 -s *** Operators Online 14[10 $2 14] | halt
+raw 251:*:echo 7 -s *** There Are 14[10 $4 14] Normal Users and 14[10 $7 14] Unknown Users In This Server | halt
+raw 252:*:echo 7 -s *** There Are 14[10 $2 14] IRC-Ops | halt
+raw 253:*:echo 7 -s *** There Are 14[10 $2 14] Unknown Connection | halt 
+raw 254:*:echo 7 -s *** There Are 14[10 $2 14] Registered Channels | halt
+raw 255:*:echo 7 -s *** There Are 14[10 $4 14] Total Users In 14[10 $7 14] | halt 
+raw 265:*:echo 7 -s *** Local Users 14[10 $5 14]  Max 14[10 $7 14] | halt
+raw 266:*:echo 7 -s *** Global Users 14[ 10 $5 14]  Max 14[10 $7 14] | halt
+
+
+#ctcp on
+Ctcp @!1:*:#: {
+  if ($nick isop $chan) || ($nick isvo $chan) { .halt }
+  if ($nick ison $chan) { .raw -q kick $chan $nick : $+ $mk No Ctcp Flooding  [:Kick On:] 5  $fulldate  $sark $fark %xrc [ %inck ] $www | %inck = $calc(%inck +1) | .raw -q mode $chan +b $address | .ignore -u15 $mask($fulladdress,3) | .halt } 
+  if $len($1-) >= 50 { goto kick }
+  .inc -u10 %pingpong [ $+ [ $nick ] ] 
+  if %pingpong [ $+ [ $nick ] ] >= 1 { goto kick }
+  goto end
+  :kick
+  if ( $me isop $chan ) { 
+    if ( $nick ison $chan ) {
+      .ignore -tu5 *!*@* 
+      .ignore -u25 $mask($fulladdress,3) 
+      .raw -q kick $chan $nick No Ctcp Flooding  [:Kick On:] 5  $fulldate  $sark $fark %xrc | .raw -q mode $chan +b $mask($fulladdress,%blevel)      
+      .unset %pingpong [ $+ [ $nick ] ]
+      goto end
+    }
+  }
+  if ( $me !isop $chan ) ||  ( $nick !ison $chan ) { 
+    .unset %pingpong [ $+ [ $nick ] ] 
+    goto end
+  }
+  else { goto end }
+  :end
+}
+#ctcp end
+
+#autounban on
+on *:ban:#: {
+  if ($nick == $me) {
+    .timer 1 %btime .mode $chan -b $banmask
+  }
+  else { goto end }
+  :end
+}
+#autounban end
+
+alias xrc return { 12(14M15entalWa14r12) }

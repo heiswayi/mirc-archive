@@ -1,0 +1,35 @@
+on *:notice:*:*:if $nick == Chanserv && wait 3 isin $1- { .disconnect }
+#wann off
+on +7:join:#:.cs deop # %n7 | kick # %n7 HeHe~!
+on !*:op:#:.kick # %n7 HaHa~!
+on +7:deop:#:.kick # $opnick HuHu~! 
+on !*:deop:#:if $opnick == $me { cs op # $me } 
+on !*:kick:#: {
+  if $nick == Chanserv { halt }
+  elseif $knick == $me {
+    %n7 = $nick
+    %c7 = $chan
+    .auser 7 %n7
+    .timer 1 3 signal -n wann 
+  }
+}
+on *:signal:wann:.timer -m 1 789 cs deop %c7 %n7 | .timer -m 1 1000 join %c7 
+#wann end
+on *:input:*: {
+  if $1 == .on { .enable #wann | .nick $mnick }
+  if $1 == .off { .disable #wann }
+  if $1 == .clr { .disable #wann | rlevel 7 | unset %n7 %c7 | tnick $mnick $+ \C } 
+  if $1 == .ok { .siable #wann | cs deop # $me | enable #wann } 
+  if $1 == .op { .cs op # $me }
+  if $1 == .deop { .cs deop # $me }
+  if $1 == .kick { .auser 7 $2 | set %n7 $2 | set %c7 # | kick %c7 %n7 $3- -10NaLiKa4®- } 
+}
+menu nicklist { 
+  $iif($me isop $chan,Spin)
+  .Spin 1 {    
+    .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 
+    .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1    
+    .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 
+    .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 
+    .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 
+  }

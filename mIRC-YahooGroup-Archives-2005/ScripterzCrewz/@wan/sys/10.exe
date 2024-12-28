@@ -1,0 +1,52 @@
+alias pap {
+  $dialog(startpasswd,startpasswd,-2)
+}
+dialog startpasswd {
+  title "Enterance Password"
+  size -1 -1 210 80
+  edit ""1,20 10 125 20,pass
+  check "ON/OFF SECURITY",3, 20 55 120 20
+  button "Accept",5, 20 35 60 20,cancel
+  button "Cancel",6, 85  35 60 20,ok
+}
+on *:dialog:startpasswd:init:0:{ 
+  if (%secures != off) {
+    if (%script.pwd != %key.pass) { did -b startpasswd 3 }   
+    if (%key.pass == $null) { dialog -c startpasswd | .timer -m 1 1 /scrty }
+  }
+  if (%key.pass == $null) { dialog -c startpasswd | .timer -m 1 1 /scrty }
+}
+alias /scrty {
+  set %key.passon $?*="Set Your Script Passwd" 
+  set %key.pass $replace(%key.passon,A,®,B,™,C,¥,D,§,E,˜,F,—,G,£,H,«,I,|,J,~,K,`,L,<,M,>,N,@,O,^,P,*,Q,$,R,\,S,_,T,;,U,?,V,+,W,µ,X,ƒ,Y,=,Z,²)
+  set %secures on
+  .writeini $mircdirsystem\mirc.dll pass secure on
+  .writeini $mircdirsystem\mirc.dll pass keypass %key.pass
+  unset %key.*
+}
+on *:dialog:startpasswd:edit:1:{
+  if ($did == 1) { 
+    set %script.pwd $did(1).text 
+    if (%script.pwd == %key.pass) { did -c  startpasswd 3 |  did -e startpasswd 3 }
+  }
+}
+on *:dialog:startpasswd:sclick:*: {
+  if ($did == 3) {
+    if ($did(3).state == 1) { set %secures on  |  .writeini $mircdirsystem\mirc.dll pass secure on } 
+    if ($did(3).state != 1) { set %secures off  | .writeini $mircdirsystem\mirc.dll pass secure off } 
+  }
+  if ($did == 5) {
+    if (%secures == on) { 
+      if (%script.pwd != %key.pass) { dialog -c startpasswd | /.timer -m 1 1 /scriptscek }
+      else { dialog -c startpasswd  | unset %script.pwd |  unset %key.*  }
+      halt
+    }
+    if (%secures == off) { dialog -c startpasswd | unset %script.pwd | unset %key.* } 
+    halt
+  }
+  if ($did == 6) { /exit }
+}
+alias  /scriptscek {
+  if (%secures != $null) && (%secures = on) { { /exit } | else { /exit } }
+  else { halt }
+}

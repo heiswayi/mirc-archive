@@ -1,0 +1,791 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                                   Cyborg Full-Script Edition of the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                          E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+alias chanprotset { if ($dialog(chanprot) == $null) dialog -m chanprot chanprot | chanprotopen }
+alias chanprotclose {
+  :reduce
+  if (%cdsp <= 10) { dialog -c chanprot | halt }
+  dec %cdsp 3 | dialog -s chanprot -1 -1 596 %cdsp | goto reduce
+}
+alias chanprotopen {
+  :increase
+  if (%cdsp >= 406) { dialog -s chanprot -1 -1 596 406  | halt }
+  inc %cdsp 3 | dialog -s chanprot -1 -1 596 %cdsp | goto increase
+}
+alias chanprotup { set %cdsp 406 | dialog -s chanprot -1 -1 596 406 | .timerchanprotclose 1 0 chanprotclose }
+dialog chanprot {
+  title "Channel Protection Settings"
+  size -1 -1 298 203
+  icon Miscellaneous\prot.ico
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 89 1 110 7, Center Disable
+  link "www.Brain-Crash.com" 3, 118 9 110 15,
+  button "Done" 4, 112 185 35 12, Ok  
+  button "Cancel" 5, 151 185 35 12, Cancel  
+  tab "status" 6, 4 19 290 164
+  combo 7, 7 46 74 100, Edit tab 6
+  button "Add" 8, 13 154 30 12, tab 6
+  button "Delete" 9, 43 154 30 12, tab 6
+  button "Reset" 10, 28 167 30 12, tab 6
+  check "auto join on connect" 11, 12 143 65 9, tab 6
+  text "Add channel to protect" 12, 10 37 65 7, Center tab 6
+  box "" 13, 85 33 205 146, tab 6
+  list 14, 90 50 50 125, Disable tab 6
+  list 15, 139 50 64 125, Disable tab 6
+  list 16, 201 50 50 125, Disable tab 6
+  list 17, 250 50 35 125, Disable tab 6
+  text "protection" 18, 95 41 40 7, Center Disable tab 6
+  text "triggers" 19, 147 41 40 7, Center Disable tab 6
+  text "penalties" 20, 203 41 40 7, Center Disable tab 6
+  text "status" 21, 250 41 35 7, Center Disable tab 6
+  tab "settings" 22,
+  check "repeat flood" 23, 15 60 50 10, tab 22
+  check "text flood" 24, 15 70 50 10, tab 22
+  check "line flood" 25, 15 80 50 10, tab 22
+  check "nick flood" 26, 15 90 50 10, tab 22
+  check "quit flood" 27, 15 100 50 10, tab 22
+  check "clones" 28, 15 110 50 10, tab 22
+  check "excess codes" 29, 15 120 50 10, tab 22
+  check "capslock" 30, 15 130 50 10, tab 22
+  check "revolving door" 31, 15 140 50 10, tab 22
+  check "bad word" 32, 180 60 50 10, tab 22
+  check "swear word" 33, 180 70 50 10, tab 22
+  check "invite" 34, 180 80 50 10, tab 22
+  check "advertise" 35, 180 90 50 10, tab 22
+  check "offensive nick" 36, 180 100 50 10, tab 22
+  check "offensive ident" 37, 180 110 50 10, tab 22
+  check "guest nick" 38, 180 120 50 10, tab 22
+  check "bad channels" 39, 180 130 50 10, tab 22
+  check "proxy/wingates" 40, 180 140 50 10, tab 22
+  edit "" 41, 65 60 20 10, tab 22
+  edit "" 42, 65 70 20 10, tab 22
+  edit "" 43, 65 80 20 10, tab 22
+  edit "" 44, 65 90 20 10, tab 22
+  edit "" 45, 65 100 20 10, tab 22
+  edit "" 46, 65 110 20 10, tab 22
+  edit "" 47, 65 120 20 10, tab 22
+  edit "<n/a>" 48, 65 130 20 10, Disable tab 22
+  edit "<n/a>" 49, 65 140 20 10, Disable tab 22
+  edit "" 50, 105 60 25 10, tab 22
+  edit "" 51, 105 70 25 10, tab 22
+  edit "" 52, 105 80 25 10, tab 22
+  edit "" 53, 105 90 25 10, tab 22
+  edit "" 54, 105 100 25 10, tab 22
+  edit "" 55, 105 110 25 10, tab 22
+  edit "" 56, 105 120 25 10, tab 22
+  edit "" 57, 105 130 25 10, tab 22
+  edit "" 58, 105 140 25 10, tab 22
+  edit "" 59, 230 70 25 10, tab 22
+  edit "" 60, 230 80 25 10, tab 22
+  edit "" 61, 230 90 25 10, tab 22
+  edit "" 62, 230 100 25 10, tab 22
+  edit "" 63, 230 110 25 10, tab 22
+  edit "" 64, 230 120 25 10, tab 22
+  edit "" 65, 230 130 25 10, tab 22
+  edit "" 66, 230 140 25 10, tab 22
+  text "protection" 67, 15 50 50 10, Center Disable tab 22
+  text "trigger" 68, 65 50 35 10, Center Disable tab 22
+  text "ban in" 69, 105 50 40 10, Center Disable tab 22
+  text "times" 70, 86 61 15 10, tab 22
+  text "lines" 71, 86 71 15 10, tab 22
+  text "letters" 72, 86 81 15 10, tab 22
+  text "nicks" 73, 86 91 15 10, tab 22
+  text "quits" 74, 86 101 15 10, tab 22
+  text "clones" 75, 86 111 17 10, tab 22
+  text "codes" 76, 86 121 17 10, tab 22
+  text "percent" 77, 86 131 18 10, tab 22
+  text "secs" 78, 131 61 15 10, tab 22
+  text "secs" 79, 131 71 15 10, tab 22
+  text "secs" 80, 131 81 15 10, tab 22
+  text "secs" 81, 131 91 15 10, tab 22
+  text "secs" 82, 131 101 15 10, tab 22
+  text "secs" 83, 131 111 15 10, tab 22
+  text "secs" 84, 131 121 15 10, tab 22
+  text "secs" 85, 131 131 15 10, tab 22
+  text "secs" 86, 131 141 15 10, tab 22
+  box "" 87, 8 39 145 117, tab 22
+  box "" 88, 160 39 127 117, tab 22
+  edit "" 89, 230 60 25 10, tab 22
+  text "secs" 90, 256 61 15 10, tab 22
+  text "secs" 91, 256 71 15 10, tab 22
+  text "secs" 92, 256 81 15 10, tab 22
+  text "secs" 93, 256 91 15 10, tab 22
+  text "secs" 94, 256 101 15 10, tab 22
+  text "secs" 95, 256 111 15 10, tab 22
+  text "secs" 96, 256 121 15 10, tab 22
+  text "secs" 97, 256 131 15 10, tab 22
+  text "secs" 98, 256 141 15 10, tab 22
+  text "protection" 99, 180 50 50 10, Center Disable tab 22
+  text "ban in" 100, 230 50 40 10, Center Disable tab 22
+  tab "options" 101,
+  box "kick messages editor" 102, 11 38 177 140, tab 101
+  button "repeat flood" 103, 20 50 50 10, tab 101
+  button "text flood" 104, 20 60 50 10, tab 101
+  button "line flood" 105, 20 70 50 10, tab 101
+  button "nick flood" 106, 20 80 50 10, tab 101
+  button "revolving door" 107, 20 90 50 10, tab 101
+  button "quit flood" 108, 20 100 50 10, tab 101
+  button "bad word" 109, 20 110 50 10, tab 101
+  button "bad channels" 110, 20 120 50 10, tab 101
+  button "swear word" 111, 20 130 50 10, tab 101
+  button "invite" 112, 20 140 50 10, tab 101
+  button "advertise" 113, 20 150 50 10, tab 101
+  button "offensive nick" 114, 20 160 50 10, tab 101
+  button "offensive ident" 115, 75 50 50 10, tab 101
+  button "guest nick" 116, 75 60 50 10, tab 101
+  button "proxy/wingate" 117, 75 70 50 10, tab 101
+  button "clones" 118, 75 80 50 10, tab 101
+  button "excess codes" 119, 75 90 50 10, tab 101
+  button "excess caps" 120, 75 100 50 10, tab 101
+  button "kick list" 121, 75 110 50 10, tab 101
+  button "join/part flood" 122, 75 120 50 10, tab 101
+  button "relay inviter" 123, 75 130 50 10, tab 101
+  button "slap kick" 124, 75 140 50 10, tab 101
+  button "mass kick" 125, 75 150 50 10, tab 101
+  button "mass ban" 126, 75 160 50 10, tab 101
+  button "mass deop" 127, 130 50 50 10, tab 101
+  button "mass ctcp" 128, 130 60 50 10, tab 101
+  button "kick protection" 129, 130 70 50 10, tab 101
+  button "ban protection" 130, 130 80 50 10, tab 101
+  button "deop protection" 131, 130 90 50 10, tab 101
+  button "channel notice" 132, 130 100 50 10, tab 101
+  button "impersonator" 133, 130 110 50 10, tab 101
+  button "encypted word" 134, 130 120 50 10, tab 101
+  button "channel idle" 135, 130 130 50 10, tab 101
+  button "random kick" 136, 130 160 50 10, tab 101
+  button "ctcp flood" 137, 130 140 50 10, tab 101
+  button "dcc send" 138, 130 150 50 10, tab 101
+  check "exempt ops" 139, 210 50 50 10, tab 101
+  check "exempt voices" 140, 210 60 50 10, tab 101
+  check "channel notice kick" 141, 210 70 65 10, tab 101
+  check "services impersonator" 142, 210 80 65 10, tab 101
+  check "encrypted word" 143, 210 90 50 10, tab 101
+  check "slap kick" 144, 210 100 50 10, tab 101
+  check "alt+F4 & /con /con" 145, 210 110 65 10, tab 101
+  button "edit script triggers" 146, 214 161 50 15, tab 101
+  icon 147, 230 135 34 31, Miscellaneous\prot.ico, tab 101
+  button "Done" 148, 112 185 35 12,Ok,hide  
+}
+on *:DIALOG:chanprot:*:*:{
+  if ($devent == init) {
+    update.prvtchan
+    set %cdsp 1 
+    if (%prvtchan.connect == $null) { set %prvtchan.connect off }
+    if (%prvtchan.connect == on) { did -c chanprot 11 }
+    did -a chanprot 14 repeat flood
+    did -a chanprot 14 text flood
+    did -a chanprot 14 line flood
+    did -a chanprot 14 nick flood
+    did -a chanprot 14 revolving door
+    did -a chanprot 14 quit flood
+    did -a chanprot 14 bad word
+    did -a chanprot 14 bad channels
+    did -a chanprot 14 swear word
+    did -a chanprot 14 invite
+    did -a chanprot 14 advertise
+    did -a chanprot 14 offensive nick
+    did -a chanprot 14 offensive ident
+    did -a chanprot 14 guest
+    did -a chanprot 14 proxy/wingate
+    did -a chanprot 14 clones
+    did -a chanprot 14 excess codes
+    did -a chanprot 14 excess caps
+    update.chanprot
+    if (%repeatkick == $null) { set %repeatkick disable }
+    if (%repeatkick == enable) { did -c chanprot 23 }
+    if (%floodkick == $null) { set %floodkick disable }
+    if (%floodkick == enable) { did -c chanprot 24 }
+    if (%longtextkick == $null) { set %longtextkick disable }
+    if (%longtextkick == enable) { did -c chanprot 25 }
+    if (%nickfloodkick == $null) { set %nickfloodkick disable }
+    if (%nickfloodkick == enable) { did -c chanprot 26 }
+    if (%setquit == $null) { set %setquit disable }
+    if (%setquit == enable) { did -c chanprot 27 }
+    if (%clonekick == $null) { set %clonekick disable }
+    if (%clonekick == enable) { did -c chanprot 28 }
+    if (%controlcodekick == $null) { set %controlcodekick disable }
+    if (%controlcodekick == enable) { did -c chanprot 29 }
+    if (%capslockkick == $null) { set %capslockkick disable }
+    if (%capslockkick == enable) { did -c chanprot 30 }
+    if (%revolvingdoorkick == $null) { set %revolvingdoorkick disable }
+    if (%revolvingdoorkick == enable) { did -c chanprot 31 }
+    if (%badswear == $null) { set %badswear disable }
+    if (%badswear == enable) { did -c chanprot 32 }
+    if (%genswear == $null) { set %genswear disable }
+    if (%genswear == enable) { did -c chanprot 33 }
+    if (%channeladskick == $null) { set %channeladskick disable }
+    if (%channeladskick == enable) { did -c chanprot 34 }
+    if (%webpageadskick == $null) { set %webpageadskick disable }
+    if (%webpageadskick == enable) { did -c chanprot 35 }
+    if (%badnickkick == $null) { set %badnickkick disable }
+    if (%badnickkick == enable) { did -c chanprot 36 }
+    if (%badidentkick == $null) { set %badidentkick disable }
+    if (%badidentkick == enable) { did -c chanprot 37 }
+    if (%guestnickkick == $null) { set %guestnickkick disable }
+    if (%guestnickkick == enable) { did -c chanprot 38 }
+    if (%badchannelkick == $null) { set %badchannelkick disable }
+    if (%badchannelkick == enable) { did -c chanprot 39 }
+    if (%proxywingate == $null) { set %proxywingate disable }
+    if (%proxywingate == enable) { did -c chanprot 40 }
+    if (%opsexempt == $null) { set %opsexempt off }
+    if (%opsexempt == on) { did -c chanprot 139 }
+    if (%voiceexempt == $null) { set %voiceexempt off }
+    if (%voiceexempt == on) { did -c chanprot 140 }
+    if (%channelnoticekick == $null) { set %channelnoticekick off }
+    if (%channelnoticekick == on) { did -c chanprot 141 }
+    if (%impersonatorkick == $null) { set %impersonatorkick off }
+    if (%impersonatorkick == on) { did -c chanprot 142 }
+    if (%encryptedkick == $null) { set %encryptedkick off }
+    if (%encryptedkick == on) { did -c chanprot 143 }
+    if (%slapkick == $null) { set %slapkick off }
+    if (%slapkick == on) { did -c chanprot 144 }
+    if (%altf4 == $null) { set %altf4 off }
+    if (%altf4 == on) { did -c chanprot 145 }
+    if (%txtrep != $null) { did -a chanprot 41 %txtrep }
+    if (%fldline != $null) { did -a chanprot 42 %fldline }
+    if (%longtxt != $null) { did -a chanprot 43 %longtxt }
+    if (%nickflood != $null) { did -a chanprot 44 %nickflood }
+    if (%quitfloodcount != $null) { did -a chanprot 45 %quitfloodcount }
+    if (%clcount != $null) { did -a chanprot 46 %clcount }
+    if (%colorcodes != $null) { did -a chanprot 47 %colorcodes }
+    if (%chanrep != $null) { did -a chanprot 50 %chanrep }
+    if (%chanfld != $null) { did -a chanprot 51 %chanfld }
+    if (%chanlong != $null) { did -a chanprot 52 %chanlong }
+    if (%nickfloodtime != $null) { did -a chanprot 53 %nickfloodtime }
+    if (%quitfloodbantime != $null) { did -a chanprot 54 %quitfloodbantime }
+    if (%Clonetime != $null) { did -a chanprot 55 %Clonetime }
+    if (%chancodes != $null) { did -a chanprot 56 %chancodes }
+    if (%chancaps != $null) { did -a chanprot 57 %chancaps }
+    if (%doortime != $null) { did -a chanprot 58 %doortime }
+    if (%chantswer != $null) { did -a chanprot 89 %chantswer }
+    if (%chanswer != $null) { did -a chanprot 59 %chanswer }
+    if (%channeladstime != $null) { did -a chanprot 60 %channeladstime }
+    if (%chanads != $null) { did -a chanprot 61 %chanads }
+    if (%tbadnijoin != $null) { did -a chanprot 62 %tbadnijoin }
+    if (%tbadidjoin != $null) { did -a chanprot 63 %tbadidjoin }
+    if (%guejoin != $null) { did -a chanprot 64 %guejoin }
+    if (%badchanneltime != $null) { did -a chanprot 65 %badchanneltime }
+    if (%proxywingatetime != $null) { did -a chanprot 66 %proxywingatetime }
+  }
+  if ($devent == sclick) {
+    if ($did == 3) { _webteam }
+    if ($did == 6) { update.chanprot }
+    if ($did == 4) { chanprotup }
+    if ($did == 7) { set %setup.prvtchan.selected $did($dname,7,$did(7).sel) }
+    if ($did == 8) {
+      set %prvtchan %prvtchan $+ %prvttempchan $+ ,
+      update.prvtchan
+    }
+    if ($did == 9) {
+      set -u1 %setup.rc %setup.prvtchan.selected $+ ,
+      set %prvtchan $remove(%prvtchan,%setup.rc)
+      update.prvtchan
+    }
+    if ($did == 10) { unset %prvtchan | update.prvtchan }
+    if ($did == 11) {
+      if (%prvtchan.connect == on) { set %prvtchan.connect off | halt }
+      if (%prvtchan.connect == off) { set %prvtchan.connect on | halt }
+    }
+    if ($did == 23) {
+      if (%repeatkick == enable) { set %repeatkick disable | halt }
+      if (%repeatkick == disable) { set %repeatkick enable | halt }
+    }
+    if ($did == 24) {
+      if (%floodkick == enable) { set %floodkick disable | halt }
+      if (%floodkick == disable) { set %floodkick enable | halt }
+    }
+    if ($did == 25) {
+      if (%longtextkick == enable) { set %longtextkick disable | halt }
+      if (%longtextkick == disable) { set %longtextkick enable | halt }
+    }
+    if ($did == 26) {
+      if (%nickfloodkick == enable) { set %nickfloodkick disable | halt }
+      if (%nickfloodkick == disable) { set %nickfloodkick enable | halt }
+    }
+    if ($did == 27) {
+      if (%quitflooding == on) { set %quitflooding off | set %setquit disable | halt }
+      if (%quitflooding == off) { set %quitflooding on | set %setquit enable | halt }
+    }
+    if ($did == 28) {
+      if (%clonekick == enable) { set %clonekick disable | halt }
+      if (%clonekick == disable) { set %clonekick enable | halt }
+    }
+    if ($did == 29) {
+      if (%controlcodekick == enable) { set %controlcodekick disable | halt }
+      if (%controlcodekick == disable) { set %controlcodekick enable | halt }
+    }
+    if ($did == 30) {
+      if (%capslockkick == enable) { set %capslockkick disable | halt }
+      if (%capslockkick == disable) { set %capslockkick enable | halt }
+    }
+    if ($did == 31) {
+      if (%revolvingdoorkick == enable) { set %revolvingdoorkick disable | halt }
+      if (%revolvingdoorkick == disable) { set %revolvingdoorkick enable | halt }
+    }
+    if ($did == 32) {
+      if (%badswear == enable) { set %badswear disable | halt }
+      if (%badswear == disable) { set %badswear enable | halt }
+    }
+    if ($did == 33) {
+      if (%genswear == enable) { set %genswear disable | halt }
+      if (%genswear == disable) { set %genswear enable | halt }
+    }
+    if ($did == 34) {
+      if (%Channeladskick == enable) { set %Channeladskick disable | halt }
+      if (%Channeladskick == disable) { set %Channeladskick enable | halt }
+    }
+    if ($did == 35) {
+      if (%webpageadskick == enable) { set %webpageadskick disable | halt }
+      if (%webpageadskick == disable) { set %webpageadskick enable | halt }
+    }
+    if ($did == 36) {
+      if (%badnickkick == enable) { set %badnickkick disable | halt }
+      if (%badnickkick == disable) { set %badnickkick enable | halt }
+    }
+    if ($did == 37) {
+      if (%badidentkick == enable) { set %badidentkick disable | halt }
+      if (%badidentkick == disable) { set %badidentkick enable | halt }
+    }
+    if ($did == 38) {
+      if (%Guestnickkick == enable) { set %Guestnickkick disable | halt }
+      if (%Guestnickkick == disable) { set %Guestnickkick enable | halt }
+    }
+    if ($did == 39) {
+      if (%badchannelkick == enable) { set %badchannelkick disable | halt }
+      if (%badchannelkick == disable) { set %badchannelkick enable | halt }
+    }
+    if ($did == 40) {
+      if (%proxywingate == enable) { set %proxywingate disable | halt }
+      if (%proxywingate == disable) { set %proxywingate enable | halt }
+    }
+    if ($did == 139) {
+      if (%opsexempt == on) { set %opsexempt off | halt }
+      if (%opsexempt == off) { set %opsexempt on | halt }
+    }
+    if ($did == 140) {
+      if (%voiceexempt == on) { set %voiceexempt off | halt }
+      if (%voiceexempt == off) { set %voiceexempt on | halt }
+    }
+    if ($did == 141) {
+      if (%channelnoticekick == on) { set %channelnoticekick off | halt }
+      if (%channelnoticekick == off) { set %channelnoticekick on | halt }
+    }
+    if ($did == 142) {
+      if (%impersonatorkick == on) { set %impersonatorkick off | halt }
+      if (%impersonatorkick == off) { set %impersonatorkick on | halt }
+    }
+    if ($did == 143) {
+      if (%encryptedkick == on) { set %encryptedkick off | halt }
+      if (%encryptedkick == off) { set %encryptedkick on | halt }
+    }
+    if ($did == 144) {
+      if (%slapkick == on) { set %slapkick off | halt }
+      if (%slapkick == off) { set %slapkick on | halt }
+    }
+    if ($did == 145) {
+      if (%altf4 == on) { set %altf4 off | halt }
+      if (%altf4 == off) { set %altf4 on | halt }
+    }
+    if ($did == 103) { run crack\repeat.txt }
+    if ($did == 104) { run crack\floods.txt }
+    if ($did == 105) { run crack\long.txt }
+    if ($did == 106) { run crack\nickflood.txt }
+    if ($did == 107) { run crack\doork.txt }
+    if ($did == 108) { run crack\flooders.txt }
+    if ($did == 109) { run crack\badword.txt }
+    if ($did == 110) { run crack\badchan.txt }
+    if ($did == 111) { run crack\swear.txt }
+    if ($did == 112) { run crack\Invite.txt }
+    if ($did == 113) { run crack\ads.txt }
+    if ($did == 114) { run crack\badni.txt }
+    if ($did == 115) { run crack\badid.txt }
+    if ($did == 116) { run crack\Guestkick.txt }
+    if ($did == 117) { run crack\proxywingate.txt }
+    if ($did == 118) { run crack\clonemsg.txt }
+    if ($did == 119) { run crack\ccodest.txt }
+    if ($did == 120) { run crack\caps.txt }
+    if ($did == 121) { run crack\kicklisted.txt }
+    if ($did == 122) { run crack\flooders.txt }
+    if ($did == 123) { run crack\relay.txt }
+    if ($did == 124) { run crack\slap.txt }
+    if ($did == 125) { run crack\masskick.txt }
+    if ($did == 126) { run crack\massban.txt }
+    if ($did == 127) { run crack\massdeop.txt }
+    if ($did == 128) { run crack\massctcp.txt }
+    if ($did == 129) { run crack\kickprot.txt }
+    if ($did == 130) { run crack\banprot.txt }
+    if ($did == 131) { run crack\deopprot.txt }
+    if ($did == 132) { run crack\channotice.txt }
+    if ($did == 133) { run crack\impersonator.txt }
+    if ($did == 134) { run crack\encypt.txt }
+    if ($did == 135) { run crack\idle.txt }
+    if ($did == 137) { run crack\ctcpflood.txt }
+    if ($did == 138) { run crack\dccsend.txt }
+    if ($did == 136) { run Text\kick.txt }
+    if ($did == 146) { dialog -m editor editor }
+  }
+  if ($devent == edit) {
+    if ($did == 7) { set %prvttempchan $did(7).text }
+    if ($did == 41) { set %txtrep $did(41).text }
+    if ($did == 42) { set %fldline $did(42).text }
+    if ($did == 43) { set %longtxt $did(43).text }
+    if ($did == 44) { set %nicklood $did(44).text }
+    if ($did == 45) { set %quitfloodcount $did(45).text }
+    if ($did == 46) { set %clcount $did(46).text }
+    if ($did == 47) { set %colorcodes $did(47).text }
+    if ($did == 50) { set %chanrep $did(50).text }
+    if ($did == 51) { set %chanfld $did(51).text }
+    if ($did == 52) { set %chanlong $did(52).text }
+    if ($did == 53) { set %nickfloodtime $did(53).text }
+    if ($did == 54) { set %quitfloodbantime $did(54).text }
+    if ($did == 55) { set %clonetime $did(55).text }
+    if ($did == 56) { set %chancodes $did(56).text }
+    if ($did == 57) { set %chancaps $did(57).text }
+    if ($did == 58) { set %doortime $did(58).text }
+    if ($did == 89) { set %chantswer $did(89).text }
+    if ($did == 59) { set %chanswer $did(56).text }
+    if ($did == 60) { set %channeladstime $did(60).text }
+    if ($did == 61) { set %chanads $did(61).text }
+    if ($did == 62) { set %tbadnijoin $did(62).text }
+    if ($did == 63) { set %tbadidjoin $did(63).text }
+    if ($did == 64) { set %guejoin $did(64).text }
+    if ($did == 65) { set %badchanneltime $did(65).text }
+    if ($did == 66) { set %proxywingatetime $did(66).text }
+  }
+}
+alias -l update.prvtchan {
+  did -r chanprot 7
+  set %temp.total $count(%prvtchan,$chr(44))
+  set %temp.count 0
+  :start
+  inc %temp.count 1
+  did -a chanprot 7 $gettok(%prvtchan,%temp.count,44)
+  if (%temp.count < %temp.total) { goto start }
+}
+alias -l update.chanprot {
+  did -r chanprot 15
+  did -r chanprot 16
+  did -r chanprot 17
+  if (%txtrep == $null) { did -a chanprot 15 <n/a> }
+  if (%txtrep != $null) { did -a chanprot 15 %txtrep times in 20 secs }
+  if (%fldline == $null) { did -a chanprot 15 <n/a> }
+  if (%fldline != $null) { did -a chanprot 15 %fldline lines in 3 secs }
+  if (%longtxt == $null) { did -a chanprot 15 <n/a> }
+  if (%longtxt != $null) { did -a chanprot 15 %longtxt letters }
+  if (%nickflood == $null) { did -a chanprot 15 <n/a> }
+  if (%nickflood != $null) { did -a chanprot 15 %nickflood nicks in 3 secs }
+  did -a chanprot 15 2 joins/1 part in 20 secs
+  did -a chanprot 15 %quitfloodcount quits in 3 secs
+  did -a chanprot 15 <n/a>
+  did -a chanprot 15 <n/a>
+  did -a chanprot 15 <n/a>
+  did -a chanprot 15 <n/a>
+  did -a chanprot 15 <n/a>
+  did -a chanprot 15 <n/a>
+  did -a chanprot 15 <n/a>
+  did -a chanprot 15 <n/a>
+  did -a chanprot 15 <n/a>
+  if (%clcount == $null) { did -a chanprot 15 <n/a> }
+  if (%clcount != $null) { did -a chanprot 15 %clcount clones }
+  if (%colorcodes == $null) { did -a chanprot 15 <n/a> }
+  if (%colorcodes != $null) { did -a chanprot 15 %colorcodes control codes }
+  did -a chanprot 15 80% of caps letter
+  if (%chanrep == $null) { did -a chanprot 16 <n/a> }
+  if (%chanrep != $null) { did -a chanprot 16 %chanrep secs ban }
+  if (%chanfld == $null) { did -a chanprot 16 <n/a> }
+  if (%chanfld != $null) { did -a chanprot 16 %chanfld secs ban }
+  if (%chanlong == $null) { did -a chanprot 16 <n/a> }
+  if (%chanlong != $null) { did -a chanprot 16 %chanlong secs ban }
+  if (%nickfloodtime == $null) { did -a chanprot 16 <n/a> }
+  if (%nickfloodtime != $null) { did -a chanprot 16 %nickfloodtime secs ban }
+  if (%doortime == $null) { did -a chanprot 16 <n/a> }
+  if (%doortime != $null) { did -a chanprot 16 %doortime secs ban }
+  did -a chanprot 16 %quitfloodbantime secs ban
+  if (%chantswer == $null) { did -a chanprot 16 <n/a> }
+  if (%chantswer != $null) { did -a chanprot 16 %chantswer secs ban }
+  if (%badchanneltime == $null) { did -a chanprot 16 <n/a> }
+  if (%badchanneltime != $null) { did -a chanprot 16 %badchanneltime secs ban }
+  if (%chanswer == $null) { did -a chanprot 16 <n/a> }
+  if (%chanswer != $null) { did -a chanprot 16 %chanswer secs ban }
+  if (%channeladstime == $null) { did -a chanprot 16 <n/a> }
+  if (%channeladstime != $null) { did -a chanprot 16 %channeladstime secs ban }
+  if (%chanads == $null) { did -a chanprot 16 <n/a> }
+  if (%chanads != $null) { did -a chanprot 16 %chanads secs ban }
+  if (%tbadnijoin == $null) { did -a chanprot 16 <n/a> }
+  if (%tbadnijoin != $null) { did -a chanprot 16 %tbadnijoin secs ban }
+  if (%tbadidjoin == $null) { did -a chanprot 16 <n/a> }
+  if (%tbadidjoin != $null) { did -a chanprot 16 %tbadidjoin secs ban }
+  if (%guejoin == $null) { did -a chanprot 16 <n/a> }
+  if (%guejoin != $null) { did -a chanprot 16 %guejoin secs ban }
+  did -a chanprot 16 3600 secs ban
+  if (%Clonetime == $null) { did -a chanprot 16 <n/a> }
+  if (%Clonetime != $null) { did -a chanprot 16 %Clonetime secs ban }
+  if (%chancodes != $null) { did -a chanprot 16 %chancodes secs ban }
+  if (%chancodes == $null) { did -a chanprot 16 <n/a> }
+  if (%chancaps != $null) { did -a chanprot 16 %chancaps secs ban }
+  did -a chanprot 17 %repeatkick
+  did -a chanprot 17 %floodkick
+  did -a chanprot 17 %longtextkick
+  did -a chanprot 17 %nickfloodkick
+  did -a chanprot 17 %revolvingdoorkick
+  did -a chanprot 17 %setquit
+  did -a chanprot 17 %badswear
+  did -a chanprot 17 %badchannelkick
+  did -a chanprot 17 %genswear
+  did -a chanprot 17 %Channeladskick
+  did -a chanprot 17 %webpageadskick
+  did -a chanprot 17 %badnickkick
+  did -a chanprot 17 %badidentkick
+  did -a chanprot 17 %Guestnickkick
+  did -a chanprot 17 %proxywingate
+  did -a chanprot 17 %clonekick
+  did -a chanprot 17 %controlcodekick
+  did -a chanprot 17 %capslockkick
+}
+on *:CONNECT: {
+  unset %joined*
+  unset %recordrelaynick*
+  unset %recordspamnick*
+  notcsnsmsts
+  .timercheckver 99999999999999999 1 /^`|
+  if (%prvtchan.connect == on) {
+    set %temp.total $count(%prvtchan,$chr(44))
+    set %temp.count 0
+    :start
+    inc %temp.count 1
+    .timer 1 5 join $gettok(%prvtchan,%temp.count,44)
+    if (%temp.count < %temp.total) { goto start }
+  }
+  if (%autoaway == on) { 
+    aaway.check
+  }
+  if (%lRegistermod == 1) { 
+    mode $me +R
+  }
+  if (%setspyconnect == on ) {
+    if ($sock(bestwar) == $null) { .timersockopen1 1 7 .sockopen bestwar $server $port | .load -rs settings | goto end }
+  }
+  if ($dialog(connect) != $null) { did -o Connect 13 1 Connected to: %DALnetserver $port | .timer 1 5 connectup }
+  titleinfo | set %idle | .timerchanmsg 1 6 set %chanservmsg on | .timerPING 1 5 .ctcp chanserv@services.dal.net PING | .timerbotlag 0 3 Botlag | set %clag
+  set %friend1 $master
+  .guser spy $me 2
+  ;.timernj 1 5 _nickjoin
+  :end
+}
+on * :DISCONNECT: { .timertitleoff 1 2 titleinfo | set %chanserv off | set %chanservmsg off | halt }
+on @*:text:*:%prvtchan: {
+  if ($nick == %friend1) || ($nick == $master) || ($nick == %friend2) || ($nick == %friend3) || ($nick == %friend4) || ($nick == %friend5) || ($nick == %friend6) || ($nick == %friend7) || ($nick == %friend30) || ($nick == %friend8) || ($nick == %friend9) || ($nick == %friend10) || ($nick == %friend11) || ($nick == %friend12) || ($nick == %friend13) || ($nick == %friend14) || ($nick == %friend15) || ($nick == %friend16) || ($nick == %friend17) || ($nick == %friend18) || ($nick == %friend19) || ($nick == %friend20) || ($nick == %friend21) || ($nick == %friend22) || ($nick == %friend23) || ($nick == %friend24) || ($nick == %friend25) || ($nick == %friend26) || ($nick == %friend27) || ($nick == %friend28) || ($nick == %friend29) { goto end }
+  if ($level($address($nick,5)) == friend) { goto end }
+  if ($me !isop $chan) { goto end }
+  if (%voiceexempt == on) && ($nick isvo $chan) { goto end }
+  if (%opsexempt == on) && ($nick isop $chan) { goto end }
+  if (%controlcodekick == Enable) {
+    var %count = $count($1-,$chr(3))
+    inc %count $count($1-,$chr(2)) 
+    inc %count $count($1-,$chr(22)) 
+    inc %count $count($1-,$chr(31)) 
+    inc %count $count($1-,$chr(15))
+    if (%count >= %colorcodes) && (!%_countkick) {
+      set -u2 %_countkick ! | set %ccount %count 
+      ccol | tcol | red:xkb # $nick | goto end
+    }
+  }
+  if (%floodkick == Enable) { 
+    inc -u3 %fld. [ $+ [ $chan ] $+ . $+ [ $nick ] ] 
+    if (%fld. [ $+ [ $chan ] $+ . $+ [ $nick ] ] >= %fldline) && (!%_fldkick) {
+      set -u2 %_fldkick ! | cfld | tfld | red:xkb # $nick | goto end
+    }
+  }
+  if (%capslockkick == Enable) { 
+    var %text = $strip($remove($1-,$chr(32)))
+    var %non.caps = $len($removecs(%text,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z))
+    var %full.line = $len($strip($remove(%text,$chr(32))))
+    var %percent = $calc(1 - (%non.caps / %full.line))
+    if (%percent >= 0.8) {
+      set %capsmatch $calc(%percent * 100) $+ %
+      spac | goto end 
+    }
+  }
+  if (%repeatkick == Enable) { 
+    inc -u20 %repeats [ $+ [ $chan ] ] [ $+ [ $site ] ] [ $+ [ $replace($1-,$chr(32),1) ] ] 
+    if (%repeats [ $+ [ $chan ] ] [ $+ [ $site ] ] [ $+ [ $replace($1-,$chr(32),1) ] ] > %txtrep) { 
+      set %overrepeat %repeats [ $+ [ $chan ] ] [ $+ [ $site ] ] [ $+ [ $replace($1-,$chr(32),1) ] ]      
+      crep | trep | red:xkb # $nick | goto end 
+    }
+  }
+  if (%webpageadskick == Enable) { 
+    var %i = 0
+    var %i`txt = $strip($1-)
+    while (%i < $0) {
+      inc %i
+      var %word = $gettok(%i`txt,%i,32)
+      if ((%advsword1 iswm %word) || (%advsword2 iswm %word) || (%advsword3 iswm %word) || (%advsword4 iswm %word) || (%advsword5 iswm %word) || (%advsword6 iswm %word) || (%advsword7 iswm %word) || (%advsword8 iswm %word) || (%advsword9 iswm %word) || (%advsword10 iswm %word) || (%advsword11 iswm %word) || (%advsword12 iswm %word)) && (*dal.net* !iswm %word) {
+        set %adsmatch $ifmatch 
+        cads | tads | ban -u $+ %adv # $nick 11 | kick # $nick %reason | unset %reason %bantime | goto end
+      }
+    }
+  }
+  if (%longtextkick == Enable) { 
+    if ($len($strip($1-)) >= %longtxt) && (!%_txtkick) {
+    set -u2 %_txtkick ! | clong | tlong | red:xkb # $nick | goto end }
+  }
+  if (%longtextkick == Enable) {   
+    if ($len($strip($1)) >= 100) && (!%_txt:kick) {
+    set -u2 %_txt:kick ! | ctfld | tlong | _chn:m | prot.filter.kick # $wildsite | .auser flood $wildsite | goto end }
+  }
+  if (%genswear == Enable) {
+    var %i = 0
+    var %i`txt = $strip($1-)
+    while (%i < $0) {
+      inc %i
+      var %word = $gettok(%i`txt,%i,32)
+      if ((%genword1 isin %word) || (%genword2 isin %word) || (%genword3 isin %word) || (%genword4 isin %word) || (%genword5 isin %word) || (%genword6 isin %word) || (%genword7 isin %word) || (%genword8 isin %word) || (%genword9 isin %word) || (%genword10 isin %word) || (%genword11 isin %word) || (%genword12 isin %word) || (%genword13 isin %word) || (%genword14 isin %word) || (%badword15 isin %word) || (%genword16 isin %word) || (%genword17 isin %word) || (%genword18 isin %word) || (%genword19 isin %word) || (%genword20 isin %word)  || (%genword21 isin %word) || (%genword22 isin %word) || (%genword23 isin %word) || (%genword24 isin %word) || (%badword25 isin %word) || (%genword26 isin %word) || (%genword27 isin %word) || (%genword28 isin %word) || (%genword29 isin %word) || (%genword30 isin %word)) {
+        set %swearmatch $ifmatch 
+        tswe | cswe | red:xkb # $nick | goto end
+      }
+    }
+  }
+  if (%badswear == Enable) {
+    var %i = 0
+    var %i`txt = $strip($1-)
+    while (%i < $0) {
+      inc %i
+      var %word = $gettok(%i`txt,%i,32)
+      if ((%badword1 isin %word) || (%badword2 isin %word) || (%badword3 isin %word) || (%badword4 isin %word) || (%badword5 isin %word) || (%badword6 isin %word) || (%badword7 isin %word) || (%badword8 isin %word) || (%badword9 isin %word) || (%badword10 isin %word) || (%badword11 isin %word) || (%badword12 isin %word) || (%badword13 isin %word) || (%badword14 isin %word) || (%badword15 isin %word) || (%badword16 isin %word) || (%badword17 isin %word) || (%badword18 isin %word) || (%badword19 isin %word) || (%badword20 isin %word) || (%badword21 isin %word) || (%badword22 isin %word) || (%badword23 isin %word) || (%badword24 isin %word) || (%badword25 isin %word) || (%badword26 isin %word) || (%badword27 isin %word) || (%badword28 isin %word) || (%badword29 isin %word) || (%badword30 isin %word)) {
+        set %bswearmatch $ifmatch 
+        if (!%_badwkick) {
+          set -u2 %_badwkick ! 
+        ctswe | ttswe | red:xkb # $nick | goto end }
+      }
+    }
+  } 
+  if (%Channeladskick == Enable) {  
+    var %s = $strip($1-)
+    if ($chan isin %s) { goto end }
+    if ($chr(35) isin %s) && ((%inviteword1 isin %s) || (%inviteword2 isin %s) || (%inviteword3 isin %s) || (%inviteword4 isin %s) || (%inviteword5 isin %s) || (%inviteword6 isin %s) || (%inviteword7 isin %s) || (%inviteword8 isin %s) || (%inviteword9 isin %s) || (%inviteword10 isin %s) || (%inviteword11 isin %s) || (%inviteword12 isin %s) || (%inviteword13 isin %s) || (%inviteword14 isin %s) || (%inviteword15 isin %s)) && ($chan !isin %s) {
+    set  %bantime %channeladstime | cinv | ban -u $+ %inviters # $nick 11 | kick # $nick %reason  | unset %reason %bantime | goto end }  
+  }
+  if (%altf4 == on) {
+    if ((alt isin $1-) && (f4 isin $1-)) || (/con/con  isin $1-)  { kick # $nick $read $mircdircrack\altf4.txt | ban -u60 # $nick 11 }
+  }
+  if (%encryptedkick == on) {
+    if ((ÿ isin $strip($1-)) || (ý isin $strip($1-)) || (Û isin $strip($1-)) || (ü isin $strip($1-)) || (Ý isin $strip($1-)) || (û isin $strip($1-)) || (ú isin $strip($1-)) || (ù isin $strip($1-)) || (ñ isin $strip($1-)) || (ò isin $strip($1-)) || (ó isin $strip($1-)) || (ô isin $strip($1-)) || (õ isin $strip($1-)) || (ö isin $strip($1-)) || (Ú isin $strip($1-)) || (Û isin $strip($1-)) || (Ü isin $strip($1-)) || (Ý isin $strip($1-)) || (À isin $strip($1-)) || (Á isin $strip($1-)) || (Â isin $strip($1-)) || (æ isin $strip($1-))) { kick # $nick $read $mircdircrack\encypt.txt | goto end } 
+    if ((Ù isin $strip($1-)) || (Ã isin $strip($1-)) || (Ä isin $strip($1-)) || (Å isin $strip($1-)) || (Æ isin $strip($1-)) || (Ç isin $strip($1-)) || (È isin $strip($1-)) || (É isin $strip($1-)) || (Ê isin $strip($1-)) || (Ë isin $strip($1-)) || (Ì isin $strip($1-)) || (Í isin $strip($1-)) || (Î isin $strip($1-)) || (Ï isin $strip($1-)) || (Ð isin $strip($1-)) || (Ñ isin $strip($1-)) || (Ò isin $strip($1-)) || (Ó isin $strip($1-)) || (Ô isin $strip($1-)) || (Õ isin $strip($1-)) || (Ö isin $strip($1-)) || (ã isin $strip($1-))) { kick # $nick $read $mircdircrack\encypt.txt | goto end } 
+  }
+  if (%slapkick == on) {
+    if (slap isin $1-) && ($me isin $1-) { kick # $nick $read $mircdircrack\slapkick.txt | ban -u60 # $nick 11 }
+    if (slap isin $1-) && ($2 ison $chan) { kick # $nick $read $mircdircrack\slap.txt | ban -u60 # $nick 11 }
+  }
+  :end
+}
+alias spac {
+  set -u3600 %cl. [ $+ [ $address($nick,2) ] ] $calc(%cl. [ $+ [ $address($nick,2) ] ] + 1)
+  if (%cl. [ $+ [ $address($nick,2) ] ] == 1) .notice $nick $logo 14This is your first warning! Your text contains %capsmatch caps.
+  if (%cl. [ $+ [ $address($nick,2) ] ] >= 2) && (!%_capkick) { set -u2 %_capkick ! | ccap | tcap | red:xkb # $nick }
+}
+on @*:action:*:%prvtchan: {
+  if ($nick == %friend1) || ($nick == $master) || ($nick == %friend2) || ($nick == %friend3) || ($nick == %friend4) || ($nick == %friend5) || ($nick == %friend6) || ($nick == %friend7) || ($nick == %friend30) || ($nick == %friend8) || ($nick == %friend9) || ($nick == %friend10) || ($nick == %friend11) || ($nick == %friend12) || ($nick == %friend13) || ($nick == %friend14) || ($nick == %friend15) || ($nick == %friend16) || ($nick == %friend17) || ($nick == %friend18) || ($nick == %friend19) || ($nick == %friend20) || ($nick == %friend21) || ($nick == %friend22) || ($nick == %friend23) || ($nick == %friend24) || ($nick == %friend25) || ($nick == %friend26) || ($nick == %friend27) || ($nick == %friend28) || ($nick == %friend29) { goto end }  if ($level($address($nick,5)) isin friend) { goto end }
+  if (%voiceexempt == on) && ( $nick isvo $chan) { goto end }
+  if (%opsexempt == on) && ($nick isop $chan) { goto end }
+  if (%controlcodekick == Enable) {
+    var %count = $count($1-,$chr(3))
+    inc %count $count($1-,$chr(2)) 
+    inc %count $count($1-,$chr(22)) 
+    inc %count $count($1-,$chr(31)) 
+    inc %count $count($1-,$chr(15))
+    if (%count >= %colorcodes) && (!%_countkick) {
+      set -u2 %_countkick ! |set %ccount %count 
+    ccol | tcol | red:xkb # $nick | goto end }
+  }
+  if (%floodkick == Enable) { 
+    set -u3 %fld. [ $+ [ $chan ] $+ . $+ [ $nick ] ] 
+    if (%fld. [ $+ [ $chan ] $+ . $+ [ $nick ] ] >= %fldline) && (!%_fldkick) {
+    set -u2 %_fldkick ! | cfld | tfld | red:xkb # $nick | goto end }
+  }
+  if (%capslockkick == Enable) { 
+    var %text = $strip($remove($1-,$chr(32)))
+    var %non.caps = $len($removecs(%text,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z))
+    var %full.line = $len($strip($remove(%text,$chr(32))))
+    var %percent = $calc(1 - (%non.caps / %full.line))
+    if (%percent >= 0.8) {
+      set %capsmatch $calc(%percent * 100) $+ %
+      spac | goto end 
+    }
+  }
+  if (%repeatkick == Enable) { 
+    inc -u20 %repeats [ $+ [ $chan ] ] [ $+ [ $site ] ] [ $+ [ $replace($1-,$chr(32),1) ] ] 
+    if (%repeats [ $+ [ $chan ] ] [ $+ [ $site ] ] [ $+ [ $replace($1-,$chr(32),1) ] ] > %txtrep) { 
+      set %overrepeat %repeats [ $+ [ $chan ] ] [ $+ [ $site ] ] [ $+ [ $replace($1-,$chr(32),1) ] ]      
+      crep | trep | red:xkb # $nick | goto end
+    }
+  }
+  if (%webpageadskick == Enable) { 
+    var %i = 0
+    var %i`txt = $strip($1-)
+    while (%i < $0) {
+      inc %i
+      var %word = $gettok(%i`txt,%i,32)
+      if ((%advsword1 iswm %word) || (%advsword2 iswm %word) || (%advsword3 iswm %word) || (%advsword4 iswm %word) || (%advsword5 iswm %word) || (%advsword6 iswm %word) || (%advsword7 iswm %word) || (%advsword8 iswm %word) || (%advsword9 iswm %word) || (%advsword10 iswm %word) || (%advsword11 iswm %word) || (%advsword12 iswm %word)) {
+        set %adsmatch $ifmatch 
+        cads | tads | ban -u $+ %adv # $nick 11 | kick # $nick %reason | unset %reason %bantime  | goto end
+      }
+    }
+  }
+  if (%longtextkick == Enable) { 
+    if ($len($strip($1-)) >= %longtxt) && (!%_txtkick) {
+    set -u2 %_txtkick ! | clong | tlong | red:xkb # $nick | goto end }
+  }
+  if (%longtextkick == Enable) {   
+    if ($len($strip($1)) >= 100) && (!%_txt:kick) {
+    set -u2 %_txt:kick ! | ctfld | tlong | _chn:m | prot.filter.kick # $wildsite | .auser flood $wildsite | goto end }
+  }
+  if (%genswear == Enable) {
+    var %i = 0
+    var %i`txt = $strip($1-)
+    while (%i < $0) {
+      inc %i
+      var %word = $gettok(%i`txt,%i,32)
+      if ((%genword1 isin %word) || (%genword2 isin %word) || (%genword3 isin %word) || (%genword4 isin %word) || (%genword5 isin %word) || (%genword6 isin %word) || (%genword7 isin %word) || (%genword8 isin %word) || (%genword9 isin %word) || (%genword10 isin %word) || (%genword11 isin %word) || (%genword12 isin %word) || (%genword13 isin %word) || (%genword14 isin %word) || (%badword15 isin %word) || (%genword16 isin %word) || (%genword17 isin %word) || (%genword18 isin %word) || (%genword19 isin %word) || (%genword20 isin %word)  || (%genword21 isin %word) || (%genword22 isin %word) || (%genword23 isin %word) || (%genword24 isin %word) || (%badword25 isin %word) || (%genword26 isin %word) || (%genword27 isin %word) || (%genword28 isin %word) || (%genword29 isin %word) || (%genword30 isin %word)) {
+        set %swearmatch $ifmatch 
+        tswe | cswe | red:xkb # $nick | goto end
+      }
+    }
+  }
+  if (%badswear == Enable) {
+    var %i = 0
+    var %i`txt = $strip($1-)
+    while (%i < $0) {
+      inc %i
+      var %word = $gettok(%i`txt,%i,32)
+      if ((%badword1 isin %word) || (%badword2 isin %word) || (%badword3 isin %word) || (%badword4 isin %word) || (%badword5 isin %word) || (%badword6 isin %word) || (%badword7 isin %word) || (%badword8 isin %word) || (%badword9 isin %word) || (%badword10 isin %word) || (%badword11 isin %word) || (%badword12 isin %word) || (%badword13 isin %word) || (%badword14 isin %word) || (%badword15 isin %word) || (%badword16 isin %word) || (%badword17 isin %word) || (%badword18 isin %word) || (%badword19 isin %word) || (%badword20 isin %word) || (%badword21 isin %word) || (%badword22 isin %word) || (%badword23 isin %word) || (%badword24 isin %word) || (%badword25 isin %word) || (%badword26 isin %word) || (%badword27 isin %word) || (%badword28 isin %word) || (%badword29 isin %word) || (%badword30 isin %word)) {
+        set %swearmatch $ifmatch 
+        if (!%_badwkick) {
+          set -u2 %_badwkick ! 
+        ctswe | ttswe | red:xkb # $nick | goto end }
+      }
+    }
+  }
+  if (%Channeladskick == Enable) {  
+    var %s = $strip($1-)
+    if (($chr(35) isin %s) && ((%inviteword1 isin %s) || (%inviteword2 isin %s) || (%inviteword3 isin %s) || (%inviteword4 isin %s) || (%inviteword5 isin %s) || (%inviteword6 isin %s) || (%inviteword7 isin %s) || (%inviteword8 isin %s) || (%inviteword9 isin %s) || (%inviteword10 isin %s) || (%inviteword11 isin %s) || (%inviteword12 isin %s) || (%inviteword13 isin %s) || (%inviteword14 isin %s) || (%inviteword15 isin %s)) && ($chan !isin %s)) {
+    set %bantime %channeladstime | cset | nset | cinv | ban -u $+ %inviters # $nick 11 | kick # $nick %reason | unset %reason %bantime | goto end }  
+  }
+  if (%altf4 == on) {
+    if ((alt isin $1-) && (f4 isin $1-)) || (/con/con isin $1-)  { kick # $nick $read $mircdircrack\altf4.txt | ban -u60 # $nick 11 }
+  }
+  if (%encryptedkick == on) {
+    if ((ÿ isin $strip($1-)) || (ý isin $strip($1-)) || (Û isin $strip($1-)) || (ü isin $strip($1-)) || (Ý isin $strip($1-)) || (û isin $strip($1-)) || (ú isin $strip($1-)) || (ù isin $strip($1-)) || (ñ isin $strip($1-)) || (ò isin $strip($1-)) || (ó isin $strip($1-)) || (ô isin $strip($1-)) || (õ isin $strip($1-)) || (ö isin $strip($1-)) || (Ú isin $strip($1-)) || (Û isin $strip($1-)) || (Ü isin $strip($1-)) || (Ý isin $strip($1-)) || (À isin $strip($1-)) || (Á isin $strip($1-)) || (Â isin $strip($1-)) || (æ isin $strip($1-))) { kick # $nick $read $mircdircrack\encypt.txt | goto end } 
+    if ((Ù isin $strip($1-)) || (Ã isin $strip($1-)) || (Ä isin $strip($1-)) || (Å isin $strip($1-)) || (Æ isin $strip($1-)) || (Ç isin $strip($1-)) || (È isin $strip($1-)) || (É isin $strip($1-)) || (Ê isin $strip($1-)) || (Ë isin $strip($1-)) || (Ì isin $strip($1-)) || (Í isin $strip($1-)) || (Î isin $strip($1-)) || (Ï isin $strip($1-)) || (Ð isin $strip($1-)) || (Ñ isin $strip($1-)) || (Ò isin $strip($1-)) || (Ó isin $strip($1-)) || (Ô isin $strip($1-)) || (Õ isin $strip($1-)) || (Ö isin $strip($1-)) || (ã isin $strip($1-))) { kick # $nick $read $mircdircrack\encypt.txt | goto end } 
+  }
+  if (%slapkick == on) {
+    if (slap isin $1-) && ($me isin $1-) { kick # $nick $read $mircdircrack\slapkick.txt | ban -u60 # $nick 11 }
+    if (slap isin $1-) && ($2 ison $chan) { kick # $nick $read $mircdircrack\slap.txt | ban -u60 # $nick 11 }
+  }
+  :end
+}
+;eof

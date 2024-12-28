@@ -1,0 +1,3 @@
+¤()CYB()ORG()¤ Full Script Edition is A Channel Operator script created by Aditya aka [|Red-X|].This is a mIRC based script which's developed with the aim to make your IRC life easier as well as to provide users a complete channel operator options.The whole set up of this script is specially made For IRC DALnet server. Thanks to ANdI_In_AcTiON for his help in designing a nice theme of this script and to all of my friends who have given me some valuable inputs. If you find any bugs or Need help? just join and find me on #Tequilla,#kaltim on DALnet or send email to net_ryan@yahoo.com. Have....fun!and enjoy your chatting time.  
+
+     

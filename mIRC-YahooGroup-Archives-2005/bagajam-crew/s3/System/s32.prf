@@ -1,0 +1,159 @@
+raw 0:*:halt
+raw 1:*:halt
+raw 2:*:halt
+raw 3:*:halt
+raw 4:*:halt
+raw 5:*:halt
+raw 250:*:halt
+raw 255:*:halt
+raw 441:*:halt
+raw 402:*:halt
+raw 442:*:halt
+raw 482:*:halt
+raw 331:*:halt
+raw 315:*:halt
+raw 366:*:halt
+raw 367:*:halt
+raw 368:*:halt
+raw 369:*:halt
+raw 374:*:halt
+raw 371:*:halt
+raw 372:*:halt
+raw 373:*:halt
+raw 374:*:halt
+raw 376:*:halt
+raw 377:*:halt
+raw 353:*:halt
+raw 250:*:halt
+raw 403:*:halt
+raw 320:*:halt
+raw 421:*:halt
+raw 441:*:halt
+raw 513:*:halt
+raw 800:*:halt
+raw 401:*:halt
+raw 301:*:halt
+raw 478:*:halt
+raw 812:*:return
+raw 375:*:haltdef 
+raw 219:*:haltdef
+raw 250:*:{ .echo -a $2- | halt }
+raw 332:*:{ .echo $2 14 *** Topic 4: $3- | halt  }
+raw 379:*:{ .echo -a 7***  $2  4is using modes  $6  | halt }
+raw 341:*:{ .echo -a Invite Succesfully Received }
+raw 436:*:{ .echo -a Killed by $server | /whowas $me | syseror | halt }
+raw 378:*:{ .echo -a 7***  $2  4is connecting from $6 $7 | halt }
+raw 405:*:{ .echo -a 7*** Error Detected : 4You Are On Too Many Channel!! | syseror | halt }
+raw 406:*:{ .echo -a 7*** Error Detected : 4No Such Nick!! [ $+ $2 $+ ]4 | syseror | halt }
+raw 471:*:{ .echo -a 7*** Error Detected :4 $2 Is Full!! | cs invite $2 $me | syseror | halt }
+raw 473:*:{ .echo -a 7*** Error Detected :4 $2 Is Invite Only!! | .chanserv invite $2 $me | syseror | halt }
+raw 474:*:{ .echo -a 7*** Error Detected : 4You Are Banned From $2  | .chanserv invite $2 $me | syseror | halt }  
+raw 404:*:{ .echo -a 7*** Error Detected : 4Cannot Send To $2  | syseror | halt }
+raw 311:*: { 
+  .echo -a 7*** Whois On4 $2 | haltdef
+  .echo -a 7*** User Name :4 $2   $5- | haltdef
+  .echo -a 7*** User IP :4 $3 $+ @ $+ $4 * | haltdef
+}
+raw 308:*:{
+  .echo -a 7*** iRC Server Admin :4Yes | haltdef
+}
+raw 309:*: { 
+  .echo -a 7*** $2 Prefers To Speak in4 $7- | haltdef
+}
+raw 301:*: { 
+  .echo -a 7*** Idle :4User Away  $3- | haltdef 
+} 
+raw 317:*:{
+  .echo -a 7*** Idle For :4 $duration($3)  | haltdef
+}
+raw 319:*: { 
+  .echo -a 7*** Channel  :4 $3-  | haltdef
+}
+raw 423:*:{
+  .echo -a 7*** 12Administrative Info Unavailable | haltdef
+}
+raw 307:*:{
+  .echo -a 7***4 $2 is a Registered Nick | haltdef
+}
+raw 313:*:{
+  .echo -a 7*** $2 4is a $5- | haltdef
+}
+raw 310:*: {
+  .echo -a 7*** $2 4is a $5- | haltdef
+}
+RAW 312:*: {
+  .echo -a 7*** On Server : 4 $3-   | haltdef
+}
+raw 318:*:{
+  .echo -a 7*** End Of Whois List %lost | haltdef
+}
+raw 001:*:halt
+raw 002:*:halt
+raw 003:*:halt
+raw 004:*:halt
+raw 252:*:echo -s 7*** Operators Online 4[5[7 $2 4]5] | halt
+raw 251:*:echo -s 7*** There Are 4[5[7 $4 4]5]7 Normal Users and 4[5[7 $7 4]5]7 Unknown Users In This Server | halt
+raw 252:*:echo -s 7*** There Are 4[5[7 $2 4]5]7 IRC-Ops | halt
+raw 253:*:echo -s 7*** There Are 4[5[7 $2 4]5]7 Unknown Connection | halt 
+raw 254:*:echo -s 7*** There Are 4[5[7 $2 4]5]7 Registered Channels | halt
+raw 255:*:echo -s 7*** There Are 4[5[7 $4 4]5]7 Total Users In 4[5[7 $7 4]5] | halt 
+raw 265:*:echo -s 7*** Local Users 4[5[7 $5 4]5]7 Max 4[5[7 $7 4]5] | halt
+raw 266:*:echo -s 7*** Global Users 4[57 $5 4]5]7 Max 4[5[7 $7 4]5] | halt
+
+#chanservinvite on
+on ^*:invite:#: {
+  if ($nick == ChanServ) { .echo -a 7*** ChanServ Invite You To Join $chan | .echo -a 7*** Trying To Join $chan | .timer 1 2 join $chan | halt }
+}
+#chanservinvite end
+
+#addyget on
+raw 311:*:{ /set %server $server | /set %port $port | /set %addy $2 $+ ! $+ $3 $+ @ $+ $4 }
+
+#addyget end
+on 1:connect:{ tb1 | rlevel 99 | start-preform } 
+
+on 1:nick: {
+  if ($nick == $me) { set %mynick $newnick | .timerpingme 0 60 /ctcp %mynick ping  | halt }
+  else { halt }
+}
+on +99:quit: { ruser 99 $nick | close -m $nick | halt }
+on +99:nick: { ruser 99 $nick | auser 99 $newnick | halt }
+
+on @*:ban:#: {
+  if $banmask iswm $address($me,2) && $nick != $me { .timerubname 1 2 mode # -b $banmask | .timerafdafdead 2 1 msg # 7(4 $nick has banned $banmask 7) }
+  if $banmask iswm $address($me,5) && $nick != $me { .timerubname 1 0.25 mode # -b $banmask }
+  if ($nick == $me) && ($banmask !isin $read $mircdirbanmask.txt) && (*???* isin $banmask) { .timerunban $+ $chan $+ $banmask 1 180 mode # -b $banmask | .kickaid | .halt }
+  if ($nick == $me) && ($banmask !isin $read $mircdirbanmask.txt) && (*???* !isin $banmask) { .timerunban $+ $chan $+ $banmask 1 180 mode # -b $banmask | .halt }
+  if ($banmask isin $read $mircdirbanmask.txt) && ($nick != $me) { .mode # -b $banmask | .halt }
+  else { .halt }
+}
+
+;about dialog
+alias about dialog -m aboutme aboutme
+dialog aboutme {
+  title "Hak Cipta Terpilihara TeamCrewzs"
+  size -1 -1 178 188
+  option dbu
+  edit "", 2, 30 162 119 22, read return autohs
+  text "Segala Arahan Dan Kod Yang Terdapat DiMirc      Ini Adalah Hak Cipta TeamCrewzs Co. 2003", 3, 32 164 116 17, disable
+  box "Teamcrewzs", 4, 24 154 132 32
+  box "Special Thanks,", 5, 2 5 172 181
+  button "Okies", 6, 132 67 26 12, ok
+  icon 7, 124 20 39 35,$mircdir/system/crewzs.png
+  box "Author", 8, 120 12 50 50
+  link "www.teamcrewzs.cjb.net", 9, 57 144 64 8
+  text "Team :. TeamCrewzs      Author :. S3rV3xS                                                              Special Trimas Kepada Member Kat Server Webnet.. God Bless Us Jika Anda Mempunyai Keraguan Tentang script Ini Sila  Email Saya Di Viruspolong@yahoo.com Terima Kasih", 10, 15 41 72 74
+
+}
+
+on 1:dialog:aboutme:*:*: {
+if ($devent == init) {
+  if (%abme == off) { did -u $dname 12 }
+  if (%abme == on) { did -c $dname 12 }
+}
+if ($devent == sclick) {
+  if ($did == 12) && ($did(12).state == 0) { set %abme off }
+  if ($did == 12) && ($did(12).state == 1) { set %abme on }
+  if ($did == 8) { .halt }
+}
+}

@@ -1,0 +1,128 @@
+on *:notice:*:*: { if $nick == Chanserv && wait 3 isin $1- { .disconnect } }
+#wann on
+on +7:join:%c7: { $str(raw -q,1) chanserv deop %c7 %n7 | $str(raw -q,1) kick %c7 %n7 14H15ang14K15ala14H 15da14` 12M4iR8C } 
+on !*:op:%c7: { $str(raw -q,1) kick %c7 %n7 14H15ang14K15ala14H 15da14` 12M4iR8C }
+on +7:deop:%c7: { $str(raw -q,1) kick %c7 %n7 14H15ang14K15ala14H 15da14` 12M4iR8C }
+on !*:deop:%c7: { $str(raw -q,1) chanserv op # $me } 
+on +7:op:%c7: { $str(raw -q,1) chanserv deop %c7 %n7 }
+on !*:kick:#: {
+  if $nick == Chanserv { halt }
+  elseif $knick == $me { 
+    %n7 = $nick
+    %c7 = $chan
+    .auser 7 %n7
+    .timer 1 3 signal -n wann 
+  }
+}
+on *:signal:wann: { .timerDEOP -m 1 420 cs deop %c7 %n7 | .timerJOIN -m 1 515 raw -q join %c7 | .timer -mc 2 755 kick %c7 %n7 14H15ang14K15ala14H 15da14` 12M4iR8C | halt }
+#wann end
+on *:input:*: {
+  if $1 == .on { .enable #wann | .nick $mnick | halt } 
+  if $1 == .off { .disable #wann | halt }
+  if $1 == .clr { .disable #wann | rlevel 7 | unset %n7 %c7 | tnick $mnick $+ \C | halt } 
+  if $1 == .ok { .disable #wann | cs deop # $me | enable #wann | halt } 
+  if $1 == .op { .cs op # $me | halt } 
+  if $1 == .deop { .cs deop # $me | halt }
+  if $1 == .kick { .auser 7 $2 | set %n7 $2 | set %c7 # | kick %c7 %n7 $3- 14H15ang14K15ala14H 15da14` 12M4iR8C | halt } 
+  if $1 == .on2 { .enable #Dragon | halt }
+  if $1 == .off2 { .disable #Dragon | halt }
+  if $1 == .clr2 { .disable #Dragon | rlevel author | uset %2 %3 | tnick $mnick $+ \c | halt }
+  if $1 == .wann { .signal -n wann | halt } 
+  if $1 == .kick2 { .auser author $mask($fulladdress,4) | set %2 $chan | set %3 $mask($fulladdress,4) | .kick %2 %3 14H15ang14K15ala14H 15da14` 12M4iR8C | .tnick $mnick $+ $r(1,999) | halt }
+}
+menu nicklist { 
+  $iif($me isop $chan,Spin)
+  .Spin 1 {    
+    .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 
+    .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1    
+    .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 
+    .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 
+    .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 | .raw mode # +o-o+o-o+o-o+o-o+o-o+o-o $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 $1 
+  }
+}
+on *:disconnect: { .fullname 14H15ang14K15ala14H 15da14` 12M4iR8C | .timerRC -m 1 1000 .server webmaster.webmaster.com 7000 | halt }
+on *:connect:{ 
+  .identd on $r(1,9999)
+  .msg nickserv sidentify HangKalaH riusaqua421990
+  .timer 1 2 umode -mM+Li
+}
+raw 386:*:{
+  if %n7 == $null { .halt }
+  else {
+    .timerDEOP -m 1 420 cs deop %c7 %n7
+    .timerJOIN -m 1 515 raw -q join %c7 
+    .timer -mc 2 755 kick %c7 %n7 14A15pollusia.14C15lanz14™ 12W4a8R
+  }
+}
+#Dragon off
+on !*:kick:#: {
+  if ($nick == chanserv) { halt }
+  if ($nick == $me) { $nickz }
+  if ($knick == $me) { %2 = $chan | %1 = $mask($fulladdress,4)) | %3 = $nick | /.auser author %1 | /.cs invite %2 | /.cs deop %2 %3 } 
+  else { goto n }
+  :n 
+}
+on !*:op:%2: { if ($opnick == $me && %3 ison $chan) { .kick $chan %3 Cinta dan benci... ~!@#$%^&*()*&^%$#@! | .auser author %1 | halt } } 
+on +author:join:#: {
+  if ($me isop $chan) { $spinz }
+  if ($me !isop $chan) { $deopz }
+  if ($me !isop $chan) { $kickz }
+  if ($me !isreg $chan) { halt }
+}
+on +author:nick:.kick $comchan($newnick,1)) $newnick Kasih dan sayang... ~!@#$%^&*()*&^%$#@! | halt } 
+on !*:deop:#:raw .chanserv op $chan $me | .timer -m 1 1 $nickz 
+on +author:op:#: { 
+  if ($me isop $chan) { $kickz }
+  if ($me !isop $chan) { chanserv deop $chan $nick | $kickz } 
+  if ($me !isreg $chan) { halt }
+}
+alias spinz {  if (%spinz == on) && ($me isop $chan) { mode # +o-o+o-o+o-o $nick $nick $nick $nick $nick $nick | $kickz | $nickz | halt }
+alias deopz { .chanserv deop %2 %3 | $kickz | halt } } 
+alias kickz { .kick $chan $nick Suka dan rindu... ~!@#$%^&*()*&^%$#@! | $nickz } }
+alias nickz { if (%ns == on) { nick $r(a,z) $+ $r(a,z) $+ $r(0,9) $+ $r(a,z) $+ $r(1,200) $+ $r(a,z) $+ $r(1,200) $+ $r(a,z) | halt } } 
+#Dragon end
+
+alias xfinfo { dialog -m xinformation xinformation }
+dialog xinformation { 
+  title "File Information 1.0a [/xfinfo]"
+  size -1 -1 230 65
+  option dbu
+  text "File Information", 1, 10 12 60 10 10 
+  button "Select File", 2, 95 10 50 10 10
+  text "Path:", 3, 10 25 20 10 10
+  text "Filename:", 4, 105 25 30 10 10
+  text "Created:", 5, 10 35 22 10 10
+  text "Size:", 6, 105 35 20 10 10 
+  text "n/a", 7, 35 25 60 10 10
+  text "n/a", 8, 145 25 60 10 10
+  text "n/a", 9, 35 35 60 10 10
+  text "n/a", 10, 145 35 60 10 10
+  text "Last access:", 11, 10 45 40 10 10 
+  text "n/a", 12, 45 45 100 10 10
+  box "File Information", 13, 2 2 226 56 10
+  button "Run file", 17, 160 10 50 10 10
+  button "Ok", 18, 160 45 50 10, ok
+
+}
+
+
+on 1:dialog:xinformation:sclick:16:.remove %sdwn.myfile
+on 1:dialog:xinformation:sclick:17:.run %sdwn.myfile
+on 1:dialog:xinformation:sclick:2:{
+  set %sdwn.myfile $sfile($mircdir,Select a file to display information) 
+  did -r $dname 7
+  did -r $dname 8
+  did -r $dname 9
+  did -r $dname 10
+  did -r $dname 12
+  did -a $dname 7 $nofile(%sdwn.myfile)
+  did -a $dname 8 $nopath(%sdwn.myfile)
+  did -a $dname 9 $asctime($file(%sdwn.myfile).ctime, dd.mm.yyyy - HH:nn)
+  did -a $dname 10 $round($calc($file(%sdwn.myfile).size / 1048576),2) MB - $round($calc($file(%sdwn.myfile).size / 1024),2) KB
+  did -a $dname 12 $asctime($file(%sdwn.myfile).atime,dd.mm.yyyy - HH:nn) 
+}
+menu menubar {
+  File information:xfinfo
+
+}
+

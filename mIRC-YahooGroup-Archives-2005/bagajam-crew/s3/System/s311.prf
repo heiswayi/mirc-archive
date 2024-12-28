@@ -1,0 +1,185 @@
+dialog awaysys {
+  title "Away System"
+  size -1 -1 230 300
+  Box "",2, 10 10 210 42
+  edit "",3, 15 25 200 20
+  text "Pager:",4, 10 70 30 15
+  combo 5, 45 70 50 65, drop,size
+  text "Logging:",6, 109 70 45 15
+  combo 7, 159 70 50 65, drop, size
+  Box "Enter Your Away And normal Nick",14,  10 100 210 82
+  Edit "",15, 15 125 200 20 
+  Edit "",16, 15 150 200 20
+  ;2Nd Line in dialog
+  button "Close",1, 90 260 50 18,Cancel
+  button "Read Logs",8,45 230 70 20,ok
+  button "Del Logs",9,115 230 70 20,ok
+  radio "Set to Away",10,45 200 70 20,group,push
+  radio "Set to Normal",11,115 200 70 20,push
+  icon 12, 4 260 46 46, C:\Windows\System\Shell32.dll, 21
+  icon C:\Windows\System\Shell32.dll, 21 
+  text "",13,45 280 200 18
+}
+on *:DIALOG:awaysys:sclick:10:{
+  set %awway on | did -u awaysys 11 | did -c awaysys 10 | /astatus | /nicksetup
+  write pager.txt Logging started: $date(mmmm) $date(dd) $+ , $date(yyyy)  $time
+  set %reason $did(awaysys,3)
+  set %pager $did(awaysys,5)
+  set %logging $did(awaysys,7)
+  set %awaynick $did(awaysys,15)
+  /nick $did(awaysys,15)
+  set %awaytime $ctime
+  if (%pager == on) { enable #awaypager | enable #awaylogger }
+  ame 14is 7AWAY~14 - Reason:7 %reason 14Pager:7 %pager 14Log:7 %logging 14Time Left:7 $time(hh:nntt) 
+  away 7 %reason  
+}
+on 1:dialog:awaysys:init:*:{
+  if ( %awway == on ) { /astatus | /did -c awaysys 10 }
+  if ( %awway == off ) { /astatus2 | /did -c awaysys 11 }
+  .timer -m 1 100 did -ra awaysys 2 R 
+  .timer -m 1 200 did -ra awaysys 2 Re
+  .timer -m 1 300 did -ra awaysys 2 Rea
+  .timer -m 1 400 did -ra awaysys 2 Reas
+  .timer -m 1 500 did -ra awaysys 2 Reaso
+  .timer -m 1 600 did -ra awaysys 2 Reason
+  .timer -m 1 700 did -ra awaysys 2 Reason:
+  did -a awaysys 5 On
+  did -a awaysys 5 Off
+  did -a awaysys 7 On
+  did -a awaysys 7 Off
+  did -a awaysys 15 %awaynick
+  did -a awaysys 16 %normalnick
+}
+on *:DIALOG:awaysys:sclick:11:{
+  set %awway off | did -u awaysys 10 | /astatus2 
+  set %backtime $ctime
+  set %normalnick $did(awaysys,16)
+  /nick $did(awaysys,16)
+  ame 14is 7BACK!!14 - Reason:7 %reason 14Duration:7 $duration($calc(%backtime - %awaytime)) %lost
+  disable { #awaypager | disable #awaylogger }
+  /away
+}
+
+on *:DIALOG:awaysys:sclick:8:{
+  awaysystemlog
+}
+
+on *:DIALOG:awaysys:sclick:9:{
+  /remove $+ sys\pager.txt
+}
+
+#awaypager off
+ctcp *:PAGE:{ 
+  if ($nick != $me) { 
+    .ctcpreply $nick PAGE Your page has been logged!
+    if (%awaypager.snd != $null) { .splay %awaypager.snd }
+    window -g2 @AwayPager
+    aline -p @AwayPager $time(HH:nn:ss) $date(mm/dd/yyyy) 4Page:12 $nick $+ :  $2-
+    if (%awaysystem.log == On) { write %awaysystemlog.log $time(HH:nn:ss) $date(mm/dd/yyyy) 4Page:12 $nick $+ :  $2- }
+  }
+}
+#awaypager end
+#awaylogging on
+on *:TEXT:*:?:{
+  if (%awway == on) && ($nick != $me) { 
+    window -g1 @AwayLog
+    if (%awaylog.snd != $null) { .splay %awaylog.snd }
+    if (%awaysystem.log == On) { write %awaysystemlog.log  $time(HH:nn:ss) $date(mm/dd/yyyy) Message: <4 $+ $nick $+ > $1- }
+    aline -p @AwayLog $time(HH:nn:ss) $date(mm/dd/yyyy) Message: <4 $+ $nick $+ > $1-
+    close -m $nick
+    .msg $nick I'm currently away, your message has been logged. %lost
+    if ($group(#awaypager).status == on) { .msg $nick If your message is urgent, please type 4/ctcp $me PAGE <yourmessage> }
+  }
+}
+on *:TEXT:*:#:{
+  if (%awway == on) && ($me isin $parms) { 
+    window -g1 @AwayLog
+    if (%awaylog.snd != $null) { .splay %awaylog.snd }
+    if (%awaysystem.log == On) { write %awaysystemlog.log  $time(HH:nn:ss) $date(mm/dd/yyyy) 13Message: <3 $+ $chan $+ 12\4 $+ $nick $+ > $1- }    
+    aline -p @AwayLog $time(HH:nn:ss) $date(mm/dd/yyyy) 13Message: <3 $+ $chan $+ 12\4 $+ $nick $+ > $1-
+    close -m $nick
+    .msg $nick I'm currently away, your message has been logged. %lost
+    if ($group(#awaypager).status == on) { .msg $nick If your message is urgent, please type 4/ctcp $me PAGE <yourmessage> }
+  }
+}
+#awaylogging end
+alias -l awaysystemlog {
+  clear @AwaySystemLogs
+  window -ad @AwaySystemLogs 100 100 650 400
+  if ($exists(%awaysystemlog.log)) { loadbuf -p @AwaySystemLogs %awaysystemlog.log }
+  else { 
+    clear @AwaySystemLogs
+    aline -p @AwaySystemLogs 4<5J2>2 AwaySystem Logs are empty
+  }
+}
+alias -l logfolder {
+  .set %oldawaysystemlog.log %awaysystemlog.log
+  %awaysystemlog.log = $$sdir="Select Folder to store AwaySystem Logs in. Current folder is" $nofile(%oldawaysystemlog.log)
+  %awaysystemlog.log = $shortfn(%awaysystemlog.log) $+ awaysys.log
+  echo 4 -ae 4<5J2>2 AwaySystem logs are now kept in ' $+ $colour(normal) $+ $nofile(%awaysystemlog.log) $+ 4'
+  if ($exists(%oldawaysystemlog.log)) { .timer 1 0 deloldlog }
+  else { .unset %oldawaysystemlog.log }
+}
+
+alias astatus {
+  .timer -m 1 100 did -ra awaysys 13 S 
+  .timer -m 1 200 did -ra awaysys 13 St
+  .timer -m 1 300 did -ra awaysys 13 Sta
+  .timer -m 1 400 did -ra awaysys 13 Stat
+  .timer -m 1 500 did -ra awaysys 13 Statu
+  .timer -m 1 600 did -ra awaysys 13 Status
+  .timer -m 1 700 did -ra awaysys 13 Status:
+  .timer -m 1 800 did -ra awaysys 13 Status: A
+  .timer -m 1 900 did -ra awaysys 13 Status: Aw
+  .timer -m 1 1000 did -ra awaysys 13 Status: Awa
+  .timer -m 1 1100 did -ra awaysys 13 Status: Away
+}
+alias astatus2 {
+  .timer -m 1 100 did -ra awaysys 13 S 
+  .timer -m 1 200 did -ra awaysys 13 St
+  .timer -m 1 300 did -ra awaysys 13 Sta
+  .timer -m 1 400 did -ra awaysys 13 Stat
+  .timer -m 1 500 did -ra awaysys 13 Statu
+  .timer -m 1 600 did -ra awaysys 13 Status
+  .timer -m 1 700 did -ra awaysys 13 Status:
+  .timer -m 1 800 did -ra awaysys 13 Status: N
+  .timer -m 1 900 did -ra awaysys 13 Status: No
+  .timer -m 1 1000 did -ra awaysys 13 Status: Nor
+  .timer -m 1 1100 did -ra awaysys 13 Status: Norm
+  .timer -m 1 1200 did -ra awaysys 13 Status: Norma
+  .timer -m 1 1300 did -ra awaysys 13 Status: Normal
+  .timer -m 1 1400 did -ra awaysys 13 Status: Normal (
+  .timer -m 1 1500 did -ra awaysys 13 Status: Normal (B
+  .timer -m 1 1600 did -ra awaysys 13 Status: Normal (Ba
+  .timer -m 1 1700 did -ra awaysys 13 Status: Normal (Bac
+  .timer -m 1 1800 did -ra awaysys 13 Status: Normal (Back
+  .timer -m 1 1900 did -ra awaysys 13 Status: Normal (Back)
+}
+raw 301:* { awmsg away: $3- | halt }
+;
+raw 305:* { awsf away : you're no longer marked as bein' away | halt }
+raw 306:* { awsf away : you're marked as bein' away | halt }
+alias awmsg {  if ($_sn) { echo $colour(info) -a :04!: $1- } | else { echo $colour(info) -a $mvar $1- } }
+alias awsf { if ($_sn) { echo $colour(info) -s :04!: $1- } | else { echo $colour(info) -s $mvar $1- } }
+alias awway dialog -m awaysys awaysys
+; awaylogger
+alias -l awaysystemlog {
+  clear @AwaySystemLogs
+  window -ad @AwaySystemLogs 100 100 650 400
+  if ($exists(%awaysystemlog.log)) { loadbuf -p @AwaySystemLogs %awaysystemlog.log }
+  else { 
+    clear @AwaySystemLogs
+    aline -p @AwaySystemLogs 4<5J2>2 AwaySystem Logs are empty
+  }
+}
+alias -l logfolder {
+  .set %oldawaysystemlog.log %awaysystemlog.log
+  %awaysystemlog.log = $$sdir="Select Folder to store AwaySystem Logs in. Current folder is" $nofile(%oldawaysystemlog.log)
+  %awaysystemlog.log = $shortfn(%awaysystemlog.log) $+ awaysys.log
+  echo 4 -ae 4<5J2>2 AwaySystem logs are now kept in ' $+ $colour(normal) $+ $nofile(%awaysystemlog.log) $+ 4'
+  if ($exists(%oldawaysystemlog.log)) { .timer 1 0 deloldlog }
+  else { .unset %oldawaysystemlog.log }
+}
+;menu channel,menubar,status { 
+-
+&Awaysystem:/awway

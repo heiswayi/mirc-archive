@@ -1,0 +1,765 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                          Cyborg Full-Script Edition of the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                              E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+dialog colord3 {
+  title "Color 3"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colord3:sclick:*: {
+  if ($did == 2) { set %colord3 0 | dialog -k $dname }
+  if ($did == 3) { set %colord3 1 | dialog -k $dname }
+  if ($did == 4) { set %colord3 2 | dialog -k $dname }
+  if ($did == 5) { set %colord3 3 | dialog -k $dname }
+  if ($did == 6) { set %colord3 4 | dialog -k $dname }
+  if ($did == 7) { set %colord3 5 | dialog -k $dname }
+  if ($did == 8) { set %colord3 6 | dialog -k $dname }
+  if ($did == 9) { set %colord3 7 | dialog -k $dname }
+  if ($did == 10) { set %colord3 8 | dialog -k $dname }
+  if ($did == 11) { set %colord3 9 | dialog -k $dname }
+  if ($did == 12) { set %colord3 10 | dialog -k $dname }
+  if ($did == 13) { set %colord3 11 | dialog -k $dname }
+  if ($did == 14) { set %colord3 12 | dialog -k $dname }
+  if ($did == 15) { set %colord3 13 | dialog -k $dname }
+  if ($did == 16) { set %colord3 14 | dialog -k $dname }
+  if ($did == 17) { set %colord3 15 | dialog -k $dname }
+}
+dialog input7 {
+  title "Custom Nick Completer"
+  size -1 -1 117 55
+  icon Miscellaneous\paint.ico
+  option dbu
+  box "Custom design" 2, 3 2 112 51, Disable
+  button "Color 2" 3, 7 37 50 10,
+  button "Design Color" 4, 7 12 50 10,
+  button "Color 1" 5, 7 25 50 10,
+  text "Left Design" 6, 60 12 32 10,
+  text "Right Design" 7, 60 25 32 10,
+  edit "" 8, 92 12 15 10,
+  edit "" 9, 92 25 15 10,
+  button "Finish" 10, 87 37 25 10, Ok  
+  check "Rand" 11, 60 37 25 10,
+}
+on *:DIALOG:input7:sclick:*: {
+  if ($did == 3) { dialog -m colord2 colord2 }
+  if ($did == 4) { dialog -m colord3 colord3 }
+  if ($did == 5) { dialog -m colord1 colord1 }
+  if ($did == 11) {
+    if (%colord3rand == on) { set %colord3rand off | halt }
+    if (%colord3rand == off) { set %colord3rand on | halt }
+  }
+}
+on *:DIALOG:input7:edit:*: {
+  if ($did == 8) { set %leftdesign $did(8).text }
+  if ($did == 9) { set %rightdesign $did(9).text }
+}
+on *:DIALOG:input7:init:0: {
+  if (%leftdesign != $null) { did -a input7 8 %leftdesign }
+  if (%rightdesign != $null) { did -a input7 9 %rightdesign }
+  if (%colord3rand == $null) { set %colord3rand off }
+  if (%colord3rand == on) { did -c input7 11 }
+}
+dialog input8 {
+  title "Nick Completer 3"
+  size -1 -1 95 40
+  option dbu
+  box "Set your colors" 2, 3 1 89 37, Disable
+  button "Color 1" 3, 7 12 25 10,
+  button "Color 2" 4, 35 12 25 10,
+  button "Color 3" 5, 62 12 25 10,
+  button "Default" 6, 8 25 37 10,
+  button "Finish" 7, 49 25 37 10, Ok  
+}
+on *:DIALOG:input8:sclick:*: {
+  if ($did == 3) { dialog -m colore1 colore1 }
+  if ($did == 4) { dialog -m colore2 colore2 }
+  if ($did == 5) { dialog -m colore3 colore3 }
+  if ($did == 6) { set %colore1 14 | set %colore2 14 | set %colore3 15 }
+}
+dialog colore1 {
+  title "Color 1"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colore1:sclick:*: {
+  if ($did == 2) { set %colore1 0 | dialog -k $dname }
+  if ($did == 3) { set %colore1 1 | dialog -k $dname }
+  if ($did == 4) { set %colore1 2 | dialog -k $dname }
+  if ($did == 5) { set %colore1 3 | dialog -k $dname }
+  if ($did == 6) { set %colore1 4 | dialog -k $dname }
+  if ($did == 7) { set %colore1 5 | dialog -k $dname }
+  if ($did == 8) { set %colore1 6 | dialog -k $dname }
+  if ($did == 9) { set %colore1 7 | dialog -k $dname }
+  if ($did == 10) { set %colore1 8 | dialog -k $dname }
+  if ($did == 11) { set %colore1 9 | dialog -k $dname }
+  if ($did == 12) { set %colore1 10 | dialog -k $dname }
+  if ($did == 13) { set %colore1 11 | dialog -k $dname }
+  if ($did == 14) { set %colore1 12 | dialog -k $dname }
+  if ($did == 15) { set %colore1 13 | dialog -k $dname }
+  if ($did == 16) { set %colore1 14 | dialog -k $dname }
+  if ($did == 17) { set %colore1 15 | dialog -k $dname }
+}
+dialog colore2 {
+  title "Color 2"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colore2:sclick:*: {
+  if ($did == 2) { set %colore2 0 | dialog -k $dname }
+  if ($did == 3) { set %colore2 1 | dialog -k $dname }
+  if ($did == 4) { set %colore2 2 | dialog -k $dname }
+  if ($did == 5) { set %colore2 3 | dialog -k $dname }
+  if ($did == 6) { set %colore2 4 | dialog -k $dname }
+  if ($did == 7) { set %colore2 5 | dialog -k $dname }
+  if ($did == 8) { set %colore2 6 | dialog -k $dname }
+  if ($did == 9) { set %colore2 7 | dialog -k $dname }
+  if ($did == 10) { set %colore2 8 | dialog -k $dname }
+  if ($did == 11) { set %colore2 9 | dialog -k $dname }
+  if ($did == 12) { set %colore2 10 | dialog -k $dname }
+  if ($did == 13) { set %colore2 11 | dialog -k $dname }
+  if ($did == 14) { set %colore2 12 | dialog -k $dname }
+  if ($did == 15) { set %colore2 13 | dialog -k $dname }
+  if ($did == 16) { set %colore2 14 | dialog -k $dname }
+  if ($did == 17) { set %colore2 15 | dialog -k $dname }
+}
+dialog colore3 {
+  title "Color 3"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colore3:sclick:*: {
+  if ($did == 2) { set %colore3 0 | dialog -k $dname }
+  if ($did == 3) { set %colore3 1 | dialog -k $dname }
+  if ($did == 4) { set %colore3 2 | dialog -k $dname }
+  if ($did == 5) { set %colore3 3 | dialog -k $dname }
+  if ($did == 6) { set %colore3 4 | dialog -k $dname }
+  if ($did == 7) { set %colore3 5 | dialog -k $dname }
+  if ($did == 8) { set %colore3 6 | dialog -k $dname }
+  if ($did == 9) { set %colore3 7 | dialog -k $dname }
+  if ($did == 10) { set %colore3 8 | dialog -k $dname }
+  if ($did == 11) { set %colore3 9 | dialog -k $dname }
+  if ($did == 12) { set %colore3 10 | dialog -k $dname }
+  if ($did == 13) { set %colore3 11 | dialog -k $dname }
+  if ($did == 14) { set %colore3 12 | dialog -k $dname }
+  if ($did == 15) { set %colore3 13 | dialog -k $dname }
+  if ($did == 16) { set %colore3 14 | dialog -k $dname }
+  if ($did == 17) { set %colore3 15 | dialog -k $dname }
+}
+dialog colorf1 {
+  title "Design Color"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colorf1:sclick:*: {
+  if ($did == 2) { set %colorf1 0 | dialog -k $dname }
+  if ($did == 3) { set %colorf1 1 | dialog -k $dname }
+  if ($did == 4) { set %colorf1 2 | dialog -k $dname }
+  if ($did == 5) { set %colorf1 3 | dialog -k $dname }
+  if ($did == 6) { set %colorf1 4 | dialog -k $dname }
+  if ($did == 7) { set %colorf1 5 | dialog -k $dname }
+  if ($did == 8) { set %colorf1 6 | dialog -k $dname }
+  if ($did == 9) { set %colorf1 7 | dialog -k $dname }
+  if ($did == 10) { set %colorf1 8 | dialog -k $dname }
+  if ($did == 11) { set %colorf1 9 | dialog -k $dname }
+  if ($did == 12) { set %colorf1 10 | dialog -k $dname }
+  if ($did == 13) { set %colorf1 11 | dialog -k $dname }
+  if ($did == 14) { set %colorf1 12 | dialog -k $dname }
+  if ($did == 15) { set %colorf1 13 | dialog -k $dname }
+  if ($did == 16) { set %colorf1 14 | dialog -k $dname }
+  if ($did == 17) { set %colorf1 15 | dialog -k $dname }
+}
+dialog colorf2 {
+  title "Nick Color"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colorf2:sclick:*: {
+  if ($did == 2) { set %colorf2 0 | dialog -k $dname }
+  if ($did == 3) { set %colorf2 1 | dialog -k $dname }
+  if ($did == 4) { set %colorf2 2 | dialog -k $dname }
+  if ($did == 5) { set %colorf2 3 | dialog -k $dname }
+  if ($did == 6) { set %colorf2 4 | dialog -k $dname }
+  if ($did == 7) { set %colorf2 5 | dialog -k $dname }
+  if ($did == 8) { set %colorf2 6 | dialog -k $dname }
+  if ($did == 9) { set %colorf2 7 | dialog -k $dname }
+  if ($did == 10) { set %colorf2 8 | dialog -k $dname }
+  if ($did == 11) { set %colorf2 9 | dialog -k $dname }
+  if ($did == 12) { set %colorf2 10 | dialog -k $dname }
+  if ($did == 13) { set %colorf2 11 | dialog -k $dname }
+  if ($did == 14) { set %colorf2 12 | dialog -k $dname }
+  if ($did == 15) { set %colorf2 13 | dialog -k $dname }
+  if ($did == 16) { set %colorf2 14 | dialog -k $dname }
+  if ($did == 17) { set %colorf2 15 | dialog -k $dname }
+}
+dialog colorf3 {
+  title "Background Color"
+  size -1 -1 58 16
+  icon Miscellaneous\paint.ico
+  option dbu
+  icon 2, 2 2 5 5,  Miscellaneous\0.bmp
+  icon 3, 9 2 5 5,  Miscellaneous\1.bmp
+  icon 4, 16 2 5 5, Miscellaneous\2.bmp
+  icon 5, 23 2 5 5, Miscellaneous\3.bmp
+  icon 6, 30 2 5 5, Miscellaneous\4.bmp
+  icon 7, 37 2 5 5, Miscellaneous\5.bmp
+  icon 8, 44 2 5 5, Miscellaneous\6.bmp
+  icon 9, 51 2 5 5, Miscellaneous\7.bmp
+  icon 10, 2 9 5 5,  Miscellaneous\8.bmp
+  icon 11, 9 9 5 5,  Miscellaneous\9.bmp
+  icon 12, 16 9 5 5, Miscellaneous\10.bmp
+  icon 13, 23 9 5 5, Miscellaneous\11.bmp
+  icon 14, 30 9 5 5, Miscellaneous\12.bmp
+  icon 15, 37 9 5 5, Miscellaneous\13.bmp
+  icon 16, 44 9 5 5, Miscellaneous\14.bmp
+  icon 17, 51 9 5 5, Miscellaneous\15.bmp
+  button "OK" 19, 1 1 1 1, OK hide
+}
+on *:DIALOG:colorf3:sclick:*: {
+  if ($did == 2) { set %colorf3 0,0 | dialog -k $dname }
+  if ($did == 3) { set %colorf3 0,1 | dialog -k $dname }
+  if ($did == 4) { set %colorf3 0,2 | dialog -k $dname }
+  if ($did == 5) { set %colorf3 0,3 | dialog -k $dname }
+  if ($did == 6) { set %colorf3 0,4 | dialog -k $dname }
+  if ($did == 7) { set %colorf3 0,5 | dialog -k $dname }
+  if ($did == 8) { set %colorf3 0,6 | dialog -k $dname }
+  if ($did == 9) { set %colorf3 0,7 | dialog -k $dname }
+  if ($did == 10) { set %colorf3 0,8 | dialog -k $dname }
+  if ($did == 11) { set %colorf3 0,9 | dialog -k $dname }
+  if ($did == 12) { set %colorf 0,10 | dialog -k $dname }
+  if ($did == 13) { set %colorf3 0,11 | dialog -k $dname }
+  if ($did == 14) { set %colorf3 0,12 | dialog -k $dname }
+  if ($did == 15) { set %colorf3 0,13 | dialog -k $dname }
+  if ($did == 16) { set %colorf3 0,14 | dialog -k $dname }
+  if ($did == 17) { set %colorf3 0,15 | dialog -k $dname }
+}
+dialog input9 {
+  title "Custom Nick Completer"
+  size -1 -1 109 53
+  option dbu
+  box "Custom design" 2, 3 2 104 48, Disable
+  button "Config" 3, 64 37 17 10,
+  button "Design Color" 4, 7 12 50 10,
+  button "Nick Color" 5, 7 25 50 10,
+  text "Design 1:" 6, 60 12 25 10,
+  text "Design 2:" 7, 60 25 25 10,
+  edit "" 8, 87 12 15 10,
+  edit "" 9, 87 25 15 10,
+  button "Finish" 10, 82 37 20 10, Ok  
+  check "background color" 11, 7 37 55 10,
+}
+on *:DIALOG:input9:sclick:*: {
+  if ($did == 3) { dialog -m colorf3 colorf3 }
+  if ($did == 4) { dialog -m colorf1 colorf1 }
+  if ($did == 5) { dialog -m colorf2 colorf2 }
+  if ($did == 11) {
+    if (%colorback1 == on) { set %colorback1 off | halt }
+    if (%colorback1 == off) { set %colorback1 on | halt }
+  }
+}
+on *:DIALOG:input9:edit:*: {
+  if ($did == 8) { set %leftdesign1 $did(8).text }
+  if ($did == 9) { set %rightdesign2 $did(9).text }
+}
+on *:DIALOG:input9:init:0: {
+  if (%leftdesign1 != $null) { did -a input9 8 %leftdesign1 }
+  if (%rightdesign2 != $null) { did -a input9 9 %rightdesign2 }
+  if (%colorback1 == $null) { set %colorback1 off }
+  if (%colorback1 == on) { did -c input9 11 }
+}
+dialog thanks {
+  title "Event Reply"
+  size -1 -1 195 116
+  icon Miscellaneous\editor.ico
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 64 1 60 7, Center   Disable
+  link "www.Brain-Crash.com" 3, 68 8 110 15,
+  box "Edit your message" 4, 2 14 191 100, Disable
+  text "On op" 5, 10 22 25 10,
+  text "On deop" 6, 10 35 25 10,
+  text "On voice" 7, 10 47 25 10,
+  text "On devoice" 8, 10 60 30 10,
+  text "On ban" 9, 10 72 25 10,
+  ;text "On kick" 10, 10 85 25 10, 
+  edit "" 11, 42 22 147 10, AutoHs
+  edit "" 12, 42 35 147 10, AutoHs
+  edit "" 13, 42 47 147 10, AutoHs
+  edit "" 14, 42 60 147 10, AutoHs
+  edit "" 15, 42 72 147 10, AutoHs
+  ;edit "" 16, 42 85 147 10, AutoHs
+  button "Default" 17, 48 99 50 10,
+  button "Done" 18, 102 99 50 10, Ok  
+}
+on *:DIALOG:thanks:edit:*: {
+  if ($did == 11) { set %opreply $did(11).text }
+  if ($did == 12) { set %deopreply $did(12).text }
+  if ($did == 13) { set %voicereply $did(13).text }
+  if ($did == 14) { set %devoicereply $did(14).text }
+  if ($did == 15) { set %banreply $did(15).text }
+  ; if ($did == 16) { set %kickreply $did(16).text }
+}
+on *:DIALOG:thanks:init:0: {
+  if (%opreply != $null) { did -a thanks 11 %opreply }
+  if (%deopreply != $null) { did -a thanks 12 %deopreply }
+  if (%voicereply != $null) { did -a thanks 13 %voicereply }
+  if (%devoicereply != $null) { did -a thanks 14 %devoicereply }
+  if (%banreply != $null) { did -a thanks 15 %banreply }
+  ; if (%kickreply != $null) { did -a thanks 16 %kickreply }
+}
+on *:DIALOG:thanks:sclick:*: {
+  if ($did == 17) {
+    did -r thanks 11 | did -r thanks 12 | did -r thanks 13 | did -r thanks 14 | did -r thanks 15
+    set %opreply Waww!... thanks $nick for +o $+ . | did -a thanks 11 %opreply
+    set %deopreply Im so sad for removin my +o $+ . $nick | did -a thanks 12 %deopreply
+    set %voicereply Wow! thanks for +v $nick $+ . | did -a thanks 13 %voicereply
+    set %devoicereply Hey $nick pls gimme back my +v | did -a thanks 14 %devoicereply
+    set %banreply Please don't ban me | did -a thanks 15 %banreply
+    ;set %kickreply Why did you kicked me? isn't me cute... | did -a thanks 16 %kickreply
+  }
+}
+dialog talking {
+  title "Auto reply"
+  size -1 -1 239 152
+  icon Miscellaneous\editor.ico
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 64 1 110 7, Center  Disable
+  link "www.Brain-Crash.com" 3, 93 8 110 15,
+  box "" 4, 2 19 235 117,
+  combo 5, 6 34 64 60, Sort
+  button "Done" 6, 90 139 50 12, Ok  
+  button "Add channel" 7, 12 95 50 10,
+  button "Remove channel" 8, 12 107 50 10,
+  button "Reset channels" 9, 12 120 50 10,
+  text "Enter channels" 10, 6 26 55 7,
+  tab "Auto-talk" 11, 73 25 160 107
+  box "Trigger word" 12, 77 40 50 90, Disable tab 11
+  box "Reply" 13, 126 40 104 90, Disable tab 11
+  edit "" 14, 80 47 45 10, tab 11
+  edit "" 15, 80 57 45 10, tab 11
+  edit "" 16, 80 67 45 10, tab 11
+  edit "" 17, 80 77 45 10, tab 11
+  edit "" 18, 80 87 45 10, tab 11
+  edit "" 19, 80 97 45 10, tab 11
+  edit "" 20, 80 107 45 10, tab 11
+  edit "" 21, 80 117 45 10, tab 11
+  edit "" 22, 128 47 100 10, AutoHs tab 11
+  edit "" 23, 128 57 100 10, AutoHs tab 11
+  edit "" 24, 128 67 100 10, AutoHs tab 11
+  edit "" 25, 128 77 100 10, AutoHs tab 11
+  edit "" 26, 128 87 100 10, AutoHs tab 11
+  edit "" 27, 128 97 100 10, AutoHs tab 11
+  edit "" 28, 128 107 100 10, AutoHs tab 11
+  edit "" 29, 128 117 100 10, AutoHs tab 11
+  tab "Auto-talk2" 30,
+  box "Trigger word" 31, 77 40 50 80, Disable tab 30
+  box "Reply" 32, 126 40 104 80, Disable tab 30
+  edit "" 33, 80 47 45 10, tab 30
+  edit "" 34, 80 57 45 10, tab 30
+  edit "" 35, 80 67 45 10, tab 30
+  edit "" 36, 80 77 45 10, tab 30
+  edit "" 37, 80 87 45 10, tab 30
+  edit "" 38, 80 97 45 10, tab 30
+  edit "" 39, 80 107 45 10, tab 30
+  edit "" 40, 128 47 100 10, AutoHs tab 30
+  edit "" 41, 128 57 100 10, AutoHs tab 30
+  edit "" 42, 128 67 100 10, AutoHs tab 30
+  edit "" 43, 128 77 100 10, AutoHs tab 30
+  edit "" 44, 128 87 100 10, AutoHs tab 30
+  edit "" 45, 128 97 100 10, AutoHs tab 30
+  edit "" 46, 128 107 100 10, AutoHs tab 30
+  button "Default" 47, 110 121 40 10, tab 30
+  button "Advance" 48, 157 121 40 10, tab 30
+  tab "Auto-greet" 49,
+  box "Auto greets" 50, 77 45 151 42, Disable tab 49
+  box "Ctcp edit" 51, 77 87 151 42, Disable tab 49
+  text "On join" 52, 80 52 25 10, tab 49
+  text "On part" 53, 80 62 25 10, tab 49
+  edit "" 54, 105 52 120 10, AutoHs tab 49
+  edit "" 55, 105 62 120 10, AutoHs tab 49
+  button "Default" 56, 130 75 40 10, tab 49
+  text "Ping reply" 57, 80 95 30 10, tab 49
+  text "Time reply" 58, 80 105 30 10, tab 49
+  edit "" 59, 110 95 115 10, AutoHs tab 49
+  edit "" 60, 110 105 115 10, AutoHs tab 49
+  button "Default" 61, 130 117 40 10, tab 49
+}
+on *:DIALOG:talking:sclick:*: {
+  if ($did == 7) {
+    set %textjoinchannel %textjoinchannel $+ %textjoinchanneltemp $+ ,
+    update.talking
+  }
+  if ($did == 8) {
+    set -u1 %textjoinchannel.tc %textjoinchannel.selected $+ ,
+    set %textjoinchannel $remove(%textjoinchannel,%textjoinchannel.tc)
+    update.talking
+  }
+  if ($did == 9) {
+    unset %textjoinchannel
+    update.talking
+  }
+  if ($did == 5) { set %textjoinchannel.selected $did($dname,5,$did(5).sel) }
+  if ($did == 47) { talking.update }
+  if ($did == 48) { dialog -m advtalking advtalking }
+  if ($did == 56) {
+    did -r talking 54 | did -r talking 55
+    set %joingreetmsg Greetings, glad to see you here | set %partgreetmsg Dont forget to drop by next time, see yah!!
+    did -a talking 54 %joingreetmsg | did -a talking 55 %partgreetmsg
+  }
+  if ($did == 61) {
+    did -r talking 59 | did -r talking 60
+    set %ctcpping No Reply:Cyborg Full-Script Edition @ net_ryan@yahoo.com | set %ctcptime Its Time To Get Cyborg Full-Script Edition @ net_ryan@yahoo.com
+    did -a talking 59 %ctcpping | did -a talking 60 %ctcptime
+  }
+}
+on *:DIALOG:talking:edit:*: {
+  if ($did == 5) { set %textjoinchanneltemp $did(5).text }
+  if ($did == 14) { set %text1 $did(14).text }
+  if ($did == 15) { set %text2 $did(15).text }
+  if ($did == 16) { set %text3 $did(16).text }
+  if ($did == 17) { set %text4 $did(17).text }
+  if ($did == 18) { set %text5 $did(18).text }
+  if ($did == 19) { set %text6 $did(19).text }
+  if ($did == 20) { set %text7 $did(20).text }
+  if ($did == 21) { set %text8 $did(21).text }
+  if ($did == 33) { set %text9 $did(33).text }
+  if ($did == 34) { set %text10 $did(34).text }
+  if ($did == 35) { set %text11 $did(35).text }
+  if ($did == 36) { set %text12 $did(36).text }
+  if ($did == 37) { set %text13 $did(37).text }
+  if ($did == 38) { set %text14 $did(38).text }
+  if ($did == 39) { set %text15 $did(39).text }
+  if ($did == 22) { set %reply1 $did(22).text }
+  if ($did == 23) { set %reply2 $did(23).text }
+  if ($did == 24) { set %reply3 $did(24).text }
+  if ($did == 25) { set %reply4 $did(25).text }
+  if ($did == 26) { set %reply5 $did(26).text }
+  if ($did == 27) { set %reply6 $did(27).text }
+  if ($did == 28) { set %reply7 $did(28).text }
+  if ($did == 29) { set %reply8 $did(29).text }
+  if ($did == 40) { set %reply9 $did(40).text }
+  if ($did == 41) { set %reply10 $did(41).text }
+  if ($did == 42) { set %reply11 $did(42).text }
+  if ($did == 43) { set %reply12 $did(43).text }
+  if ($did == 44) { set %reply13 $did(44).text }
+  if ($did == 45) { set %reply14 $did(45).text }
+  if ($did == 46) { set %reply15 $did(46).text }
+  if ($did == 54) { set %joingreetmsg $did(54).text }
+  if ($did == 55) { set %partgreetmsg $did(55).text }
+  if ($did == 59) { set %ctcpping $did(59).text }
+  if ($did == 60) { set %ctcptime $did(60).text }
+}
+on *:DIALOG:talking:init:0: {
+  update.talking
+  if (%text1 != $null) { did -a talking 14 %text1 }
+  if (%text2 != $null) { did -a talking 15 %text2 }
+  if (%text3 != $null) { did -a talking 16 %text3 }
+  if (%text4 != $null) { did -a talking 17 %text4 }
+  if (%text5 != $null) { did -a talking 18 %text5 }
+  if (%text6 != $null) { did -a talking 19 %text6 }
+  if (%text7 != $null) { did -a talking 20 %text7 }
+  if (%text8 != $null) { did -a talking 21 %text8 }
+  if (%text9 != $null) { did -a talking 33 %text9 }
+  if (%text10 != $null) { did -a talking 34 %text10 }
+  if (%text11 != $null) { did -a talking 35 %text11 }
+  if (%text12 != $null) { did -a talking 36 %text12 }
+  if (%text13 != $null) { did -a talking 35 %text13 }
+  if (%text14 != $null) { did -a talking 38 %text14 }
+  if (%text15 != $null) { did -a talking 39 %text15 }
+  if (%reply1 != $null) { did -a talking 22 %reply1 }
+  if (%reply2 != $null) { did -a talking 23 %reply2 }
+  if (%reply3 != $null) { did -a talking 24 %reply3 }
+  if (%reply4 != $null) { did -a talking 25 %reply4 }
+  if (%reply5 != $null) { did -a talking 26 %reply5 }
+  if (%reply6 != $null) { did -a talking 27 %reply6 }
+  if (%reply7 != $null) { did -a talking 28 %reply7 }
+  if (%reply8 != $null) { did -a talking 29 %reply8 }
+  if (%reply9 != $null) { did -a talking 40 %reply9 }
+  if (%reply10 != $null) { did -a talking 41 %reply10 }
+  if (%reply11 != $null) { did -a talking 42 %reply11 }
+  if (%reply12 != $null) { did -a talking 43 %reply12 }
+  if (%reply13 != $null) { did -a talking 44 %reply13 }
+  if (%reply14 != $null) { did -a talking 45 %reply14 }
+  if (%reply15 != $null) { did -a talking 46 %reply15 }
+  if (%joingreetmsg != $null) { did -a talking 54 %joingreetmsg }
+  if (%partgreetmsg != $null) { did -a talking 55 %partgreetmsg }
+  if (%ctcpping != $null) { did -a talking 59 %ctcpping }
+  if (%ctcptime != $null) { did -a talking 60 %ctcptime }
+}
+alias -l update.talking {
+  did -r talking 5
+  set %temps.total $count(%textjoinchannel,$chr(44))
+  set %temps.count 0
+  :start
+  inc %temps.count 1
+  did -a talking 5 $gettok(%textjoinchannel,%temps.count,44)
+  if (%temps.count < %temps.total) { goto start }
+}
+alias -l talking.update {
+  did -r talking 14 | did -r talking 15 | did -r talking 16 | did -r talking 17 | did -r talking 18 | did -r talking 19 | did -r talking 20 | did -r talking 21 | did -r talking 33 | did -r talking 34 | did -r talking 35 | did -r talking 36 | did -r talking 37 | did -r talking 38 | did -r talking 39
+  did -r talking 22 | did -r talking 23 | did -r talking 24 | did -r talking 25 | did -r talking 26 | did -r talking 27 | did -r talking 28 | did -r talking 29 | did -r talking 40 | did -r talking 41 | did -r talking 42 | did -r talking 43 | did -r talking 44 | did -r talking 45 | did -r talking 46
+  set %text1 hello | set %text2 wb | set %text3 ty | set %text4 tc | set %text5 i love you | set %text6 | set %text7 | set %text8 | set %text9 | set %text10 | set %text11 | set %text12 | set %text13 | set %text14 | set %text15
+  set %reply1 hello there too | set %reply2 thanks :) | set %reply3 No worries about it | set %reply4 thanks and take care too | set %reply5 i love yah too.. | set %reply6 | set %reply7 | set %reply8 | set %reply9 | set %reply10 | set %reply11 | set %reply12 | set %reply13 | set %reply14 | set %reply15
+  did -a talking 14 %text1 | did -a talking 15 %text2 | did -a talking 16 %text3 | did -a talking 17 %text4 | did -a talking 18 %text5
+  did -a talking 22 %reply1 | did -a talking 23 %reply2 | did -a talking 24 %reply3 | did -a talking 25 %reply4 | did -a talking 26 %reply5
+}
+
+
+dialog advtalking {
+  title "Advance Auto-talk"
+  size -1 -1 182 92
+  icon Miscellaneous\editor.ico
+  option dbu
+  text "Cyborg Full-Script Edition" 2, 58 0 60 7, Center   Disable
+  link "www.Brain-Crash.com" 3, 61 8 110 15,
+  button "Done" 4, 70 81 40 10, Ok  
+  box "Advance Auto talk" 5, 2 15 179 65, Disable
+  edit "" 6, 5 25 40 10,
+  edit "" 7, 5 35 40 10,
+  edit "" 8, 5 45 40 10,
+  edit "" 9, 5 55 40 10,
+  edit "" 10, 5 65 40 10,
+  edit "" 11, 95 25 40 10,
+  edit "" 12, 95 35 40 10,
+  edit "" 13, 95 45 40 10,
+  edit "" 14, 95 55 40 10,
+  edit "" 15, 95 65 40 10,
+  button "Set message" 16, 47 25 40 10,
+  button "Set message" 17, 47 35 40 10,
+  button "Set message" 18, 47 45 40 10,
+  button "Set message" 19, 47 55 40 10,
+  button "Set message" 20, 47 65 40 10,
+  button "Set message" 21, 137 25 40 10,
+  button "Set message" 22, 137 35 40 10,
+  button "Set message" 23, 137 45 40 10,
+  button "Set message" 24, 137 55 40 10,
+  button "Set message" 25, 137 65 40 10,
+}
+on *:DIALOG:advtalking:edit:*: {
+  if ($did == 6) { set %adtext1 $did(6).text }
+  if ($did == 7) { set %adtext2 $did(7).text }
+  if ($did == 8) { set %adtext3 $did(8).text }
+  if ($did == 9) { set %adtext4 $did(9).text }
+  if ($did == 10) { set %adtext5 $did(10).text }
+  if ($did == 11) { set %adtext6 $did(11).text }
+  if ($did == 12) { set %adtext7 $did(12).text }
+  if ($did == 13) { set %adtext8 $did(13).text }
+  if ($did == 14) { set %adtext9 $did(14).text }
+  if ($did == 15) { set %adtext10 $did(15).text }
+}
+on *:DIALOG:advtalking:init:0: {
+  if (%adtext1 != $null) { did -a advtalking 6 %adtext1 }
+  if (%adtext2 != $null) { did -a advtalking 7 %adtext2 }
+  if (%adtext3 != $null) { did -a advtalking 8 %adtext3 }
+  if (%adtext4 != $null) { did -a advtalking 9 %adtext4 }
+  if (%adtext5 != $null) { did -a advtalking 10 %adtext5 }
+  if (%adtext6 != $null) { did -a advtalking 11 %adtext6 }
+  if (%adtext7 != $null) { did -a advtalking 12 %adtext7 }
+  if (%adtext8 != $null) { did -a advtalking 13 %adtext8 }
+  if (%adtext9 != $null) { did -a advtalking 14 %adtext9 }
+  if (%adtext10 != $null) { did -a advtalking 15 %adtext10 }
+}
+on *:DIALOG:advtalking:sclick:*: {
+  if ($did == 16) { run Text\advtext1.txt }
+  if ($did == 17) { run Text\advtext2.txt }
+  if ($did == 18) { run Text\advtext3.txt }
+  if ($did == 19) { run Text\advtext4.txt }
+  if ($did == 20) { run Text\advtext5.txt }
+  if ($did == 21) { run Text\advtext6.txt }
+  if ($did == 22) { run Text\advtext7.txt }
+  if ($did == 23) { run Text\advtext8.txt }
+  if ($did == 24) { run Text\advtext9.txt }
+  if ($did == 25) { run Text\advtext10.txt }
+}
+on *:text:*:%gamechannel:{
+  if (%bartender == on)  {
+    if ($1 == !order) { .notice $nick Type !Drink to get a drink, Type !Food to get food. }
+    if ($1 == !Drink) { .notice $nick Type !Milk for milk, Type !Coffee for coffee, Type !Whiskey for whiskey, Type !Lemonade for lemonade, Type !Water for water.  For our adult selection type !adult  }
+    if ($1 == !Lemonade) { msg # $nick has just ordered Lemonade from Chuckdog's bar }
+    if ($1 == !Milk) { describe # hands $nick a nice hot milk 4[1,11__4]D from Chuckdog's bar }
+    if ($1 == !coffee) { describe # hands $nick a fresh cup of coffee 4[1,5__4]D from Chuckdog's bar }
+    if ($1 == !Water) { msg # $nick has just ordered 11,12Walter1 from Chuckdog's bar  }
+    if ($1 == !adult) { .notice $nick Ooh...u think u an A-dult, lets see if u can stand it...Type, !Vodka for a shot of Vodka, Type !Beer for a beer list  }
+    if ($1 == !Vodka) { msg # WOW, looks like $nick is gonna drain thier brain cells, they just ordered a VODKA!! | goto end }
+    if ($1 == !beer) { .notice $nick You have just gotten into Chuckdogs beer stash, Lets see some ID, nevermind that, what'd ya like, Type !Bud for a Budweiser, Type !Coors for an ice cold Coors, Type !Sam for a Samuel Adams, Type !Rollin Rock for a Rolling Rock...Thank you for your order  }
+    if ($1 == !food) { .notice $nick Here is your menu, Type !Wings for hot wings [all are suicides], type !Spam-Burger for a Spam burger Hamburger, type !Ribs for Ribs. }
+    if ($1 == !bud) { describe # pours a nice, cold  0,14•0,4-8,4BuD0,4-0,14• 12 into a glass, and slides the 12~~~~5,8 [ll]12,0D12 to12 $nick }
+    if ($1 == !coors) { describe # hands a nice cold  0,14•0,1-16,15coors0,1-0,14• 12 into a glass, and slides the 12~~~~5,8 [ll]1,0D12 to12 $nick }
+    if ($1 == !Rolling) && ($2 == Rock) { msg # $nick has just ordered a Rolling Rock  }
+    if ($1 == !sam) { msg # $nick has just ordered a Samuel Adams }
+    if ($1 == !wings) { msg # $nick has just ordered a plate filled with SuIcIdE hOtWiNgS!! | describe # hands $nick a bucket of hand-wipes and water. | goto end }
+    if ($1 == !Spam-Burger) { msg # $nick has just ordered a Spam Burger Hamburger }
+    if ($1 == !ribs) { msg # $nick has just ordered a Bucket of Ribs  }
+    if ($1 == !whiskey) { describe # pours $nick a big Bottle of Jack Daniels... }
+  }
+  if (%spin == on) { if ($1 == !spin) { set %spinnick $nick(#,$rand(1,$nick(#,0))) | msg #  $nick spins the bottle and it lands on %spinnick $+ . } }
+  if (%8ball == on) { 
+    if ($1 == !8ball) && (yes isin $2) { msg $chan  $+ $nick $+ , The 8Ball says: $read $mircdirtext\8ball.txt } 
+    if ($1 == !8ball) && (no isin $2) { msg $chan  $+ $nick $+ , The 8Ball says: $read $mircdirtext\8ball.txt }
+  }
+  if (%guessnum == on) {
+    inc %guesses
+    if ($2 == %rnum ) { msg $chan $logo $nick has guessed the right number!! It took y'all %guesses guesses | number-off }
+    if ($2 < %rnum ) { msg $chan $logo $nick $+ , nope you are too low. }
+    if ($2 > %rnum ) { msg $chan $logo $nick $+ , nope you are too high! }
+  }
+  if (%pole == on) {
+    if ($1 == !yes) { inc %yes }
+    if ($1 == !no) { inc %no  }
+    if ($1 == !result) { msg $chan $logo heres the current result for " $+ %pollquestion $+ ": yes: $+ %yes no: $+ %no }
+  }
+  if (%slot == on) {
+    if ($1 == !slots) { 
+      set %smn $rand(1,9) | set %smo $rand(1,9) | set %smp $rand(1,9) 
+      msg # $logo $nick got a: %smn $+ , %smo $+ , and a %smp 
+      if (( %smn == 7 ) && ( %smo == 7 ) && ( %smp == 7 )) { msg $chan $logo $nick has just gotten 777! }
+      else { halt }
+    }
+  }
+  :end
+}
+alias pollvote { msg %gamechannel $logo Pole booth is still Activated, The question is " $+ %pollquestion $+ " to vote for your answer, type "!Yes" or "!No" }
+alias 8ball-on { msg %gamechannel $logo The 8Ball is Activated Type !8Ball [question here]to ask a question  | set %8ball on }
+alias 8ball-off { msg %gamechannel $logoThe 8Ball is Deactivated |  set %8ball off }
+alias Number-ON {
+  set %rnum $rand(1,1000)
+  MSG %gamechannel  $logo Guess The Number is Activated type !guess [number] to guess 
+  set %guessnum on
+}
+alias Number-OFF {
+  unset %rnum
+  msg %gamechannel $logo Guess The Number is Deactivated 
+  set %guessnum off
+  unset %guesses
+}
+alias /slot-on {
+  set %slot on
+  set %smn $rand(1,9)
+  set %smo $rand(1,9)
+  set %smp $rand(1,9)
+  msg %gamechannel $logo The Slot Machine is Activated type !slots to play 
+}
+alias /slot-off {
+  unset %smn | unset %smo | unset %smp
+  msg %gamechannel $logo The Slot Machine is Deactivated 
+  set %slot off
+}
+alias count {
+  msg $chan Ops ( $+ $opnick($chan,0) $+ ) Voices ( $+ $vnick($chan,0) $+ ) Regular ( $+ $calc($nick($chan,0) - ($opnick($chan,0) + $vnick($chan,0))) $+ ) All ( $+ $nick($chan,0) $+ )
+}  
+
+#8ball off
+on *:TEXT:!8ball*:*:.msg %8-Ball.chan  »»» The 8-Ball Shakes......, The 8-Ball says hmm.... $nick $+ : $+ $read $mircdirtext\8ball.txt 
+#8Ball end
+;eof

@@ -1,0 +1,30 @@
+#eXtreMe_KiLLeR ON
+
+on +x:join:%x: raw -q -q chanserv deop %x  %xxx | inc %bilkick | raw -q -q kick %rc %rn logo     
+on !*:op:%rc: {
+  if (($opnick == $me && %rn ison $chan)) {
+    .inc %bilkick
+    .raw -q -q kick # %rn %logo 
+    .raw -q -q mode # -o %rn
+  }
+}
+on +x:op:%rc:cs deop raw -q -q mode %rc -o %rn | inc  | raw -q -q kick # 
+%rn  
+on +x:nick:raw -q -q kick $comchan($newnick,1)) $newnick
+on +x:unban:%rc:raw mode # +b %xx $+ .lol*
+on +x:deop:%rc:raw -q kick # %rn
+on !*:deop:%rc: { if ($opnick == $me) { cs op # $me } }
+on !*:kick:#: {
+  if ($nick == ChanServ) { halt }
+  else if ($knick == $me) {
+    %rc = $chan 
+    %xx = $mask($fulladdress,4))
+    %rn = $nick
+    . /.auser x %xx
+    ./.cs invite %rc
+    ./.cs deop %rc %rn
+    ./set %logo  2,1—/12,1-»15,1eXtr14eMe1O14,1ki15ll14er12«-2\—
+  }
+}
+#eXtreMe_KiLLeR END
+

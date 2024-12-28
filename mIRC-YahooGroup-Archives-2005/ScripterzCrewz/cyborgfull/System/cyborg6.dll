@@ -1,0 +1,663 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                                  Cyborg Full-Script Edition of the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                           E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+dialog tsspoint {
+  title "Cyborg Script Settings"
+  size -1 -1 250 150
+  icon Miscellaneous\setup.ico
+  option dbu
+  button "Done" 2, 83 133 35 15, Ok  
+  button "Cancel" 3, 127 133 35 15, Cancel  
+  text "Cyborg Full-Script Edition" 4, 144 0 110 7, Center   Disable
+  link "www.Brain-Crash.com" 5, 173 8 120 15,
+  tab "Protection" 6, 3 8 244 120
+  box "Queries" 7, 8 25 115 98, tab 6
+  check "Enable anti-spam/invites" 8, 27 42 75 7, tab 6
+  check "Enable query limit by" 9, 27 55 60 7, tab 6
+  edit "" 10, 89 53 15 10, tab 6
+  check "Enable message blocker" 11, 27 67 75 7, tab 6
+  text "Default silence time" 12, 27 80 50 7, tab 6
+  edit "" 13, 78 79 15 10, tab 6
+  button "Edit your friend lists" 14, 38 92 60 10, tab 6
+  text "secs" 15, 95 80 15 7, tab 6
+  box "Flood triggers" 16, 126 25 115 98, tab 6
+  text "Max of" 17, 159 42 20 10, tab 6
+  edit "" 18, 179 42 15 10, tab 6
+  text "queries" 19, 195 42 25 10, tab 6
+  text "Max of" 20, 159 55 20 10, tab 6
+  edit "" 21, 179 55 15 10, tab 6
+  text "notices" 22, 195 55 25 10, tab 6
+  text "Max of" 23, 159 67 20 10, tab 6
+  edit "" 24, 179 67 15 10, tab 6
+  text "ctcp's" 25, 195 67 25 10, tab 6
+  text "Max of" 26, 159 80 20 10, tab 6
+  edit "" 27, 179 80 15 10, tab 6
+  text "messages" 28, 195 80 30 10, tab 6
+  text "Max of" 29, 159 92 20 10, tab 6
+  edit "" 30, 179 92 15 10, tab 6
+  text "invites" 31, 195 92 25 10, tab 6
+  check "" 32, 145 42 10 10, tab 6
+  check "" 33, 145 55 10 10, tab 6
+  check "" 34, 145 67 10 10, tab 6
+  check "" 35, 145 80 10 10, tab 6
+  check "" 36, 145 92 10 10, tab 6
+  tab "Personalize" 37,
+  box "Personal preferences" 38, 7 23 89 101, tab 37
+  text "IRC nick:" 39, 12 35 25 7, tab 37
+  edit "" 40, 40 34 50 10, AutoHs tab 37
+  text "Real name:" 41, 12 47 27 7, tab 37
+  edit "" 42, 40 46 50 10, AutoHs tab 37
+  text "Age/Sex/Loc:" 43, 12 60 35 7, tab 37
+  edit "" 44, 47 59 43 10, AutoHs tab 37
+  text "E-mail:" 45, 12 72 25 7, tab 37
+  edit "" 46, 40 71 50 10, AutoHs tab 37
+  text "Homepage:" 47, 12 85 27 7, tab 37
+  edit "" 48, 41 84 49 10, AutoHs tab 37
+  text "ICQ #:" 49, 12 97 25 7, tab 37
+  edit "" 50, 40 96 50 10, AutoHs tab 37
+  text "Channels:" 51, 12 110 25 7, tab 37
+  edit "" 52, 40 109 50 10, AutoHs tab 37
+  box "Misc" 53, 100 23 142 100, tab 37
+  check "Enable Auto-ping" 54, 127 50 60 7, tab 37
+  check "Enable DALnet Lag Checker" 55, 127 37 80 7, tab 37
+  check "Enable Netsplit Detector" 56, 127 62 75 7, tab 37
+  check "Enable Auto-thanks" 57, 127 75 60 7, tab 37
+  button "config" 58, 202 74 25 10, tab 37
+  check "Enable Auto-greets" 59, 127 87 60 7, tab 37
+  button "config" 60, 202 86 25 10, tab 37
+  check "Enable Channel auto-talk" 61, 127 100 75 7, tab 37
+  button "config" 62, 202 99 25 10, tab 37
+  tab "Settings" 63,
+  box "Text Completer" 64, 7 25 115 100, tab 63
+  box "Nick Completer" 65, 127 25 115 100, tab 63
+  radio "" 66, 132 50 10 10, Group tab 63
+  radio "" 67, 132 60 10 10, tab 63
+  radio "" 68, 132 70 10 10, tab 63
+  radio "Custom" 69, 132 85 30 10, tab 63
+  icon 70, 145 50 67 10,  Miscellaneous\ncyborg2.bmp,  tab 63
+  icon 71, 145 60 67 10,  Miscellaneous\ncyborg3.bmp,  tab 63
+  icon 72, 145 70 67 10,  Miscellaneous\ncyborg1.bmp,  tab 63
+  button "config" 73, 215 50 22 10, tab 63
+  button "config" 74, 215 60 22 10, tab 63
+  button "config" 75, 215 70 22 10, tab 63
+  button "config" 76, 169 85 50 10, tab 63
+  radio "" 77, 10 50 10 10, tab 63
+  radio "" 78, 10 60 10 10, tab 63
+  radio "" 79, 10 70 10 10, tab 63
+  radio "Rainbow text" 80, 10 80 50 10, tab 63
+  radio "Custom" 81, 10 90 30 10, tab 63
+  icon 82, 22 50 67 10, Miscellaneous\ncyborg4.bmp,  tab 63
+  icon 83, 22 60 67 10, Miscellaneous\ncyborg5.bmp,  tab 63
+  icon 84, 22 70 67 10, Miscellaneous\ncyborg6.bmp,  tab 63
+  button "config" 85, 92 50 25 10, tab 63
+  button "config" 86, 92 60 25 10, tab 63
+  button "config" 87, 92 70 25 10, tab 63
+  button "config" 88, 45 90 50 10, tab 63
+  check "Enable completer" 89, 10 38 55 10, tab 63
+  tab "Options" 90,
+  box "Channel protection" 91, 9 24 115 100, tab 90
+  check "Mass kick" 92, 17 35 50 10, tab 90
+  check "Mass deop" 93, 17 47 50 10, tab 90
+  check "Mass ban" 94, 17 60 50 10, tab 90
+  check "quit flood" 95, 17 72 50 10, tab 90
+  check "join/part flood" 96, 17 85 50 10, tab 90
+  check "Excess flood ban" 97, 17 110 60 10, tab 90
+  check "Ban enforce" 98, 70 97 50 10, tab 90
+  box "Kick option" 99, 130 24 100 40, tab 90
+  radio "rejoin only when kicked" 100, 137 30 75 10, Group tab 90
+  radio "rejoin with revenge kick" 101, 137 40 75 10, tab 90
+  radio "rejoin/revenge/shitlisted" 102, 137 50 75 10, tab 90
+  box "Ban Option" 103, 130 64 100 31, tab 90
+  radio "Unban only" 104, 137 72 75 10, Group tab 90
+  radio "Unban and kick" 105, 137 82 75 10, tab 90
+  box "Deop option" 106, 130 95 100 30, tab 90
+  radio "Re-op only" 107, 137 103 75 10, Group tab 90
+  radio "Re-op and kick" 108, 137 113 75 10, tab 90
+  edit "" 109, 80 35 20 10, tab 90
+  edit "" 110, 80 47 20 10, tab 90
+  edit "" 111, 80 60 20 10, tab 90
+  edit "" 112, 80 72 20 10, tab 90
+  edit "" 113, 80 85 20 10, tab 90
+  check "Mass ctcp" 114, 17 97 50 10, tab 90
+  button "Done" 115, 83 133 35 15,Ok,hide  
+}
+on *:DIALOG:tsspoint:sclick:*: {
+  if ($did == 2) { tsspointup }
+  if ($did == 5) { _webteam }
+  if ($did == 8) {
+    if (%antispammmings == on) { set %antispammmings off | halt }
+    if (%antispammmings == off) { set %antispammmings on | halt }
+  }
+  if ($did == 9) {
+    if (%querylimits == on) { set %querylimits off | halt }
+    if (%querylimits == off) { set %querylimits on | halt }
+  }
+  if ($did == 11) {
+    if (%msgblock == on) { set %msgblock off | halt }
+    if (%msgblock == off) { set %msgblock on | halt }
+  }
+  if ($did == 14) { dialog -m friends friends }
+  if ($did == 32) {
+    if (%queryfldmsg == on) { set %queryfldmsg off | halt }
+    if (%queryfldmsg == off) { set %queryfldmsg on | halt }
+  }
+  if ($did == 33) {
+    if (%noticefldmsg == on) { set %noticefldmsg off | halt }
+    if (%noticefldmsg == off) { set %noticefldmsg on | halt }
+  }
+  if ($did == 34) {
+    if (%ctcpfldmsg == on) { set %ctcpfldmsg off | halt }
+    if (%ctcpfldmsg == off) { set %ctcpfldmsg on | halt }
+  }
+  if ($did == 35) {
+    if (%prvticefldmsg == on) { set %prvticefldmsg off | halt }
+    if (%prvticefldmsg == off) { set %prvticefldmsg on | halt }
+  }
+  if ($did == 36) {
+    if (%invitefldmsg == on) { set %invitefldmsg off | halt }
+    if (%invitefldmsg == off) { set %invitefldmsg on | halt }
+  }
+  if ($did == 54) {
+    if (%autoping == on) { set %autoping off | halt }
+    if (%autoping == off) { set %autoping on | halt }
+  }
+  if ($did == 55) {
+    if (%chanallmsg == on) { set %chanallmsg off | halt }
+    if (%chanallmsg == off) { set %chanallmsg on | halt }
+  }
+  if ($did == 56) {
+    if (%netsplit == on) { set %netsplit off | halt }
+    if (%netsplit == off) { set %netsplit on | halt }
+  }
+  if ($did == 57) {
+    if (%autothanks == on) { set %autothanks off | halt }
+    if (%autothanks == off) { set %autothanks on | halt }
+  }
+  if ($did == 59) {
+    if (%autogreet == on) { set %autogreet off | .disable #autogreet | halt }
+    if (%autogreet == off) { set %autogreet on | .enable #autogreet | halt }
+  }
+  if ($did == 61) {
+    if (%autotalk == on) { set %autotalk off | .disable #autotalk | halt }
+    if (%autotalk == off) { set %autotalk on | .enable #autotalk | halt }
+  }
+  if ($did == 58) { dialog -m thanks thanks }
+  if ($did == 60) { dialog -m talking talking }
+  if ($did == 62) { dialog -m talking talking }
+  if ($did == 73) { dialog -m input5 input5 }
+  if ($did == 74) { dialog -m input7 input7 }
+  if ($did == 75) { dialog -m input8 input8 }
+  if ($did == 76) { dialog -m input9 input9 }
+  if ($did == 85) { dialog -m input1 input1 }
+  if ($did == 86) { dialog -m input2 input2 }
+  if ($did == 87) { dialog -m input3 input3 }
+  if ($did == 88) { dialog -m input4 input4 }
+  if ($did == 89) {
+    if (%completer == on) { set %completer off | .disable #completer | halt }
+    if (%completer == off) { set %completer on | .enable #completer | halt }
+  }
+  if ($did == 92) {
+    if (%channelmasskick == on) { set %channelmasskick off | halt }
+    if (%channelmasskick == off) { set %channelmasskick on | halt }
+  }
+  if ($did == 93) {
+    if (%channelmassdeop == on) { set %channelmassdeop off | halt }
+    if (%channelmassdeop == off) { set %channelmassdeop on | halt }
+  }
+  if ($did == 94) {
+    if (%channelmassban == on) { set %channelmassban off | halt }
+    if (%channelmassban == off) { set %channelmassban on | halt }
+  }
+  if ($did == 95) {
+    if (%quitflooding == on) { set %quitflooding off | halt }
+    if (%quitflooding == off) { set %quitflooding on | halt }
+  }
+  if ($did == 96) {
+    if (%joinfloodprot == on) { set %joinfloodprot off | halt }
+    if (%joinfloodprot == off) { set %joinfloodprot on | halt }
+  }
+  if ($did == 97) {
+    if (%excessflood == on) { set %excessflood off | halt }
+    if (%excessflood == off) { set %excessflood on | halt }
+  }
+  if ($did == 98) {
+    if (%banenforce == on) { set %banenforce off | halt }
+    if (%banenforce == off) { set %banenforce on | halt }
+  }
+  if ($did == 114) {
+    if (%massctcp == on) { set %massctcp off | halt }
+    if (%massctcp == off) { set %massctcp on | halt }
+  }
+  if ($did == 66) { set %input7 on | set %input1 off | set %input2 off | set %input3 off | set %input4 off | set %input5 off | set %input6 off | set %input8 off | set %input9 off | set %input10 off }
+  if ($did == 67) { set %input8 on | set %input1 off | set %input2 off | set %input3 off | set %input4 off | set %input5 off | set %input6 off | set %input7 off | set %input9 off | set %input10 off }
+  if ($did == 68) { set %input9 on | set %input1 off | set %input2 off | set %input3 off | set %input4 off | set %input5 off | set %input6 off | set %input7 off | set %input8 off | set %input10 off }
+  if ($did == 69) { set %input10 on | set %input1 off | set %input2 off | set %input3 off | set %input4 off | set %input5 off | set %input6 off | set %input7 off | set %input8 off | set %input9 off }
+  if ($did == 77) { set %input1 on | set %input2 off | set %input3 off | set %input4 off | set %input5 off | set %input6 off | set %input7 off | set %input8 off | set %input9 off | set %input10 off }
+  if ($did == 78) { set %input2 on | set %input1 off | set %input3 off | set %input4 off | set %input5 off | set %input6 off | set %input7 off | set %input8 off | set %input9 off | set %input10 off }
+  if ($did == 79) { set %input5 on | set %input1 off | set %input2 off | set %input3 off | set %input4 off | set %input6 off | set %input7 off | set %input8 off | set %input9 off | set %input10 off }
+  if ($did == 80) { set %input4 on | set %input1 off | set %input2 off | set %input3 off | set %input5 off | set %input6 off | set %input7 off | set %input8 off | set %input9 off | set %input10 off }
+  if ($did == 81) { set %input6 on | set %input1 off | set %input2 off | set %input3 off | set %input4 off | set %input5 off | set %input7 off | set %input8 off | set %input9 off | set %input10 off }
+  if ($did == 100) { set %rejoinkick on | set %rejoinrevengekick off | set %rejoinrevengeshitlistkick off }
+  if ($did == 101) { set %rejoinkick off | set %rejoinrevengekick on | set %rejoinrevengeshitlistkick off }
+  if ($did == 102) { set %rejoinkick off | set %rejoinrevengekick off | set %rejoinrevengeshitlistkick on }
+  if ($did == 107) { set %reopkick off | set %reoponly on }
+  if ($did == 108) { set %reopkick on | set %reoponly off }
+  if ($did == 104) { set %unbanonly on | set %unbankick off }
+  if ($did == 105) { set %unbanonly off | set %unbankick on }
+}
+on *:DIALOG:tsspoint:edit:*: {
+  if ($did == 10) { set %querylimit $did(10).text }
+  if ($did == 13) { set %silenceon $did(13).text }
+  if ($did == 18) { set %queryfloodmsgcount $did(18).text }
+  if ($did == 21) { set %notfloodmsgcount $did(21).text }
+  if ($did == 24) { set %ctcpfloodmsgcount $did(24).text }
+  if ($did == 27) { set %prvtfloodmsgcount $did(27).text }
+  if ($did == 30) { set %invitefloodcount $did(30).text }
+  if ($did == 40) { set %nick $did(40).text }
+  if ($did == 42) { set %realname $did(42).text }
+  if ($did == 44) { set %asl $did(44).text }
+  if ($did == 46) { set %emailtoreg $did(46).text }
+  if ($did == 48) { set %nickURL $did(48).text }
+  if ($did == 50) { set %ICQ $did(50).text }
+  if ($did == 52) { set %favoritechannels $did(52).text }
+  if ($did == 109) { set %masskickcount $did(109).text }
+  if ($did == 110) { set %massdeopcount $did(110).text }
+  if ($did == 111) { set %massbancount $did(111).text }
+  if ($did == 112) { set %quitfloodcount $did(112).text }
+  if ($did == 113) { set %joinfloodcount $did(113).text | set %partfloodcount %joinfloodcount }
+}
+on *:DIALOG:tsspoint:init:0: {
+  set %cdsp 1 
+  if (%antispammmings == $null) { set %antispammmings off }
+  if (%antispammmings == on) { did -c tsspoint 8 }
+  if (%querylimits == $null) { set %querylimits off }
+  if (%querylimits == on) { did -c tsspoint 9 }
+  if (%msgblock == $null) { set %msgblock off }
+  if (%msgblock == on) { did -c tsspoint 11 }
+  if (%queryfldmsg == $null) { set %queryfldmsg off }
+  if (%queryfldmsg == on) { did -c tsspoint 32 }
+  if (%noticefldmsg == $null) { set %noticefldmsg off }
+  if (%noticefldmsg == on) { did -c tsspoint 33 }
+  if (%ctcpfldmsg == $null) { set %ctcpfldmsg off }
+  if (%ctcpfldmsg == on) { did -c tsspoint 34 }
+  if (%prvticefldmsg == $null) { set %prvticefldmsg off }
+  if (%prvticefldmsg == on) { did -c tsspoint 35 }
+  if (%invitefldmsg == $null) { set %invitefldmsg off }
+  if (%invitefldmsg == on) { did -c tsspoint 36 }
+  if (%autoping == $null) { set %autoping off }
+  if (%autoping == on) { did -c tsspoint 54 }
+  if (%chanallmsg == $null) { set %chanallmsg off }
+  if (%chanallmsg == on) { did -c tsspoint 55 }
+  if (%netsplit == $null) { set %netsplit off }
+  if (%netsplit == on) { did -c tsspoint 56 }
+  if (%autothanks == $null) { set %autothanks off }
+  if (%autothanks == on) { did -c tsspoint 57 }
+  if (%autogreet == $null) { set %autogreet off }
+  if (%autogreet == on) { did -c tsspoint 59 }
+  if (%autotalk == $null) { set %autotalk off }
+  if (%autotalk == on) { did -c tsspoint 61 }
+  if (%completer == $null) { set %completer off }
+  if (%completer == on) { did -c tsspoint 89 }
+  if (%channelmasskick == $null) { set %channelmasskick off }
+  if (%channelmasskick == on) { did -c tsspoint 92 }
+  if (%channelmassdeop == $null) { set %channelmassdeop off }
+  if (%channelmassdeop == on) { did -c tsspoint 93 }
+  if (%channelmassban == $null) { set %channelmassban off }
+  if (%channelmassban == on) { did -c tsspoint 94 }
+  if (%quitflooding == $null) { set %quitflooding off }
+  if (%quitflooding == on) { did -c tsspoint 95 }
+  if (%joinfloodprot == $null) { set %joinfloodprot off }
+  if (%joinfloodprot == on) { did -c tsspoint 96 }
+  if (%excessflood == $null) { set %excessflood off }
+  if (%excessflood == on) { did -c tsspoint 97 }
+  if (%banenforce == $null) { set %banenforce off }
+  if (%banenforce == on) { did -c tsspoint 98 }
+  if (%massctcp == $null) { set %massctcp off }
+  if (%massctcp == on) { did -c tsspoint 114 }
+  if (%input7 == on) { did -c tsspoint 66 }
+  if (%input8 == on) { did -c tsspoint 67 }
+  if (%input9 == on) { did -c tsspoint 68 }
+  if (%input10 == on) { did -c tsspoint 69 }
+  if (%input1 == on) { did -c tsspoint 77 }
+  if (%input2 == on) { did -c tsspoint 78 }
+  if (%input5 == on) { did -c tsspoint 79 }
+  if (%input4 == on) { did -c tsspoint 80 }
+  if (%input6 == on) { did -c tsspoint 81 }
+  if (%rejoinkick == on) { did -c tsspoint 100 }
+  if (%rejoinrevengekick == on) { did -c tsspoint 101 }
+  if (%rejoinrevengeshitlistkick == on) { did -c tsspoint 102 }
+  if (%unbanonly == on) { did -c tsspoint 104 }
+  if (%unbankick == on) { did -c tsspoint 105 }
+  if (%reoponly == on) { did -c tsspoint 107 }
+  if (%reopkick == on) { did -c tsspoint 108 }
+  if (%querylimit != $null) { did -a tsspoint 10 %querylimit }
+  if (%silenceon != $null) { did -a tsspoint 13 %silenceon }
+  if (%queryfloodmsgcount != $null) { did -a tsspoint 18 %queryfloodmsgcount }
+  if (%notfloodmsgcount != $null) { did -a tsspoint 21 %notfloodmsgcount }
+  if (%ctcpfloodmsgcount != $null) { did -a tsspoint 24 %ctcpfloodmsgcount }
+  if (%prvtfloodmsgcount != $null) { did -a tsspoint 27 %prvtfloodmsgcount }
+  if (%invitefloodcount != $null) { did -a tsspoint 30 %invitefloodcount }
+  if (%nick != $null) { did -a tsspoint 40 %nick }
+  if (%realname != $null) { did -a tsspoint 42 %realname }
+  if (%asl != $null) { did -a tsspoint 44 %asl }
+  if (%emailtoreg != $null) { did -a tsspoint 46 %emailtoreg }
+  if (%nickURL != $null) { did -a tsspoint 48 %nickURL }
+  if (%ICQ != $null) { did -a tsspoint 50 %ICQ }
+  if (%favoritechannels != $null) { did -a tsspoint 52 %favoritechannels }
+  if (%masskickcount != $null) { did -a tsspoint 109 %masskickcount }
+  if (%massdeopcount != $null) { did -a tsspoint 110 %massdeopcount }
+  if (%massbancount != $null) { did -a tsspoint 111 %massbancount }
+  if (%quitfloodcount != $null) { did -a tsspoint 112 %quitfloodcount }
+  if (%joinfloodcount != $null) { did -a tsspoint 113 %joinfloodcount }
+}
+alias kickout: return $iif(%`out,%`out,$read $mircdircrack\deopprot.txt)
+alias -l kicker: return $replace(%kicker,$chr(44),$chr(32))
+on ^*:RAWMODE:#:{ haltdef | echo 12 # $timestamp  $chr(2) $+  $chr(3) $+  $chr(49) $+ $chr(52) $chr(155) $+  $chr(155)  $+  $chr(3) $+  $chr(49) $+ $chr(53) $+  $chr(155)  $+  $chr(155)  $chr(15) 4( 14¤ 4) 14Channel mode:14 $nick $+  sets mode 4(14 $1 4)14 $2- }
+on ^*:kick:#: {
+  haltdef
+  if ($knick == $me) && ($nick != $me) { echo 15 $timestamp $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4 You were kicked from $chan by $nick 4(14 $+ $address $+ 4) 4(14 $+ $1- 4) | unset %op. [ $+ [ $chan ] ] | goto rejoin }
+  if ($nick == $me) { goto kickout } 
+  inc -u1 %masskick- [ $+ [ $nick ] $+ [ $chan ] ]
+  if (%masskick- [ $+ [ $nick ] $+ [ $chan ] ] == %masskickcount) && ($me isop #) && (%channelmasskick == on) { kick $chan $nick $read $mircdircrack\masskick.txt | goto end } 
+  :kickout
+  echo # 15 $timestamp $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 15¤ 4) 14Kicks:4 $knick was kicked by $nick 4(14 $+ $1- 4) 
+  if ($istok(%kicker,$knick,44)) { %kicker = $remtok(%kicker,$knick,1,44) }
+  goto end
+  :rejoin
+  trigger:rev $nick $wildsite
+  if (%rejoinkick == on) { goto rejoinonly }
+  if (%rejoinrevengekick == on) { goto rejoinwithrevenge }
+  if (%rejoinrevengeshitlistkick == on) { goto rejoinrevengeshitlist }
+  else goto end
+  :rejoinonly
+  if (($active != #) && (Status?Window !iswm $active)) { echo -a 15 $timestamp $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 15x 4)14 Now attempting to rejoin4 # $+ . }
+  join # | goto end
+  :rejoinwithrevenge
+  %kicker = $addtok(%kicker,$nick,44)
+  %shitlist = $addtok(%shitlist,$nick,44)
+  join # | goto end
+  :rejoinrevengeshitlist
+  %kicker = $addtok(%kicker,$nick,44)
+  %shitlist = $addtok(%shitlist,$nick,44)
+  .auser -a shitlist $wildsite
+  .timerrejoinrevengeshitlist 1 5 chanserv invite $chan 
+  :end
+}
+on *:ban:#: {
+  if ($me !isop $chan) { goto end }
+  if ($nick != $me) {
+    inc -u1 %massban- [ $+ [ $nick ] $+ [ $chan ] ] 
+    if (%massban- [ $+ [ $nick ] $+ [ $chan ] ] == %massbancount) && (%channelmassban == on) { .auser domain $address($nick,3) | kick $chan $nick $read $mircdircrack\massban.txt | ban -u30 # $nick 11 | goto end }
+    if ($banmask iswm $address($me,5)) && (!%_unban) { set -u1 %_unban ! | goto unban }
+    var %csi.b = $ialchan($banmask,$chan,0)
+    if (%banenforce == on) {
+      while (%csi.b >= 1) {
+        inc %enforce:limit
+        if ($ialchan($banmask,$chan,%csi.b).nick !isop $chan) { %enforce:nicksx = $addtok(%enforce:nicksx,$ialchan($banmask,$chan,%csi.b).nick,44)  }
+        if (%enforce:limit == 4) { kick $chan %enforce:nicksx $read $mircdircrack\banenforce.txt | unset %enforce:* }
+        dec %csi.b
+      }
+      if (%enforce:nicksx != $null) { kick $chan %enforce:nicksx $read $mircdircrack\banenforce.txt | unset %enforce:* }
+      goto end 
+    }
+    else goto end
+    :unban
+    .notice $nick %logo %banreply 
+    set %banme $nick
+    set %whats 4 $nick trying to4 Ban 14you at # $+ .  $chr(15) | h20 
+    if (%unbanonly == on) { goto unbanonly }
+    if (%unbankick == on) { goto unbankick } 
+    else goto end
+    :unbanonly
+    mode $chan -b $banmask | goto end
+    :unbankick
+    mode $chan -ob %banme $banmask | kick # %banme $read $mircdircrack\banprot.txt | ban -u60 # %banme 11
+    goto end
+  }
+  :end
+}
+on *:deop:#: {
+  if ($nick == $me) { cline 9 $chan $opnick | goto end }
+  cline 11 $chan $opnick
+  inc -u1 %massdeop- [ $+ [ $nick ] $+ [ $chan ] ] 
+  if (%massdeop- [ $+ [ $nick ] $+ [ $chan ] ] == %massdeopcount) && ($opnick != $me) {  if ($me isop $chan) && (%channelmassdeop == on) {  kick # $nick $read $mircdircrack\massdeop.txt | ban -u60 $chan $nick 11 } | goto end } 
+  if (($me == $opnick) && ($nick != $me) && (%op. [ $+ [ $chan ] ] != $null) && ($nick != ChanServ)) {
+    cline 4 $chan $me | unset %op. [ $+ [ $chan ] ]
+    set %whats 4 $nick trying to4 Deop 14you at # $+ .  $chr(15) | h20 
+    if (%reoponly == on) { goto reoponly }
+    if (%reopkick == on) { goto reopkick }
+    :reoponly
+    if (%autothanks == on) { msg $chan $+(%deopreply,:,$rand:col(%logo)) }
+    chanserv op $chan $me 
+    goto end 
+    :reopkick
+    %kicker = $addtok(%kicker,$nick,44)
+    chanserv deop $chan $nick | chanserv op $chan $me
+  }
+  :end
+} 
+on *:notice:*has deopped*:#: {
+  if ($nick == ChanServ) && ($4 == $me) {
+    cline 4 $chan $me | unset %op. [ $+ [ $chan ] ]
+    set %whats 4 $1 trying to4 Deop 14you at # $+ .  $chr(15) | h20 
+    if (%reoponly == on) { goto reoponly }
+    if (%reopkick == on) { goto reopkick }
+    :reoponly
+    if (%autothanks == on) { msg $chan $+(Hi,..,$1,..,%deopreply,:,$rand:col(%logo)) }
+    chanserv op $chan $me
+    goto end 
+    :reopkick
+    if ($1 ison $chan) { %kicker = $addtok(%kicker,$1,44) }
+    if (%kicker != $null) { chanserv deop $chan $kicker: }
+    .timeropme 1 0 chanserv op $chan $me 
+  }
+  :end
+} 
+on *:op:#: {
+  if ($nick == $me) { cline 11 $chan $opnick | goto end }
+  if (($me == $opnick) && (!%op. [ $+ [ $chan ] ])) { 
+    cline 4 $chan $me | %op. [ $+ [ $chan ] ] = !  
+    if (%join:kicker != $null) { set -u0 %`ix $numtok(%join:kicker,44) | kick # $gettok(%join:kicker,1-4,44) $read $mircdircrack\kickprot.txt | if (%`ix > 4) { kick # $gettok(%join:kicker,5-8,44) $read $mircdircrack\kickprot.txt } | unset %join:kicker %kicker | goto end }
+    if (%kicker != $null) { set -u0 %`ix $numtok(%kicker,44) | kick # $gettok(%kicker,1-4,44) $kickout: | if (%`ix > 4) { kick # $gettok(%kicker,5-8,44) $kickout: } | goto end }
+    if (($nick != chanserv) && ($nick != $server)) { 
+      set %whats 4 $+ $nick sets 4+o14 to you in # $+ . | h20 
+      if (%autothanks == on) { msg $chan $+(%opreply,:,$rand:col(%logo)) } 
+      goto end
+    }
+  }
+  elseif ($opnick != $me) { cline 9 $chan $opnick }
+  :end
+}
+on *:voice:#:{
+  if ($nick == $me) { cline 11 $chan $vnick | goto end }
+  inc -u1 %massvoice- [ $+ [ $nick ] $+ [ $chan ] ] 
+  if (%massvoice- [ $+ [ $nick ] $+ [ $chan ] ] > 1) { goto end }
+  else { cline 11 $chan $vnick }
+  if (($me == $vnick) && (!%v:me. [ $+ [ $chan ] ])) {
+    cline 4 $chan $me | %v:me. [ $+ [ $chan ] ] = ! 
+    if ( ($nick != chanserv) && ($nick != $server)) { 
+    set %whats 4 $+ $nick sets 4+v14 to you in # $+ . | h20 }
+    if ((%autothanks == on) && ($me !isop $chan)) { msg $chan $+(%voicereply,:,$rand:col(%logo)) } 
+    goto end
+  }
+  elseif ($vnick != $me) { cline 11 $chan $vnick }
+  :end
+}
+on *:devoice:#:{
+  if ($nick == $me) { cline 15 $chan $vnick | goto end }
+  inc -u1 %massdevoice- [ $+ [ $nick ] $+ [ $chan ] ] 
+  if (%massdevoice- [ $+ [ $nick ] $+ [ $chan ] ] > 1) { goto end }
+  if (($vnick == $me) && (%v:me. [ $+ [ $chan ] ] != $null)) {
+    cline 4 $chan $me | unset %v:me. [ $+ [ $chan ] ]
+    if (($nick != chanserv) && ($nick != $server)) {
+      set %whats 4 $+ $nick sets 4-v14 to you in # $+ . | h20
+      if ((%autothanks == on) && ($me !isop $chan)) { msg $chan $+(%devoicereply,:,$rand:col(%logo)) } 
+    }
+  }
+  elseif ($vnick != $me) { cline 15 $chan $vnick }
+  :end
+}
+on ^*:JOIN:#:{ 
+  haltdef
+  if ($nick == $me) {
+    if ($chan != $chan:) { echo # $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 11 Now chatting in # $+ . | cline 4 $chan $me | chanservinfos | goto end }
+    else { if ($me != $master) && ($me != \slow) && (%partchan: >= 2) { .window -h $chan | halt } }
+  }
+  var %total = $ialchan($wildsite,#,0) |  if (%total > 1) { var %i = 0 | while (%i < %total) { inc %i | var %nick = $ialchan($wildsite,#,%i).nick | var %all.nicks = $addtok(%all.nicks,%nick,32) | set %all.total %total | set %clone.nicks %all.nicks } }
+  if (%total > 1) { joinwho | goto joinnext } 
+  echo 12 # $timestamp $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 14• 4) 14Join:14 $nick 4(14 $+ $address $+ 4) 
+  :joinnext 
+  if ($nick == %spybot) { cline 4 $chan $nick | goto end }
+  if (%joinfloodprot == on) && ($me isop #) {  inc -u1 %joinflood. [ $+ [ $+($chan,$wildsite) ] ] } 
+  if (%joinflood. [ $+ [ $+($chan,$wildsite) ] ] > %joinfloodcount) && ($me isop #) && (!%jfld) { set -u2 %jfld ! | .raw mode $chan +R | .timerjoinflood 1 60 .mode $chan -R | _reinforce:check | set %reason 4Join flood detected | ban -u120 # $nick 2 | .auser flood $wildsite }
+  if (%joinflood. [ $+ [ $+($chan,$wildsite) ] ] == %joinfloodcount) && ($me isop #) && (!%jfld) { set -u2 %jfld ! | _reinforce:check | ban -u120 # $nick 2 }
+  if (%recordspamnick- [ $+ [ $nick ]  ] > %spamrecordcount) && ($me isop #) { .auser domain $address($nick,3) | kick # $nick $read $mircdircrack\kicklisted.txt (IP match ( $+ $address($nick,5) $+ )) | ban -u900 $chan $nick 13 | goto end }
+  if (%recordrelaynick- [ $+ [ $nick ]  ] > 10) && ($me isop #) { .auser Sinviter $address($nick,3) | kick # $nick Socketed clone relay invite/spam (Permanent Ban) (IP match ( $+ $address($nick,5) $+ )) | ban -u900 $chan $nick 13 | goto end }
+  if ($level($address($nick,3)) == domain) { %kicker = $addtok(%kicker,$nick,44) | if ($me isop #) { kick # $nick $read $mircdircrack\kicklisted.txt (IP match ( $+ $address($nick,3) $+ )) | ban -u900 $chan $nick 13 } | else { if (!%op. [ $+ [ $chan ] ]) chanserv op # $me | set -u10 %`out Spammer } | goto end }
+  if ($level($address($nick,2)) == shitlist) { %kicker = $addtok(%kicker,$nick,44) | if ($me isop #) { kick # $nick $read $mircdirText\kick.txt | ban -u900 $chan $nick 13 } | else { if (!%op. [ $+ [ $chan ] ]) chanserv op # $me | set -u10 %`out Shitlisted } | goto end }
+  if ($level($address($nick,2)) == flood) { %kicker = $addtok(%kicker,$nick,44) | if ($me isop #) { kick # $nick $read $mircdircrack\flooders.txt (IP match ( $+ $address($nick,2) $+ )) | ban -u900 $chan $nick 13 } | else { if (!%op. [ $+ [ $chan ] ]) chanserv op # $me | set -u10 %`out Flooder } | goto end }
+  if ($level($address($nick,9)) == ginviter) { %kicker = $addtok(%kicker,$nick,44) | if ($me isop #) { kick # $nick $read $mircdircrack\relay.txt (IP match ( $+ $address($nick,5) $+ )) | ban -u900 $chan $nick 13 } | else { if (!%op. [ $+ [ $chan ] ]) chanserv op # $me | set -u10 %`out Inviter } | goto end }
+  if ($level($address($nick,3)) == Sinviter) { %kicker = $addtok(%kicker,$nick,44) | if ($me isop #) { kick # $nick Socketed clone relay invite/spam (Permanent Ban) (IP match ( $+ $address($nick,5) $+ )) | ban -u900 $chan $nick 13 } | else { if (!%op. [ $+ [ $chan ] ]) chanserv op # $me | set -u10 %`out Inviter } | goto end }
+  if ($level($address($nick,9)) == bullshit) { %kicker = $addtok(%kicker,$nick,44) | if ($me isop #) { kick # $nick $read $mircdircrack\kicklisted.txt (kick listed( $+ $address($nick,5) $+ )) | ban -u900 $chan $nick 13 } | else { if (!%op. [ $+ [ $chan ] ]) chanserv op # $me | set -u10 %`out bullshit } | goto end }
+  if ($level($address($nick,9)) == inviter) { %kicker = $addtok(%kicker,$nick,44) | if ($me isop #) { kick # $nick You Are Certified Inviter/Spammer!!! (Permanent Ban) (IP match ( $+ $address($nick,5) $+ )) | ban -u900 $chan $nick 13 } | else { if (!%op. [ $+ [ $chan ] ]) chanserv op # $me | set -u10 %`out Inviter } | goto end }
+  if ($level($nick) == voice) && ($me isop $chan) && ($chan == %channelvoice) { mode %channelvoice +v $nick | .notice $nick $logo you are on my auto +v list. | goto end }
+  if ($level($nick) == eciov) && ($me isop $chan) { mode # +v $nick | .notice $nick $logo you are on my auto +v list. | goto end }
+  if ($level($nick) == opnick) && ($me isop $chan) &&  ($chan == %channelop) { mode # +o $nick | .notice $nick $logo you are on my auto +o list. | goto end }
+  if ($level($nick) == nickop) && ($me isop $chan) { mode # +o $nick | .notice $nick $logo you are on my auto +o list. | goto end }
+  cline 15 $chan $nick 
+  if ($me !isop $chan) { goto end }
+  if ($len($gettok($remove($address($nick,3),*!*),1,64)) == 6) {
+    set %temp.invite $gettok($remove($address($nick,3),*!*),1,64)
+    if (($mid(%temp.invite,1,1) isletter) && ($mid(%temp.invite,2,1) isnum) && ($mid(%temp.invite,3,1) isletter) && ($mid(%temp.invite,4,1) isletter) && ($mid(%temp.invite,5,1) isletter) && ($mid(%temp.invite,6,1) isletter) && (%magic == on))  { set %reason Magic Inviters Detected (Permanent Ban) | Kick # $nick %reason | ban # $nick 2 | goto end }
+  }
+  if ($len($gettok($remove($address($nick,3),*!*),1,64)) == 6) {
+    set %temp.invite $gettok($remove($address($nick,3),*!*),1,64)
+    if (($mid(%temp.invite,1,1) isletter) && ($mid(%temp.invite,2,1) isnum) && ($mid(%temp.invite,3,1) isnum) && ($mid(%temp.invite,4,1) isletter) && ($mid(%temp.invite,5,1) isletter) && ($mid(%temp.invite,6,1) isletter) && (%spambots == on)) { set %reason Spam Bot Detected (Permanent Ban) | Kick # $nick %reason | ban # $nick 2 | goto end }
+  }
+  if ($len($gettok($remove($address($nick,3),*!*),1,64)) == 7) {
+    set %temp.invite $gettok($remove($address($nick,3),*!*),1,64)
+    if (($mid(%temp.invite,1,1) isnum) && ($mid(%temp.invite,2,1) isletter) && ($mid(%temp.invite,3,1) isletter) && ($mid(%temp.invite,4,1) isletter) && ($mid(%temp.invite,5,1) isletter) && ($mid(%temp.invite,6,1) isnum) && ($mid(%temp.invite,7,1) isnum) && (%relayclones == on)) { set %reason Clone Socketed Inviter (Permanent Ban) | Kick # $nick %reason | ban # $nick 2 | goto end }
+  }
+  if ($len($gettok($remove($address($nick,3),*!*),1,64)) == 8) {
+    set %temp.invite $gettok($remove($address($nick,3),*!*),1,64)
+    if (($mid(%temp.invite,1,1) isletter) && ($mid(%temp.invite,2,1) isletter) && ($mid(%temp.invite,3,1) isnum) && ($mid(%temp.invite,4,1) isletter) && ($mid(%temp.invite,5,1) isletter) && ($mid(%temp.invite,6,1) isletter) && ($mid(%temp.invite,7,1) isnum) && ($mid(%temp.invite,8,1) isletter) && (%magic == on)) { set %reason Magic Inviters Detected (Permanent Ban) | Kick # $nick %reason | ban # $nick 2 | goto end }
+  }
+  if ($len($gettok($remove($address($nick,3),*!*),1,64)) == 9) {
+    set %temp.invite $gettok($remove($address($nick,3),*!*),1,64)
+    if (($mid(%temp.invite,1,1) isletter) && ($mid(%temp.invite,2,1) isletter) && ($mid(%temp.invite,3,1) isnum) && ($mid(%temp.invite,4,1) isletter) && ($mid(%temp.invite,5,1) isletter) && ($mid(%temp.invite,6,1) isnum) && ($mid(%temp.invite,7,1) isletter) && ($mid(%temp.invite,8,1) isnum) && ($mid(%temp.invite,9,1) isletter) && (%relayflood == on)) { set %reason Clone Socketed Inviters/Flooders (Permanent Ban) | Kick # $nick %reason | ban # $nick 2 | goto end }
+  }
+  :spams
+  var %fa = $fulladdress
+  if (*!*SOCKET*@*  iswm %fa) && (%common == on) { kick # $nick You are not welcome (12SOCKET INVITER®) (Permanent Ban) | ban # $nick 2 } 
+  if ((*E^nisaa* iswm %fa) || (*T^eenna* iswm %fa) || (*A^fshan* iswm %fa) || (*U^zmmaa* iswm %fa) || (*T^eenna* iswm %fa) || (*I^ffatt* iswm %fa) || (*R^eemaa* iswm %fa) || (*N^aadia* iswm %fa) || (*R^affia* iswm %fa) || (*O^baida* iswm %fa)   || (*H^eathr* iswm %fa) || (*Y^asmin* iswm %fa) || (*D^eevaa* iswm %fa) || (*R^uksna* iswm %fa) || (*I^rfana* iswm %fa) || (*^Seema^* iswm %fa) || (*^Safia^* iswm %fa) || (*Sabba^* iswm %fa) || (*U^mbarr* iswm %fa  )) && (%ai3 == on) { kick # $nick You are not welcome (15,12  A14i15³    1Inviter) (Permanent Ban) | ban # $nick 2 } 
+  if (*!*pirch*@*  iswm %fa) && (%common == on) { kick # $nick You are not welcome (xGuest inviter Bot) (Permanent Ban) | ban # $nick 2 }
+  :end
+}
+alias joinwho { 
+  echo 12 # $timestamp $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 15• 4) 4Join:14 $nick 4(14 $+ $address $+ 4) 15Clones: %clone.nicks 4(14 $+ %all.total users4)
+}
+alias chanservinfos {
+  if (%chanserv == ON) { .timerSERvices OFF | .timerCheckPING 1 60 CheckPING | goto end }   
+  if (%chanserv == OFF) { chanjoinserv | .timerPING Off | .timerSERvices 0 333 ChanDown | goto end }
+  :end
+}
+on ^* :PART:#: { 
+  haltdef
+  if ($nick == $me) { unset %op. [ $+ [ $chan ] ] | if ($chan == $chan:) { inc %partchan: | .timerrejoinx 1 3 join $chan: } | goto end }
+  echo 12 # $timestamp   $chr(2) $+  $chr(3) $+  $chr(49) $+ $chr(52) $chr(155) $+  $chr(155)  $+  $chr(3) $+  $chr(49) $+ $chr(53) $+  $chr(155)  $+  $chr(155)  $chr(15) 4( 15• 4) 14Part:4 $nick 4(14 $+ $address $+ 4)14 $1- 
+  if ($nick == $master) || ($nick == %friend1) || ($nick == MemoServ) || ($nick == NickServ) || ($nick ==  ChanServ) || ($nick == %friend2) || ($nick == %friend3) || ($nick == %friend4) || ($nick == %friend5) || ($nick == %friend6) || ($nick == %friend7) || ($nick == %friend30) || ($nick == %friend8) || ($nick == %friend9) || ($nick == %friend10) || ($nick == %friend11) || ($nick == %friend12) || ($nick == %friend13) || ($nick == %friend14) || ($nick == %friend15) || ($nick == %friend16) || ($nick == %friend17) || ($nick == %friend18) || ($nick == %friend19) || ($nick == %friend20) || ($nick == %friend21) || ($nick == %friend22) || ($nick == %friend23) || ($nick == %friend24) || ($nick == %friend25) || ($nick == %friend26) || ($nick == %friend27) || ($nick == %friend28) || ($nick == %friend29) { goto end }
+  if (%joinfloodprot == on) && ($me isop #) {  inc -u2 %partflood. [ $+ [ $+($chan,$wildsite) ] ] } 
+  if (%partflood. [ $+ [ $+($chan,$wildsite) ] ] > %partfloodcount) && ($me isop #) { .raw mode $chan +R | .timerjoinflood 1 60 .mode $chan -R | _reinforce:check | set %reason 4Part flood detected | ban -u120 # $wildsite }
+  if (%partflood. [ $+ [ $+($chan,$wildsite) ] ] == %partfloodcount) && ($me isop #) { _reinforce:check | ban -u120 # $wildsite }
+  :end
+}
+on ^*:Invite:#:{ 
+  haltdef 
+  if (($nick == %spybot) || ($nick == %friend1) || ($nick == %friend2) || ($nick == %friend3) || ($nick == %friend4) || ($nick == %friend5) || ($nick == %friend6) || ($nick == %friend7) || ($nick == %friend30) || ($nick == %friend8) || ($nick == %friend9) || ($nick == %friend10) || ($nick == %friend11) || ($nick == %friend12) || ($nick == %friend13) || ($nick == %friend14) || ($nick == %friend15) || ($nick == %friend16) || ($nick == %friend17) || ($nick == %friend18) || ($nick == %friend19) || ($nick == %friend20) || ($nick == %friend21) || ($nick == %friend22) || ($nick == %friend23) || ($nick == %friend24) || ($nick == %friend25) || ($nick == %friend26) || ($nick == %friend27) || ($nick == %friend28) || ($nick == %friend29)) { goto end } 
+  if ($nick ==  ChanServ) { 
+    if (%rejoinkick == on) { join # | goto last }
+    if (%rejoinrevengekick == on) { chanserv deop # $kicker: | join # | goto last }
+    if (%rejoinrevengeshitlistkick == on) { chanserv deop # $kicker: | join # | goto last }
+  }
+  if (%invitefldmsg == on) {
+    inc -u1 %invitefloodmsg
+    if (%invitefloodmsg == %invitefloodcount) { set %fromflood Invite | protfld1 | goto last } 
+  }
+  if (%Channeladskick == Enable) {
+    set %i 0 
+    :nexti 
+    inc %i 
+    if $comchan($nick,0) < %i { unset %i | return } 
+    if ($me !isop $comchan($nick,%i)) || ($nick isop $comchan($nick,%i)) { goto end }
+    else { kick $comchan($nick,%i) $nick $read $mircdircrack\invite.txt | ban -u20 $comchan($nick,%i) $nick 11 | goto nexti  
+    }
+  }
+  :end 
+  echo 12 -a $timestamp $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 15¤ 4) 14Invite:14 You were invited to join # by $nick 4(14 $+ $address $+ 4)
+  :last
+}
+on ^*:nick:{
+  haltdef
+  if ($nick == $me) { echo -s  $chr(2) $+  $chr(3) $+  $chr(49) $+ $chr(52) $chr(155) $+  $chr(155)  $+  $chr(3) $+  $chr(49) $+ $chr(53) $+  $chr(155)  $+  $chr(155)  $chr(15) 12 Your nick is now $newnick $+ . }
+  var %wala = $comchan($newnick,0) | while (%wala) { 
+    echo 12 $comchan($newnick,%wala) $timestamp  $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+  $chr(155)  $+  $chr(155)  $chr(15) 4( 15¤ 4) 14Nick:14 $nick is change nick to $newnick $+  
+    dec %wala 
+  } 
+}
+on ^*:quit:{
+  haltdef  
+  if ($nick == $me) { set %Chanserv OFF | unset %a %op.* %kickme.* | set %chanservmsg off | .timerSERvices OFF | goto end }
+  if (%quitflooding == on) { inc -u3 %quits. [ $+ [ $wildsite ] $+ [ # ] ] }    
+  if (%quits. [ $+ [ $wildsite ] $+ [ # ] ] == %quitfloodcount) { .auser flood $wildsite | goto end }
+  if (%netsplit == on) {
+    if (dal.net isin $1) && (dal.net isin $2) && ($3 == $null) && (%split. [ $+ [ $1 [ $+ [ $2 ] ] ] ] == $null ) { 
+      set -u60 %split. [ $+ [ $1 [ $+ [ $2 ] ] ] ] yes 
+      amsg $logo Splitted from the network ( $+ $1 $+  and $2 $+ ) Time: $time(h:nntt) | goto end
+    } 
+  }
+  var %a = $comchan($nick,0) | while (%a) { 
+    echo 12 $comchan($nick,%a) $timestamp $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 4( 15• 4) 14Quit:14 $nick 4(14 $+ $address $+ 4) 4(14 $+ $1- $+ 4) 
+    dec %a 
+  } 
+  if ($1- == excess flood) && (%excessflood == on) { 
+    var %qi = $comchan($nick,0) | while (%qi) {
+      if ($me isop $comchan($nick,%qi)) ban -u300 $comchan($nick,%qi)  $address($nick,3) | dec %qi 
+    }
+  }
+  :end
+}
+on *:exit: { unset %partchan: }
+#autotalk off
+on *:text:*:%textjoinchannel:{
+  if (%text1 isin $1-) && ($me isin $1-) { msg $chan %reply1 }
+  if (%text2 isin $1-) && ($me isin $1-) { msg $chan %reply2 }
+  if (%text3 isin $1-) && ($me isin $1-) { msg $chan %reply3 }
+  if (%text4 isin $1-) && ($me isin $1-) { msg $chan %reply4 }
+  if (%text5 isin $1-) && ($me isin $1-) { msg $chan %reply5 }
+  if (%text6 isin $1-) && ($me isin $1-) { msg $chan %reply6 }
+  if (%text7 isin $1-) && ($me isin $1-) { msg $chan %reply7 }
+  if (%text8 isin $1-) && ($me isin $1-) { msg $chan %reply8 }
+  if (%text9 isin $1-) && ($me isin $1-) { msg $chan %reply9 }
+  if (%text10 isin $1-) && ($me isin $1-) { msg $chan %reply10 }
+  if (%text11 isin $1-) && ($me isin $1-) { msg $chan %reply11 }
+  if (%text12 isin $1-) && ($me isin $1-) { msg $chan %reply12 }
+  if (%text13 isin $1-) && ($me isin $1-) { msg $chan %reply13 }
+  if (%text14 isin $1-) && ($me isin $1-) { msg $chan %reply14 }
+  if (%text15 isin $1-) && ($me isin $1-) { msg $chan %reply15 }
+  if (%adtext1 isin $1-)  { msg $chan $read $mircdirText\advtext1.txt }
+  if (%adtext2 isin $1-)  { msg $chan $read $mircdirText\advtext2.txt }
+  if (%adtext3 isin $1-)  { msg $chan $read $mircdirText\advtext3.txt }
+  if (%adtext4 isin $1-)  { msg $chan $read $mircdirText\advtext4.txt }
+  if (%adtext5 isin $1-)  { msg $chan $read $mircdirText\advtext5.txt }
+  if (%adtext6 isin $1-)  { msg $chan $read $mircdirText\advtext6.txt }
+  if (%adtext7 isin $1-)  { msg $chan $read $mircdirText\advtext7.txt }
+  if (%adtext8 isin $1-)  { msg $chan $read $mircdirText\advtext8.txt }
+  if (%adtext9 isin $1-)  { msg $chan $read $mircdirText\advtext9.txt }
+  if (%adtext10 isin $1-)  { msg $chan $read $mircdirText\advtext10.txt }
+}
+#autotalk end
+;eof

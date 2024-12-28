@@ -1,0 +1,22 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                            Cyborg Full-Script Edition of the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                         E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+#reinforce off
+on @*:ban:#: {
+  if ($banmask iswm $address($me,5)) { .disable #reinforce | return }
+  var %csi.b = $ialchan($banmask,$chan,0)
+  while (%csi.b >= 1) {
+    inc %enforce:limit
+    if ($ialchan($banmask,$chan,%csi.b).nick !isop $chan) { %enforce:nicks = $addtok(%enforce:nicks,$ialchan($banmask,$chan,%csi.b).nick,44) }  
+    if (%enforce:limit == 4) { kick $chan %enforce:nicks %reason | unset %enforce:* }
+    dec %csi.b
+  }
+  if (%enforce:nicks) { kick $chan %enforce:nicks %reason | unset %enforce:* }
+  .timer 1 5 .disable #reinforce  
+}
+#reinforce end
+;eof

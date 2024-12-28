@@ -1,0 +1,259 @@
+.                                                                                                                                                                                                                 The property of 
+.                                                                                                                                                                                                                 "Air Biru Incorp."
+.                                                                                                                                                                                                           All copy right reserved.                                
+.                                                                                                                                                                                                               Copyright © 500                                                     
+
+#textpro on
+on *:TEXT:*:#: {
+  if ( $nick isop $chan ) || ( $nick isvo $chan ) { halt }
+  if ( $me isop $chan ) && ( $nick ison $chan ) {
+    %ccodes.text = $1-
+    %ccodes.total = $count( %ccodes.text, )
+    %ccodes.total = $calc( %ccodes.total + $count( %ccodes.text, ))
+    %ccodes.total = $calc( %ccodes.total + $count( %ccodes.text, ))
+    %ccodes.total = $calc( %ccodes.total + $count( %ccodes.text, ))
+    if (( %ccodes.total >= %codeslimit) && (%ccodes == ON)) { .inc %kcount 1 | .raw -q kick $chan $nick No Control Codes Over Limited [:Kick On:] 5  $fulldate  $sark $fark %xrc   | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -ncu15 $mask($fulladdress,3)
+      unset %ccodes.*
+      goto end
+    }
+    else { unset %ccodes.* | goto caps }
+    :caps
+    if (($len($strip($1-)) >= %capslimit) && ($upper($1-) === $1-) && (%caps == ON)) {
+      .inc %kcount 1 | .raw -q kick $chan $nick No CapsLock Over Limited   [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -ncu15 $mask($fulladdress,3)
+      goto end
+    }
+    else { goto longtext }
+    :longtext
+    if (( $len($1- ) >= %ltextlimit) && (%longtext == ON)) { 
+      .inc %kcount 1 | .raw -q kick $chan $nick No Character Over Limited  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -ncu15 $mask($fulladdress,3)
+      goto end
+    }
+    else { goto cadver }
+    :cadver 
+    if ($chr(35) isin $1-) && ($chan !isin $1-) && ($nick !isop $chan) && ($nick !isvo $chan) && ($me isop $chan) && (ctcp !isin $chan) {
+      .inc %kcount 1 | .raw -q kick $chan $nick No Channel Advertising  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -u15 $mask($fulladdress,3) 
+      goto end
+    }
+    else { goto wadver }
+    :wadver
+    if ((http:/ isin $1) || (www. isin $1) || (ftp:/ isin $1) || (.cjb.net isin $1) || (.com isin $1) && (%advertise == ON)) { 
+      .inc %kcount 1 | .raw -q kick $chan $nick No Website Advertising  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)      
+      .ignore -u15 $mask($fulladdress,3)
+      goto end
+    }
+    else { goto sadver }
+    :sadver
+    if (/server isin $strip($1-)) && (%advertise == ON)) { 
+      .inc %kcount 1 | .raw -q kick $chan $nick No Server Advertising  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -u15 $mask($fulladdress,3)
+      goto end
+    }
+    else { goto swear }
+    :swear
+    if ((fuck isin $1-) || (suck isin $1-) || (asshole isin $1-) || (burit isin $1-) || (lancau isin $1-) || (cibai isin $1-) || (pantat isin $1-) ||  (butuh isin $1-) || (babi isin $1-) || (puki isin $1-) || (jubur isin $1-) || (gampang isin $1-)  || (kimak isin $1-) || (butuh isin $1-) || (fefet isin $1-) || (sex isin $1-) && ($nick !isop $chan) && ($nick !isvo $chan) && ($me isop $chan) && (sex !isin $chan) && (seks !isin $chan) && (bohsia !isin $chan) && (pantat !isin $chan) && (%badword == ON)) { 
+      .inc %kcount 1 | .raw -q kick $chan $nick No Swearing  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -cu15 $mask($fulladdress,3) 
+      goto end
+    }
+    else { goto repeat }
+    :repeat
+    .inc -u3 %textrepeat. [ $+ [ $mask($fulladdress,3) ] $+ [ $len( $1- ) ] $+ [ $strip( $1 ) ] ] 1 
+    if ( %textrepeat. [ $+ [ $mask($fulladdress,3) ] $+ [ $len( $1- ) ] $+ [ $strip( $1 ) ] ] >= %repeatlimit ) && (%repeat == ON) {
+      .inc %kcount 1 | .raw -q kick $chan $nick No Repeating Over Limited  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -ncu15 $mask($fulladdress,3) 
+      unset %3 [ $+ [ $chan [ $+ [ $nick ] ] ] ]
+      goto end 
+    }
+    else { goto textflood }
+    :textflood 
+    .inc -u3 %textflood. [ $+ [ $mask($fulladdress,3) ] ] 1 
+    if ( %textflood. [ $+ [ $mask($fulladdress,3) ] ] >= %textlimit) && (%flood == ON) {  
+      .inc %kcount 1 | .raw -q kick $chan $nick No Text Flooding  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -ncu15 $mask($fulladdress,3)
+      .unset %floodcheck [ $+ [ $nick [ $+ [ $chan ] ] ] ]
+      goto end
+    }
+    else { goto end }
+  }
+  if ( $me !isop $chan ) ||  ( $nick !ison $chan ) { 
+    .ignore -u25 $mask($fulladdress,3) 
+    goto end
+  }
+  :end
+}
+#textpro end
+
+textpro on
+on *:notice:*:#: {
+  if ( $nick isop $chan ) || ( $nick isvo $chan ) { halt }
+  if ( $me isop $chan ) && ( $nick ison $chan ) {
+    %ccodes.text = $1-
+    %ccodes.total = $count( %ccodes.text, )
+    %ccodes.total = $calc( %ccodes.total + $count( %ccodes.text, ))
+    %ccodes.total = $calc( %ccodes.total + $count( %ccodes.text, ))
+    %ccodes.total = $calc( %ccodes.total + $count( %ccodes.text, ))
+    if (( %ccodes.total >= %codeslimit) && (%ccodes == ON)) { .inc %kcount 1 | .raw -q kick $chan $nick No Control Codes Over Limited [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -ncu15 $mask($fulladdress,3)
+      unset %ccodes.*
+      goto end
+    }
+    else { unset %ccodes.* | goto caps }
+    :caps
+    if (($len($strip($1-)) >= %capslimit) && ($upper($1-) === $1-) && (%caps == ON)) {
+      .inc %kcount 1 | .raw -q kick $chan $nick No CapsLock Over Limited   [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -ncu15 $mask($fulladdress,3)
+      goto end
+    }
+    else { goto longtext }
+    :longtext
+    if (( $len($1- ) >= %ltextlimit) && (%longtext == ON)) { 
+      .inc %kcount 1 | .raw -q kick $chan $nick No Character Over Limited  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -ncu15 $mask($fulladdress,3)
+      goto end
+    }
+    else { goto cadver }
+    :cadver 
+    if (($chr(35) isin $parms) || (/j isin $parms) && ($chan !isin $1-) && (%advertise == ON)) { 
+      .inc %kcount 1 | .raw -q kick $chan $nick No Channel Advertising  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -u15 $mask($fulladdress,3) 
+      goto end
+    }
+    else { goto wadver }
+    :wadver
+    if ((http:/ isin $parms) || (www. isin $parms) || (ftp:/ isin $parms) || (.cjb.net isin $parms) || (.com isin $parms) && (%advertise == ON)) { 
+      .inc %kcount 1 | .raw -q kick $chan $nick No Website Advertising  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)      
+      .ignore -u15 $mask($fulladdress,3)
+      goto end
+    }
+    else { goto sadver }
+    :sadver
+    if ((http:/ isin $1) || (www. isin $1) || (ftp:/ isin $1) || (.cjb.net isin $1) || (.com isin $1) && (%advertise == ON)) { 
+      .inc %kcount 1 | .raw -q kick $chan $nick No Server Advertising  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -u15 $mask($fulladdress,3)
+      goto n
+    }
+    else { goto swear }
+    :swear
+    if ((fuck isin $1-) || (suck isin $1-) || (asshole isin $1-) || (burit isin $1-) || (lancau isin $1-) || (cibai isin $1-) || (pantat isin $1-) ||  (butuh isin $1-) || (babi isin $1-) || (puki isin $1-) || (jubur isin $1-) || (gampang isin $1-)  || (kimak isin $1-) || (butuh isin $1-) || (fefet isin $1-) || (sex isin $1-) && ($nick !isop $chan) && ($nick !isvo $chan) && ($me isop $chan) && (sex !isin $chan) && (seks !isin $chan) && (bohsia !isin $chan) && (pantat !isin $chan) && (%badword == ON)) { 
+      .inc %kcount 1 | .raw -q kick $chan $nick No Swearing  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -cu15 $mask($fulladdress,3) 
+      goto end
+    }
+    else { goto repeat }
+    :repeat
+    .inc -u3 %textrepeat. [ $+ [ $mask($fulladdress,3) ] $+ [ $len( $1- ) ] $+ [ $strip( $1 ) ] ] 1 
+    if ( %textrepeat. [ $+ [ $mask($fulladdress,3) ] $+ [ $len( $1- ) ] $+ [ $strip( $1 ) ] ] >= %repeatlimit ) && (%repeat == ON) {
+      .inc %kcount 1 | .raw -q kick $chan $nick No Repeating Over Limited  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -ncu15 $mask($fulladdress,3)
+      unset %3 [ $+ [ $chan [ $+ [ $nick ] ] ] ]
+      goto end 
+    }
+    else { goto textflood }
+    :textflood 
+    .inc -u3 %textflood. [ $+ [ $mask($fulladdress,3) ] ] 1 
+    if ( %textflood. [ $+ [ $mask($fulladdress,3) ] ] >= %textlimit) && (%flood == ON) {
+      .inc %kcount 1 | .raw -q kick $chan $nick No Text Flooding  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -ncu15 $mask($fulladdress,3)
+      .unset %floodcheck [ $+ [ $nick [ $+ [ $chan ] ] ] ]
+      goto end
+    }
+    else { goto end }
+  }
+  if ( $me !isop $chan ) ||  ( $nick !ison $chan ) { 
+    .ignore -u25 $mask($fulladdress,3) 
+    goto end
+  }
+  :end
+}
+#textpro end
+
+textpro on
+on *:action:*:#: {
+  if ( $nick isop $chan ) || ( $nick isvo $chan ) { halt }
+  if ( $me isop $chan ) && ( $nick ison $chan ) {
+    %ccodes.text = $1-
+    %ccodes.total = $count( %ccodes.text, )
+    %ccodes.total = $calc( %ccodes.total + $count( %ccodes.text, ))
+    %ccodes.total = $calc( %ccodes.total + $count( %ccodes.text, ))
+    %ccodes.total = $calc( %ccodes.total + $count( %ccodes.text, ))
+    if (( %ccodes.total > 60 )) { .inc %kcount 1 | .raw -q kick $chan $nick No Control Codes Over Limited [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -ncu15 $mask($fulladdress,3)
+      unset %ccodes.*
+      goto end
+    }
+    else { unset %ccodes.* | goto caps }
+    :caps
+    if (($len($strip($1-)) >= %capslimit) && ($upper($1-) === $1-) && (%caps == ON)) {
+      .inc %kcount 1 | .raw -q kick $chan $nick No CapsLock Over Limited   [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -ncu15 $mask($fulladdress,3)
+      goto end
+    }
+    else { goto longtext }
+    :longtext
+    if (( $len($1- ) >= %ltextlimit) && (%longtext == ON)) { 
+      .inc %kcount 1 | .raw -q kick $chan $nick No Character Over Limited  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -ncu15 $mask($fulladdress,3)
+      goto end
+    }
+    else { goto cadver }
+    :cadver 
+    if ($chr(35) isin $1-) && (%advertise == ON)) {
+      .inc %kcount 1 | .raw -q kick $chan $nick Channel Advertising  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -u15 $mask($fulladdress,3) 
+      goto end
+    }
+    else { goto wadver }
+    :wadver
+    if (http isin $strip($1-)) || (www. isin $strip($1-))  && (%advertise == ON)) {
+      .inc %kcount 1 | .raw -q kick $chan $nick No Website Advertising  [:Kick On:] 5  $fulldate $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)      
+      .ignore -u15 $mask($fulladdress,3)
+      goto end
+    }
+    else { goto sadver }
+    :sadver
+    if (/server isin $strip($1-)) &&  (%advertise == ON)) {
+      .inc %kcount 1 | .raw -q kick $chan $nick No Server Advertising  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -u15 $mask($fulladdress,3)
+      goto n
+    }
+    else { goto swear }
+    :swear
+    if ((fuck isin $1-) || (suck isin $1-) || (asshole isin $1-) || (burit isin $1-) || (lancau isin $1-) || (cibai isin $1-) || (pantat isin $1-) ||  (butuh isin $1-) || (babi isin $1-) || (puki isin $1-) || (jubur isin $1-) || (gampang isin $1-)  || (kimak isin $1-) || (butuh isin $1-) || (fefet isin $1-) || (sex isin $1-) && ($nick !isop $chan) && ($nick !isvo $chan) && ($me isop $chan) && (sex !isin $chan) && (seks !isin $chan) && (bohsia !isin $chan) && (pantat !isin $chan) && (%badword == ON)) { 
+      .inc %kcount 1 | .raw -q kick $chan $nick No Swearing  [:Kick On:] 5  $fulldate  $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -cu15 $mask($fulladdress,3) 
+      goto end
+    }
+    else { goto repeat }
+    :repeat
+    .inc -u3 %textrepeat. [ $+ [ $mask($fulladdress,3) ] $+ [ $len( $1- ) ] $+ [ $strip( $1 ) ] ] 1 
+    if ( %textrepeat. [ $+ [ $mask($fulladdress,3) ] $+ [ $len( $1- ) ] $+ [ $strip( $1 ) ] ] >= %repeatlimit ) && (%repeat == ON) {
+      .inc %kcount 1 | .raw -q kick $chan $nick No Repeating Over Limited  [:Kick On:] 5  $fulldate   $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -ncu15 $mask($fulladdress,3)
+      unset %3 [ $+ [ $chan [ $+ [ $nick ] ] ] ]
+      goto end 
+    }
+    else { goto textflood }
+    :textflood 
+    .inc -u3 %textflood. [ $+ [ $mask($fulladdress,3) ] ] 1 
+    if ( %textflood. [ $+ [ $mask($fulladdress,3) ] ] >= %textlimit) && (%flood == ON) {  
+      .inc %kcount 1 | .raw -q kick $chan $nick No Text Flooding [:Kick On:] 5  $fulldate   $sark $fark %xrc  | .raw -q mode $chan +b $mask($fulladdress,%blevel)
+      .ignore -ncu15 $mask($fulladdress,3)
+      .unset %floodcheck [ $+ [ $nick [ $+ [ $chan ] ] ] ]
+      goto end
+    }
+    else { goto end }
+  }
+  if ( $me !isop $chan ) ||  ( $nick !ison $chan ) { 
+    .ignore -u25 $mask($fulladdress,3) 
+    goto end
+  }
+  :end
+}
+#textpro end
+
+alias sark return ((  Byh : $read fast.txt ))
+alias fark return  (( Kick No : %kcount  ))

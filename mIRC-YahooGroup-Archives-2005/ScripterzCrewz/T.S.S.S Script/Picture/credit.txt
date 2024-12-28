@@ -1,0 +1,8 @@
+/echo @CREDIT                       T
+/echo @CREDIT                       TH
+/echo @CREDIT                       THA
+/echo @CREDIT                       THAN
+/echo @CREDIT                       THANK
+/echo @CREDIT                       THANK Y
+/echo @CREDIT                       THANK YO
+/echo @CREDIT                       THANK YOU

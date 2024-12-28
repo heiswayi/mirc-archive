@@ -1,0 +1,14 @@
+on *:Kick:#:{
+  if ( $nick == $me ) { window  @Warning | echo @Kick 4*** 15You Kicked $knick At $chan With Reason:14 $1- | halt }
+  if ( $knick == $me ) { window @Warning  | echo @Warning 4*** 15You Were Kicked By $nick At $chan With Reason:14 $1- | halt }
+}
+menu @Warning,@Kick,@whois {
+  Clear screen:.clear
+  Close:.window -c $active
+}
+On *:CLOSE:@Kick,@Warning: {
+  .timer 1 1 .window @Kick
+  .timer 1 2 .window @Warning
+  .timer 1 3 echo -a *** Don't CLOSE the default Windows that being opened on startup !
+  .halt
+}

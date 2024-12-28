@@ -1,0 +1,10 @@
+Server©system\images\server.ico
+Channel©2,system\images\sbar.icl 
+Query©3,system\images\sbar.icl 
+Window©4,system\images\sbar.icl 
+Chat©5,system\images\sbar.icl 
+DCC Get©6,system\images\sbar.icl 
+DCC Send©7,system\images\sbar.icl 
+URL List©9,system\images\sbar.icl 
+Notify List©10,system\images\sbar.icl 
+Chan List©11,system\images\sbar.icl 

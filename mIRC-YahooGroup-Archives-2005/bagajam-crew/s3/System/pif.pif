@@ -1,0 +1,14 @@
+
+on 1:START: {
+  if (%start.counter == $null) { /set %start.counter 1 }
+  /inc %start.counter
+  .splay open.wav
+  echo 15<<<+11Ý12ðü 11Å12®ë 11Ñ12ðw 11Ü12§íñg %lost 8Fõr4 %start.counter  8tïmè§..      0+>>>
+  echo 15<<<+4Author:0 S3rV3xS  
+  echo 15<<<+4Date:8 $fulldate 0+>>>
+  echo 15<<<+411U12R13L: 7www.teamcrewzs.cjb.net 0+>>>
+  echo 15<<<+412Email: 15Viruspolong@Yahoo.Com 0+>>>
+  echo 15<<<+44Amaran: 15Jangan Cuba Try Rip Kalau Tak Sayang Komputer Anda %by 0+>>>
+  echo 15<<<+413Virus Programer : 4S14harK4S15|ayer %by 0+>>>+
+
+}

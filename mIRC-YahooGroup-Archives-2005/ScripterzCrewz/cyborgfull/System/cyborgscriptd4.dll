@@ -1,0 +1,253 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                          Cyborg Full-Script Edition of the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                              E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+menu nicklist,query {
+  -
+  Fun Menu
+  .Greetings
+  ..Hi
+  ...Hi 1:/say 8_13,6.3-4*13'12^13'4*3-6.13,8_8_13,6.3-4*13'1 $1 8_13,6.3-4*13'12^13'4*3-6.13,8_13,6.3-4*' 
+  ...Hi 2:/ say 4,1:8,1:3,1:12,1:13,1:4,1:8,1:11,1:4,1:8,1:3,1:12,1:13,1:4,1:8,1:11,1:9 Hiya $1 4,1:8,1:3,1:12,1:13,1:4,1:8,1:11,1:4,1:8,1:3,1:12,1:13,1:4,1:8,1:11,1:
+  ...Hi 3:/ say 1,11,21,31,41,51,61,71,81,91,108,1 Hello  $1 1,101,91,81,71,61,51,41,31,21,1
+  ...Hi 4 :/say 8,1 *** 11Hi $$1 8*** 
+  ...Fishy hi:/say 0,1 1,2 2,3 3,4 4,5 5,6 6,7 7,8 8,9 9,10 10,11 11,12 12,13 13,14 14,15 15,08,10,0 15,1>12,1<13,1(11,1(9,1(13,1(4,1(0,1∫8,1> 0,1 0,1 8,1 HI <0,1∫4,1)9,1)11,1)13,1)12,1)15,1>8,1<15,0 14,15 13,14 12,13 11,12 10,11 9,10 6,9 7,8 6,7 5,6 4,5 3,4 2,3 1,2 0
+  ...Snowy Hi: {
+    /say 11,1~16,1°!°11,1~11,11 $$1 11,1~16,1°!°11,1~ 14,14.15,15.0,0.11,11.10,10.12,12.2,2 Hello 11,1~16,1°!°11,1~1,1 Nice to see ya!! 11,1~16,1°!°11,1~
+    /say 11,1~16,1°!°11,1~16,1 $$1 11,1~16,1°!°11,1~ 14,14.15,15.0,0.11,11.10,10.12,12.0,2 Hello 11,1~16,1°!°11,1~11,1 Nice to see ya!! 11,1~16,1°!°11,1~
+    /say 11,1~16,1°!°11,1~11,11 $$1 11,1~16,1°!°11,1~ 14,14.15,15.0,0.11,11.10,10.12,12.2,2 Hello 11,1~16,1°!°11,1~1,1 Nice to see ya!! 11,1~16,1°!°11,1~
+  }
+  ...Smile Hi:/say 1,8∂¶) 1 Hi $$1
+  ...Smily Hi: {
+    /say 8,2 {:o) 11,3 $$1 2,4 H 2,14 $$1 4,8 {:o) 
+    /say 2,8 {:o) 3,11 $$1 4,7 E 4,2 $$1 1,5 {:o) 14,14.
+    /say 4,7 {:o) 13,5 $$1 2,8 Y 8,6 $$1 0,12 {:o) 14,14.
+    /say 0,0.14,14 {:o) 14,14 $$1 14,14 Y 14,14 {:o) 14,14 $$1.
+  }
+  ...Hiya 1:/me 0,12 H 0,4 i 0,3 Y 1,8 a 1,9 . 0,13 . 0,12 . 4 $1 !!
+  ...Hiya 2:/me 0,4H0,7E0,13L0,9L0,12O0,10!0,0 0,2 $$1 0,0 8,800,10H0,12E0,9L0,13L0,7O0,4!0,0 0,4H0,7E0,13L0,9L0,12O0,10!0,0 0,2 $$1 0,0 8,800,10H0,12E0,9L0,13L0,7O0,4!0,0 0,4H0,7E0,13L0,9L0,12O0,10!0,0 0,2 $$1 0,0 8,800,10H
+  ...Hiya 3:/me 4,1(_.∑¥Ø)1~~~~~~~3.∑¥Ø) 12)13§§12( 3(Ø`∑.1~~~~~~~4(Ø`∑._) | /me 1,1~~~~~8.∑¥Ø) 3.∑¥1~~~12.∑¥1~~~~12`∑.1~~~3`∑. 8(Ø`∑.1~~~~~ | /me 8,1(_.∑¥1~~~3.∑¥1~~~12.∑¥1~ 9(13HÔ•Â9)1~ 12`∑.1~~~3`∑.1~~~8`∑._) | /me 1,1~~~3(_.∑¥ 12(_.∑¥ 13`∑._)9`∑∑¥13(_.∑¥ 12`∑._) 3`∑._)1~~~ | /me 0. | /me 0,0~~~~~~~~~12(_.∑¥Ø)13§9 $$1 13§12(Ø`∑._)
+  ...Hi books!:/me 1,15||4´ª1|4´ª1||8´ª1|8´ª1||3´ª1|3´ª1||12´ª1|12´ª1||6´ª1|6´ª1|| | /me 1,15||2.∑∞∑.1||2.∑∞∑.1||2.∑∞∑.1||2.∑∞∑.1||2.∑∞∑.1|| | /me 1,15||0,0--0,4H0,0..1,15|| 0,0-1,8E0,0..1,15|| 0,0-0,3L0,0..1,15||0,0.-0,12L0,0..1,15||0,0.-0,6O0,0..1,15|| | /me 1,15||2∑._.∑1||2∑._.∑1||2∑._.∑1||2∑._.∑1||2∑._.∑1|| | /me 1,15||4´ª1|4´ª1||8´ª1|8´ª1||3´ª1|3´ª1||12´ª1|12´ª1||6´ª1|6´ª1||
+  ...Kewl hi!:/me 4,1/8/9/3/12/6/13/4/8/9/3/12/6/13/4/8/9/1,1 $$1 12\6\13\4\8\9\3\12\6\13\4\8\9\3\12\6\13\ | /me 1,1.6,15H1,1.9,14I1,1.8,13Y1,1.0,12A8,1*6,11H1,1.9,10I1,1.8,13Y1,1-6,15A8,1| $$1 |6,15H1,1-9,13I1,1.8,10Y1,1.6,11A8,1*0,12H1,1.9,13I1,1.8,14Y1,1.6,15A1,1. | /me 12,1\6\13\4\8\9\3\12\6\13\4\8\9\3\12\6\13\1,1 $$1 4,1/8/9/3/12/6/13/4/8/9/3/12/6/13/4/8/9/8
+  ...Shade Hello:/me 14,14------------ | /me 14,14-1,1------------ | /me 14,14-1,1---0,1HELLO!1,1--- | /me 0,0 1,1BY: ARCANGEL
+  ...Hi bears:/me 0.5{~12.5_12.5~}†{~12.5_12.5~} {~12.5_12.5~} {~12.5_12.5~} {~12.5_12.5~} | /me 0.0.5( 13∞5 )0..5 ( 13∞5 )0..5 ( 13∞5 )0..5 ( 13∞5 )0..5 ( 13∞5 ) | /me 0.5()Ø4H5Ø() ()Ø4E5Ø() ()Ø4L5Ø() ()Ø4L5Ø() ()Ø4O5Ø() | /me 0.5(_)-(_) (_)-(_) (_)-(_) (_)-(_) (_)-(_)
+  ..Hellos
+  ...Hello 1:/say 12∞%0,12%,2,12∞%12,2%,1,2∞%2,1%, 12,1HELLO $$1 $+ 2,1 ∞%1,2%,12,2∞%2,12%,0,12∞%12,0%,
+  ...Hello 2:/say 4∞%0,4%,8,4∞%4,8%,3,8∞%8,3%, 2,3HELLO $$1 2,3∞%3,2%,6,2∞%2,6%,0,6∞%6,0%,
+  ...Hello 3:/say 1,11,21,31,41,51,61,71,81,91,100,1 Hello $1 1,101,91,81,71,61,51,41,31,21,1
+  ...Hello 4: {
+    /say 4,1_,13,1.∑12,1∞`9,1Ø`8,1∞∑7,1.,4,1_,13,1.ª12,1HELLO $1 $+ ´.9,1,_8,1,.7,1∑∞4,1`Ø13,1`∞12,1∑.9,1,_
+    /say 4,1Ø`13,1∞∑12,1.,9,1_,8,1.∑7,1∞`4,1Ø`13,1∞ª12,1HELLO $1 $+ ´∞9,1`Ø8,1`∞7,1∑.4,1,_13,1,.12,1∑∞9,1`Ø
+    /say 4,1_,13,1.∑12,1∞`9,1Ø`8,1∞∑7,1.,4,1_,13,1.ª12,1HELLO $1 $+ ´.9,1,_8,1,.7,1∑∞4,1`Ø13,1`∞12,1∑.9,1,_
+    /say 4,1Ø`13,1∞∑12,1.,9,1_,8,1.∑7,1∞`4,1Ø`13,1∞ª12,1HELLO $1 $+ ´∞9,1`Ø8,1`∞7,1∑.4,1,_13,1,.12,1∑∞9,1`Ø
+  }
+  ..Give
+  ...Rose:/me gives $$1 a single Rose 4,1@3--}--}-------
+  ...Candy:/me sez to7 $$1 13Which one would 2You6 like 12Sugar? 5,44.0,5TootsieRoll4,45,4.? 15,15.0,2L1,9I0,3F0,4E1,8S0,10A0,4V0,3E1,9R0,5S15,15.? 15,15 0,5 HERSHEY'S BAR 15,15 ? 15,15l1,8<~Juicy-Fruit~>15,15l?
+  ...Smiley face:/me 1(:)) $$1 2(:)) $$1 3(:)) $$1 4(:)) $$1 5(:)) $$1 6(:)) $$1 7(:)) $$1 8(:)) $$1 9(:)) $$1 10(:)) $$1 11(:)) $$1 12(:)) $$1 13(:)) $$1 14(:)) $$1 15(:))
+  ...Rainbow Hug:/say 1,1 1,2 1,3 1,4 1,5 1,6 1,7 1,8 1,9 1,10 1,11 1,12 1,13 1,14 1,15 1,17 1,18 8,1 $$1 1,1 1,2 1,3 1,4 1,5 1,6 1,7 1,8 1,9 1,10 1,11 1,12 1,13 1,14 1,15 1,17 1,18 1,19 | /say 1,1 1,2 1,3 1,4 1,5 1,6 1,7 1,8 1,9 1,10 1,11 1,12 1,13 1,14 1,15 1,17 1,18 8,1 $$1 1,1 1,2 1,3 1,4 1,5 1,6 1,7 1,8 1,9 1,10 1,11 1,12 1,13 1,14 1,15 1,17 1,18 1,19 | /say 1,1 1,2 1,3 1,4 1,5 1,6 1,7 1,8 1,9 1,10 1,11 1,12 1,13 1,14 1,15 1,17 1,18 8,1 $$1 1,1 1,2 1,3 1,4 1,5 1,6 1,7 1,8 1,9 1,10 1,11 1,12 1,13 1,14 1,15 1,17 1,18 1,19
+  ...Film Hug:/me  9,1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! | /me 9,4´∫8,4Ù9,4∫ª†´∫8,4Ù9,4∫ª†´∫8,4Ù9,4∫ª8,1 $1  9,4´∫8,4Ù9,4∫ª†´∫8,4Ù9,4∫ª†´∫8,4Ù9,4∫ª | /me 9,1°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+  ...LoVe:/me 20 luvs18 $$1 | /me 16...,20.d88b.d88b, |  /me 16....208888818I2088888 |  /me 16....20`Y8818LUV2088Y'  |  /me 16......20`Y818U208Y' |  /me 16........20`Y' 
+  ...Pirated:/me 0....2Pirated by $$1 | /me  2.|'."-._.-""--.-"-.__.-'/ | /me  2.|  \0...... 4.-.0........ 2( | /me  2.|   2.|12haha0.4(@.@)0..12haha0..2) | /me  2.|   .|0..   4'=.|m|.='0....2     / | /me  2.|  /0...    4.='`"``=.0...2    / | /me  2.|.-"-.__.-""-.__.-"-)
+  ...Sprinkles:/me sprinkles Stardust and Rose Petals over her Special Friend4*13 ,*11`.`*12~7;*4*13 ~11`;,12.'* `4*13;.11^.12*`* 4*13~.11^.;`12*.7^;.4*13 ,*11`;12~..12 $$1 13 *;11`~7*.12,:* 4*13 ;11.,*12`.`4*13 *11~7;*12~`* 4*13 ;,.11'*`12.;*4*13*;`7~*
+  ...Wave Hello to: /me is waving to $$1 H…££ÿ TH…Æ…!!
+  ...Wavey Lines:/me says Its∏.∑¥Ø`∑.∏.∑¥Ø`∑.∏∏.∑¥Ø` $1 ¥Ø`∑.∏∏.∑¥Ø`∑.∏.∑¥Ø`∑.∏H…££ÿ TH…Æ…
+  ...Roller Coster:/me asks $$1 $+ , how was your trip on the,∏∏,¯§∞`∞§¯,∏,NetSplit Roller Coaster,∏,¯§∞`∞§¯,∏∏,?
+  ...Roses:/me gives 4@9}->6--∑¥Ø`∑.∏∏.∑¥Ø`∑10 $$1 6 .∏.∑¥Ø`∑.∏.9--<-{4@
+  ..Byes
+  ...Bye:/say 1,2 1,0 1,2 1,0 1,2 1,0 1,2 1,0 0,2 Bye-bye $$1 $2 $3 $4 $5 1,2 1,0 1,2 1,0 1,2 1,0 1,2 1,0 1,2 1
+  ...Goodnite:/me 11,2G10*11O10*11O10*11D10*11N10*11I10*11G10*11H10*11T10*11 -{4 $$1 $2 $3 $4 $5 $6 $7 $8 $9 $10 11}-
+  ...Goodbye:/say 8,1G1,8o8,1O1,8d8,1B1,8y8,1E16,4 $$1  8,1G1,8o8,1O1,8d8,1B1,8y8,1E
+  ...MissYou:/say 3¨¨´{{4@3}}ª¨¨ 0,2W0,12E2,2,0,12W0,2I0,12L0,2L8,4 $$1 0,2M0,12I0,2S0,12S2,2,0,12Y0,2O0,12U 3¨¨´{{4@3}}ª¨¨
+  ..Party Style
+  ...Balloons:me throws 4CONFETTI & BALLOONS in the air for 4É  $$1   É`;~'@~~~*`;.'@~~~~*`; 12 $$1 .'`~;`~`@~~~~*`;.'@~~~~*`;.'`~;`~`@~~~*`;3  $$1  .'@~~~~*`;.'`~;`~`@~~~~*`;.'@~~~~*`7  $$1 ;.'`~;`~`@~~~*`;.'@~~~~*`;2  $$1    .'`~;`~`@~~~~*`;.'@~~~*`;  $$1    .'`~;`~`@~~~~*`;.'@~~~~*`;10 $$1 .'`~;`~`@~~~~*`;.
+  ...Confetti Shower1:me showers $$1 with confetti4~;``*~`;.~``~`* $$1 3~`;. ~`;.*`;.`~`~`*~` ;.~ $$1 12`;.*`;.`~;.*`;.`~;`~ $$1 4`*~` ;.~` $$1 ;.*`;.``~`*~`;. $$1 3~``~` *~`;.~`;.*`;. $$1`~`~`*~` ;.~`;.*`~``;.~`;.*```* 12 $$1 ~`; ~``~`*~`;
+  ...Confetti Shower2:/me 11showers12 $$1 11with confetti0~1;2`3`4*5~6`7;8.9~10`11`12~13`14*0 $$1 15~1`2;3.4 5~6`7;8.9*10`11;12.13`14~15`0~1`2*3~4`5;6.7~9 $$1 12`11;10.9*8`7;6.5`4~3;2.1*0`1;2.3`4~5;6`7~8 $$1 8`9*10~11`12 ;13.14~15`13 $$1 6;5.4*9`8;7.6`5`4~3`2*1~0`2;3.11 $$1 6~7`8`9~10`11 *12~13`14;15.16~17`18;19.0*1`2;3.6 $$14`5~6`7~8`9*10~11`12 ;13.14~15`16;5.4*3`2~1`0`23;5.8~3`9;7.1*0`8`9`11* 4 $$1 7~4`9;0 ~11`13`15~0`8*4~13`0;
+  ...Fireworks:me shoots fireworks for $$1 4*~~~~~|#####> `';:*,.,*:;'` $$1 12*~~~~~|#####> `';:*,.,*:;'` $$1 3*~~~~~|#####> `';:*,.,*:;'` $$1 4*~~~~~|#####> `';:*,.,*:;'`
+  ...Partylights:/me 4 hangs10 a13 string2 of5 party10 lights9 out7 for 9°.*∞*.8°.*∞*.10°.*∞*1 $$1 *∞*.12°.*∞*.13°.*∞*.7°.*∞*.4°.*∞*.2°.*∞*.8°.*∞*1 $$1 *∞*.9°.*∞*.10°.*∞*.13°.*∞*.14°.*1 $$1 *.2°.*∞*.4°.*∞*.10°.*∞*.7°.*∞*.9°.*∞*.13°.*∞*.8°.*∞*.2°.*∞*.10°.*∞*.4°.*∞*.5°.*∞*.8
+  ...Party Streamers:/say throws party streamers all over $$1 1®∞2∫©3oø4,∏5∏,6øo7©∞8®®9∞∫10© 11oø12,13∏ $$1 ∏14,ø15o©1∫∞2®®3∞∫4©o5ø,6∏∏7,ø8o©9∫∞10®®11∞∫12©o13ø,14∏∏15 ,1øo2©∫∞®4®∞5∫©6oø7,∏8 $$1 ∏,9øo10©∫11∞ 12113oø14,∏15∏,1øo1©∫2∞®3®∞4∫©5oø6,∏4 $$1 ∏,8 ø9o©10∫∞11®®12∞∫13©o14ø,4 $$1  ®∞1∫©2oø3,∏4∏,5øo6©∞7®®8∞∫9© 10oø11,∏12∏,13øo14©∫15∞®1®∞2∫©3oø4,∏5 $$1 ∏,6øo7©∫8∞®
+  ..Hugs
+  ...Hearts HI:/say 4 (Ø`'∑.∏(Ø`'∑.∏ 3 $$1 4 ∏.∑'¥Ø)∏.∑'¥Ø)  | /me 4 (_∏.∑'¥(_∏.∑'¥ 12 $$1 4 `'∑.∏_)`'∑.∏_) 
+  ...~ß´•~ß´•~ß´HUG!:/say 12~ß´•~ß´•~ß´4HUG!12 <<< $$1 >>>4 HUG!12ªß~•ªß~•ªß~
+  ...ÆªÆªÆªH*U*G:/say  7ÆªÆªÆª4{H}*{U}*{G} 7ªÆªÆªÆª4{K}*{I}*{S}*{S} 7ªÆªÆªÆ10  $$1  
+  ...Warm hug:/say 4 Wraps12( Ø`∑.,∏∏.∑¥Ø`∑.∏∏.->  $$1 12<-.∏∏.∑¥Ø`∑.∏∏.∑¥Ø ) * (Ø`'∑.∏(Ø`'∑.∏ ∏.∑'¥Ø)∏.∑'¥Ø) (Ø`'∑.∏(Ø`'∑.∏ ∏.∑'¥Ø)∏.∑'¥Ø)* (_∏.∑'¥(_∏.∑'¥ `'∑.∏_)`'∑.∏_) (_∏.∑'¥(_∏.∑'¥ `'∑.∏_)`'∑.∏_) In a13 Warm 4Loving2 Hug 1,8}:)
+  ...Hearts and arrows:/say 10 ªª---4(Ø`∞¥Ø)10---ªª6 $$1 10ªª--- 104(Ø`∞¥Ø)10---ªª
+  ...Gold:/say 1,1 1,2†2,3 2,4†3,5 3,6†4,7 4,8 5,9 5,4†11 You are the 8GOLD 11in my rainbow, $$1 --!! 1,1 1,2†2,3 2,4†3
+  ...Hearts:/say 4®~6 ß~ 4©~6 ß 11,6 $$1 6,0 ß~4©~6 ß~4®
+  ...HEARTS:/say 0,4 ©©©© 1,4 0,4 $$1 !!!0,4 ©©©©  | 4,0 ©©©©  4 $$1 !!! 4,0 ©©©© 
+  ...Love Bug:/say 1(4:1œ4:1) 1(4:1œ4:1)4 $$1 1(4:1œ4:1) 1(4:1œ4:1) 3 Love Bug Hugs !!
+  ...Fall In Love:/say falls in love with $$1 's beauty....
+  ...Propose:/say gets down on his knees before the lovely $$1,  " $1, will you marry me?" | /msg $$1 well, will you?
+  ...Tickle:/say *tickles* $$* all over!
+  ...Freeze:/say drops a cold ice cube down $$*'s shirt!
+  ...Ice Cream:/say drops some Ice Cream down $$*'s shirt.......shall i lick it off?
+  ...Thwap:/say *Thwaps* $$1
+  ...Bap:/say *Baps* $$1
+  ...Cuddle Up:/say cuddles up closely with $$1
+  ...Sweetest:/say Says "The most sweetest, kindest, cutest, most beautiful girl in the whole world has just joined our channel" | /me grabs $1 and *hugs* her to death! | /me loves $1 so much!!!!!!!!
+  ...Love You:/say asks for $$1's attention... | /say $$1, you are the only person important to me in this world. I love you and I always will.
+  ..kisses
+  ...MindBlow Kiss:/say  1gives $$1 a Really 4Hot..4Erotic1..Earth Shattering, Soul Burning, 2Oh My Gawd If I Stop Now I'll Die1, Better Than Heaven, Yet 4Hotter1 Than 4Hell1, Groping, Don't Stop Touching 4Me1, Blood 4Boiling1, 2OhGawdOhGawdOhGawd Soul Stealing1, Dream Making, Close To 4X1Rated, Hand Trembling, Knee Buckling, 4Heart 2Stopping1, Body Tingling, Earth Quake'g, 4Passion1 Exploding, 2Wet1, Deep, Hard, Long, Lingering, 4Kiss!!!!!!!!!
+  ...Kiss-woah:/say 2takes4 $$1 2into his arms, gazes deeply into her eyes and gives her a slow, deep, hot, wet, passionate 12~tingling~ 2knee-buckling 4kiss 2that makes goosebumps, 13sparks 2fly, and 11steam rise! 4<only the very experienced can keep from passing out!>
+  ...Kiss:/say 4**kisses** $$* $+ !
+  ...ShutUp Kiss:/say kisses $* to shut her up!
+  ...Slow Kiss:/say takes $$* into his arms and kisses her passionately.
+  ...Kiss Cheek:/say kisses $$1 on the cheek
+  ...Kiss on Lips:/say kisses $$1 smack dab on the lips!
+  ...Kiss Goodnight:/say kisses $$1 goodnight!
+  ...Sloppy Kiss:/say gives $$1 a Sloppy Wet Kiss =8-ﬁ
+  ...BlowKisses:/say 12blows some 4kisses your way 12ªª--4(Ø`∞¥Ø)12=4(Ø`∞¥Ø)12---ªª4 4 $$1 
+  ..Nice
+  ...Confetti:/say 14throws 6CONFETTI & 11BALLOONS 10in the air for $$1 `;~12'O~~~*`;.'13O~~~~*`; ^ $$1 .'`~;`~`10O~~~~*`;.'``2O~~~~*`;.'`~;`~`3 O~~~*`; $$1 .~~``8'O~~~~*`;.'`~;`~`5O~~~~*`;.'12O~~~~*` $$1 ;.'`~;`~`13O~~~*`;.'9O~~~~*`; $$1 .'`~;`~`4O~~~~*`;.2O````~~~~``*13***~~O``````~~~*''"'
+  ...Rocket:/say shoots fireworks for 1 $$1  4*8~~~~~12|#####> 3`';:*,.,*:;'` 1 $$1  4*8~~~~~12|#####> 3`';:*,.,*:;'` 1 $$1  4*8~~~~~12|#####> 3`';:*,.,*:;'` 1 $$1 4*8~~~~~12|#####>3 `';:*,.,*:;'`
+  ...Smile:/say 1,8∂¶) 1
+  ...Greet:/say 8_13,6.3-4*13'12^13'4*3-6.13,8_8_13,6.3-4*13'1 $$1 8_13,6.3-4*13'12^13'4*3-6.13,8_13,6.3-4*' 
+  ...Greet2:/ say 4,1:8,1:3,1:12,1:13,1:4,1:8,1:11,1:4,1:8,1:3,1:12,1:13,1:4,1:8,1:11,1:9 $$1 4,1:8,1:3,1:12,1:13,1:4,1:8,1:11,1:4,1:8,1:3,1:12,1:13,1:4,1:8,1:11,1:
+  ...Greet3:/ say 1,11,21,31,41,51,61,71,81,91,108,1 Hello $$1 1,101,91,81,71,61,51,41,31,21,1
+  ...Angel:/say 3^≈^ 4^≈^ 5 ^≈^ 6^≈^ 12 $$1  6^≈^ 5^≈^ 4^≈^ 3^≈^ 12,8What an Angel
+  ...Heart&Arrows:/say 2©14€3©14€5©14€6©14€7©14€10©14€5 $$1 2©14€3©14€5©14€6©14€7©14€15©14€6©
+  ...Red Alert:/say 4||||||||||4,1 RED4||||||||||12,11 $$1  4||||||||||4,1ALERT4||||||||||12 InCoMiNg HuG!
+  .-
+
+  .Offers
+  ..Roses
+  ...Beauty Rose:/me gives a 4,1@9,1>-'--,--- to the beautiful $$1 | /timer1 1 3 / say your beauty is greater than any rose
+  ...Dozen Roses1:/say hands $$1 a dozen Roses!   13@3-}--}--- 8@3-}--}--- 4@3-}--}--- 13@3-}--}--- 8@3-}--}--- 4@3-}--}--- 13@3-}--}--- 8@3-}--}--- 4@3-}--}--- 13@3-}--}--- 8@3-}--}--- 4@3-}--}---
+  ...Dozen Roses2:/me 0 ---------4 {@}  {@} | /me 0  -----4 {@} * {@} * {@}   | /me 0 --4 {@} * {@} * {@} * {@}   | /me 0 ---9 \4 {@} * {@} * {@} 9/ | /me 0------- 9\ \ \ l / / / | /me 0 ------- 9\\ \ O / // | /me 0---------- 9\\ V // | /me 0----------- 9\\E// | /me 0------------ 9>1=9< | /me 0----------- 9//(\\ | /me 10 gives  $$1 $2 $3 $4 $5 $6    A Dozen Roses
+  ...Give Your Baby A Rose:/me gives $$1 a perfect rose 4@3}-----}---...I Love you sweet baby...
+  ...Rose: /me hands 15,2 $+ $$1 $+  a 4,1@9,1}3,1--9,1`3,1--9,1,3,1--9`3,1--9,1-
+  ...Roses:/say 3{Ê{4©3{Ê{4©3{Ê{4©3{Ê{4©12 $$1 4©3}Ê}4©3}Ê}4©3}Ê}4©3}Ê}
+  ...Shower Roses: /me Showers $$1 with roses 4@3}-12>--∑¥Ø`∑.∏∏.∑¥Ø`∑  $1 .∏.∑¥Ø`∑.∏.--12<-3{4@ 4@3}-12>--.∑¥Ø`∑.∏∏.∑¥Ø`∑.∏--12<-3{4@ 4@3}-12>--∏.∑¥Ø`∑.∏. , $1  .,,.∑¥Ø`∑.--12<-3{4@ 4@3}-12>--`∑.∏∏.∑¥Ø`∑.∏ .∑¥Ø`∑.∏--12<-3{4@ 4@3}-12>-- .∏∏.∑¥Ø`∑.∏.∑¥Ø`∑.∏. $1 ∏.∑¥Ø`∑.∏∏.∑¥Ø`∑.∏--12<-3{4@ 4@3}-12>--.∑¥Ø`∑.∏∏.∑¥ Ø`∑.∏.∑¥Ø`∑.∏∏.∑¥Ø`∑.--12<-3{4@ 4@3}-12>--∏.∑¥Ø`∑.∏ $1  :)
+  ...Yellow Roses:/me has handed $$1 a dozen yellow Roses! 8@3-}--}--- 8@3-}--}--- 8@3-}--}---8 8@3-}--}--- 8@3-}--}--- 8@3-}--}--- 8@3-}--}--- 8@3-}--}--- 8@3-}--}--- 8@3-}--}--- 8@3-}--}--- 8@3-}--}---
+  ...Your Name On Roses:/say 0,1 I LOVE YOU4 $$1 3--{-----{4@4 $$1 3--{-----{4@4 $$1 3--{-----{4@4 $$1 3--{-----{4@4 $$1 3--{-----{4@4 $$1 3--{-----{4@4 $$1 3--{-----{4@4 $$1 3--{-----{4@4 $$1 3--{-----{4@4 $$1 3--{-----{4@4 $$1 3--{-----{4@4 $$1 3--{-----{4@4 $$1 3--{-----{4@4 $$1 3--{-----{4@4 $$1 0EvErY SiNgLe RoSe WiTh YoUr NaMe On It...OnLy FoR  My LoVe $$1
+  ..Flowers etc.
+  ...Yellow roses:/say has handed $$1 a dozen yellow Roses! 8@3-}--}--- 8@3-}--}--- 8@3-}--}---8 8@3-}--}--- 8@3-}--}--- 8@3-}--}--- 8@3-}--}--- 8@3-}--}--- 8@3-}--}--- 8@3-}--}--- 8@3-}--}--- 8@3-}--}---
+  ...Colour Rose:/say hands $$1 a perfect 4@3}----}----- for her beauty.
+  ...Rose entry:/say 4@43-->-->--34@43-->-->--4 $$1 3--<--<--34@43--<--<--34@4
+  ...12 roses:/say gives $$1 a dozen roses 4,1 @9,1>-'-,--- 4,1 @9,1>-'-,--- 4,1  @9,1>-'-,--- 4,1 @9,1>-'-,--- 4,1 @9,1>-'-,--- 4,1 @9,1>-'-,--- 4,1 @9,1>-'-,--- 4,1  @9,1>-'-,--- 4,1 @9,1>-'-,--- 4,1 @9,1>-'-,--- 4,1 @9,1>-'-,--- 4,1 @9,1>-'-,---
+  ...RoseHello:/say 4@3-`-,--11,1111,12 HELLO $$1 11,113--`-.-{4@
+  ...Roses/Say:/say 3{Ê{4©3{Ê{4©3{Ê{4©3{Ê{4©12 $$1 4©3}Ê}4©3}Ê}4©3}Ê}4©3}Ê}
+  ...Roses12:/say hands $$1 a dozen Roses!   13@3-}--}--- 8@3-}--}--- 4@3-}--}--- 13@3-}--}--- 8@3-}--}--- 4@3-}--}--- 13@3-}--}--- 8@3-}--}--- 4@3-}--}--- 13@3-}--}--- 8@3-}--}--- 4@3-}--}---
+  ..Candy and Goodies
+  ...7*UP:/say gives2 $$1 6 a can of 0,15 0,3 74,3*0,3UP 
+  ...Coke:/say gives 2 $$1 6 a can of 0,15 0,4 Coke .-
+  ...the candy
+  ...Pop Chan:/say breaks out his cooler and asks the people in # what kind of pop do you want? 15,15!1,140,3 74,3∞0,3UP15,15! 15,15!0,41,4~0,4Coke1,4~15,15! 15,15!9,8Squirt15,15! 15,15!0,5Mr.Piﬂﬂ15,15! 15,15!0,3Sprite15,15! | /say I also have Crush... 15,15!0,6Crush15,15!  15,15!0,7Crush15,15! 15,15!0,13Crush15,15!
+  ...Pop nick:/say breaks out his cooler and asks $$1 what kind of pop do you want? 15,15!1,140,3 74,3∞0,3UP15,15! 15,15!0,41,4~0,4Coke1,4~15,15! 15,15!9,8Squirt15,15!  15,15!0,5Mr.Piﬂﬂ15,15!  15,15!0,3Sprite15,15! 15,158,3MtDew15,15 | /say $$1 I also have Crush... 15,15!0,6Crush15,15!  15,15!0,7Crush15,15! 15,15!0,13Crush15,15!
+  ...Gum:/say Offers $$1 some gum 14,14.4,8<~Juicy-Fruit~>14,14. | /say or 14,14.1,90<~1,9Wrigleys0,9~>14,14.
+  ...Heshey's:/say Hey $$1 wanna share my 15,15.5,5.415,5HERSHEY'S4,45,5.15,15.10 bar with me?
+  ...Lifesavers:/say shares his 15,15.16,2L1,9I16,3F16,4E1,8S16,10A1,4V16,10E1,9R16,5S15,15. with13 $$1!!!
+  ...Tootsie:/say 12offers $$1 a  1-=ù5,5.0,0.4,4.0,1Tootsie Roll4,4.0,0.5,5.1ù=- 
+  ...Skittles:/say offers $$1 some 4<S>13<K>6<I>7<T>8<T>9<L>11<E>3<S> Taste the rainbow.
+  ...MnM's:/say offers $$1 some 0,2(m)&0,5(m)'s and tries to make friends ;)
+  ...MM's2:/say  gives  $$1  some M & M 's 8(1,8m8)1,0 9(1,9m9)1,0 3(1,3m3)1,0 8(1,8m8)1,0 4(1,4m4)1,0 9(1,9m9)1,03(1,3m3)1,04(1,4m4)10 they melt in your mouth, not in your hand.
+  ..Gum
+  ...Mint:/say offers 4 $$1 10,0 a stick of 15,15l4,9<~ DoubleMint ~>15,15l
+  ...BigRed:/say offers $$1 a piece of 15,15l00,04<~ Big Red ~>15,15l
+  ...Pep-O-Mint:/say gives $$1 a stick of 15,15.0,2 PEP-O-MINT 15,15.
+  ...Juicy Fruit:/say gives $$1 a stick of 15,15l4,8<~Juicy-Fruit~>15,15l 
+  ..Greetings
+  ...Colors:/say 12,0(Ø`'∑.∏(Ø`'∑.∏ ______________ ∏.∑'¥Ø)∏.∑'¥Ø) | say 13,0(Ø`'∑.∏(Ø`'∑.∏ 1,0ü2,0ü3,0ü4,0ü5,0ü6,0ü7,0ü8,0ü9,0ü10,0ü11,0ü12,0ü13,0ü14,0ü13,0 ∏.∑'¥Ø)∏.∑'¥Ø) | say 4,0†----==>>>>-----> $$1 <------<<<<==---- | say 13,0(_∏.∑'¥(_∏.∑'¥ 1,0ü2,0ü3,0ü4,0ü5,0ü6,0ü7,0ü8,0ü9,0ü10,0ü11,0ü12,0ü13,0ü14,0ü13,0 `'∑.∏_)`'∑.∏_) | say 12,0(_∏.∑'¥(_∏.∑'¥ ØØØØØØØØØØØØØØ `'∑.∏_)`'∑.∏_)
+  ...Caution greet:/say 1,88,1C1,8a8,1U1,8t8,1I1,8o8,1N1,812,11   $$1     3is4 HERE 1,88,1C1,8a8,1U1,8t8,1I1,8o8,1N1,8
+  ...ª§ªªß§ß§ß∫∫∫∫∫∫:/say  12ª§ªªß§ß§ß∫∫∫∫∫∫4  $$1 12∫∫∫∫∫∫ß§ß§ß´´§´ 
+  ...´ª´ª´ª´ª´ª´ª:/say 12´ª´ª´ª´ª´ª´ª4xXxX13 $$1 4XxXx12´ª´ª´ª´ª´ª´
+  ...∞®®∞∫©:/say 4∞®®∞∫© 9 ∞®®∞∫©12 $$1 7©∫∞®®∞ 14 ©∫∞®®∞ 
+  ...´∫Ù∫ª´∫Ù∫ª´∫Ù∫ª´∫Ù∫ª:/say 14´∫13Ù14∫ª´∫13Ù14∫ª´∫13Ù14∫ª´∫13Ù14∫ª12 $$1 14´∫13Ù14∫ª´∫13Ù14∫ª´∫13Ù14∫ª´∫13Ù14∫ª
+  ...∞∫©oø,,øo©∫∞®®∞∫©:/say 4 ∞∫©oø,,øo©∫∞®®∞∫©12 $$1 4©∫∞®®∞∫©oø,,øo©∫∞®®12 HELLO !
+  ..Nicer
+  ...ZigZags:/say # 4(Ø`∑.∏∏.∑¥Ø`∑.∏∏.∑¥Ø`∑.∏∏.-> ©12 $$1 4 © <-.∏∏.∑¥Ø`∑.∏∏.∑¥Ø`∑.∏∏.∑¥Ø)
+  ...wave:/say # 4∏,¯§∞`∞§¯,∏∏,¯§∞`∞§¯,∏©12 $$1 4 ©∏,¯§∞`∞§¯,∏∏,¯§∞`∞§¯,∏
+  ...arowwave:/say # 4∞`∞§∞`∞§∞`∞§¯,∏,¯'>12 $$1 4 <'¯∏,,¯§∞`∞§^∞`∞§∞`∞§
+  ...wave2:/say # 4_∏,.ª¨=Ê§∫≤∞`ØØ`∞≤∫§Ê-12 $$1 4 -=Ê§∫≤∞`ØØ`∞≤∫§Ê=¨´.,∏.
+  ...question:/say # 4 ®®∞∫©oø,,øo©∫∞®®∞∫©-> ©]12 $$1 4 [© <-©∫∞®®∞∫©oø,,øo©∫∞ 
+  ...wedding:/say # 4©>∞^ß^∞<>∞^ß^∞<>∞^ß^∞<]-12 $$1 4 -[>∞^ß^∞<>∞^ß^∞<>∞^ß^∞<© 
+  ...bubbles:/say # 4o ∫ O ∫ oo ∫ O ∫ oo ∫ O ∫ o12 $$1 4 o ∫ O ∫ oo ∫ O ∫ oo ∫ O ∫ o 
+  ...Bridge:/say # 4©∫∞®®∞∫©©∫∞®®∞∫©12 $$1 4 ©∫∞®®∞∫©©∫∞®®∞∫© 
+  ...coolwave:/say # 4∏.∑¥^`∑.,∏∏.∑¥^`∞≤∫§Ê=¨´.,∏_12 $$1 4  _∏,.ª¨=Ê§∫≤∞`^`∑.∏∏.∑¥^`∑.,∏
+  ...Bridge2:/say # 4 |!§*'~``~'*§!||!§*'~``~'*§!|12 $$1 4 |!§*'~``~'*§!||!§*'~``~'*§!|
+  ...stardust:/say # 4<=>¨¶ª-™∫˜≠^Ø\|/Ø\/=>12 $$1 4 <=\/Ø\|/Ø^-˜∫™-´¶¨<=>
+  ...newest:/say # 4 πæΩº§*∞∑.∫'∞%∏,;`~¥´´]12 $$1 4†[ªª`~`';,∏%∞'∫.∑∞*§ºΩæπ
+  ...sea:/say # 4ª,∏,ªë''`ª,∏,ªë''`ª,∏,ªë''`ª,∏,ªí'12 $$1 4 '`´,∏,´ë''`´,∏,´ë''`´,∏,´ë''`´,∏,´
+  .-
+  .Slaps  
+  ..Slapz
+  ...Piss:/me stands on the edge of a building and takes a piss on $$1's head. "AAAhhhhh Refreshing!"
+  ...Bottle:/me takes an empty bottle of beer and smashes it in $$1's face..."Get a nosejob."
+  ...Hey:/me taps $$1 on the shoulder and when $$1 turns around he smashes $$1 in the face with his fist.
+  ...Jacky Chan:/me does his Jackie Chan impersonation and does a karate move, ripping out $$1's throat.
+  ...Rip Head:/me rips $$1's head off and shits down $$1's neck.
+  ...Kick Ass:/me kicks $1's ass so hard he'll be shitting out of his forehead for a week!
+  ...Glare at User:/me glares at $$* $+ !
+  ...Punch User:/me punches $$* right in the nose!
+  ...Shoot User:/me blows $1 away with a double barrel shotgun!
+  ...Grenade User:/me takes out a grenade ... pulls the pin ... 4 ... 3 ..2 ... tosses it at $$1 | /say Damn...what a BLAST!!!
+  ...Hang User:/me puts a tight rope around $$1 's neck and opens the channel trapdoor! | /say hung!!!
+  ...Nut Kick:/me kicks $$1 right in the nuts....Hmmmm? It didn't phase him a bit....No wonder he's still a virgin....No Guts No Glory (or is it, No Nuts No Pussy)
+  ...De-pantz:/me quickly pulls down $$1's pants and everyone in # laughs their ass off at his itty bitty wieny
+  ...Cast A Spell:/me casts a magical spell of $?="What kind of spell?" upon $$1!
+  ..Other Slaps
+  ....RailRoad:/me Slaps $$1 around a bit with a railroad tie. 
+  ....Trout:/me Slaps a large trout around a bit with $$1
+  ....Pimple:/me Slaps $$1 across the face and causes $$1's head to explode with puss from all the pimples.
+  ....Face:/me Slaps $$1's face so hard, $$1 has to walk backwards from now on to see where he/she's going
+  ....Brick:/me Slaps some sence into $$1 with a brick.
+  ....Trojan:/me Slaps $$1 around a bit with a large trojan.
+  ....Whore:/me Slaps $$1 like a chicago whore.
+  ....PIG(slap):/me slaps $1 with a rubber hose filled with heaps of PIG SHIT!!!
+  ....Black Septor:/me slaps $1 upside the head with a Black septor that is black than his heart!!! 
+  ....Hammer(slap):/me slaps $1 upside the head with a hammer!
+  ....Slap Law Suit:/me slaps $$1 with a huge law suit!
+  ....ChAiNsAw:/me turns on a ChAiNsAw and shoves it up $1's ass!!!
+  ....Slaps With Slapping Tool:/me  4slaps  4,8 $$1    4 with a 12 $$?="Enter Slapping Tool:" ! 
+  ..Violent Actions
+  ...Schlong:/me whips out his 2 Foot Schlong and presses it against $$1 $+ 's forehead 
+  ...Hang User:/me puts a tight rope around 13 $$1's  neck and opens the channel trapdoor! | /say  12hung!!! 
+  ...Punch Glass:/me Punches $$1 straight across the jaw shattering it as if it were glass.
+  ...Cast Spell:/me  12casts a magical spell of 4 $$?2="What kind of spell?"  12upon 13 $$1! 
+  ...Shotgun!:/me takes out his Shotgun and tells $$1 you got 10 seconds to run | /me $$1 10 | /me $$1 1 | /me pulls out the shotgun and blows $$1 's head off..
+  ...Shoot User:/me blows $$1 away with a double barrel shotgun!
+  ...Grenade User:/me takes out a grenade ... pulls the pin ... 4 ... 3 ..2 ... tosses it at $$1! | /say Damn...what a BLAST!!!
+  ...Brain Swish!:/me Sticks a RED Hot Curling Iron In $1's Ear And Swishes Thier Brain Around For awhile... hmm where'd it go??
+  ...Punch!:/me punches $$1 as hard and watches as $$1 dies slowly!
+  ...Fire!:/me Poors gasoline all over $$1 then with a smirk takes out his lighter and lights $$1 on fire!! | /me is laghing at $$1 evily
+  ...Crush!:/me crushes $$1's skull with an extremely large frozen trout.
+  ...Tug!:/me "borrows" $$1's head and goes bowling with his friend the trout.
+  ...Spit:/me grabs $$1 by the throat.... throws $$1 up against a wall, and spits in $?="his or her" face.!
+  ...Bar Fight(pick 6):/me punches $$1 and watches as $2 tries to punch $3 , but $3 misses and hits $4 whos husband $5 gets pissed and commences to pounding $6 ... BARFIGHT!
+  ...Channel Fight(pick 6):/me $?="you <action>:" $$1 and watches as $2 tries to $?="and watches nick tries to <action>:" $3  $+ , but $3 misses and $?="last action:" $+ 's $4 whos $?="whos <title>:" $5 gets $?="gets <mood>:" and hurls a $?="and hurls a <object>:" at $6 ...  # FIGHT!
+  ..Playing Tag Actions!
+  ...Jacky Chan:/me does his Jackie Chan impersonation and does a karate move, tagging $$1 on the back. -= Your IT =-
+  ...Run Around:/me runs around the channel looking for a victim........ $me see's $$1 hiding at the back of the channel, $me 1slaps a tag on $$1 $+ 's forehead. -= Your IT =-
+  ...HugzTag:/me 2¯Hugs¯,∏∏,¯§∞`6∞ $$1  `∞§¯,∏∏,¯Hugs¯,∏∏,¯§10∞`∞ $$1 `∞§¯,∏∏,¯§∞5`∞ $$1  `∞§¯,∏∏,¯§∞ [Secret Tag]  -= Your IT =-
+  ...SmartComeBack:/me notices that $$1 has predicted the move, and adopts mid-air with a triple flip landing behind $$1 $+ , $me then slaps a tag parachute to $$1 $+ 's back, before pushing them off the channel edge. -= Your IT =-
+  ..Insult The Cunt
+  ...Shoot:/me Goes Psycho, And Grabs A $?="what weapon do you wish to use?" Out Of His Jacket... Looks At $1... Cocks It Once... And Blasts' $1 Right InThe Fuckin' $?="Where To Shoot?" About 10 times, Knocking $1 To The Ground, Crawling In A Pool Of His Own Blood! 
+  ...Insult his mother:/say hey $$1 , I did your $$?="describe mother (ugly, fat)" mother last night.. damnit.. I had to put a bag over her head so I could cum. btw. She wasnt worth that 10 cents she took. Tell  your biatch ass smelly mother to do a plastic surgery or something .. EVERYWHERE!
+  ...His mom 1 :/say $$1 moms' is so fat..I shagged her last nite and had to roll off a twice and I still couldn't get off!!! 
+  ...His mom 2 :/say $$1 moms' is so fat..She wore a Malcom X t-shirt and helicopters thought she was a landing pad!!!
+  ...His Mom 3 :/say $$1 moms' is so fat..She uses the equator as a belt line....!!!!!
+  ..Tell da Fuck
+  ...Fuck 1 :/say Fuck off $$1, you muthafucker
+  ...Fuck 2 :/say Fuck you $$1, you wanker
+  ...Fuck 3 :/say $$1 is a fucking cunt
+  ...Fuck 4 :/say $$1 is a fucking asshole, 
+  ...Fuck 5 :/say $$1 is a fucking twat with a cock the size of a peanut 
+  ...Fuck 6 :/say $$1 is a fucking bastards, ass kissing, cock sucking son of a bitch
+  ..Gay insults
+  ...Pervert:/say $$1 is dC@ppp.01.gaysex.com * Bend over | /say $1 on $chan @#Buttsex @#Anal-Action @#gayskinheads @#gay-opers @#gaycuseeme | /say $1 using $server [156.63.85.20]  | /say $$1 has been idle 15 seconds, signed on $date $time | /say End of /WHOIS list. 
+  ...Anal-sex:/say 12This Is $$1 ¥s  Ass Now >> (_|_) This Is $$1's Ass When his father gets home from work >> (_O_) Any Questions?
+  ...Cocksucker:/say Dammit, $$1, If You Would Stop Sucking On That Damn Cock For A Minute, You Might Be Able To Say Somehting Halfway Intelligent!!! 
+  ..More Gay insults
+  ...Advice  
+  ....These are bad insults:/
+  ....Gay 1 :/say $1 is 4!!!!gay!!!!..You belong in the gay channel.....
+  ....Gay 2 :/say $1 has had his ass fucked so badly..its the size of a bucket...suck it beeeeeyatch
+  ....Gay 3 :/say $1 <---- Watch this guy 4<< Gay Alert >>
+  ....Gay 4 :/say $1 <---- Watch out 4<< gaylord >> is about.....
+  ....Gay 5 :/say $1 <---- Watch out lads, your ass is 2 Next
+  ....Gay 6 :/say $1 <---- Beware to All.. 4 << Gay boy i
+  .-
+}

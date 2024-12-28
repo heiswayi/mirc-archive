@@ -1,0 +1,1167 @@
+; Title : WebChat Service Console
+; Filename : wchathelp.dat
+; Type : Webchat Service Console Help
+; Author : LocalHost
+; Last Updated : 24/07/2001
+;
+; Original Package - 
+; 1. wchatsc.mrc
+; 2. wchathelp.dat
+; 3. network.ico
+;
+; Description -
+; This file contain the data used by wchatsc.mrc.
+; Information in this file are from WebChat Help Service and are correct at the time it was created.
+
+[nickserv]
+help1=REGISTER
+help2=SET PASSWD
+help3=SET PROTECT
+help4=SET URL
+help5=SET NOMEMO
+help6=SET NOOP
+help7=SET EMAIL
+help8=SET SHOWEMAIL
+help9=SET MLOCK
+help10=SET SECURE
+help11=SET MRECEIPTS
+help12=SET MFORWARD
+help13=SET FIELD
+help14=SET AUTHORIZE
+help15=ACCESS
+help16=IDENTIFY
+help17=RECOVER
+help18=GHOST
+help19=DROP
+help20=WATCH
+help21=BUDDY
+help22=RELEASE
+help23=INFO
+help24=ACC
+help25=AUTH LIST
+help26=AUTH VIEW    
+help27=AUTH READ    
+help28=AUTH APPROVE 
+help29=AUTH ACCEPT  
+help30=AUTH DECLINE 
+help31=AUTH REJECT  
+help32=LISTCHANS
+
+[chanserv]
+help1=INFO
+help2=UOP
+help3=VOP
+help4=AOP
+help5=SOP
+help6=REGISTER
+help7=SET MLOCK
+help8=SET IDENT
+help9=SET OPGUARD
+help10=SET TOPICLOCK 
+help11=SET KEEPTOPIC
+help12=AUTOVOP
+help13=SET RESTRICT
+help14=SET FOUNDER
+help15=SET MEMOLEVEL
+help16=SET URL
+help17=SET DESC
+help18=SET EMAIL
+help19=SET PASSWD
+help20=SET MLOCK
+help21=IDENITFY
+help22=DROP
+help23=ACC
+help24=ACCESS
+help25=AKICK
+help26=OP
+help27=DEOP
+help28=VOICE
+help29=DEVOICE
+help30=INVITE
+help31=MDEOP
+help32=MKICK
+help33=UNBAN
+help34=COUNT
+help35=WHY
+
+[memoserv]
+help1=SEND
+help2=SENDTO
+help3=LIST
+help4=READ
+help5=DEL
+help6=FORWARD
+help7=EXPUNGE
+help8=CLOSE
+help9=STAT
+help10=CREATE
+help11=UNDEL
+help12=SELECT
+help13=MOVE
+help14=IGNORE
+
+[nickserv1]
+list1=Command - REGISTER
+list2=USAGE   - REGISTER <password> <email>
+list3=This will register your current nickname with NickServ.  You
+list4=make up your own password. The password is a case-sensative.
+list5=You must remember your password in order identify or to change 
+list6=settings.  When you register a nickname, a mask entry is added 
+list7=to your access list based on your current address. Keep in mind 
+list8=that in order to use MemoServ and ChanServ you must have a 
+list9=registered nickname. 
+list10=Examples:
+list11=REGISTER MyPass myemail@webchat.org 
+
+[nickserv2]
+list1=Command - SET PASSWD
+list2=USAGE   - SET PASSWD <password>
+list3=This command changes the current password for your nickname.
+list4=You must use the NickServ IDENTIFY command before doing this.
+list5=Example:
+list6=SET PASSWD NeWpASswOrd
+
+[nickserv3]
+list1=Command - SET PROTECT
+list2=USAGE   - SET PROTECT <on|off> 
+list3=This option will make it much harder for anybody to use your
+list4=nick. If someone changes their nick to a nick registered with
+list5=kill on, they will be given 60 seconds in which they must
+list6=either change nicks, or IDENTIFY themselves.
+list7=Example:
+list8=set PROTECT on 
+
+[nickserv4]
+list1=Command - SET URL
+list2=USAGE   - SET <nick> URL [NONE|<URL>]
+list3=Will attach a Uniform Ressource Locator to the nickname, 
+list4=which will be displayed when using the info command.
+list5=Using the "NONE" option will erase the current URL.
+list6=You must be identified to NickServ to use this command.
+list7=Example:
+list8=SET URL http://www.webmaster.com 
+list9=SET URL
+
+[nickserv5]
+list1=Command - SET NOMEMO
+list2=USAGE   - SET NOMEMO <on|off>
+list3=When this option is on, ALL memos to your nickname will be
+list4=ignored. MemoServ will simply not store them. 
+list5=Example:
+list6=SET NOMEMO ON
+
+[nickserv6]
+list1=Command - SET NOOP
+list2=USAGE   - SET NOOP <on|off>
+list3=When this is on, ChanServ will not allow your nick to be added to
+list4=any UOp, VOp, AOp, or SOp list of any channels. Whoever tries to 
+list5=add you will get a notice from ChanServ, saying that you have 
+list6=NOOP set on and to get the User's approval before adding him/her
+list7=to a channel list.
+list8=Example:
+list9=SET NOOP ON
+
+[nickserv7]
+list1=Command - SET EMAIL
+list2=USAGE   - SET EMAIL [<EMAIL ADDRESS>]
+list3=Will allow you to change your email address on your 
+list4=registered nickname.  If your email address has changed
+list5=since the time you first registered your nickname or 
+list6=you made a mistake while registering your nickname, you 
+list7=can change the email address on your nickname.  If you 
+list8=provide an empty field for the email address it will erase
+list9=the current email address for your nickname.  
+list10=Please Note: The email address on your nickname should
+list11=always be the current valid email to reach you.  In case of
+list12=a lost or forgotten nickname password, this email address
+list13=will be utilized, so it is of a major importance that you always
+list14=provide a valid email address for your nickname.
+list15=You must be identified to NickServ with your nickname password
+list16=to be able to modify the email address on your registered nick.
+list17=Examples:
+list18=SET EMAIL webbot@webchat.org
+list19=SET EMAIL
+
+[nickserv8]
+list1=Command - SET SHOWEMAIL
+list2=USAGE   - SET SHOWEMAIL <on|off>
+list3=With this set to ON, any user can see the email address that you
+list4=have provided and when it is set to OFF, your email address becomes
+list5=hidden to them.
+list6=Example:
+list7=SET SHOWEMAIL ON
+
+[nickserv9]
+list1=Command - SET MLOCK
+list2=USAGE   - SET MLOCK <on|off> 
+list3=This command allows you to lock a set of modes
+list4=for your nickname.
+list5=Please Note:  You cannot lock arbitrary modes.
+list6=You must be identified to NickServ to set this
+list7=command on. 
+list8=Example:
+list9=Set Mlock on
+
+[nickserv10]
+list1=Command - SET SECURE
+list2=USAGE   - SET SECURE <on|off>
+list3=This command makes NickServ ignore nickname
+list4=access lists, when deciding if a user has access
+list5=to a nickname.  
+list6=If this setting is on, in addition to the kill 
+list7=setting, and the user matches an access list, 
+list8=NickServ will not enforce the kill switch, however
+list9=the user will not be granted any privileges.
+list10=This command is on by default on all registered 
+list11=nicknames.
+list12=Example:
+list13=Set Secure on
+
+[nickserv11]
+list1=Command - SET MRECEIPTS
+list2=USAGE   - SET MRECEIPTS <on|off>
+list3=This setting instructs MemoServ to send you a 
+list4=memo notification, when a user has read a 
+list5=memo you have sent them.
+list6=Example:
+list7=set Mreceipts on
+list8=set Mreceipts off
+
+[nickserv12]
+list1=Command - SET MFORWARD
+list2=USAGE   - SET MFORWARD <on|off> [<nickname>] 
+list3=This will redirect all memos arriving to
+list4=the nickname you specify.
+list5=If you set MFORWARD OFF memo forwarding will
+list6=be disabled for the nickname.
+list7=Example:
+list8=set Mforward on JennAway 
+list9=set MForward off
+
+[nickserv13]
+list1=Command - SET FIELD
+list2=USAGE   - SET FIELD
+list3=        - SET FIELD <field> [<information>]
+list4=The Field setting allows the user to add
+list5=extended information on his/her registered
+list6=nickname.
+list7=The fields can be pre set on the server level
+list8=or the user can use the unused Comment field
+list9=to enter business or personal comments.
+list10=If no field name is used, it will
+list11=display the list of the fields.
+list12=If no information is entered it will delete the
+list13=current information in the field.
+list14=Example:
+list15=SET FIELD
+list16=SET FIELD Age 30
+list17=SET FIELD Age
+list18=SET FIELD Comment1 My own comments
+
+[nickserv14]
+list1=Command - SET AUTHORIZE
+list2=USAGE   - SET AUTHORIZE BUDDY <on|off>
+list3=This setting will force a user to ask for your
+list4=authorization before adding you to their Buddy
+list5=list.  If you turn this option off, anyone can 
+list6=add you.  Turning this option on will mean that
+list7=your authorization is required to be added to watch 
+list8=or buddy lists.  If you dont add an on or off parameter
+list9=it will display your current authorization settings.
+list10=Example:
+list11=SET AUTHORIZE
+list12=SET AUTHORIZE BUDDY on
+
+[nickserv15]
+list1=Command - ACCESS
+list2=USAGE   - ACCESS LIST
+list3=        - ACCESS ADD <user@host mask>
+list4=        - ACCESS DEL <user@host mask>
+list5=        - ACCESS WIPE
+list6=Allows you to list, add, delete or wipe user@host masks 
+list7=from your nickname. If your address matches a mask in 
+list8=this list, you will not need to IDENTIFY to NickServ to 
+list9=use your nick.
+list10=You must be identified to NickServ to add, delete list or
+list11=wipe your access list.
+list12=Examples: 
+list13=ACCESS add mark@*.webmaster.com
+list14=ACCESS list JoelKatz
+list15=ACCESS WIPE Jenn|fer
+
+[nickserv16]
+list1=Command - IDENTIFY
+list2=USAGE   - IDENTIFY [<nickname>] <password>
+list3=This tells NickServ that you are the owner of a certain nickname.
+list4=After you have identified, you have full access to the nickname.
+list5=Example:
+list6=IDENTIFY NikB MyPass
+list7=IDENTIFY MyPass
+list8=Please Note:  You can Identify to NickServ by typing the following 
+list9=command:  
+list10=/pass MyPass 
+
+[nickserv17]
+list1=Command - RECOVER
+list2=USAGE   - RECOVER <nick> [<password>]
+list3=If you haven't set the kill option on, than this is the
+list4=manual version of preventing someone from using your nickname.
+list5=You only need to send the password with this command if your
+list6=current address doesn't match the nick's access list. This
+list7=will forcibly stop them from using your nick. 
+list8=Example:
+list9=RECOVER JoelKatz MyPass
+
+[nickserv18]
+list1=Command - GHOST
+list2=USAGE   - GHOST <nick> <password>
+list3=If, for some reason, your Internet connection fails, then your
+list4=client may not log off IRC properly. This is called a ghost.
+list5=With this command, you can remove your ghost.
+list6=Example:
+list7=GHOST Web MyPass
+
+[nickserv19]
+list1=Command - DROP
+list2=USAGE   - DROP <nick>
+list3=Using this command makes NickServ stop managing your nick, and
+list4=will remove it from the services database. If a nick is dropped,
+list5=anyone else can register it. You must use the NickServ
+list6=IDENTIFY command before doing this.
+list7=Example:
+list8=DROP Web
+
+[nickserv20]
+list1=Command - WATCH
+list2=USAGE   - WATCH [<add|del|list>] <nick|Channel>
+list3=This command will have NickServ manage your 
+list4=Watch list. A watch list is similar to a 
+list5=notify list.  
+list6=Example:
+list7=WATCH add Mark
+list8=WATCH add #ConferenceRoom
+list9=WATCH del Mark
+list10=WATCH list
+list11=Other related commands
+list12=help buddy
+list13=help set authorize
+list14=help Auth
+
+[nickserv21]
+list1=Command - BUDDY
+list2=USAGE   - BUDDY [<add|del|list>] <nick|Channel>
+list3=This command will have NickServ manage your 
+list4=BUDDY list. A Buddy list is the same as a
+list5=watch list and similar to a notify list.  
+list6=Example:
+list7=BUDDY add Mark
+list8=BUDDY add #ConferenceRoom
+list9=BUDDY del Mark
+list10=BUDDY list
+list11=Other relating commmands
+list12=help AUTH
+list13=help set Authorize
+
+[nickserv22]
+list1=Command - RELEASE
+list2=USAGE   - RELEASE <nick> [password]
+list3=If you used the recover command to stop another user from using
+list4=your nick, then NickServ won't let go of the nick for 2 minutes.
+list5=This command overrides that, telling NickServ to release the
+list6=nick now. If you're not in the access list for the nick you
+list7=want to release, then you will need to include the password.
+list8=Example:
+list9=RELEASE JennAway MyPass
+
+[nickserv23]
+list1=Command - INFO
+list2=USAGE   - INFO <nick>
+list3=If a nick is registered, this command shows 
+list4=information about the nickname. 
+list5=Example:
+list6=Info NikB
+
+[nickserv24]
+list1=Command - ACC
+list2=USAGE   - ACC <nick>
+list3=Allows you to determine if the person using the
+list4=nick is the real owner. The reply will be given in a notice:
+list5=ACC <nick> <access level>
+list6=Possible return access level replies:
+list7=Nick not online         User not online
+list8=Nick not registered     The nickname <nickname> is not registered.
+list9=Registered Nick         ACC <nickname> No Access (0)
+list10=Match ident@host        ACC <nickname> Match Access List (1)
+list11=Identified to NickServ  ACC <nickname> Identified (2)
+list12=Example:
+list13=ACC Mark
+
+[nickserv25]
+list1=Command - AUTH
+list2=USAGE   - AUTH <list> [<nick>]
+list3=Displays the list of requests for the nickname you
+list4=specify, or the current nickname if you don't specify 
+list5=one.
+list6=Example:
+list7=AUTH list
+list8=AUTH list Mark
+list9=Other related commands:
+list10=help buddy
+list11=help set Authorize 
+
+[nickserv26]
+list1=Command - AUTH
+list2=USAGE   - AUTH <view|read> <ID>
+list3=Read an authentication request that is queued.
+list4=The ID is obtained from /NS AUTH LIST, it is the number
+list5=preceeding the nickname. Same as the AUTH READ
+list6=command.
+list7=Example:
+list8=AUTH view 4
+list9=AUTH read 1
+list10=Other related commands:
+list11=help buddy
+list12=help set Authorize
+
+[nickserv27]
+list1=Command - AUTH
+list2=USAGE   - AUTH <view|read> <ID>
+list3=Read an authentication request that is queued.
+list4=The ID is obtained from /NS AUTH LIST, it is the number
+list5=preceeding the nickname. Same as the AUTH READ
+list6=command.
+list7=Example:
+list8=AUTH view 4
+list9=AUTH read 1
+list10=Other related commands:
+list11=help buddy
+list12=help set Authorize
+
+[nickserv28]
+list1=Command - AUTH
+list2=USAGE   - AUTH <approve|accept> <ID>
+list3=Approve the authorization request. Services performs 
+list4=whatever action is necessary to complete the process, 
+list5=and notifies the sender that it was completed. Same 
+list6=as the AUTH ACCEPT command.
+list7=Example:
+list8=AUTH approve 1
+list9=Other related commands:
+list10=help buddy
+list11=help set Authorize
+
+[nickserv29]
+list1=Command - AUTH
+list2=USAGE   - AUTH <approve|accept> <ID>
+list3=Approve the authorization request. Services performs 
+list4=whatever action is necessary to complete the process, 
+list5=and notifies the sender that it was completed. Same 
+list6=as the AUTH ACCEPT command.
+list7=Example:
+list8=AUTH approve 1
+list9=Other related commands:
+list10=help buddy
+list11=help set Authorize
+
+[nickserv30]
+list1=Command - AUTH
+list2=USAGE   - AUTH <decline|reject> <ID>
+list3=Decline the authorization request. Services will roll 
+list4=back the transaction, and restore the state of objects 
+list5=to the way they were before the request was issued, and 
+list6=notifies the sender of the rejection. Same as the AUTH
+list7=REJECT command.
+list8=Example:
+list9=AUTH REJECT 2
+list10=AUTH DECLINE 4
+list11=Other related commands:
+list12=help buddy
+list13=help set Authorize
+
+[nickserv31]
+list1=Command - AUTH
+list2=USAGE   - AUTH <decline|reject> <ID>
+list3=Decline the authorization request. Services will roll 
+list4=back the transaction, and restore the state of objects 
+list5=to the way they were before the request was issued, and 
+list6=notifies the sender of the rejection. Same as the AUTH
+list7=DECLINE command.
+list8=Example:
+list9=AUTH REJECT 2
+list10=AUTH DECLINE 4
+list11=Other related commands:
+list12=help buddy
+list13=help set Authorize
+
+[nickserv32]
+list1=Command - LISTCHANS
+list2=USAGE   - LISTCHANS <nick>
+list3=This will give you a list of all the channels you
+list4=or the specified nickname has an access level to.
+list5=Using no nickname parameter will give you the list
+list6=of the current nickname you are using.
+list7=Example:
+list8=LISTCHANS JoeUser
+list9=LISTCHANS
+
+[chanserv1]
+list1=Command - INFO
+list2=USAGE   - INFO <channel>
+list3=Shows information for a channel, such as the channel founder,
+list4=mode locks, the current topic, the channel description,
+list5=any settings such as topic lock, the time the channel was
+list6=registered, and the time of the last opping.
+list7=Example:
+list8=info #spiderslair
+
+[chanserv2]
+list1=Command - UOP
+list2=Usage   - UOP <channel> ADD <nick>
+list3=        - UOP <channel> DEL <index number or nick>
+list4=        - UOP <channel> LIST
+list5=        - UOP <channel> WIPE
+list6=Maintains the channel UserOp list. Only SOps or higher 
+list7=may use WIPE, ADD and DEL. UOps or above may use LIST.
+list8=UOp users wont see any difference in channel modes, however 
+list9=if a user is placed on the UOp list of a channel he/she
+list10=will be able to receive memo's sent to that channel, 
+list11=as well as be able to enter a restricted channel
+list12=that he/she has been added to the UOp list.
+list13=Please note: There is a limit of 250 users that can be added to UOP
+list14=channel list.
+list15=ADD     - adds a user to a channels UserOp access list. 
+list16=DEL     - removes a user from a channel's UserOp access list. 
+list17=LIST    - lists the UserOp access list, with an index number. 
+list18=WIPE    - will totally clear the UOp list. 
+list19=Examples:
+list20=UOP #webchat ADD Trab
+list21=UOP #webchat DEL 2
+list22=UOP #webchat LIST
+list23=UOP #webchat WIPE
+
+[chanserv3]
+list1=Command - VOP
+list2=Usage   - VOP <channel> ADD <nick>
+list3=        - VOP <channel> DEL <index number or nick>
+list4=        - VOP <channel> LIST
+list5=        - VOP <channel> WIPE
+list6=Maintains the channel VoiceOp list. Only SOps or higher 
+list7=may use WIPE, ADD and DEL. UOps or above may use LIST.
+list8=This command will give a user voice level in a channel. 
+list9=The voiced user will have no ability to kick or ban users 
+list10=from the channel, however if the channel is in moderated 
+list11=mode he/she will be able to send messages in the channel. 
+list12=This user will also be able to recieve memos sent to the 
+list13=channel.  The VOp can also access restricted channels that
+list14=he/she has been added to the VOp list. 
+list15=Please note: There is a limit of 250 users that can be added to VOP
+list16=channel list.
+list17=ADD     - adds a user to a channels VoiceOp access list. 
+list18=DEL     - removes a user from a channel's VoiceOp access list. 
+list19=LIST    - lists the VoiceOp access list, with an index number. 
+list20=WIPE    - will totally clear the VOp list. 
+list21=Examples:
+list22=VOP #webchat ADD ENIGMA
+list23=VOP #webchat DEL 2
+list24=VOP #webchat LIST
+list25=VOP #webchat WIPE
+
+[chanserv4]
+list1=Command - AOP
+list2=Usage   - AOP <channel> ADD <nick>
+list3=        - AOP <channel> DEL <index number or nick>
+list4=        - AOP <channel> LIST
+list5=        - AOP <channel> WIPE
+list6=Maintains the channel AutoOp list. Only SOPs or the channel 
+list7=founder may use WIPE. Sops or above may ADD and DEL AOps,
+list8=and any UOp or above may use LIST.
+list9=Please note: There is a limit of 250 users that can be added to AOP
+list10=channel list.
+list11=ADD     - adds a user to a channels AutoOp access list. 
+list12=DEL     - removes a user from a channel's AutoOp access list. 
+list13=LIST    - lists the AutoOp access list, with an index number. 
+list14=WIPE    - will totally clear the AOp list. 
+list15=Examples:
+list16=AOP #webchat ADD web
+list17=AOP #webchat DEL 2
+list18=AOP #webchat LIST
+list19=AOP #webchat WIPE
+
+[chanserv5]
+list1=Command - SOP
+list2=USAGE   - SOP <channel> ADD <nick>
+list3=          SOP <channel> DEL <index number or nick>
+list4=          SOP <channel> LIST
+list5=          SOP <channel> WIPE
+list6=Maintains the channel SuperOp list. All SOP commands are limited
+list7=to the channel founder except the LIST command, which is
+list8=available to all UserOps or above.  The SuperOp can add and deleted
+list9=UOps, VOps, AOps.
+list10=Please note: There is a limit of 250 users that can be added to SOP
+list11=channel list.
+list12=ADD     adds a user to a channels SuperOp access list. 
+list13=DEL     removes a user from a channel's SuperOp access list. 
+list14=LIST    lists the SuperOp access list, with an index number.
+list15=WIPE    will totally clear the SOp list. 
+list16=Examples:
+list17=SOP #spiderslair ADD Web
+list18=SOP #spiderslair DEL 3
+list19=SOP #spiderslair LIST
+list20=SOP #spiderslair WIPE
+
+[chanserv6]
+list1=Command - REGISTER
+list2=USAGE   - REGISTER <channel> <password> <description>
+list3=When you register a channel with ChanServ, you don't need to
+list4=worry about takeovers, or bots to keep a list of Ops. ChanServ
+list5=does all of this and more. The founder is the person who does
+list6=the registering. Make up a password to register with. The
+list7=password is used so that only the founder can completely
+list8=control the channel. The description is only used when a
+list9=user asks ChanServ for information on a channel. You choose 
+list10=the description of the channel.
+list11=NOTE: Please memorize the password or write the password down 
+list12=somewhere, but PLEASE remember it! You will need it
+list13=later on. Also, all passwords are case-sensative!
+list14=Examples:
+list15=register #spiderslair Apassword Admin Channel
+
+[chanserv7]
+list1=Command - SET MLOCK
+list2=USAGE   - SET <channel> MLOCK <pattern>
+list3=Allows the founder to lock modes, either on or off
+list4=according to the specified patterns.
+list5=Specifying an empty pattern disables MLOCK
+list6=Modes "k" and "l" can only be used manually if they 
+list7=are to be used with a value.  Examples: /mode #channel +k ThisKey
+list8=or /mode channel +l 3.  Modes "k" and "l" can only be modelocked
+list9=by ChanServ if used without parameters as shown in the example
+list10=bellow.
+list11=Example:
+list12=set #webchat mlock +tn 
+list13=set #spiderslair mlock -kl
+list14=set #webchat mlock +tn-klpi
+
+[chanserv8]
+list1=Command - SET IDENT
+list2=USAGE   - SET <channel> IDENT <on|off>
+list3=Makes ChanServ ignore NickServ access lists
+list4=When considering whether to op or voice a user.
+list5=This will force a user to identify to NickServ
+list6=before they can be opped into the channel by ChanServ. 
+list7=Any SOP, AOP, VOP, UOP entries that do not use 
+list8=registered nicknames, will be ignored.  This command
+list9=is set on by default on all channels.
+list10=Example:
+list11=set #webchat ident on
+list12=set #webchat ident off 
+
+[chanserv9]
+list1=Command - SET OPGUARD
+list2=USAGE   - SET <channel> OPGUARD <on|off> 
+list3=Allows the founder to specified that only
+list4=users that are on the aop or sop list should
+list5=be allowed operator status in the channel.
+list6=Example:
+list7=set #webchat OPguard on
+list8=set #spiderslair OPGuard off
+
+[chanserv10]
+list1=Command - SET TOPICLOCK 
+list2=USAGE   - SET <channel> TOPICLOCK <off|founder|aop|sop>
+list3=Allows the founder to select who may change
+list4=the channel topic.
+list5=This setting includes the functionality of KEEPTOPIC
+list6=Example:
+list7=set #spiderslair topiclock sop
+
+[chanserv11]
+list1=Command - SET KEEPTOPIC
+list2=USAGE   - SET <channe> KEEPTOPIC <on|off>
+list3=When this option is on, ChanServ will save the last topic
+list4=set and reset it when the channel is recreated.
+list5=The Topiclock command supercedes KEEPTOPIC command.
+list6=Example:
+list7=set #spiderslair keeptopic on
+list8=set #webchat keeptopic off
+
+[chanserv12]
+list1=Command - AUTOVOP
+list2=USAGE   - AUTOVOP <channel> <on|off>
+list3=This command will set all users that are not
+list4=on the AOP/SOP or UOP list +v when they will 
+list5=join the channel.  Because the VOP list cannot
+list6=accept open hostmasks like *@* you would use
+list7=this command to give voice to all users. 
+list8=Example:
+list9=SET #spiderslair autovop on
+
+[chanserv13]
+list1=Command - SET RESTRICT
+list2=USAGE   - SET <channel> RESTRICT <on|off> 
+list3=Allows the founder to prevent users who do not have
+list4=UOP, VOP, AOP or SOP access, from joining the channel.  
+list5=Example: 
+list6=set #foo restrict on
+
+[chanserv14]
+list1=Command - SET FOUNDER
+list2=USAGE   - SET <channel> FOUNDER 
+list3=Allows the channel founder to be changed.
+list4=It set's the the founder of a channel to the 
+list5=current user.
+list6=You must use the ChanServ identify command before
+list7=using this command.
+list8=Example:
+list9=set #spiderslair Founder
+
+[chanserv15]
+list1=Command - SET MEMOLEVEL
+list2=USAGE   - SET <channel> MEMOLEVEL <vop|aop|sop|none> 
+list3=Allows the founder to limit who can send channel memos
+list4=When the option [NONE] is specified, Only the channel
+list5=founder will be able to send memos.
+list6=Example:
+list7=set #spiderslair memolevel aop
+list8=set #webchat memolevel none
+
+[chanserv16]
+list1=Command - SET URL
+list2=USAGE   - SET <channel> URL [NONE|<URL>] 
+list3=Allows the founder to attach a Uniform Ressource Locator
+list4=to the channel, which will be displayed when using
+list5=the info command for the channel.
+list6=Using the NONE option will erase the current URL, if any.
+list7=Example:
+list8=set #ConferenceRoom URL http://www.webmaster.com 
+
+[chanserv17]
+list1=Command - SET DESC
+list2=USAGE   - SET <channel> DESC <description>
+list3=Allows the founder to change the 
+list4=description of a channel
+list5=Example: 
+list6=set #webchat DESC general chat
+
+[chanserv18]
+list1=Command - SET EMAIL
+list2=USAGE   - EMAIL SET <channel> EMAIL <email> 
+list3=Allows the founder to attach an EMAIL address
+list4=to the channel, which will be displayed when using
+list5=the info command for the channel.
+list6=Using the "NONE" option will erase the current URL.
+list7=Example:
+list8=set #ConferenceRoom email support@webmaster.com
+
+[chanserv19]
+list1=Command - SET PASSWD
+list2=USAGE   - SET <channel> PASSWD <newpass> 
+list3=Allows the founder to change the password used to gain
+list4=founder access on the channel.
+list5=You must use the ChanServ identify command before
+list6=using this command.
+list7=Example:
+list8=set #spiderslair passwd WebPass
+
+[chanserv20]
+list1=Command - SET MLOCK
+list2=USAGE   - SET <channel> MLOCK <pattern>
+list3=Allows the founder to lock modes, either on or off
+list4=according to the specified patterns.
+list5=Specifying an empty pattern disables MLOCK
+list6=Modes "k" and "l" can only be used manually if they 
+list7=are to be used with a value.  Examples: /mode #channel +k ThisKey
+list8=or /mode channel +l 3.  Modes "k" and "l" can only be modelocked
+list9=by ChanServ if used without parameters as shown in the example
+list10=bellow.
+list11=Example:
+list12=set #webchat mlock +tn 
+list13=set #spiderslair mlock -kl
+list14=set #webchat mlock +tn-klpi
+
+[chanserv21]
+list1=Command - IDENITFY
+list2=USAGE   - IDENTIFY <channel> <password> 
+list3=This command will Identify you as the
+list4=channel founder. If you identify as the 
+list5=founder of a channel it will allow you to 
+list6=change upper level settings on the channel.
+list7=Example:
+list8=identify #webchat WebPass
+
+[chanserv22]
+list1=Command - DROP
+list2=USAGE   - DROP <#channel> 
+list3=This command is used when you no longer want ChanServ to manage
+list4=a channel. Use of this command is limited to the channel founder.
+list5=Before using the DROP command you MUST use the ChanServ
+list6=IDENTIFY command.
+list7=Example: 
+list8=Drop #ircnewbies
+
+[chanserv23]
+list1=Command - ACC
+list2=USAGE   - ACC <#channel> <nickname> 
+list3=this command returns the access level of the 
+list4=specified user in the specified channel.
+list5=You need to be a UOP or higher to use
+list6=this command.
+list7=Example:
+list8=Acc #spiderslair Scottk
+
+[chanserv24]
+list1=Command - ACCESS
+list2=USAGE   - ACCESS <#channel> <nickname> 
+list3=This command serves the same purpose as 
+list4=the ChanServ ACC command. The command
+list5=Will returns the access level of the 
+list6=specified user in the specified channel.
+list7=You need to be a UOP or higher to use
+list8=this command.
+list9=Example:
+list10=ACCESS #spiderslair danimal
+
+[chanserv25]
+list1=Command - AKICK
+list2=USAGE   - AKICK <channel> ADD <nick or mask> <reason>
+list3=	  AKICK <channel> DEL <index number or mask>
+list4=          AKICK <channel> LIST
+list5=          AKICK <channel> WIPE
+list6=Maintains the channel AutoKick list. If a user on the channel
+list7=AKICK list does try to join a channel, then they will be
+list8=kicked by ChanServ, as well as banned. The reason is optional
+list9=for your autokick.  It will be displayed in /CS AKICK #
+list10=LIST and also in the KICK message when a user that is 
+list11=autokicked attempts to JOIN the channel.
+list11=WIPE is limited to the channel founder, ADDing and DELeting
+list12=AKICKs is limited to SOps or above, list can be used by
+list13=AOps or above.
+list14=ADD     - adds a user to a channel's AutoKick list. 
+list15=DEL     - removes a user from a channel's AutoKick list. 
+list16=LIST    - lists the AutoKick list, with an index number.
+list17=WIPE    - will remove all entries from the AutoKick list.
+list18=Example:
+list19=AKICK #webchat ADD JoeUser!*@* abuse
+list20=AKICK #webchat ADD *!email@*.host.com
+list21=AKICK #spiderslair DEL 2
+list22=AKICK #spiderslair LIST
+list23=AKICK #webchat WIPE
+
+[chanserv26]
+list1=Command - OP
+list2=USAGE   - OP <channel> <nick>
+list3=Will op the given nick(s) in the given channel. Will not work if
+list4=secured ops is on and the user isn't in the AOp or SOp list.
+list5=This command is limited to AutoOp or above.
+list6=Example:
+list7=op #spiderslair Jenn|fer
+
+[chanserv27]
+list1=Command - DEOP
+list2=USAGE   - DEOP <channel> <nick>
+list3=This command is used to remove operator 
+list4=status from someone in a channel. 
+list5=Limited to AutoOp or above.
+list6=Example:
+list7=DEOP #spiderslair cinja
+
+[chanserv28]
+list1=Command - VOICE
+list2=USAGE   - VOICE <channel> <nickname> 
+list3=You must be a VOp or higher to use this command
+list4=in the selected channel. Much like the op command 
+list5=this command will voice (+v) you in the channel.
+list6=Example:
+list7=VOICE #spiderslair Jenkins
+
+[chanserv29]
+list1=Command - DEVOICE
+list2=USAGE   - DEVOICE <channel> <nickname> 
+list3=You must be a vop or higher to use this
+list4=command in the channel. This command will 
+list5=remove your (+v) voice status. 
+list6=Example:
+list7=#spiderslair Devoice Jenkins 
+
+[chanserv30]
+list1=Command - INVITE
+list2=USAGE   - INVITE <channel>
+list3=Invites the sender to a channel that is set to invite only (mode
+list4=+i). Used mainly for channels where the MLOCK is set +i. You
+list5=cannot invite other users to a channel via ChanServ.
+list6=Limited to channel AutoOps or above.
+list7=Example:
+list8=INVITE #dev
+
+[chanserv31]
+list1=Command - MDEOP
+list2=USAGE   - MDEOP <channel>
+list3=Removes operator status from all users on the named channel
+list4=The channel founder will not get deopped by this command.
+list5=Limited to channel AutoOps and above.
+list6=Example:
+list7=Mdeop #webchat
+
+[chanserv32]
+list1=Command - MKICK
+list2=USAGE   - MKICK <channel>
+list3=Evacuates a channel completely by kicking everyone out, banning
+list4=*!*@* (everyone), setting mode +i (invite only). This should 
+list5=only be used in a takeover situation. 
+list6=Example:
+list7=MKICK #webchat
+
+[chanserv33]
+list1=Command - UNBAN
+list2=USAGE   - UNBAN <channel> [ME|ALL]
+list3=Will remove bans in the specified channels. The ME option,
+list4=available to channel AutoOps or higher, will remove all
+list5=bans that match your current address. The ALL option,
+list6=which is limited to channel SuperOps or higher, will
+list7=remove all bans from the channel ban list.
+list8=Examples:
+list9=UNBAN #spiderslair ME
+list10=UNBAN #webchat ALL
+
+[chanserv34]
+list1=Command - COUNT
+list2=USAGE   - COUNT <channel>
+list3=This command will display the number of UOps, 
+list4=VOps, AOps, SOps, and AKICKs in a channel. 
+list5=Limited to UserOp or higher.
+list6=Example:
+list7=COUNT #spiderslair
+
+[chanserv35]
+list1=Command - WHY
+list2=USAGE   - WHY <channel> <nickname> 
+list3=This command serves a similar purpose as 
+list4=the ChanServ ACC command. The command
+list5=Will return the reason why a user has 
+list6=an access level to the specified channel.
+list7=You need to be a UOP or higher to use
+list8=this command.
+list9=Example:
+list10=WHY #spiderslair danimal
+
+[memoserv1]
+list1=Command - SEND
+list2=USAGE   - SEND <channel|nickname> <message>
+list3=        - SEND <channel|nickname> [MTOPIC <topic> MBODY] <message>
+list4=This command allows you to send a memo to a registered nickname
+list5=or channel. If you wish you can attach a topic to 
+list6=memo by using the 'MTOPIC' keyword and specifying the topic 
+list7=followed by the 'MBODY' key word and the body of the message.
+list8=Example:
+list9=send #webchat Hello guys
+list10=send JoelKatz Hello, how was your vacation? 
+list11=send #webchat MTOPIC meeting MBODY the meeting has
+list12=been changed to 2:00 instead of 1:30.
+
+[memoserv2]
+list1=Command - SENDTO
+list2=USAGE   - SENDTO <channel> [AOP|SOP|VOP|UOP] <message>
+list3=        - SENDTO <channel> <variable> [MTOPIC <topic> MBODY] <message>
+list4=This command allows you to send a memo to registered nicknames
+list5=in the specified list. If you wish you can attach a topic to 
+list6=memo by using the MTOPIC keyword and specifying the topic 
+list7=followed by the MBODY key word and the body of the message.
+list8=Example:
+list9=sendto #webchat vop Hello guys
+list10=sendto #webchat aop,vop Hello guys
+list11=sendto #webchat SOP MTOPIC meeting MBODY the meeting has
+list12=been changed to 2:00 instead of 1:30.
+
+[memoserv3]
+list1=Command - LIST
+list2=USAGE   - LIST
+list3=Displays a list of memos sent to you, in your "active"
+list4=memo box. You cannot see memos that you have sent.
+list5=Example:
+list6=LIST
+
+[memoserv4]
+list1=Command - READ
+list2=USAGE   - READ <memo number>
+list3=        - READ <memo number:memo number>
+list4=        - READ <memo number,memo number,memo number...>
+list5=This command can be used to read memos in the currently
+list6=selected folder. The argument passed can be an individual 
+list7=memo number, a comma separated list of memo numbers or a
+list8=memo range.  
+list9=A memo range, denoted by the syntax <lo>:<hi> specifies
+list10=that you wish to read all memos, whose id is higher or
+list11=equal to 'lo' and less or equal to 'hi'.
+list12=Examples:
+list13=READ 1
+list14=READ 12:15
+list15=READ 2,3,6
+list16=Related commands:
+list17=help STAT
+list18=help SELECT
+list19=help
+
+[memoserv5]
+list1=Command - DEL
+list2=USAGE   - DEL <memo number>
+list3=        - DEL <memo number:memo number>
+list4=        - DEL <memo number,memo number,memo number...>
+list5=        - DEL ALL or *
+list6=        - DEL <memo folder>
+list7=Deletes memo <memo number> (as given by the LIST command) from
+list8=your memo list. DEL ALL or DEL * deletes all of your memos
+list9=without restriction, so use it with care. The argument passed 
+list10=can be an individual memo number, a comma separated list 
+list11=of memo numbers or a memo range.  
+list12=A memo range, denoted by the syntax <lo>:<hi> specifies
+list13=that you wish to read all memos, whose id is higher or
+list14=equal to 'lo' and less or equal to 'hi'.
+list15=This command will also delete a memo folder, however 
+list16=you cannot delete the INBOX, SYSTEM, or RECYCLER
+list17=memo folders.  You can only delete folders manually
+list18=created by yourself.
+list19=NOTE: If you have deleted all your memos and there is one you
+list20=wished you hadn't delete you can use the UNDEL command.
+list21=Examples:
+list22=DEL 1
+list23=DEL 12:15
+list24=DEL 2,3,6
+list25=DEL *
+list26=DEL ALL
+list27=Related commands:
+list28=help STAT
+list29=help SELECT
+list30=help EXPUNGE
+list31=help UNDEL
+list32=help
+
+[memoserv6]
+list1=Command - FORWARD
+list2=USAGE   - FORWARD [<on|off>] [<nickname>]
+list3=This command will 'forward' memos from one registered nickname
+list4=to another. You must be identified to both nicknames to use
+list5=this command.  This command will not allow you to forward 
+list6=a memo to someone else.  
+list7=Examples:
+list8=FORWARD off
+list9=FORWARD on Mark
+
+[memoserv7]
+list1=Command - EXPUNGE
+list2=USAGE   - EXPUNGE
+list3=The EXPUNGE command will permanently delete all 
+list4=memos in your "RECYCLER" folder.  Once your memos
+list5=have been EXPUNGED from the folder they cannot be 
+list6=retrieved.
+list7=Example:
+list8=EXPUNGE
+list9=Related Commands:
+list10=help UNDEL
+list11=help
+
+[memoserv8]
+list1=Command - CLOSE
+list2=USAGE   - CLOSE 
+list3=The close command is the opposite of the SELECT
+list4=command.  It will close your currently active 
+list5=memo folder.
+list6=Example:
+list7=CLOSE 
+list8=Related Commands:
+list9=help SELECT
+list10=help
+
+[memoserv9]
+list1=Command - STAT
+list2=USAGE   - STAT
+list3=This command will show you the list of all
+list4=your MemoServ folders.  You will also be able to
+list5=view how many memos are in each folders, memos
+list6=read, unread.  All registered Nicknames automatically
+list7=get 3 default folders, these folders cannot be deleted.
+list8=INBOX, SYSTEM, and RECYCLER.
+list9=Example:
+list10=STAT
+list11=Related Commands:
+list12=help 
+
+[memoserv10]
+list1=Command - CREATE
+list2=USAGE   - CREATE <Folder name> <description>
+list3=This command will allow you to create new memo folders.
+list4=There are 3 folders already created for you.
+list5=INBOX, SYSTEM, RECYCLER.
+list6=Example:
+list7=CREATE myfolder folder description
+list8=Related Commands:
+list9=help STAT
+list10=help 
+
+[memoserv11]
+list1=Command - UNDEL
+list2=USAGE   - UNDEL <memo number>
+list3=This command will allow you undelete a memo that
+list4=is currently in your RECYCLER memo box.
+list5=You will need to change your active folder to the 
+list6=RECYCLER folder and "list" so you will be able to 
+list7=obtain the memo numbers.  Which ever memo you should
+list8=decide to undelete will be automatically moved back to
+list9=the INBOX memo folder.  
+list10=Examples:
+list11=UNDEL 1
+list12=Related Commands:
+list13=help STAT
+list14=help SELECT
+list15=help
+
+[memoserv12]
+list1=Command - SELECT
+list2=USAGE   - SELECT <memo folder>
+list3=The select command, will allow you to chose which memo
+list4=folder will be your active memo box.  The CLOSE command
+list5=would close a selected memo folder.
+list6=You have 3 default memo folders, INBOX, SYSTEM and RECYCLER
+list7=You can create additional folders.
+list8=Example:
+list9=SELECT SYSTEM
+list10=Related Commands:
+list11=help CLOSE
+list12=help CREATE
+list13=help
+
+[memoserv13]
+list1=Command - MOVE
+list2=USAGE   - MOVE <memo number> <memo folder>
+list3=This command will allow you to move a memo from a memo
+list4=folder to another memo folder.  For example lets say you
+list5=would like to keep a memo you recieved from a friend, 
+list6=however you'd like to remove from your INBOX folder.  
+list7=You could create a new folder and use the MOVE command
+list8=to move the selected memo to a new folder. It will also
+list9=let you move more than 1 memo at the time. e.g.: /MS MOVE 2-4 Jenn
+list10=will move 2,3 and 4 to 'Jenn' a folder name called Jenn.
+list11=Examples:
+list12=MOVE 1 SYSTEM
+list13=MOVE 1-4 SYSTEM
+list14=MOVE 1,3 SYSTEM
+list15=Related Commands:
+list16=help CREATE
+list17=help STAT
+list18=help
+
+[memoserv14]
+list1=Command - IGNORE
+list2=USAGE   - IGNORE [add|del|list|wipe] <nickname>
+list3=You have the ability to manage a permanent
+list4=MemoServ ignore list with this command.
+list5=All nicknames added to your ignore list must
+list6=be registered nicknames via NickServ.
+list7=If a nicknames on your ignore list tries to 
+list8=send you a memo.  The ignored nickname will 
+list9=be notified that they are on your ignore list
+list10=and you do not wish to receive any memos from
+list11=them.
+list12=Examples:
+list13=IGNORE add benny
+list14=IGNORE del Dainera
+list15=IGNORE list

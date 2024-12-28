@@ -1,0 +1,32 @@
+#Swearkick on
+On 1:TEXT:*:?: {
+  if ($level($nick) >= 99) { halt }
+  if (%queryswear.kick == On) {
+    if ($len($1-) > 199) && ($me isop $comchan($nick,1)) { kik2 7PRIVATE EXCESSIVE TEXT'S } 
+    if ( www. isin $1- ) || ( .com isin $1- ) || ( .info isin $1- ) || ( .org isin $1- ) || ( http: isin $1- ) || ( .net isin $1- ) || ( %word5 isin $1- ) { kik2 7PRIVATE Promosi Websites }
+    if ($regex($lower($strip($1-)),/(sex|pepek|pussy|asshol|kimak|kelentit|pelir|burit|shit|lancau|cibai|pantat|gampang|sial|cipap|dick|jubur|zakar|anjing|puki|pepek|sundal|pundek|zakar|babi|butuh|konek|suck|fuck)/g) && (sex !isin $chan) && (terbabit !isin $1- ) && (dickson !isin $1-) && (zakaria !isin $1-) && (sosial !isin $1-)) { kik2 7PRIVATE SWEARING }
+  }
+}
+On 1:NOTICE:*:?: {
+  if ($level($nick) >= 99) { halt }
+  if (%queryswear.kick == On) { 
+    if ($len($1-) > 199) && ($me isop $comchan($nick,1)) { kik2 7PRIVATE EXCESSIVE NOTICE } 
+    if ( www. isin $1- ) || ( .com isin $1- ) || ( .info isin $1- ) || ( .org isin $1- ) || ( http: isin $1- ) || ( .net isin $1- ) || ( %word5 isin $1- ) { kik2 7PRIVATE Promosi Websites }
+    if ($regex($lower($strip($1-)),/(sex|pepek|pussy|asshol|kimak|kelentit|pelir|burit|shit|lancau|cibai|pantat|gampang|sial|cipap|dick|jubur|zakar|anjing|puki|pepek|sundal|pundek|zakar|babi|butuh|konek|suck|fuck)/g) && (sex !isin $chan) && (terbabit !isin $1- ) && (dickson !isin $1-) && (zakaria !isin $1-) && (sosial !isin $1-)) { kik2 7PRIVATE SWEARING }
+  }
+}
+#Swearkick end
+alias kik2 { 
+  if ($nick !ison $comchan($nick,1)) { halt }
+  if ($me !isop $comchan($nick,1)) { halt }
+  if ($nick !isreg $comchan($nick,1)) { halt }
+  if ($me isop $comchan($nick,1)) {
+    .kick $comchan($nick,1) $nick †ermina†ed $nick 4( vic†im(s):7 %kcount 4) ƒrom $chan due †o $1- ƒaul†y. 4(ban†ime :7 180 sec.4) %lost | .inc %kcount 1 
+    bn2
+    halt
+  }
+}
+alias bn2 {
+  if ( *? $+ $wildsite !isin %bns2 ) { .set -u3 %bns2 %bns2 *? $+ $wildsite }
+  .timera4a 1 2 raw -q mode $comchan($nick,1) + $+ $str(b,12) %bns2
+} 

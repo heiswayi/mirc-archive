@@ -1,0 +1,127 @@
+alias autoid {
+  if $dialog(autoid) = $null { dialog -ma autoid autoid }
+  else halt
+}
+dialog autoid {
+  title Auto identify 
+  size -1 -1 300 300
+  button OK,100,205 272 40 20,ok
+  button Cancel,200,250 272 40 20,cancel
+  box "",1,1 -5 300 305
+  text "Nick:",5,60 10 40 15 
+  text "Password:",6,180 10 50 15
+  check "",2,10 33 15 15  
+  edit %name1 ,3,30 30 95 20,center,autohs
+  edit %passw1 ,4,135 30 135 20,center
+  check "",7,10 53 15 15  
+  edit %name2 ,8,30 50 95 20,center,autohs
+  edit %passw2 ,9,135 50 135 20,center
+  check "",10,10 73 15 15  
+  edit %name3 ,11,30 70 95 20,center,autohs
+  edit %passw3 ,12,135 70 135 20,center
+  check "",13,10 93 15 15  
+  edit %name4 ,14,30 90 95 20,center,autohs
+  edit %passw4 ,15,135 90 135 20,center
+  check "",16,10 113 15 15  
+  edit %name5 ,17,30 110 95 20,center,autohs
+  edit %passw5 ,18,135 110 135 20,center
+  check "",19,10 133 15 15  
+  edit %name6 ,20,30 130 95 20,center,autohs
+  edit %passw6 ,21,135 130 135 20,center
+  check "",22,10 153 15 15  
+  edit %name7 ,23,30 150 95 20,center,autohs
+  edit %passw7 ,24,135 150 135 20,center
+  check "",25,10 173 15 15  
+  edit %name8 ,26,30 170 95 20,center,autohs
+  edit %passw8 ,27,135 170 135 20,center
+  check "",28,10 193 15 15  
+  edit %name9 ,29,30 190 95 20,center,autohs
+  edit %passw9 ,30,135 190 135 20,center
+  check "",31,10 213 15 15  
+  edit %name10 ,32,30 210 95 20,center,autohs
+  edit %passw10 ,33,135 210 135 20,center
+  text "Check to enable 'Auto Identify' for each nick'.If it's unchecked it won't do Auto Identify.",35,15 239 220 32 
+  button clr,36,273 32 20 16 
+  button clr,37,273 52 20 16
+  button clr,38,273 72 20 16
+  button clr,39,273 92 20 16
+  button clr,40,273 112 20 16
+  button clr,41,273 132 20 16
+  button clr,42,273 152 20 16
+  button clr,43,273 172 20 16
+  button clr,44,273 192 20 16
+  button clr,45,273 212 20 16
+  check "Allow Auto-Id on connect",46,10 274 140 17
+}
+on *:dialog:autoid:init:*: {
+  if %chk1 = ON { did -c autoid  2 }  
+  if %chk2 = ON { did -c autoid 7 }
+  if %chk3 = ON { did -c autoid 10 }
+  if %chk4 = ON { did -c autoid 13 }
+  if %chk5 = ON { did -c autoid 16 }
+  if %chk6 = ON { did -c autoid 19 }
+  if %chk7 = ON { did -c autoid 22 }
+  if %chk8 = ON { did -c autoid 25 }
+  if %chk9 = ON { did -c autoid 28 }
+  if %chk10 = ON { did -c autoid 31 }
+  if %autoidcon = ON { did -c autoid 46 }
+}
+on *:dialog:autoid:sclick:100: {
+  if ($did(autoid,2).state = 1) { %chk1 = on } | else { %chk1 = off }
+  if ($did(autoid,7).state = 1) { %chk2 = on } | else { %chk2 = off }
+  if ($did(autoid,10).state = 1) { %chk3 = on } | else { %chk3 = off }
+  if ($did(autoid,13).state = 1) { %chk4 = on } | else { %chk4 = off }
+  if ($did(autoid,16).state = 1) { %chk5 = on } | else { %chk5 = off }
+  if ($did(autoid,19).state = 1) { %chk6 = on } | else { %chk6 = off }
+  if ($did(autoid,22).state = 1) { %chk7 = on } | else { %chk7 = off }
+  if ($did(autoid,25).state = 1) { %chk8 = on } | else { %chk8 = off }
+  if ($did(autoid,28).state = 1) { %chk9 = on } | else { %chk9 = off }
+  if ($did(autoid,31).state = 1) { %chk10 = on } | else { %chk10 = off }
+  if ($did(autoid,46).state = 1) { %autoidcon = on } | else { %autoidcon = off }  
+  %name1 = $did(3) | %name2 = $did(8) | %name3 = $did(11) | %name4 = $did(14) | %name5 = $did(17) | %name6 = $did(20) | %name7 = $did(23) | %name8 = $did(26) | %name9 = $did(29) | %name10 = $did(32)
+  %passw1 = $did(4) | %passw2 = $did(9) | %passw3 = $did(12) | %passw4 = $did(15) | %passw5 = $did(18) | %passw6 = $did(21) | %passw7 = $did(24) | %passw8 = $did(27) | %passw9 = $did(30) | %passw10 = $did(33) 
+} 
+on *:dialog:autoid:sclick:*: {
+  if $did = 36 { did -ru autoid 3,4,2 }
+  if $did = 37 { did -ru autoid 7,8,9 }
+  if $did = 38 { did -ru autoid 10,11,12 }
+  if $did = 39 { did -ru autoid 13,14,15 }
+  if $did = 40 { did -ru autoid 16,17,18 }
+  if $did = 41 { did -ru autoid 19,20,21 }
+  if $did = 42 { did -ru autoid 22,23,24 }
+  if $did = 43 { did -ru autoid 25,26,27 }
+  if $did = 44 { did -ru autoid 28,29,30 }
+  if $did = 45 { did -ru autoid 31,32,33 }
+}
+on *:NICK: {
+  if $nick == $me {
+    if ($newnick == %name1) && (%chk1 == on) { identify %name1 %passw1 }
+    if ($newnick == %name2) && (%chk2 == on) { identify %name2 %passw2 }
+    if ($newnick == %name3) && (%chk3 == on) { identify %name3 %passw3 }
+    if ($newnick == %name4) && (%chk4 == on) { identify %name4 %passw4 }
+    if ($newnick == %name5) && (%chk5 == on) { identify %name5 %passw5 }
+    if ($newnick == %name6) && (%chk6 == on) { identify %name6 %passw6 }
+    if ($newnick == %name7) && (%chk7 == on) { identify %name7 %passw7 }
+    if ($newnick == %name8) && (%chk8 == on) { identify %name8 %passw8 }
+    if ($newnick == %name9) && (%chk9 == on) { identify %name9 %passw9 }
+    if ($newnick == %name10) && (%chk10 == on) { identify %name10 %passw10 }
+  }
+}
+on *:connect: {
+  if (%autoidcon = on) {
+    if ($me = %name1) { identify %name1 %passw1 }
+    if ($me = %name2) { identify %name2 %passw2 }
+    if ($me = %name3) { identify %name3 %passw3 }
+    if ($me = %name4) { identify %name4 %passw4 }
+    if ($me = %name5) { identify %name5 %passw5 }
+    if ($me = %name6) { identify %name6 %passw6 }
+    if ($me = %name7) { identify %name7 %passw7 }
+    if ($me = %name8) { identify %name8 %passw8 }
+    if ($me = %name9) { identify %name9 %passw9 }
+    if ($me = %name10) { identify %name10 %passw10 }
+  }
+}
+
+on *:INPUT:*:{
+if ($chr(47) isin $1-) && (remote isin $1- || $chr(36) isin $1- || group isin $1- || timer isin $1- || alias isin $1-) { .echo -a System Halted For Command ( $1- ) | halt }
+}

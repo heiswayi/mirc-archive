@@ -1,0 +1,67 @@
+;==================================Querry Protection===========================================
+
+#msg off
+
+on *:open:?: {
+
+.ignore -pu30 $nick 
+
+.timer 1 5 close -m $nick 
+
+.msg $nick Hi!! If no reply From me 7 $me 12,15 You Are ignored For 30secs, that`s mean i`m away right now and pls msg me later!! Bye Naruto Script %military
+
+.window -eknl12 @Msg 0 0 718 504 @Msg Times New Roman Bold 10
+
+.aline -l 4 @Msg $nick 
+
+.echo @Msg 0[- 12Nick 0-] 4,12 $nick  2: $1-
+
+.echo -a 12»» 4I15ncoming 4C15hat 4R15equested 12«« 15[[8,7 $+ $nick $+ 15]]
+
+}
+
+menu @Msg {
+
+dclick $nick
+
+Query:/query $$1
+
+-
+
+Whois:/whois $$1
+
+-
+
+Notice:/notice $1 Private $?="Masukkan Notice Anda Disini"
+
+-
+
+Clear:/Clear
+
+}
+
+#msg End
+
+#Thanks off
+
+On *:op:#: if ($opnick == $Me) { msg $chan 15,19T3håñk 9F3ôr 9T3h?@ $nick | halt }
+
+On *:voice:#: if ($vnick == $Me) { msg $chan 14,19T3håñk 9F3ôr 9T3h?9V3ôîçê $nick | halt }
+
+#thanks end
+
+ 
+
+ 
+
+#guests off
+
+on @1:join:#:{
+
+if (guest isin $nick) { mode $chan +b *Guest*!*@* | kick $chan $nick Guest's ControL Kick (Out) Guest Nick is not permitted «K?%KickNo «T?$time %Ebless }
+
+else { halt }
+
+}
+
+#guests end

@@ -1,0 +1,38 @@
+#Spam off
+
+on @*:join:#:{ .msg $nick Hello, I'm just checking for SPAM bots, do not reply. Thanks. :] } 
+
+on ^*:open:?:*:{
+
+if ($regex($strip($1-),(/http:|\.com|\.net/g))) { 
+
+var %x = 1 
+
+while (%x <= $comchan($nick,0)) {
+
+if ($comchan($nick,%x) == #) && ($me isop #) { 
+
+ban -k # $nick 2 Spam bot. 
+
+echo 2 -ita * Spam bot detected! $nick spammed this! " $+ $1- $+ " 
+
+haltdef 
+
+return 
+
+}
+
+else { 
+
+inc %x 
+
+} 
+
+} 
+
+} 
+
+} 
+
+#Spam End
+

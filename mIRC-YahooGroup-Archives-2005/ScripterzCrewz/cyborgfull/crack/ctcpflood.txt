@@ -1,0 +1,4 @@
+Ctcp flooding detected
+Stop this ctcp flooding
+Ctcp flooding is annoying
+Excessive ctcp triggers

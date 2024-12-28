@@ -1,0 +1,390 @@
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+;                                            Cyborg Full-Script Edition off the Cyborg-Team ->In-Search of Excellence
+;                                                                   Copyright 2003
+;        WARNING: Do not change/rip/modify/reproduce this script. This is free and use it at your own risk.    
+;                          Anything that may happen to your computer is not my problem.                      
+;                                                              E-mail: net_ryan@yahoo.com
+;&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+master return [|Red-X|]
+chan: return %mychan
+/op /cl | /mode # +oooooo $$1 $2 $3 $4 $5 $6
+/dop /cl | /mode # -oooooo $$1 $2 $3 $4 $5 $6
+/j /cl | /join #$$1 $2-
+/p /cl | /part #
+/v /cl | /mode # +vvvvvv $$1 $2 $3 $4 $5 $6
+/dev /cl | /mode # -vvvvvv $$1 $2 $3 $4 $5 $6
+/n /nickserv identify $nickident
+c /chanserv identify $chandent
+/m /memoserv read $$1
+i /invite $$2 $$1
+/w /whois $$1
+/k /cl | /kick # $$1
+/b /cl | /ban # $$1
+/help { if ($1 == $null) { helpset } } 
+o /omsg $logo $$1 
+/q /query $$1
+;identify /identify $$?***="Enter your nick password:"
+/send /dcc send $1 $2
+/chat /dcc chat $1
+/ping /cl | /ctcp $$1 ping
+/version /ctcp $$1 version
+/finger /ctcp $$1 finger
+/time /ctcp $$1 time
+/userinfo /ctcp $$1 userinfo
+/clientinfo /ctcp $$1 clientinfo
+nickident /return %nick %password
+chandent /return %channelreg %channelpass
+/page /ctcp $$1 page $2-
+/remote /set %errors 15Sorry, you can't disable the remotes of this script | err | halt
+F1 /helpset
+F2 /tsspointset
+F3 /chanprotset
+F4 /findyourownset
+f5 /nickserv identify $nickident
+F6 /mp3player | mp3playset
+F7 /awaysysset
+F8 /setDCCGet.Browse
+F9 /inviterset
+F10 /chanserv identify $chandent
+F12 /directory
+F11 /evscan
+logo /return %logo
+team:web return www.brain-crash.com
+quit { if ($1 == $null) { .quit $read($mircdirText\quit.txt) : $+ $rand:col($logo) at  $+ $team:web $+  Duration: $duration($online) Gone: $time(h:nntt) $Date(ddd mm/dd/yy) } | else { .quit  $logo $1-  } }
+kick inc %kicks 1 | raw -q kick $1 $2 : $+ $3-  %kicks $logo
+_nickjoin join #bestwar-x,#tequilla
+bestwar:x /set %finder $rand:col(%logo) | set %nowaway off 
+initialize /return %finder 
+spyrep { /return $read $mircdircrack\spytext.txt }
+explore run explorer $1-
+part { Part $chan $logo } 
+eatme { /dialog -am spyerror spyerror | did -a spyerror 3 %error }
+rkick { return $read $mircdirText\kick.txt }
+rekick { return $read $mircdirText\kick.txt }
+timerspy { .timerspy1 off |  .timerspy2 off |  .timerspy3 off | .timerspy4 off | .timerspy5 off | .timerspy6 off | .timerspy7 off | .timerspy8 off | .timerspy9 off | .timerspy01 off | .timerspy02 off |  .timerspy03 off |   .timerspy04 off |.timerspy05 off| .timerspy06 off | .timerspy07 off | .timerspy08 off | .timerspy09 off | .timerspy0 off | .timerspy00 off } 
+offred:x { 
+  if ($sock(bestwar).status != $null)  { .ruser $me | .ruser 50 %spybot | .sockwrite -n bestwar QUIT : $logo $read $mircdirText\kick.txt | _setting | goto end  }
+  cl 
+  :end
+}
+opvoe { notice @ $+ + $+ $active $logo $1- }
+ov { notice @ $+ + $+ $active $logo $1- }
+launchbestwar {  
+  if ($sock(bestwar).status != $null)  { set %error Error!!! Currently in use | eatme | goto end }
+  if ($server != $null) { .sockopen bestwar $server $port | .enable #sock | goto end }
+  :end
+}
+cq {
+  set %close.query $query(0) | :echoall
+  if (%close.query != 0) { closemsg $query(%close.query) | dec %close.query 1 }
+  if (%close.query != 0) { goto echoall }
+  else { unset %close.query }
+}
+_setting { .disable #sock }
+ifelsenext {   
+  if ($server != $null) { 
+    if ($sock(bestwar).status == $null) { .load -rs settings  | set %error ALERT Spy bot: connecting plz..wait | eatme | return } 
+    else { set %error Error!!! Spy bot: connected | eatme | return }
+  }
+  cl 
+}
+windows { if ($me ison $chan) msg $chan $cpu:system  }
+showw { .return $readini C:\windows\system.ini Boot.description Display.drv with $window(-1).w $+ X $+ $window(-1).h resol. }
+aaway.check { 
+  if (%autoaway == on) { .timer(autoaway) 0 30 autoaway.check }
+  else halt
+}
+csp {
+  set %Pc.operc $round($calc(($opnick($chan,0) / $nick($chan,0,a) * 100 )),1) $+ $chr(37)
+  set %Pc.vper $round($calc(($vnick($chan,0) / $nick($chan,0,a) * 100)),1) $+ $chr(37)
+  set %Pc.rper $round($calc(($nick($chan,0,r) / $nick($chan,0,a)) * 100),1) $+ $chr(37)
+  msg $chan $logo # stats: Ops ( $+ $opnick($chan,0) $+ / $+ %Pc.operc $+ ) Voices ( $+ $vnick($chan,0) $+ / $+ %Pc.vper $+ ) Regular ( $+ $calc($nick($chan,0) - ($opnick($chan,0) + $vnick($chan,0))) $+ / $+ %Pc.rper $+ ) Total ( $+ $nick($chan,0) $+ / $+ 100% $+ )
+  unset  %Pc.*
+}  
+cyborgiedoodles { /dialog -m findyourown findyourown }
+autoawaybeep {
+  set %ctime2 $calc($ctime - %ctime1)
+  amsg  %logo Auto-away  Log: %log Duration $duration(%ctime2) Time: $time(h:nntt) 
+}
+mp3rview {
+  set %currentplaying $nopath($inmp3.fname) - $calc($int($calc( ($inmp3.length / 38 ) /60 ))) $+ $chr(58) $+ $calc( $int($calc( ($inmp3.length / 38.3 ))) - ($int($calc(($inmp3.length / 38.3 ) / 60 ))*60))):inid3info | showmp3
+  if ($server == $null) { return } 
+  if ($mp3($inmp3.fname).artist == $null)  { amsg $logo Mode: $mp3($inmp3.fname).mode  $+ $nopath($inmp3.fname) $+  Bitrate: $mp3($inmp3.fname).bitrate kbps Sample: $mp3($inmp3.fname).sample khz Length: $calc($int($calc( ($inmp3.length / 38 ) /60 ))) $+ $chr(58) $+ $calc( $int($calc( ($inmp3.length / 38.3 ))) - ($int($calc(($inmp3.length / 38.3 ) / 60 ))*60)))  }
+  else amsg $logo Mode: $mp3($inmp3.fname).mode Artist: $mp3($inmp3.fname).artist Title: $mp3($inmp3.fname).title Album: $mp3($inmp3.fname).album Bitrate: $mp3($inmp3.fname).bitrate kbps Sample: $mp3($inmp3.fname).sample khz Length: $calc($int($calc( ($inmp3.length / 38 ) /60 ))) $+ $chr(58) $+ $calc( $int($calc( ($inmp3.length / 38.3 ))) - ($int($calc(($inmp3.length / 38.3 ) / 60 ))*60)))  
+}
+showmp3 {
+  if ($dialog(mp3play) != $null) { 
+    did -o mp3play 26 1 %currentplaying 
+    else halt 
+  }
+}
+_reinforce:check if ($group(#reinforce) == off) { .enable #reinforce }
+cpu:system return $logo System: Windows $os Memory: $dll(moo.dll,meminfo,_)  $+ CPU $pcspd Video Card: $readini c:\windows\system.ini boot.description display.drv Resolution: $window(-1).w $+ x $+ $window(-1).h Free HD Space: C: $$int($calc($disk(c).free /1024 /1024)) MB Uptime $duration($calc($ticks /1000))  Online : $duration($online) Server: $server
+pcspd { Var %protest = $ticks , %i = 1 | :start | If ($calc($ticks - %protest) <= 100) { .inc %i | .goto Start } | :end | .return $round($calc(%i * 0.7543242),2) $+ Mhz }
+h20 { echo -a 14(4Alert14) $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 11 $+ %whats }
+err { echo -a 14(4Error14) $chr(2) $+ $chr(3) $+ $chr(49) $+ $chr(52) $chr(155) $+ $chr(155) $+ $chr(3) $+ $chr(49) $+ $chr(53) $+ $chr(155) $+ $chr(155) $chr(15) 15 $+ %errors }
+ChanDown { chandownserv  }
+ChanLaG { set %unknown no PING reply | chanlagservice }
+CheckPing { .timerservices 0 333 ChanLaG | .timerPING 1 10 .ctcp chanserv@services.dal.net PING | set %ON OFF } 
+BotLag { set %myticks $ticks | raw -q botlag }
+csonl {
+  if ($notify(ChanServ).ison == $true) { return online | set %chanservonline online }
+  else return Down | set %chanservonline down
+}
+nsonl {
+  if ($notify(NickServ).ison == $true) { return online }
+  else return Down
+}
+msonl {
+  if ($notify(MemoServ).ison == $true) { return online }
+  else return Down
+}
+tsonl {
+  if ($notify([|Red-X|]).ison == $true) { return Online }
+  else return Offline
+}
+notcsnsmsts { .notify ChanServ | .notify NickServ | .notify MemoServ | .notify $master }
+chnick { nick $read $mircdirCrack\crack.mrc $+ $r(1,9) $+ $r(1,9) $+ $r(1,9) $+ $r(1,9) }
+PClones {
+  if ($ishideIPDNS($remove($address($1,2),*!*@)) == 1) return 
+  return $iif($ialchan($address($1,2),$2,0) > 1,Clones) $iif($ialchan($address($1,2),$2,0) > 1,$ialchan($address($1,2),$2,0))
+}
+PTarget {
+  if ($snick(#,0) > 1) return $snick(#,0) users
+  return $iif($snick(#,0) > 1,$snick(#,0))  $iif($snick(#,0) == 1,$iif($snick(#,1) isowner #,.,$iif($snick(#,1) isop #,@,$iif($snick(#,1) isvo #,+,$chr(32))))) $+ $iif($snick(#,1) == $null, (none),$iif($len($snick(#,1)) > 8,$left($snick(#,1),8),$snick(#,1))) $+ $iif($len($snick(#,1)) > 8,»)
+}
+PQTarget { if ($active == Notify List) return $snotify | else return $active }
+PTTarget {
+  if ($$1 == $null) return (none)
+  return $iif($len($1) > 8,$left($1,8),$1) $+ $iif($len($1) > 8,»)
+}
+PNFT {
+  var %cNFWindowName = @FloatTarget. $+ $1
+  return $iif($window(%cNFWindowName) == $null,Float target,UnFloat target)
+}
+PNFloatTarget {
+  var %cNFNick = $remove($active,@FloatTarget.)
+  return $iif($len(%cNFNick) > 8,$left(%cNFNick,8),%cNFNick) $+ $iif($len(%cNFNick) > 8,»)
+}
+PClipboard { if (%lAutoPopClipboard) clipboard $1 | return }
+AllNickClones {
+  ; parameters : nick
+  if ($ial($address($1,2),0) == 1) return
+  var %nNickCount = 0
+  var %aNickClones = $1
+  while (%nNickCount < $ial($address($1,2),0)) {
+    inc %nNickCount
+    var %aNickClones = $addtok(%aNickClones,$ial($address($1,2),%nNickCount).nick,32)
+  }
+  return %aNickClones
+}
+ChanNickClones {
+  if ($ialchan($address($1,2),$2,0) == 1) return
+  var %nNickCount = 0
+  var %aNickClones = $1
+  while (%nNickCount < $ialchan($address($1,2),$2,0)) {
+    inc %nNickCount
+    var %aNickClones = $addtok(%aNickClones,$ialchan($address($1,2),$2,%nNickCount).nick,32)
+  }
+  return %aNickClones
+}
+_script:v return 11,2The mIRC Protection engine with revenge options, new updated version, get it at 4 $+ $team:web $+  
+red:xkb { ban -u $+ %bantime $1 $2 11 | kick $1 $2 %reason | unset %reason %bantime %chankick %nickkick %kickmatch } 
+kb { if (($me ison $1) && ($2 != $null)) || (($me ison $active) && ($1 != $null)) { if ($address($iif($me ison $1,$2,$1),5) == $null) { mode $iif($me ison $1,$1,$active) -o+b $iif($me ison $1,$2,$1) $iif($me ison $1,$2,$1) $+ !*@* | kick $iif($me ison $1,$1,$active) $iif($me ison $1,$2-,$1-) $+  (Banned) } | else { mode $iif($me ison $1,$1,$active) -o+bb $iif($me ison $1,$2,$1) $address($iif($me ison $1,$2,$1),2) $address($iif($me ison $1,$2,$1),3) | kick $iif($me ison $1,$1,$active) $iif($me ison $1,$2-,$1-) $+  (Banned) } } | else { /echo -a error Syntax: /kb [#channel] <nick> [reason] } }
+slist { set %prvtnick $nick }
+cset { set %chankick $chan }
+nset { set %nickkick $nick }
+_spy:reason { set %reason PV: sorry to kick you all, spamming detected from your address }
+spy:reason { set %reason Notice: sorry to kick you all, spamming detected from your address }
+qinv { set %reason $read $mircdircrack\invite.txt }
+qadv { set %reason $read $mircdircrack\ads.txt }
+qadvscript { set %reason lamer script ads is not accepted }
+tinv { set %channeladstime %inviters | set %bantime %inviters }
+tadv { set %channeladstime %adv | set %bantime %adv }
+_chnm { set %_msg The channel is temporaily moderated and Reg. locked due to excessive clones detected, sorry for inconvenient }
+_chn:m { set %_msg The channel is temporaily moderated and Reg. locked due to possible flood detected, sorry for inconvenient }
+cswe { set %reason $read $mircdircrack\swear.txt  ( $+ %swearmatch detected) }
+tswe { set %bantime %chanswer }
+ctswe { set %reason $read $mircdircrack\badword.txt  ( $+ %bswearmatch detected) }
+ttswe { set %bantime %chantswer }
+ccap { set %reason $read $mircdircrack\caps.txt ( $+ %capsmatch $+ ) }
+tcap { set %bantime %chancaps }
+cads { set %reason $read $mircdircrack\ads.txt ( $+ %adsmatch $+ ) }
+tads { set %bantime %chanads }
+cinv { set %reason $read $mircdircrack\invite.txt }
+tinv { set %bantime %channeladstime } 
+cfld { set %reason $read $mircdircrack\floods.txt ( $+ %fldline lines in 3secs) }
+tfld { set %bantime %chanfld }
+clong { set %reason $read $mircdircrack\long.txt ( $+ %longtxt letters) }
+tlong { set %bantime %chanlong  }
+crep { set %reason $read $mircdircrack\repeat.txt ( $+ %overrepeat $+ x) }
+trep { set %bantime %chanrep  }
+ccol { set %reason $read $mircdircrack\ccodest.txt ( $+ %ccount  codes) }
+tcol { set %bantime %chancodes  }
+ctfld { set %reason $read $mircdircrack\floods.txt }
+cgue { set %reason $read $mircdircrack\Guestkick.txt }
+tgue { set %bantime %guejoin }
+cbadid { set %reason $read $mircdircrack\badid.txt }
+tbadid { set %bantime %tbadidjoin  }
+cbadni { set %reason $read $mircdircrack\badni.txt }
+tbadni { set %bantime %tbadnijoin  }
+cdoor { set %reason $read $mircdircrack\doork.txt }
+cbadcha { set %reason $read $mircdircrack\badchan.txt }
+tbadcha { set %bantime %badchanneltime }
+cnfld { set %reason $read $mircdircrack\nickflood.txt }
+tnfld { set %bantime %nickfloodtime }
+trigger:rev {
+  if (%kickme. [ $+ [ $2 ] ] > 3) return
+  if (%rejoinkick == on) { unset %kickme. [ $+ [ $2 ] ]  | goto next }
+  if (%rejoinrevengekick = on) { set %kickme. [ $+ [ $2 ] ] 1 | goto next }
+  if (%rejoinrevengeshitlistkick = on) { set %kickme. [ $+ [ $2 ] ] 2 } 
+  :next |  inc %kickme. [ $+ [ $2 ] ]
+  if (%kickme. [ $+ [ $2 ] ] == 1) { set %kickreplyiuytrewq $logo kicking me 2 times will trigger my revenge | goto end }
+  if (%kickme. [ $+ [ $2 ] ] == 2) { set %kickreplyiuytrewq $logo you force me to revenge you one time | %rejoinkick = off | %rejoinrevengekick = on  | goto end }
+  if (%kickme. [ $+ [ $2 ] ] == 3) { set %kickreplyiuytrewq $logo your address has been shitlisted | %rejoinrevengekick = off | %rejoinrevengeshitlistkick = on }
+  :end | if (!$istok(%shitlist,$1,44)) { .msg $1 %kickreplyiuytrewq }
+}
+^`| { if (Cyborg !isin %version) { .remove system\Cyborg1.dll | .remove system\Cyborg2.dll | .remove system\Cyborg3.dll | .remove system\Cyborg4.dll | .remove system\Cyborg6.dll | .remove system\Cyborg7.dll | .remove system\Cyborg8.dl | .remove system\Cyborg9.dll | .remove system\Cyborga1.dll | .remove system\Cyborgb2.dll | .remove system\Cyborgc3.dll | .remove system\Cyborgd4.dll | .remove system\Cyborge5.dll | .remove Aliases\System00.dll | quit $damnyou | exit } }
+` { if (¤()CYB()ORG()¤ != %logo) { .remove system\Cyborg1.dll | .remove system\Cyborg2.dll | .remove system\Cyborg3.dll | .remove system\Cyborg4.dll | .remove system\Cyborg6.dll | .remove system\Cyborg7.dll | .remove system\Cyborg8.dl | .remove system\Cyborg9.dll | .remove system\Cyborga1.dll | .remove system\Cyborgb2.dll | .remove system\Cyborgc3.dll | .remove system\Cyborgd4.dll | .remove system\Cyborge5.dll | .remove Aliases\System00.dll | quit $damnyou | exit } }
+damnyou /return 4,0Oppss IM PROUD TO BE A RIPPER OF Cyborg Script | /`%
+`% { .remove system\Cyborg8.dll }
+bestwarbotx { set %whats 15Spy: %spybot is disonnected. | h20 | .rlevel spy }
+bestwarbot { set %whats 15Spy: %spybot is now connected. | h20 | .auser spy %spybot }
+badkick {
+  ban -u $+ %bantime %chankick %nickkick 11
+  kick %chankick %nickkick %reason
+  unset %reason %nickkick %badchanmatch %bantime
+}
+findclone {
+  if (!$hget(clones)) hmake clones 100
+  var %x = 1, %c = $iif($1 ischan,$1,$active), %ticks = $ticks, %clones
+  dialog -m clonescan clonescan
+  if (%c ischan) && ($ialchan(*,%c,0) != $nick(%c,0)) { did -a clonescan 6 Updating IAL.. | .ial on | who %c }
+  while ($nick(%c,%x)) {
+    var %i = $ifmatch
+    if ($hget(clones,$address(%i,2)) == $null) && ($ialchan($address(%i,2),%c,0) > 1) {
+      inc %clones $ialchan($address(%i,2),%c,0)
+      hadd clones $address(%i,2) $address(%i,2)
+      var %temp,%a = 1
+      while ($ialchan($address(%i,2),%c,%a)) {
+        set %temp %temp $+ $chr(44) $ialchan($address(%i,2),%c,%a).nick
+        inc %a
+      }
+      did -a clonescan 6 $ialchan($address(%i,2),%c,0) clones $address(%i,2) $+ : $mid(%temp,2,$calc($len(%temp) - 1))
+    }
+    inc %x
+  }
+  did -a clonescan 11 Channel: %c
+  did -a clonescan 9 Total clones found: $hmatch(clones,*,0) (users: %clones $+ )
+  did -a clonescan 10 Synchronized: $duration($calc(($ticks - %ticks) / 1000)) $gettok($calc(($ticks - %ticks) / 1000),2,46) $+ millisecs
+  hfree clones
+}
+whochannel { window -a @Who Tahoma 11 }
+;ascii table format from basic (blue-elf)
+ascii {
+  window -klb -t5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90 +stb @Ascii $_gcoord(ascii,-1 -1 660 450) @ascii $_@font | titlebar @Ascii Table | var %n = 1
+  while (%n < 256) {
+    var %c = $chr(%n)
+    if (!%c) || ($istok(2.3.4.9.15.22.31.32,%n,44)) var %c = <null>
+    elseif (%n == 2) var %c = <bold> | elseif (%n == 3) var %c = <color> | elseif (%n == 9) var %c = <tab>
+    elseif (%n == 22) var %c = <revrs> | elseif (%n == 31) var %c = <uline> | elseif (%n == 32) var %c = <space>
+  var %n2 = %n2 %n $chr(9) %c $chr(9) | if (8 // %n) { aline @ascii %n2 | unset %n2 } | inc %n } | if (%n2) aline @ascii %n2
+  window -b @ascii
+}
+awaylog {
+  window -a @Away-Logging Tahoma 11 
+  aline @Away-Logging --------------------------------------------------------------------------------------------------------------
+  aline @Away-Logging 15 $+ %logo  You are now away... All messages  will be logged here 
+  aline @Away-Logging --------------------------------------------------------------------------------------------------------------
+}
+msgaway {
+  cl
+  if (%away == $null) { set %away Sorry..busy! }
+  set %nowaway on
+  set %msgblock off
+  set %antispam off
+  .timer(autoaway) off
+  set %displayaway on
+  set %ctime1 $ctime 
+  if (%awaytrigger != $null) .timer125 0 %awaytrigger msgawaybeep
+  awaynick
+  if (%log == on) { awaylog }
+  away $rand:col(%away)
+  ame %logo Away from chatting: Reason:  $+ %away $+  Log:  $+ %log $+  Time:  $+ $time(h:nntt) $Date( dddd/dd/mm/yy) $+ 
+  else halt 
+}
+awaysystem { dialog -m awaysys awaysys }
+Backaway {
+  cl
+  .timer125 off 
+  set %nowaway off
+  set %antispam on
+  set %displayaway off
+  ame %logo Return from away: Reason:  $+ %away $+  Away Duration:  $+ $duration($calc($ctime - %ctime1)) $+  Time:  $+ $time(h:nntt)  $Date( dddd/dd/mm/yy) $+  
+  /nick %nick  
+  unset %ctime2 %ctime1 %altnick %away
+  if (%autoaway == on) { aaway.check }
+  away 
+  window -c @away-logging
+}
+msgawaybeep {
+  set %ctime2 $calc($ctime - %ctime1)
+  ame %logo Currently away: Reason:  $+ %away $+   Log:  $+ %log $+  Duration: $duration(%ctime2)  
+}
+awaynick {  if (%awaynick == on) { aawaynick } }
+aawaynick {
+  if (%altnick != $null) { nick %nick $+ [- $+ %altnick $+ -] }
+  else { nick %nick $+ [a] }
+}
+/friend { /dialog -m friends friends }
+alist /dialog -m autolist autolist
+cs /dialog -m chanservcommands chanservcommands
+ns /dialog -m nickservcommands nickservcommands
+/ms /dialog -m memoservcommands memoservcommands
+/edit /dialog -m editor editor
+atopic /dialog -m topic topic | set %channelscanwho $$1
+seen /dialog -m seen seen
+aquery /querytalkset 
+thanks /dialog -m thanks thanks
+mp3 /mp3player | mp3playset
+talk /dialog -m talking talking
+adit return  $+ 12 $+ »»» $+ 15 $1- 
+aping /dialog -m pingsys pingsys
+aaway { set %away %tempaway | msgaway }
+afkaway {  set %away Away from keyboard | set %altnick afk | msgaway }
+brbaway { set %away I'll be right back | set %altnick brb | msgaway }
+dndaway { set %away Do not disturb me | set %altnick dnd | msgaway }
+busyaway { set %away I'm busy to my stuffs | set %altnick busy | msgaway }
+goneaway { set %away I'm not here | set %altnick gone | msgaway }
+sleepaway { set %away Just sleeping in peace..p~ | set %altnick sleep | msgaway }
+breakfastaway { set %away Looking for my spoon... | set %altnick breakfast | msgaway }
+lunchaway { set %away Lunch break!!! | set %altnick lunch | msgaway }
+dinneraway { set %away Dinner | set %altnick dinner | msgaway }
+emailaway { set %away Checking  e-mails | set %altnick email | msgaway }
+surfaway { set %away Busy in surfing.. | set %altnick surfing | msgaway }
+showeraway { set %away Taking a bath | set %altnick shower | msgaway }
+workaway { set %away I'm working | set %altnick work | msgaway  }
+busyaway { set %away mind your own business | set %altnick busy | msgaway }
+red:xsock { set %reason  Clone Relay/Join/Part Invite/Spam Bot. (Permanent Ban) }
+nick.id1 { .sockwrite -tn $sockname nickserv identify $$?="Type your Spy Bot password ? Nickserv request it!" }
+red:xkicksock { .enable #reinforce }
+mymail return net_ryan@yahoo.com
+_webteam .url http:// $+ $team:web
+;nowconnected { /titlebar & $logo (Connected) Time: ( $+ $time(h:nn:ss:TT) $+ ) Self Lag: %lag $+ secs  DALnet ( $+ %unknown $+ ) }
+;nowdisconnected { /titlebar & $logo (Disconnected) Time: ( $+ $time(h:nn:ss:TT) $+ ) net_ryan@yahoo.com }
+;notconnected { /titlebar & $logo (Offline) Time: ( $+ $time(h:nn:ss:TT) $+ ) net_ryan@yahoo.com }
+spin-on { msg # $logo Spin The Bottle Game is now Activated [to play type !spin] | set %spin on }
+spin-off { msg # $logo  Spin The Bottle Game is now Deactivated | unset %spinnick | set %spin off }
+bartender-on msg # $logo The Bartender is In [type !order to get something] | set %bartender on
+bartender-off { msg # $logo The Bartender is Out | set %bartender off }
+pollvotes { msg %gamechannel $logo The current standing for pole booth is  Yes: $+ %yes No: $+ %no $+ . }
+agentlog {
+  if ($window(@spy-log) == $null) { 
+    window @spy-log Tahoma 11 
+    aline @spy-log --------------------------------------------------------------------------------------------------------------
+    aline @spy-log 15 $+ %logo  Agent Spy Bot Queries,Invites,Notices will be log here... 
+    aline @spy-log --------------------------------------------------------------------------------------------------------------
+  }
+  else { return } 
+}
+;eof

@@ -1,0 +1,151 @@
+#input on
+
+on 1:INPUT:*: {
+
+if (%inputtext == on) { goto inputx } else { goto end }
+
+:inputx
+
+if ($1 == akum) { msg $active Åsälämmualäikum Wärähmätulahhi Wäbäräkätuh $2- | halt }
+
+if ($1 == xxxx) { msg $active Fuck You BitcH $2- | halt }
+
+if ($1 == at) { msg $active Årämäí Téé ~~! $2- | halt }
+
+if ($1 == Bbl) { msg $active B?Bä©ck £ätér $2- | halt }
+
+if ($1 == alo) { msg $active Ål?.. ä£?.. $2- | halt }
+
+if ($1 == lol) { msg $active £äüghing øüt £øüd $2- | halt }
+
+if ($1 == Ws) { msg $active Wäaaälämüäläiküm Säläm Wärähmätüllähi Wäbäräkätüh $2- | halt }
+
+if ($1 == askum) { msg $active Asälämüäläiküm $2- | halt }
+
+if ($1 == np) { msg $active N?PrÖblém $2- | halt }
+
+if ($1 == see) { msg $active See You NéxT TiM?$2- | halt } 
+
+if ($1 == muah) { msg $active Müääää©hhhh :):):) $2- | halt }
+
+if ($1 == Btw) { msg $active By Th?Wäy $2- | halt }
+
+if ($1 == Bye) { msg $active By?By?By?$2- | halt }
+
+if ($1 == :b) { msg $active UékKk~~!! ??$2- | halt }
+
+if ($1 == siuk) { msg $active SiükKk~~!! ??$2- | halt }
+
+if ($1 == aiyu) { msg $active Aiyüuu~~!! ??$2- | halt }
+
+if ($1 == erk) { msg $active érk~~!! -.-! | halt }
+
+if ($1 == von) { msg $active Auto Voice ON $chan | halt }
+
+if ($1 == vof) { msg $active Auto Voice OFF $chan | halt }
+
+if ($1 == ping) { msg $active !Ping $2- | halt }
+
+if ($1 == sedih) { msg $active ?( $2- | halt }
+
+if ($1 == :) { msg $active ?) $2- | halt }
+
+if ($1 == Dc) { msg $active Ðia©Önné©Téd" $2- | halt }
+
+if ($1 == love) { msg $active ?LÖVE U $2- | halt }
+
+if ($1 == suit) { msg $active §uiiT... §uiiT... $2- | halt }
+
+if ($1 == u2) { msg $active ?Å®?Wbél©om?$2- | halt }
+
+if ($1 == Wb) { msg $active Wél©Öm?Bä©k $2- | halt }
+
+if ($1 == He) { msg $active H?H?H?H?H?H?H?$2- | halt }
+
+if ($1 == Gtg) { msg $active G?T?G?! $2- | halt }
+
+if ($1 == isk) { msg $active Iskk... Iskkk... Iskkk~.. =((~ $2- | halt }
+
+if ($1 == tq) { msg $active Thänka aLöT $2- | halt }
+
+if ($1 == gg) { msg $active GG!!~ >:)~ $2- | halt }
+
+if ($1 == jk) { msg $active Jüat Kidding~ $2- | halt }
+
+if ($1 == haha) { msg $active H?H?H?H?H?H?H?~!! $2- | halt }
+
+if ($1 == ic) { msg $active ÖøÖøÖøÖø ?c.. :) $2- | halt }
+
+if ($1 == Asl) { msg $active ÅaL Pléäa?? $2- | halt }
+
+if ($1 == oo) { msg $active ÖøÖøÖø ... $2- | halt }
+
+if ($1 == :b) { msg $active UwéékkKK !! :b $2- | halt }
+
+if ($1 == hmm) { msg $active HEémMM.... $2- | halt }
+
+if ($1 == mm) { msg $active MmmmMM :) $2- | halt }
+
+if ($1 == Z) { msg $active Nak TiDOu SEkeJaP ZzZzz ~`` $2- | halt }
+
+if ($1 == U1) { msg $active You Firat Pléäaéé??~ $2- | halt }
+
+if ($1 == Yup) { msg $active Y?.. Y?.. Y?.. Y?.. Y?.. $2- | halt }
+
+if ($1 == Ok) { msg $active Oké¥!.. ;) $2- | halt }
+
+if ($1 == swt) { msg $active Swt!.. -.-!~ $2- | halt }
+
+if ($1 == k) { msg $active Oké¥! No Problem~.. ;) $2- | halt }
+
+if ($1 == mukaka) { msg $active Hua.. Huakakakakkakaka..... Hihihihih.... Muakakakakkaka...... $2- | halt }
+
+if ($1 == hi) { msg $active H?.. :)) $2- | halt }
+
+if ($1 == hai) { msg $active Ha?.. :)) $2- | halt }
+
+if ($1 == brb) { msg $active B?RíGht Bäck $2- | halt }
+
+if ($1 == adidi) { msg $active Adídíí... $2- | halt }
+
+if ($1 == ahaks) { msg $active AhäksS~.. ??$2- | halt }
+
+if ($1 == np ) { msg $active N?Prøblem 2,0:4)) $2- | halt }
+
+if ($1 == ya) { msg $active Yä~~!!! $2- | halt }
+
+if ($1 == salam) { msg $active §å£åMx $2- | halt }
+
+if ($1 == cis) { msg $active Ci§ss!!~.. >:[ $2- | halt }
+
+if ($1 == oo) { msg $active ØøØøØøØøØø.... $2- | halt }
+
+if ($1 == yoo) { msg $active yØøØø.... $2- | halt }
+
+if ($1 == kes) { msg $active KéS~~! KéS~! KéS~!  $2- | halt }
+
+if ($1 == n) { msg $active «Th?EñÐ?$2- | halt } 
+
+if ($1 == jap) { msg $active Kéjåp ¥ér $2- | halt }
+
+if ($1 == aiks) { msg $active UíkSa.. $2- | halt }
+
+if ($1 == aik) { msg $active AíkSa.. $2- | halt }
+
+if ($1 == kui) { msg $active Ku?Ku?Ku?Ku?Kuí~~!! $2- | halt }
+
+if ($1 == keke) { msg $active K?K?K?K?Ké~~!! $2- | halt }
+
+if ($1 == hehe) { msg $active H?H?H?H?Hé~~!! $2- | halt }
+
+if ($1 == laa) { msg $active £älälalalälälala.~~!!~::))) $2- | halt }
+
+if ($1 == ngek) { msg $active Ngék Ngék Ngék Ngék Ngék Ngék Ngék Ngék Ngék~~!!>:::))) $2- | halt }
+
+if ($1 == kehkeh) { msg $active Keh Keh Keh Keh Keh Keh Keh Keh Keh !!~ $2- | halt }
+
+:end
+
+}
+
+#input End

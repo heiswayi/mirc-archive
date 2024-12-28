@@ -1,0 +1,691 @@
+[op]
+
+
+Command: op 
+
+
+Usage: /op <nick> ; ie. /op [|Red-X|]
+
+
+Description:
+give +o to the user on active channel
+
+
+[dop] 
+
+
+Command: dop
+
+
+Usage: /dop <nick> ; ie. /dop [|Red-X|]
+
+
+Description:
+sets -o to the user on active channel
+
+[j]
+
+
+Command: j 
+
+
+Usage: /j <channel> ; ie /j tequilla
+
+
+Description:
+join in a channel without typing # to the channel name
+
+[p]
+
+
+Command: p
+
+
+Usage: /p
+
+Description:
+parts on active channel
+
+[v]
+
+
+Command: v
+
+
+Usage: /v <nick> ; ie. /v [|Red-X|]
+
+
+Description:
+give +v to the user on active channel
+
+[dv]
+
+
+Command:dv
+
+
+Usage: dv <nick>
+
+
+Description:
+sets -v to the user on active channel
+[n]
+
+
+Command: n
+
+
+Usage: /n
+
+Description:
+identify your nick on nickserv
+
+[k]
+
+
+Command: k
+
+
+Usage: k <nick> <naeesage> ; ie. /k [|Red-X|] goodbye cruel channel
+
+Description:
+kick user on active channel
+
+[q] 
+
+
+Command: q
+
+
+Usage: /q <nick> ; ie. /q [|Red-X|]
+
+
+Description:
+opens query chat 
+
+[identify]
+
+
+Command:identify 
+
+
+Usage: /identify
+
+
+Description:
+identify your nick with encrypted password
+
+
+[send]
+
+
+Command: send
+
+
+Usage: /send <nick> ; ie. /send [|Red-X|]
+
+
+Description:
+send file through dcc and browse
+
+[chat]
+
+
+Command: chat
+
+
+Usage: /chat <nick> ; ie. /chat [|Red-X|]
+
+
+Description:    
+Send a dcc chat on a user
+
+[ping]
+
+
+Command: ping
+
+
+Usage:/ping <nick> ; ie. /ping [|Red-X|] /ctcp $$1 ping
+
+
+Description:
+get the ctcp ping reply on a user
+
+[version]
+
+
+Command: version
+
+
+Usage: /version <nick> ; ie. /version [|Red-X|]
+
+
+Description:
+get the ctcp version reply of a user
+
+[o]
+
+
+Command: o 
+
+
+Usage /o <message to send> ; ie. /o hello to all my co-ops here
+
+
+Description:
+send notice on all ops on active channel
+
+[help]
+
+
+Command: help
+
+
+Usage:/help
+
+
+Description:
+opens this help dialog
+
+[finger] 
+
+
+Command: finger
+
+
+Usage: finger <nick> ; ie. /finger [|Red-X|]
+
+Description:
+gets the ctcp finger reply of a user 
+
+
+[time]
+
+
+Command: time
+
+
+Usage: /time <nick> ; ie. /time [|Red-X|]
+
+
+Description:    
+get the ctcp time reply of a user 
+
+[Connectset]
+
+
+Command: connectset
+
+
+Usage: /Connectset
+
+
+Description:    
+opens dialog of connect
+
+[tsspointset]
+
+
+Command: tsspointset
+
+
+Usage: /tsspointset or press F2
+
+
+Description:    
+opens Settings Dialog
+
+[chanprotset]
+
+
+Command: chanprot
+
+
+Usage: /chanprot or press F3
+
+
+Description:    
+opens Channel protection dialog
+
+[findyourownset]
+
+
+Commands: findyourownset
+
+
+Usage: /findyourownset or press F4
+
+Description:    
+opens Agnet Spybot Dialog
+
+[c]
+
+
+Command: c
+
+
+Usage: /c
+
+
+Description:    
+identify your channel on Chanserv
+
+[mp3]
+
+
+Command: mp3
+
+
+Usage: /mp3
+
+
+Description:    
+opens mp3 player and mp3 playlist
+
+[awaysysset]
+
+
+Command: awaysysset
+
+
+Usage: /awaysysset
+
+
+Description:    
+opens Away System Dialog
+
+
+[inviterset]
+
+
+Command: inviterset
+
+
+Usage: /inviterset
+
+
+Description:    
+opens Inviter Special Kick Dialog
+
+[m]
+
+
+Command: m
+
+
+Usage: /m <memo number> ; ie. /m 2
+
+
+Description:    
+read your memo usuing Memoserv
+
+[directory]
+
+
+Command: Directory
+
+
+Usage: /directory
+
+
+Description:    
+opens Script Index Directory
+
+
+[exit]
+
+
+Command: exit
+
+
+Usage: /exit
+
+
+Description:    
+exit to your mIRC.exe
+
+[ov]
+
+
+Command: ov
+
+
+Usage: /ov <message to send to op/voice users> ; ie. /ov hello im here guys
+
+
+Description:    
+send message to op and voice users only on active channel
+
+[a]
+
+
+Command: a
+
+
+Usage: /a <message to send> ; ie. /a Hello Cruel World
+
+
+Description:    
+Send message to all channel you were in
+
+
+[cq]
+
+
+Command: cq
+
+
+Usage: /cq
+
+
+Description:    
+close all query
+
+[windows]
+
+
+Command: windows
+
+
+Usage: /windows
+
+
+Description:    
+shows system info on active channel
+
+
+[csp] 
+
+
+Command: csp
+
+
+Usage: /csp
+
+
+Description:    
+shows channel stats on active channel
+
+[chnick]
+
+
+Command: chnick 
+
+
+Usage: /chnick 
+
+
+Description:    
+randomly change nick
+
+
+[kb]
+
+
+Command: kb
+
+
+Usage:/kb <nick> <kick message>; ie. /kb [|Red-X|] Get out
+
+
+Description:    
+Kick ban a users on active channel
+
+
+[findclone]
+
+
+Command: findclone
+
+
+Usage: findclone
+
+
+Description:    
+scan clones on active channel
+
+
+[ascii]
+
+
+Command: ascii
+
+
+Usage: /ascii
+
+
+Description:    
+opens ascii table
+
+[msgaway]
+
+
+Command: msgaway
+
+
+Usage: /msgaway
+
+
+Description:    
+sets your self away
+
+[backaway]
+
+
+Command: backaway
+
+
+Usage: /backaway
+
+
+Description:    
+set you back from away
+
+[awaynick]
+
+
+Command: awaynick 
+
+
+Usage: /awaynick
+
+
+Description:    
+change your nick to away nick
+
+[insult]
+
+
+Command: insult
+
+
+Usage: /insult <nick> ; ie. /insult [|Red-X|]
+
+Description:    
+insultng someone
+
+[friend]
+
+
+Command: friend
+
+
+Usage: /friend
+
+
+Description:
+opens friends list dialog
+
+[alist]
+
+
+Command: alist
+
+
+Usage: /alist
+
+
+Description:
+opens auto op/voice dialog
+
+[cs] 
+
+
+Command: cs
+
+
+Usage: /cs
+
+
+Description:
+opens chanser commands
+
+[ns]
+
+
+Command: ns
+
+
+Usage:/ns
+
+Description:
+opens nickserv commands
+
+[ms]
+
+
+Command: ms
+
+
+Usage: /ms
+
+
+Description:
+opens memoserv commands
+
+[edit] 
+
+
+Command:edit
+
+
+Usage: /edit
+
+
+Description:
+opens script triggers dialog
+
+[atopic]
+
+
+Command: atopic
+
+
+Usage: /atopic
+
+
+
+Description:
+opens topic editor usage /atopic <channel name>
+
+[seen]
+
+
+Command: seen
+
+
+Usage: /seen
+
+
+
+Description:
+open seen dialog
+
+[aping]
+
+
+Command: aping
+
+
+Usage: /aping
+
+
+
+Description:
+opens ping dialog
+
+[aquery]
+
+
+Command: aquery
+
+
+Usage: /aquery
+
+
+
+Description:
+opens query auto talk dialog
+
+[thanks]
+
+
+Command: thanks 
+
+
+Usage: /thanks
+
+
+
+Description:
+opens auto thanks dialog
+
+[talk]
+
+
+Command: talk
+
+
+Usage: /talk
+
+
+
+Description:
+opens channel auto talk and greetings dialog
+
+[i] 
+
+
+Command: i
+
+
+Usage: /i
+
+
+Description:
+invites users usage /i <channel> <nick>
+
+[b]
+
+
+Command: b
+
+
+Usage: /b
+
+
+Description:
+ban a user on active channel
+
+[w] 
+
+
+Command: w
+
+
+Usage: /w <nick> ; ie. /w [|Red-X|]
+
+
+Description:
+do a whois on a users

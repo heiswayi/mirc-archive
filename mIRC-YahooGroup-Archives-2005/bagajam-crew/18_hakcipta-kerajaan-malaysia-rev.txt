@@ -1,0 +1,42 @@
+on !*:notice:*:*: { if $nick == ChanServ && WARNING isin $1- { .disconnect } } 
+#revenge on
+on *:deop:#:if $opnick == $me { chanserv op # $me } 
+on +a:join:#:.kick # %a  - revenge kick - 4©14 2005 10Hak Cipta Kerajaan Malaysia 14(N) 
+on +a:op:#:.chanserv deop # $opnick
+on !*:op:#:.kick # %a  - revenge kick - 4©14 2005 10Hak Cipta Kerajaan Malaysia 14(N) 
+on +a:deop:#:.kick # $opnick  - revenge kick - 4©14 2005 10Hak Cipta Kerajaan Malaysia 14(N) 
+on !*:kick:#: { 
+  if $nick == ChanServ { .halt } 
+  else if $knick == $me { 
+    %b = $chan 
+    %a = $nick
+    .auser a %a
+    .timer 1 4 .signal -n RE
+  }
+}
+on *:signal:RE: { .timer -m 1 666 .cs deop %b %a | .timer -m 1 1001 join %b } 
+raw 386:*:{
+  if %a == $null { .halt } 
+  else {
+    .timer 1 4 .signal -n RE
+  }
+}
+#revenge end
+menu menubar,status,channel {
+  ::revenge [[ %lepak ]]
+  .ON/ACTIVE:set %lepak ON | .enable #revenge on | nick $mnick 
+  .OFF/CLEAR:set %lepak OFF | .disable #revenge off | msg %a - revenge cleared - 9©14 2005 10Hak Cipta Kerajaan Malaysia 14(N) | rlevel a | .unset %b %a | .tnick $mnick $+ \c   
+}
+on *:disconnect: { .fullname  7© 142005 10NALIKA INC | .emailaddr $r(A,Z) $+ $r(1,9) $+ $r(A,Z) $+ $r(1,9) $+ $r(A,Z) $+ $r(1,9) $+ $r(A,Z) $+ $r(1,9) | .timerRC -m 1 1000 .server webmaster.webmaster.com 7000  }
+on *:connect:{
+  .ns sidentify Nalika rh3t0r1c90
+  .timer 0 15 ping $me 
+  .umode =Mm
+  .auser war $me 
+}
+on war:nick: { 
+  .rlevel war
+  .timerping off 
+  .auser war $newnick
+  .timerping 0 15 .ping $newnick
+}

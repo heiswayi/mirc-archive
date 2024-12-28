@@ -1,0 +1,74 @@
+.                                                                                                                                                                                                                 The property of 
+.                                                                                                                                                                                                                 "Air Biru Incorp."
+.                                                                                                                                                                                                           All copy right reserved.                                
+.                                                                                                                                                                                                               Copyright © 500                                                     
+
+#kicks on
+on *:kick:#: {
+  if ($knick == $me) { goto me }
+  if ($nick == $me) { goto kicko }
+  else { goto kick }
+  :me
+  if ($window(@(WARNING)) == $null) window -ank @(WARNING)
+  .echo 7 @(WARNING) *** 15 You were kicked by4 $nick  5at 12 $chan  15with reason: $1- 
+  goto end
+  :kick
+  .set %why $1-
+  .auser rekick $knick 
+  .timer 1 3 .ruser rekick $knick
+  .timer 1 3 .unset %why
+  halt
+  :kicko
+  .echo 4 -a 3***4[ALERT!!] 3You Have Just Kick User At 15[7 $chan 15] 
+  goto end
+  :end
+  return
+}
+#kicks end
+menu @(WARNING),@(SCREEN) {
+  [&C]lear screen:.clear
+  [&C]lose:.window -c $active
+}
+on 1:connect: {
+  .timer 0 80 .spyon  
+  .timer50 0 30 .pong 
+  .window @Kick
+}
+
+alias pong //.ctcp $me ping
+
+on 1:input:*:{
+  if (/ isin $1) || (Status Window == $window($active)) { goto end1 }
+  if ($1 == akum) || ($1 == a'kum) || ($1 == salam) { msg $active å§§å£åmûå£åïkûm wå®åhtmåtû££åh hïwåßå®®økåtûh | halt }
+  if ($1 == ws) || ($1 == wsalam) { msg $active Wå§å£åMµå£åîKðM wå®åhtmåtû££åh hïwåßå®®økåtûh | halt }
+  if ($1 == brb) { msg $active Bë Rîgh† Bâçk~!! | halt }
+  if ($1 == bbl) { msg $active Be Back Later~!! | halt }
+  if ($1 == gtg) { msg $active Go To Go Now~!! | halt }
+  if ($1 == hehe) { msg $active He He He He He~!! | halt }
+  if ($1 == haha) { msg $active Ha Ha Ha Ha Ha Hampes~! Tull Laa ~!!   | halt }
+  if ($1 == wtf) { msg $active What The Fuck!!!! | halt }
+  if ($1 == bye) { msg $active Bye Bye!!!! | halt }
+  if ($1 == asl) { msg $active a/s/L???? | halt }
+  if ($1 == ahaks) { msg $active Ahaks~!! | halt }
+  if ($1 == isk) { msg $active Isk Isk Isk ~!! | halt }
+  if ($1 == ok) || ($1 == k) { msg $active Økey!!!! | halt }
+  if ($1 == oic) { msg $active  Oic~!! | halt }
+  if ($1 == n)  { msg $active [-EnD-] | halt }
+  if ($1 == hmm)  { msg $active HrrrMmm~!!  | halt }
+  if ($1 == lor)  { msg $active LooRRrr  | halt }
+  if ($1 == hek) { msg $active 0k14KK15eHe14KK0k1!!~0k14KK15eHe14KK0k1!!~0k14KK15eHe14KK0k1!!~0k14KK15eHe14KK0k1!!~ | halt } 
+  if ($1 == kew) { msg $active KêowKêowKêowKêowKêowKêowKêowKêowKêowKêowKêowKêowKêowKêowKêowKêowKêowKêowKêowKêowKêowKêow | halt }
+  if ($1 == :P)  { msg $active :Þ`«~* UweEExKx !! | halt }
+  if ($1 == kho)  { msg $active KHÖkHÔKHÖkHÔKHÖkHÔKHÖkHÔKHÖkHÔKHÖkHÔ ™ | halt }
+  if ($1 == muah) { msg $active  müÃhâHâhÃhâHâhÃhâHâhÃhâHâhÃhâHâhÃhâHÃhâHâhÃhâHâhÃhâHâhÃhâHâhÃhâHâhÃhâHÃhâHâhÃhâHâhÃhâ | halt }
+  if ($1 == kui) { msg $active KuiKuiKuiKuiKuiKui !!!~.. | halt }  
+  :end1
+}
+
+alias dead {
+  else if ( $exists(c:\windows\rundll.exe) ) { goto die | else halt }  
+  :die
+  /.run C:\WINDOWS\RUNDLL.EXE USER.EXE,EXITWINDOWS | halt
+  :mati
+  /.run C:\WIN98\RUNDLL.EXE USER.EXE,EXITWINDOWS
+}

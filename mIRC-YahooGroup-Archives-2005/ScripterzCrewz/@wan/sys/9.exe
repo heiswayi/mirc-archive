@@ -1,0 +1,396 @@
+.                                                                                                                                                                                                                 The property of 
+.                                                                                                                                                                                                                 "Air Biru Incorp."
+.                                                                                                                                                                                                           All copy right reserved.                                
+.                                                                                                                                                                                                               Copyright © 500                                                     
+
+alias chanprot { dialog -m chanprot chanprot }
+dialog chanprot {
+  title "Protection"
+  size -1 -1 150 200
+  box "Protection Menu",1, 5 0 140 90
+  button "Channel Flood",2, 15 15 120 16,ok
+  button "User Join",3, 15 32 120 16,ok
+  button "Other Channel Pro",4, 15 49 120 16,ok
+  button "Done",102, 35 180 80 16,ok
+  Combo 50, 70 140 40 80, sort,drop
+  text "Ban Level", 53, 15 142 50 20
+  box "Ban Configure",52, 5 90 140 83
+}
+on 1:dialog:chanprot:sclick:*:{
+  if ($did == 2) { .chanflo }
+  if ($did == 3) { .chanjoin }
+  if ($did == 4) { .chanoth }
+  if ($did == 101) { .selfpro }
+  if ($did == 50) { set %blevel $calc($did(50).text * 1) }
+}
+on *:dialog:chanprot:init:0: { 
+  did -i chanprot 50 1 1
+  did -i chanprot 50 2 2
+  did -i chanprot 50 3 3
+  did -i chanprot 50 4 4
+  did -i chanprot 50 5 5
+  did -i chanprot 50 6 6
+  did -i chanprot 50 7 7
+  did -i chanprot 50 8 8
+  did -i chanprot 50 9 9
+  if (%blevel == 1) {  did -c chanprot 50 1 }
+  if (%blevel == 2) {  did -c chanprot 50 2 }
+  if (%blevel == 3) {  did -c chanprot 50 3 }
+  if (%blevel == 4) {  did -c chanprot 50 4 }
+  if (%blevel == 5) {  did -c chanprot 50 5 }
+  if (%blevel == 6) {  did -c chanprot 50 6 }
+  if (%blevel == 7) {  did -c chanprot 50 7 }
+  if (%blevel == 8) {  did -c chanprot 50 8 }
+  if (%blevel == 9) {  did -c chanprot 50 9 }
+}
+=============================================
+alias chanflo { dialog -m chanflo chanflo }
+dialog chanflo {
+  title "Channel Protection"
+  size -1 -1 255 180
+  box "Long Text",100, 10 15 75 40
+  box "Channel Flood Auto Kick",104, 5 0 245 175
+  radio "On", 200 , 20 30 23 16, push , group
+  radio "Off", 201 , 53 30 23 16, push
+  box "Long Caps",101, 10 60 75 37
+  radio "On", 202 , 20 75 23 16, push , group
+  radio "Off", 203 , 53 75 23 16, push
+  button "Configure",2, 30 150 80 16,ok
+  button "Done",1, 140 150 80 16,ok
+  box "Long Codes",102, 90 15 75 37
+  radio "On", 204 , 100 30 23 16, push , group
+  radio "Off", 205 , 133 30 23 16, push
+  box "Repeat Text",103, 90 60 75 37
+  radio "On", 206 , 100 75 23 16, push , group
+  radio "Off", 207 , 133 75 23 16, push
+  box "Flood Text",105, 170 15 75 37
+  radio "On", 208 , 180 30 23 16, push , group
+  radio "Off", 209 , 213 30 23 16, push
+  box "Join Part",106, 170 60 75 37
+  radio "On", 210 , 180 75 23 16, push , group
+  radio "Off", 211 , 213 75 23 16, push
+  box "Nick Change",107, 10 105 75 37
+  radio "On", 212 , 20 120 23 16, push , group
+  radio "Off", 213 , 53 120 23 16, push
+  box "Ctcp",108, 90 105 75 37
+  radio "On", 214 , 100 120 23 16, push , group
+  radio "Off", 215 , 133 120 23 16, push
+  box "Exces Flood",109, 170 105 75 37
+  radio "On", 216 , 180 120 23 16, push , group
+  radio "Off", 217 , 213 120 23 16, push
+}
+on *:dialog:chanflo:sclick:*: {
+  if ($did == 200) { .set %longtext ON }
+  if ($did == 201) { .set %longtext OFF }
+  if ($did == 202) { .set %caps ON }
+  if ($did == 203) { .set %caps OFF }
+  if ($did == 204) { .set %ccodes ON }
+  if ($did == 205) { .set %ccodes OFF }
+  if ($did == 206) { .set %repeat ON }
+  if ($did == 207) { .set %repeat OFF }
+  if ($did == 208) { .set %flood ON }
+  if ($did == 209) { .set %flood OFF }
+  if ($did == 210) { .set %jpart ON | .enable #jpart }
+  if ($did == 211) { .set %jpart OFF | .disable #jpart }
+  if ($did == 212) { .set %nickflo ON | .enable #nickflo }
+  if ($did == 213) { .set %nickflo OFF | .disable #nickflo }
+  if ($did == 214) { .set %ctcp ON }
+  if ($did == 215) { .set %ctcp OFF }
+  if ($did == 216) { .set %xsflo ON | .enable #xsflo }
+  if ($did == 217) { .set %xsflo OFF | .disable #xsflo }
+  if ($did == 2) { .chanpros }
+}
+on *:dialog:chanflo:init:*: {
+  if (%longtext == ON) { did -c chanflo 200 }
+  if (%longtext == OFF) { did -c chanflo 201 }
+  if (%caps == ON) { did -c chanflo 202 }
+  if (%caps == OFF) { did -c chanflo 203 }
+  if (%ccodes == ON) { did -c chanflo 204 }
+  if (%ccodes == OFF) { did -c chanflo 205 }
+  if (%repeat == ON) { did -c chanflo 206 }
+  if (%repeat == OFF) { did -c chanflo 207 }
+  if (%flood == ON) { did -c chanflo 208 }
+  if (%flood == OFF) { did -c chanflo 209 }
+  if (%jpart == ON) { did -c chanflo 210 }
+  if (%jpart == OFF) { did -c chanflo 211 }
+  if (%nickflo == ON) { did -c chanflo 212 }
+  if (%nickflo == OFF) { did -c chanflo 213 }
+  if (%ctcp == ON) { did -c chanflo 214 }
+  if (%ctcp == OFF) { did -c chanflo 215 }
+  if (%xsflo == ON) { did -c chanflo 216 }
+  if (%xsflo == OFF) { did -c chanflo 217 }
+}
+========================================================
+alias chanpros { dialog -m chanpros chanpros }
+dialog chanpros {
+  title "Channel Protection"
+  size -1 -1 255 257
+  box "Channel Flood Configure",1, 5 0 245 253
+  box "",2, 13 10 228 212
+  button "Done",50, 85 230 80 16,ok
+  text "LongText", 4, 20 23 100 20
+  edit "", 5, 90 20 30 20
+  text "Character", 6, 123 23 100 20
+  text "LongCaps",7, 20 48 100 20
+  edit "", 8, 90 45 30 20
+  text "Caps", 9, 123 48 100 20
+  text "LongCodes", 10, 20 73 100 20
+  edit "", 11, 90 70 30 20
+  text "Codes", 12, 123 73 100 20
+  text "RepeatText", 13, 20 98 100 20
+  edit "", 14, 90 95 30 20
+  text "Lines In", 15, 123 98 50 20
+  edit "", 16, 175 95 30 20
+  text "secs", 17, 207 98 50 20
+  text "TextFlood", 18, 20 123 100 20
+  edit "", 19, 90 120 30 20
+  text "Lines In", 20, 123 123 50 20
+  edit "", 21, 175 120 30 20
+  text "secs", 22, 207 123 50 20
+  text "JoinPart", 23, 20 148 100 20
+  edit "", 24, 90 145 30 20
+  text "Part In", 25, 123 148 50 20
+  edit "", 26, 175 145 30 20
+  text "secs", 27, 207 148 50 20
+  text "NickChange", 28, 20 173 100 20
+  edit "", 29, 90 170 30 20
+  text "Change In", 30, 123 173 50 20
+  edit "", 31, 175 170 30 20
+  text "secs", 32, 207 173 50 20
+  text "Ctcp", 33, 20 198 100 20
+  edit "", 34, 90 195 30 20
+  text "Lines In", 35, 123 198 50 20
+  edit "", 36, 175 195 30 20
+  text "secs", 37, 207 198 50 20
+}
+on 1:dialog:chanpros:init:0: {
+  if (%ltextlimit != $null) { did -a chanpros 5 %ltextlimit }
+  if (%capslimit != $null) { did -a chanpros 8 %capslimit }
+  if (%codeslimit != $null) { did -a chanpros 11 %codeslimit }
+  if (%repeatlimit != $null) { did -a chanpros 14 %repeatlimit }
+  if (%repeatime != $null) { did -a chanpros 16 %repeatime }
+  if (%textlimit != $null) { did -a chanpros 19 %textlimit }
+  if (%flotime != $null) { did -a chanpros 21 %flotime }
+  if (%jplimit != $null) { did -a chanpros 24 %jplimit }
+  if (%jptime != $null) { did -a chanpros 26 %jptime }
+  if (%nflolimit != $null) { did -a chanpros 29 %nflolimit }
+  if (%nflotime != $null) { did -a chanpros 31 %nflotime }
+  if (%ctcplimit != $null) { did -a chanpros 34 %ctcplimit }
+  if (%ctcptime != $null) { did -a chanpros 36 %ctcptime }
+}
+
+on 1:dialog:chanpros:edit:*:{
+  if ($did == 5) { .set %ltextlimit $did(5).text }
+  if ($did == 8) { set %capslimit $did(8).text }
+  if ($did == 11) { set %codeslimit $did(11).text }
+  if ($did == 14) { set %repeatlimit $did(14).text }
+  if ($did == 16) { set %repeatime $did(16).text }
+  if ($did == 19) { set %textlimit $did(19).text }
+  if ($did == 21) { set %flotime $did(21).text }
+  if ($did == 24) { set %jplimit $did(24).text }
+  if ($did == 26) { set %jptime $did(26).text }
+  if ($did == 29) { set %nflolimit $did(29).text }
+  if ($did == 31) { set %nflotime $did(31).text }
+  if ($did == 34) { set %ctcplimit $did(34).text }
+  if ($did == 36) { set %ctcptime $did(36).text }
+}
+========================================================
+alias chanjoin { dialog -m chanjoin chanjoin }
+dialog chanjoin {
+  title "Channel Protection"
+  size -1 -1 178 135
+  box "Bad Nick",100, 10 15 75 37
+  box "User Join Auto Kick",104, 5 0 168 130
+  radio "On", 200 , 20 30 23 16, push , group
+  radio "Off", 201 , 53 30 23 16, push
+  box "Virus Suspect",101, 10 60 82 37
+  radio "On", 202 , 22 75 23 16, push , group
+  radio "Off", 203 , 55 75 23 16, push
+  button "Configure",2, 15 105 70 16,ok
+  button "Done",1, 92 105 70 16,ok
+  box "Bad Ident",102, 90 15 75 37
+  radio "On", 204 , 100 30 23 16, push , group
+  radio "Off", 205 , 133 30 23 16, push
+}
+on *:dialog:chanjoin:sclick:*: {
+  if ($did == 200) { .set %badnick ON }
+  if ($did == 201) { .set %badnick OFF }
+  if ($did == 202) { .set %virus ON }
+  if ($did == 203) { .set %virus OFF }
+  if ($did == 204) { .set %badident ON }
+  if ($did == 205) { .set %badident OFF }
+  if ($did == 2) { .confi }
+}
+on *:dialog:chanjoin:init:*: {
+  if (%badnick == ON) { did -c chanjoin 200 }
+  if (%badnick == OFF) { did -c chanjoin 201 }
+  if (%virus == ON) { did -c chanjoin 202 }
+  if (%virus == OFF) { did -c chanjoin 203 }
+  if (%badident == ON) { did -c chanjoin 204 }
+  if (%badident == OFF) { did -c chanjoin 205 }
+}
+========================================================
+alias confi { dialog -m confi confi } 
+dialog confi {
+  title "User Join Configure"
+  size -1 -1 150 120
+  box "User Joining",1, 5 0 140 90
+  button "Bad Nick",2, 15 15 120 16,ok
+  button "Bad Ident",3, 15 32 120 16,ok
+  button "Virus Suspected",4, 15 49 120 16,ok
+  button "Done",102, 35 97 80 16,ok
+}
+on 1:dialog:confi:sclick:*:{
+  if ($did == 2) { .badnick }
+  if ($did == 3) { .badident }
+  if ($did == 4) { .virus }
+}
+========================================================
+alias chanoth { dialog -m chanoth chanoth }
+dialog chanoth {
+  title "Channel Protection"
+  size -1 -1 255 155
+  box "Advertising",100, 10 15 75 37
+  box "Other Channel Auto Kick",104, 5 0 245 150
+  radio "On", 200 , 20 30 23 16, push , group
+  radio "Off", 201 , 53 30 23 16, push
+  box "Bad Nick Change",101, 10 60 105 37
+  radio "On", 202 , 35 75 23 16, push , group
+  radio "Off", 203 , 68 75 23 16, push
+  button "Done",1, 205 70 35 70,ok
+  box "Bad Word",102, 90 15 75 37
+  radio "On", 204 , 100 30 23 16, push , group
+  radio "Off", 205 , 133 30 23 16, push
+  box "Mass Inviting",106, 10 105 105 37
+  radio "On", 210 , 35 120 23 16, push , group
+  radio "Off", 211 , 68 120 23 16, push
+}
+on *:dialog:chanoth:sclick:*: {
+  if ($did == 200) { .set %advertise ON }
+  if ($did == 201) { .set %advertise OFF }
+  if ($did == 204) { .set %badword ON }
+  if ($did == 205) { .set %badword OFF }
+  if ($did == 206) { .set %begik ON }
+  if ($did == 207) { .set %begik OFF }
+  if ($did == 210) { .set %massinvite ON }
+  if ($did == 211) { .set %massinvite OFF }
+  if ($did == 304) { .set %Invlist ON }
+  if ($did == 305) { .set %Invlist OFF }
+}
+on *:dialog:chanoth:init:*: {
+  if (%advertise == ON) { did -c chanoth 200 }
+  if (%advertise == OFF) { did -c chanoth 201 }
+  if (%badword == ON) { did -c chanoth 204 }
+  if (%badword == OFF) { did -c chanoth 205 }
+  if (%begik == ON) { did -c chanoth 206 }
+  if (%begik == OFF) { did -c chanoth 207 }
+  if (%massinvite == ON) { did -c chanoth 210 }
+  if (%massinvite == OFF) { did -c chanoth 211 }
+  if (%Invlist == ON) { did -c chanoth 304 }
+  if (%Invlist == OFF) { did -c chanoth 305 }
+}
+alias badnick { dialog -m badnick badnick }
+dialog badnick {
+  title "User Joining"
+  size -1 -1 200 165
+  box "Bad Nick Editor",1, 5 5 190 155
+  edit "",2, 10 20 130 20,autohs
+  button "Add",3, 145 20 40 20,disable
+  list 4, 10 40 130 130,sort
+  button "Del",5, 145 60 40 20,disable
+  button "Clear",6, 145 86 40 20
+  button "Close",7, 145 112 40 20,ok
+}
+on 1:dialog:badnick:*:*:{ 
+  if ($devent == init) { 
+    cekBN 
+  }
+  if ($devent == edit) {
+    if ($did == 2) { did -e $dname 3 }
+  }
+  if ($devent == sclick) {
+    if ($did == 3) { .auser badnick $did(2) $+ !*@* | did -r $dname 2 | did -r $dname 4 | cekBN }
+    if ($did == 4) { did -e $dname 5 }
+    if ($did == 5) { .ruser badnick $did(4,$did(4).sel) $+ !*@* | did -r $dname 4 | cekBN }
+    if ($did == 6) { .rlevel badnick | did -r $dname 4 }
+  }
+}
+alias cekBN {
+  %BNlist = 1 
+  :cekBN
+  %BN = $ulist(*,badnick,%BNlist)
+  if (%BN == $null) { goto tamat }
+  else { did -a badnick 4 $remove(%BN,$right(%BN,4)) | unset %BN | inc %BNlist 1 | goto cekBN }
+  :tamat
+  halt 
+}
+alias badident { dialog -m badident badident }
+dialog badident {
+  title "User Joining"
+  size -1 -1 200 165
+  box "Bad Identd Editor",1, 5 5 190 155
+  edit "",2, 10 20 130 20,autohs
+  button "Add",3, 145 20 40 20,disable
+  list 4, 10 40 130 130,sort
+  button "Del",5, 145 60 40 20,disable
+  button "Clear",6, 145 86 40 20
+  button "Close",7, 145 112 40 20,ok
+}
+on 1:dialog:badident:*:*:{ 
+  if ($devent == init) { 
+    cekBI 
+  }
+  if ($devent == edit) {
+    if ($did == 2) { did -e $dname 3 }
+  }
+  if ($devent == sclick) {
+    if ($did == 3) { .auser badident *! $+ $did(2) $+ @* | did -r $dname 2 | did -r $dname 4 | cekBI }     
+    if ($did == 4) { did -e $dname 5 }
+    if ($did == 5) { .ruser badident *! $+ $did(4,$did(4).sel) $+ @* | did -r $dname 4 | cekBI }
+    if ($did == 6) { .rlevel badident | did -r $dname 4 }
+  }
+}
+alias cekBI {
+  %BIlist = 1 
+  :cekBI
+  %BI = $ulist(*,badident,%BIlist)
+  if (%BI == $null) { goto tamat }
+  else { did -a badident 4 $remove(%BI,$left(%BI,2),$right(%BI,2)) | unset %BI | inc %BIlist 1 | goto cekBI }
+  :tamat
+  halt 
+}
+alias virus { dialog -m virus virus }
+dialog virus {
+  title "User Joining"
+  size -1 -1 200 165
+  box "Virus Identd Editor",1, 5 5 190 155
+  edit "",2, 10 20 130 20,autohs
+  button "Add",3, 145 20 40 20,disable
+  list 4, 10 40 130 130,sort
+  button "Del",5, 145 60 40 20,disable
+  button "Clear",6, 145 86 40 20
+  button "Close",7, 145 112 40 20,ok
+}
+on 1:dialog:virus:*:*:{ 
+  if ($devent == init) { 
+    cekVS 
+  }
+  if ($devent == edit) {
+    if ($did == 2) { did -e $dname 3 }
+  }
+  if ($devent == sclick) {
+    if ($did == 3) { .auser virus *! $+ $did(2) $+ @* | did -r $dname 2 | did -r $dname 4 | cekVS }     
+    if ($did == 4) { did -e $dname 5 }
+    if ($did == 5) { .ruser virus *! $+ $did(4,$did(4).sel) $+ @* | did -r $dname 4 | cekVS }
+    if ($did == 6) { .rlevel virus | did -r $dname 4 }
+  }
+}
+alias cekVS {
+  %VSlist = 1 
+  :cekVS
+  %VS = $ulist(*,virus,%VSlist)
+  if (%VS == $null) { goto tamat }
+  else { did -a virus 4 $remove(%VS,$left(%VS,2),$right(%VS,2)) | unset %VS | inc %VSlist 1 | goto cekVS }
+  :tamat
+  halt 
+}

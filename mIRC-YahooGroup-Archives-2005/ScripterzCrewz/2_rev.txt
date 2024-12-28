@@ -1,0 +1,87 @@
+#revenge2 off
+ON +3:JOIN:%rc: { 
+  if ($nick == $me) { halt }
+  else { .raw -q -q,1 mode $chan -o $nick  | .raw -q -q,1 kick $chan $nick 0,14Alert!! 14Revenge Kick! $fakof $ripper $ver  }
+}
+ON +3:NICK: { .raw -q -q,1 kick $chan $newnick 0,14Alert!! 14Revenge Kick! $fakof $ripper $ver | halt }
+ON +123:OP:%rc: { 
+  if ($nick == ChanServ) && (%rn ison %rc) {
+    .raw -q -q,1 mode $chan -o %rn  | .raw -q -q,1 kick $chan %rn 0,14Alert!! 14Revenge Kick! $fakof $ripper $ver
+  }
+}
+ON *:OP:%rc: {
+  if (%spin < 2) {
+    if ($opnick == $me) && (%rn ison %rc) {
+      .raw -q -q mode %rc -o %rn  | .raw -q -q,1 kick %rc %rn 0,14Alert!! 14Revenge Kick! $fakof $ripper $ver
+    }
+  }
+}
+ON +123:NICK: { .auser 123 $newnick }
+on *:kick:#: {
+  if ($knick == $me) && ($nick != $me) {
+    if ($nick != Chanserv) {
+      .set %rc $chan | .set %rn $nick | .auser 3 %rn | .auser 3  $mask($fulladdress,4)
+      timer 1 2 /joinning
+    }
+  }
+}
+alias joinning {
+  %spin = 0
+  /raw -q -q,1 chanserv deop %rc %rn
+  /raw -q -q,1 join %rc
+}
+raw 482:*: {
+  if (%rc != $null) && (%rn ison %rc) {
+    /raw -q -q,1 mode %rc -o %rn
+    /echo 4 -a ***[ Deop 7 %rn Is ActivateD ]
+    /raw -q -q,1 kick %rc %rn 0,14Alert!! 14Revenge Kick! $fakof $ripper $ver
+  }
+}
+raw 474:*: {
+  if (%rc != $null) {
+    timer 1 2 /cs invite %rc $me
+  timer 1 6 joinning }
+}
+raw 473:*: {
+  if (%rc != $null) && (%rn != $null) {
+    timer 1 2 /cs invite %rc $me
+  timer 1 6 joinning }
+}
+raw 471:*: {
+  if (%rc != $null) {
+    timer 1 2 /cs invite %rc $me
+  timer 1 6 joinning }
+}
+raw 485:*: {
+  timer 1 6 joinning
+}
+on *:deop:#: {
+  if ($nick == $me) { halt }
+  if ($opnick == $me) {
+    if ($nick == Chanserv) {
+      /raw -q -q,1 chanserv op # $me
+    }
+    else {
+      set %rc $chan | set %rn $nick | inc %spin
+      if (%spin < 2) {
+        /raw -q -q,1 chanserv deop %rc %rn
+        /raw -q -q,1 chanserv op %rc $me
+        /raw -q -q,1 kick %rc %rn 0,14Alert!! 14Revenge Kick! $fakof $ripper $ver
+      }
+      if (%spin >1) {
+        timerspin off
+        timerspin 1 1 /spindetect
+      }
+    }
+  }
+}
+alias spindetect {
+  %spin = 0
+  if ($me isop %rc) {
+    if (%rn ison %rc) { /raw -q -q,1 mode %rc -o %rn | raw -q -q,1 kick %rc %rn 0,14Alert!! 14Revenge Kick! $fakof $ripper $ver  }
+    else {
+      raw -q -q,1 chanserv op %rc $me
+    }
+  }
+}
+#revenge2 end
